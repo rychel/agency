@@ -24,8 +24,21 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import RNBootSplash from 'react-native-bootsplash'; // For starting screen
+
+
+
 
 const App = () => {
+
+  //We hide starting app
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+        RNBootSplash.hide();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <View>
       <Text>Mon premier paragraphe et toi ?</Text>
