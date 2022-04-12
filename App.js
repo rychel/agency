@@ -6,6 +6,7 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler'; // dependency of move screen
 import React from 'react';
 import {
   SafeAreaView,
@@ -25,8 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import RNBootSplash from 'react-native-bootsplash'; // For starting screen
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native'; // managing all screen used
+import { createStackNavigator } from '@react-navigation/stack'; // storaged screen
 
 import Launchnoaccount from './component/Launchnoaccount';
 
