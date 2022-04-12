@@ -25,9 +25,12 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import RNBootSplash from 'react-native-bootsplash'; // For starting screen
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import Launchnoaccount from './component/Launchnoaccount';
 
-
+const Stack = createStackNavigator();
 
 const App = () => {
 
@@ -40,9 +43,11 @@ const App = () => {
   }, []);
 
   return (
-    <View>
-      <Text>Mon premier paragraphe et toi ?</Text>
-    </View>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Acxios" component={Launchnoaccount} />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
