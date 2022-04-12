@@ -5,6 +5,7 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 
 import com.zoontek.rnbootsplash.RNBootSplash; // import in android 
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -45,5 +46,12 @@ public class MainActivity extends ReactActivity {
       RNBootSplash.init(getPlainActivity()); 
       super.loadApp(appKey);
     }
+
+    // instance for initialize navigating screen
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(null);
+    }
+
   }
 }
