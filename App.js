@@ -45,7 +45,7 @@ const App = () => {
   return (
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Acxios" component={Launchnoaccount} />
+      <Stack.Screen name="Acxios" component={Launchnoaccount} options = {{header : () => null}} />
     </Stack.Navigator>
     </NavigationContainer>
   );
