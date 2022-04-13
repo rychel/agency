@@ -5,17 +5,20 @@ import {
     Image,
     StyleSheet,
     Button,
+    ImageBackground,
+    Dimensions,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+
 const Launchnoaccount = () => {
     return (
-        <View style={{flex: 1}}>
+        <ImageBackground style={styles.ui_splash_global_app_contain}
+            source={require('../assets/splashstart1.jpg')}>
             <View style={styles.ui_splash_contain_receive_logo}>
                 <Image 
-                    style={styles.ui_splash_logo_started} 
-                    source={require('../assets/Logo1.png')}
-                    resizeMode = 'contain'
+                    source={require('../assets/splashstart1.jpg')}
+                    resizeMode = 'cover'
                 />
             </View>
 
@@ -28,17 +31,20 @@ const Launchnoaccount = () => {
                     <Text>Commencer</Text>
                 </TouchableOpacity>
             </View>
-            
+
             <View style={styles.ui_splash_started_title_version}>
                 <Text>acxios v 1.0 </Text>
             </View>
-        </View>  
+        </ImageBackground>  
     )
 }
 
 const styles = StyleSheet.create({
+    ui_splash_global_app_contain: {
+        flex: 1,
+    },
     ui_splash_contain_receive_logo: {
-        height: 400,
+        height: 300,
         backgroundColor: '#e7723b',
         alignContent: 'center',
         justifyContent: 'center',
@@ -82,15 +88,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     ui_splash_started_title_version: {
-        height: 60,
+        width: Dimensions.get('window').width,
+        height: 30,
         alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        bottom: 0,
+        justifyContent: 'flex-end',
         fontSize: 16,
         backgroundColor: 'red',
-        borderRadius: 5,
-    }
+        color: 'yellow',
+        position: 'absolute',
+        bottom: 0,
+    },
 });
 
 export default Launchnoaccount;
