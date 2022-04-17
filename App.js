@@ -31,8 +31,11 @@ import { NavigationContainer } from '@react-navigation/native'; // managing all 
 import { createStackNavigator } from '@react-navigation/stack'; // storaged screen
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+
+/* import component */
 import Launchnoaccount from './component/Launchnoaccount';
 import Licensecontract from './component/Licensecontract';
+import Getstarting from './component/Getstarting';
 
 const Stack = createStackNavigator();
 
@@ -51,6 +54,7 @@ const App = () => {
     <Stack.Navigator>
       <Stack.Screen name="Launch Home" component={Launchnoaccount} options = {{header : () => null}} />
       <Stack.Screen name="License Contracts" component={Licensecontract} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
+      <Stack.Screen name="Getting Started" component={Getstarting} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
     </Stack.Navigator>
     </NavigationContainer>
   );

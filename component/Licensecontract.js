@@ -3,8 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Dimensions
-    ScrollView
+    Dimensions,
+    ScrollView,
 } from 'react-native';
 
 
