@@ -14,7 +14,7 @@ import CheckBox from '@react-native-community/checkbox';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
-const Launchnoaccount = () => {
+const Launchnoaccount = (props) => {
     /* Animation satrting page */
     const Focus = useRef(new Animated.Value(0)).current;
     const Focus2 = useRef(new Animated.Value(0)).current;
@@ -48,6 +48,9 @@ const Launchnoaccount = () => {
         else{
             ToastAndroid.show('Etes-vous sur d\'avoir accepter notre politique', ToastAndroid.LONG);
         }
+    }
+    const gotoLicensecontract = () => {
+        props.navigation.navigate('License Contracts');
     }
 
     return (
@@ -83,7 +86,7 @@ const Launchnoaccount = () => {
               <View style={styles.ui_splash_started_title_contracts}>
                   <Text style={styles.ui_splash_started_text_contracts1}>Avant de continuer, veuillez lire et accepter</Text>
                   <View style={styles.ui_splash_started_contain_text_contracts2}>
-                      <Text style={styles.ui_splash_started_text_contracts2}>le contrat de license et politique d'utilisation</Text>
+                      <Text style={styles.ui_splash_started_text_contracts2} onPress={gotoLicensecontract}>le contrat de license et politique d'utilisation</Text>
                       <CheckBox value={agree} onChange={() => setAgree(!agree)} />
                   </View>
               </View>
@@ -115,7 +118,6 @@ const Launchnoaccount = () => {
             }}>
                 <Text style={ { fontSize: 16 } }>acxios v 1.0 </Text>
             </Animated.View>
-
 
         </ImageBackground>
     )
@@ -205,7 +207,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         position: 'relative',
         top: -1,
-    }
+    },
 });
 
 export default Launchnoaccount;

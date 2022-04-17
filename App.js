@@ -50,7 +50,7 @@ const App = () => {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Launch Home" component={Launchnoaccount} options = {{header : () => null}} />
-    <Stack.Screen name="License contracts" component={Licensecontract} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
+      <Stack.Screen name="License Contracts" component={Licensecontract} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
     </Stack.Navigator>
     </NavigationContainer>
   );
