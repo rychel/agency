@@ -15,6 +15,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image
 } from 'react-native';
 
 import {
@@ -28,8 +29,10 @@ import {
 import RNBootSplash from 'react-native-bootsplash'; // For starting screen
 import { NavigationContainer } from '@react-navigation/native'; // managing all screen used
 import { createStackNavigator } from '@react-navigation/stack'; // storaged screen
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Launchnoaccount from './component/Launchnoaccount';
+import Licensecontract from './component/Licensecontract';
 
 const Stack = createStackNavigator();
 
@@ -46,7 +49,8 @@ const App = () => {
   return (
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Acxios" component={Launchnoaccount} options = {{header : () => null}} />
+      <Stack.Screen name="Launch Home" component={Launchnoaccount} options = {{header : () => null}} />
+    <Stack.Screen name="License contracts" component={Licensecontract} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
     </Stack.Navigator>
     </NavigationContainer>
   );
