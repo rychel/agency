@@ -8,7 +8,7 @@ const Licensecontract = () => {
     <ScrollView>
       <View style={styles.ui_splash_contain_title_license}>
         <Text style={styles.ui_splash_title_license}>
-          Welcome in license contract{' '}
+          Welcome in license contracts{' '}
         </Text>
       </View>
       <View>
@@ -260,11 +260,10 @@ const Licensecontract = () => {
 const styles = StyleSheet.create({
   ui_splash_contain_title_license: {
     width: '100%',
-    height: 50,
     marginTop: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#e9f5db',
+    backgroundColor: '#cfe1b9',
   },
   ui_splash_title_license: {
     alignSelf: 'flex-end',
@@ -272,7 +271,6 @@ const styles = StyleSheet.create({
     fontSize: 27,
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#cfe1b9',
     justifyContent: 'center',
     paddingVertical: 5,
     fontFamily: 'Feather',
