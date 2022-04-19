@@ -130,7 +130,7 @@ const Launchnoaccount = props => {
           backgroundColor: '#ffac81',
           color: 'yellow',
           position: 'absolute',
-          bottom: 24,
+          bottom: 0,
         }}>
         <Text style={{fontSize: 16}}>acxios v 1.0 </Text>
       </Animated.View>
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#8ab4f8',
     marginTop: 100,
+    marginBottom: 10,
     position: 'relative',
     fontFamily: 'cursive',
     fontSize: 20,
@@ -177,6 +178,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 17,
     fontFamily: 'Fontisto',
+    textAlign: 'left',
   },
   ui_splash_started_contain_text_contracts2: {
     alignContent: 'center',
@@ -188,6 +190,7 @@ const styles = StyleSheet.create({
     color: 'rgba(245, 246, 252, 0.52)',
     textDecorationLine: 'underline',
     fontSize: 18,
+    width: '88%',
     fontFamily: 'Fontisto',
     marginTop: 5,
     textDecorationColor: 'rgba(245, 246, 252, 0.52)',
@@ -204,8 +207,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   ui_splash_started_button_welcome: {
-    width: 200,
-    height: 60,
+    width: 180,
+    height: 55,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -216,7 +219,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
   },
   ui_splash_started_button_text: {
-    fontSize: 23,
+    fontSize: 21,
     marginRight: 5,
     fontFamily: 'Foundation',
     fontWeight: 'bold',
