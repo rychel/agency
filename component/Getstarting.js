@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,28 @@ import {
   Animated,
   ScrollView,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSmile, faRightLong} from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = () => {
+  const Floating = useRef(new Animated.Value(-45)).current;
+
+  setInterval(() => {
+    Animated.timing(Floating, {
+      toValue: 19,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, 1000);
+
+  const spin = Floating.interpolate({
+    inputRange: [0, 10],
+    outputRange: ['-19deg', '2deg'],
+  });
+
   return (
     <LinearGradient
       start={{x: 0.0, y: 0.25}}
@@ -22,9 +37,12 @@ const Getstarting = () => {
       colors={['#FEB692', '#EA5455']}
       style={styles.ui_splash_todo_contain}>
       <View style={styles.ui_splash_contain_widget_acxios}>
-        <Text style={styles.body}>
+        <Animated.View
+          style={{
+            transform: [{rotate: spin}],
+          }}>
           <FontAwesome5 name="robot" size={160} color="white" />
-        </Text>
+        </Animated.View>
       </View>
       <View style={styles.ui_splash_below_title_message}>
         <Text style={styles.ui_splash_below_text_message}>
