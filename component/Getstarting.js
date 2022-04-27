@@ -7,14 +7,17 @@ import {
   Animated,
   ScrollView,
 } from 'react-native';
-
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSmile, faRightLong} from '@fortawesome/free-solid-svg-icons';
+import {faSmile, faLeftLong} from '@fortawesome/free-solid-svg-icons';
 
-const Getstarting = () => {
+const Getstarting = ({navigation}) => {
   const Floating = useRef(new Animated.Value(-45)).current;
+  const gotoBackHome = () => {
+    navigation.goBack('Launch Home');
+  };
 
   setInterval(() => {
     Animated.timing(Floating, {
@@ -34,7 +37,7 @@ const Getstarting = () => {
       start={{x: 0.0, y: 0.25}}
       end={{x: 0.5, y: 1.0}}
       locations={[0.05, 0.6]}
-      colors={['#FEB692', '#EA5455']}
+      colors={['#A3BDED', '#A3BDED']}
       style={styles.ui_splash_todo_contain}>
       <View style={styles.ui_splash_contain_widget_acxios}>
         <Animated.View
@@ -55,12 +58,19 @@ const Getstarting = () => {
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer une agence
           </Text>
-          <FontAwesomeIcon icon={faRightLong} color="#ffff" size={25} />
+          <FontAwesome5 name="paper-plane" color="#ffff" size={25} />
         </View>
         <Text style={styles.ui_splash_contain_other_button_goto}>
           creer un compte associé à une agence
         </Text>
       </View>
+      <TouchableOpacity
+        style={styles.ui_splash_contain_go_back_button}
+        activeOpacity={0.9}
+        onPress={gotoBackHome}>
+        <FontAwesomeIcon icon={faLeftLong} size={25} color="white"/>
+        <Text style={styles.ui_splash_contain_go_back_text}>retour</Text>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };
@@ -107,12 +117,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    borderRadius: 5,
-    position: 'absolute',
-    bottom: 40,
+    borderRadius: 20,
   },
   ui_splash_button_goto_starting: {
-    width: '70%',
+    width: '40%',
     height: 50,
     textAlignVertical: 'center',
     marginTop: 30,
@@ -133,7 +141,22 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_other_button_goto: {
     textDecorationLine: 'underline',
-    marginBottom: 5,
+    marginTop: 10,
+  },
+  ui_splash_contain_go_back_button: {
+    width: '50%',
+    position: 'relative',
+    left: 30,
+    textDecorationLine: 'underline',
+    marginTop: 20,
+    flexDirection: 'row',
+  },
+  ui_splash_contain_go_back_text: {
+    position: 'relative',
+    left: 10,
+    fontSize: 19,
+    top: -3,
+    color: 'white',
   },
 });
 
