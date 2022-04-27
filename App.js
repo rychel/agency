@@ -54,7 +54,7 @@ const App = () => {
     <Stack.Navigator>
       <Stack.Screen name="Launch Home" component={Launchnoaccount} options = {{header : () => null}} />
       <Stack.Screen name="License Contracts" component={Licensecontract} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
-    <Stack.Screen name="Getting Started" component={Getstarting} options={{headerStyle: { backgroundColor: '#ffac81' }}}/>
+      <Stack.Screen name="Acxios" component={Getstarting} options={{header : () => null}}/>
     </Stack.Navigator>
     </NavigationContainer>
   );
