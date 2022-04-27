@@ -32,9 +32,10 @@ import {createStackNavigator} from '@react-navigation/stack'; // storaged screen
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 /* import component */
-import Launchnoaccount from './component/Launchnoaccount';
-import Licensecontract from './component/Licensecontract';
-import Getstarting from './component/Getstarting';
+import Launchnoaccount from './component/Launchnoaccount'; // First screen for no account
+import Licensecontract from './component/Licensecontract'; // License component
+import Getstarting from './component/Getstarting'; // Second screen for no account
+import Grantstarting from './component/Grantstarting'; // Third screen for no account
 
 const Stack = createStackNavigator();
 
@@ -61,8 +62,13 @@ const App = () => {
           options={{headerStyle: {backgroundColor: '#ffac81'}}}
         />
         <Stack.Screen
-          name="Acxios"
+          name="Get starting"
           component={Getstarting}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="admin"
+          component={Grantstarting}
           options={{header: () => null}}
         />
       </Stack.Navigator>
