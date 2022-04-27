@@ -42,7 +42,7 @@ const Launchnoaccount = props => {
   const [agree, setAgree] = useState(false);
   const isChecked = () => {
     if (agree == true) {
-      props.navigation.navigate('Getting Started');
+      props.navigation.navigate('Acxios');
     } else {
       ToastAndroid.show(
         "Etes-vous sur d'avoir accepter notre politique",
