@@ -13,7 +13,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import CheckBox from '@react-native-community/checkbox';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const Launchnoaccount = props => {
+const Launchnoaccount = ({navigation}) => {
   /* Animation satrting page */
   const Focus = useRef(new Animated.Value(0)).current;
   const Focus2 = useRef(new Animated.Value(0)).current;
@@ -42,7 +42,7 @@ const Launchnoaccount = props => {
   const [agree, setAgree] = useState(false);
   const isChecked = () => {
     if (agree == true) {
-      props.navigation.navigate('Acxios');
+      navigation.navigate('Get starting');
     } else {
       ToastAndroid.show(
         "Etes-vous sur d'avoir accepter notre politique",
@@ -51,7 +51,7 @@ const Launchnoaccount = props => {
     }
   };
   const gotoLicensecontract = () => {
-    props.navigation.navigate('License Contracts');
+    navigation.navigate('License Contracts');
   };
 
   return (

@@ -18,6 +18,9 @@ const Getstarting = ({navigation}) => {
   const gotoBackHome = () => {
     navigation.goBack('Launch Home');
   };
+  const gotoGrantstarting = () => {
+    navigation.navigate('admin');
+  };
 
   setInterval(() => {
     Animated.timing(Floating, {
@@ -54,12 +57,15 @@ const Getstarting = ({navigation}) => {
       </View>
       <View style={styles.ui_splash_box_create_title_message}>
         <FontAwesomeIcon icon={faSmile} color="#FEB692" size={59} />
-        <View style={styles.ui_splash_button_goto_starting}>
+        <TouchableOpacity
+          style={styles.ui_splash_button_goto_starting}
+          activeOpacity={0.9}
+          onPress={gotoGrantstarting}>
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer une agence
           </Text>
           <FontAwesome5 name="paper-plane" color="#ffff" size={25} />
-        </View>
+        </TouchableOpacity>
         <Text style={styles.ui_splash_contain_other_button_goto}>
           creer un compte associé à une agence
         </Text>
@@ -68,7 +74,7 @@ const Getstarting = ({navigation}) => {
         style={styles.ui_splash_contain_go_back_button}
         activeOpacity={0.9}
         onPress={gotoBackHome}>
-        <FontAwesomeIcon icon={faLeftLong} size={25} color="white"/>
+        <FontAwesomeIcon icon={faLeftLong} size={25} color="white" />
         <Text style={styles.ui_splash_contain_go_back_text}>retour</Text>
       </TouchableOpacity>
     </LinearGradient>
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9D29D',
     borderRadius: 5,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     textAlign: 'center',
   },
   ui_splash_button_goto_text_starting: {
