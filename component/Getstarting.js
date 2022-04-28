@@ -1,12 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Animated,
-  ScrollView,
-} from 'react-native';
+import React, {useRef} from 'react';
+import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
