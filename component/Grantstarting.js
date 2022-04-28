@@ -31,7 +31,8 @@ const Grantstarting = ({navigation}) => {
       locations={[0.05, 0.6]}
       colors={['#A3BDED', '#A3BDED']}
       style={styles.ui_splash_todo_contain}>
-      <View style={styles.ui_splash_contain_form_control}>
+      <Animated.View
+        style={styles.ui_splash_contain_form_control}>
         <View style={styles.ui_splash_below_title_message}>
           <Text style={styles.ui_splash_below_text_message}>
             utiliser les informations d'une piece officielle pour creer votre
@@ -77,7 +78,7 @@ const Grantstarting = ({navigation}) => {
             keyboardType="numeric"
           />
         </View>
-      </View>
+      </Animated.View>
 
       <TouchableOpacity
         style={styles.ui_splash_contain_go_back_button}
@@ -112,13 +113,13 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_form_control: {
     width: '100%',
-    height: 650,
+    height: 620,
     alignSelf: 'center',
     borderWidth: 2,
     backgroundColor: 'white',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    borderColor: 'white'
+    borderColor: 'white',
   },
   ui_splash_contain_second_form_control: {
     width: '95%',
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    color: '#A3BDED',
+    color: 'orange',
   },
   ui_splash_title_form_control: {
     left: 26,
