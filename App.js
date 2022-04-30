@@ -8,23 +8,13 @@
 
 import 'react-native-gesture-handler'; // dependency of move screen
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from 'react-native';
-
-import {
+/*import {
   Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen';*/
 
 import RNBootSplash from 'react-native-bootsplash'; // For starting screen
 import {NavigationContainer} from '@react-navigation/native'; // managing all screen used
@@ -36,6 +26,7 @@ import Launchnoaccount from './component/Launchnoaccount'; // First screen for n
 import Licensecontract from './component/Licensecontract'; // License component
 import Getstarting from './component/Getstarting'; // Second screen for no account
 import Grantstarting from './component/Grantstarting'; // Third screen for no account
+import Direction from './component/Direction/Direction'; // Direction screen for agence's thief
 
 const Stack = createStackNavigator();
 
@@ -71,28 +62,14 @@ const App = () => {
           component={Grantstarting}
           options={{header: () => null}}
         />
+        <Stack.Screen
+          name="Direction"
+          component={Direction}
+          options={{header: () => null}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
