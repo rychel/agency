@@ -4,7 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSmile, faLeftLong} from '@fortawesome/free-solid-svg-icons';
+import {faSmile, faLeftLong, faRightLong} from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = ({navigation}) => {
   const Floating = useRef(new Animated.Value(-45)).current;
@@ -49,7 +49,7 @@ const Getstarting = ({navigation}) => {
         </Text>
       </View>
       <View style={styles.ui_splash_box_create_title_message}>
-        <FontAwesomeIcon icon={faSmile} color="#FEB692" size={59} />
+        <FontAwesome5 name="paper-plane" color="#A3BDED" size={55} />
         <TouchableOpacity
           style={styles.ui_splash_button_goto_starting}
           activeOpacity={0.9}
@@ -57,7 +57,7 @@ const Getstarting = ({navigation}) => {
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer une agence
           </Text>
-          <FontAwesome5 name="paper-plane" color="#ffff" size={25} />
+          <FontAwesomeIcon icon={faRightLong} size={25} color="white" />
         </TouchableOpacity>
         <Text style={styles.ui_splash_contain_other_button_goto}>
           creer un compte associé à une agence
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   ui_splash_button_goto_starting: {
-    width: '40%',
+    width: '48%',
     height: 50,
     textAlignVertical: 'center',
     marginTop: 30,
