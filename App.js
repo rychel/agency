@@ -22,11 +22,11 @@ import {createStackNavigator} from '@react-navigation/stack'; // storaged screen
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 /* import component */
-import Launchnoaccount from './component/Launchnoaccount'; // First screen for no account
-import Licensecontract from './component/Licensecontract'; // License component
-import Getstarting from './component/Getstarting'; // Second screen for no account
-import Grantstarting from './component/Grantstarting'; // Third screen for no account
-import Direction from './component/Direction/Direction'; // Direction screen for agence's thief
+import Launchnoaccount from './src/screens/Launchnoaccount'; // First screen for no account
+import Licensecontract from './src/screens/Licensecontract'; // License component
+import Getstarting from './src/screens/Getstarting'; // Second screen for no account
+import Grantstarting from './src/screens/Grantstarting'; // Third screen for no account
+import Direction from './src/screens/Direction/Direction'; // Direction screen for agence's thief
 
 const Stack = createStackNavigator();
 

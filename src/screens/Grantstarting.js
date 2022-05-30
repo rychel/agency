@@ -18,7 +18,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faLeftLong} from '@fortawesome/free-solid-svg-icons';
 /* personalised form input */
-import InputGs from '../components/InputGs'
+import InputGs from '../components/InputGs';
+import {validEmail, validChiffre, validSpecials} from '../utils/regex';
+
 
 const Grantstarting = ({navigation}) => {
 
@@ -48,9 +50,6 @@ const Grantstarting = ({navigation}) => {
     Codesecurite: "",
   });
 
-  const regexchiffre = new RegExp(/[0-9]/);
-  const regexSpecials = new RegExp(/[?,;.:/!§ù%*µ¨$\.\.|()=+-_}\]{[`@°&"\\^\.']/);
-
   const {Nomagence, Nomorganisation, Codesecurite} = params;
 
   const handleOnBlurText = (fieldname) => {
@@ -70,6 +69,7 @@ const Grantstarting = ({navigation}) => {
     }
     /* Handling error Codesecurite message */
     if(fieldname == 'Nomorganisation'){
+      console.log(Nomorganisation.length);
       if(Nomorganisation == ''){
         setErrors({Nomorganisation: "ce champ est obligatoire."});
       }
@@ -92,16 +92,11 @@ const Grantstarting = ({navigation}) => {
           setErrors({Codesecurite: "Le code de sécurité de votre agence doit etre fiable."});
         }
         else{
-          if(regexchiffre.test(Codesecurite) == false){
-            setErrors({Codesecurite: "Votre code de sécurité doit contenir des chiffres"});
+          if(validChiffre.test(Codesecurite) == false || validSpecials.test(Codesecurite) == false){
+            setErrors({Codesecurite: "Votre code de sécurité doit contenir des chiffres ou [?,;.:/!§ù%*µ¨$\.\.|()=+-_}\]{[`@°&\^.']"});
           }
           else{
-            if(regexSpecials.test(Codesecurite) == false){
-              setErrors({Codesecurite: "Votre code de sécurité doit contenir [?,;.:/!§ù%*µ¨$\.\.|()=+-_}\]{[`@°&\^.'] "});
-            }
-            else{
-              setErrors({Codesecurite: ""});
-            }
+            setErrors({Codesecurite: ""});
           }
         }
       }
