@@ -19,8 +19,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faLeftLong} from '@fortawesome/free-solid-svg-icons';
 /* personalised form input */
 import InputGs from '../components/InputGs';
+/* import utils */
 import {validEmail, validChiffre, validSpecials} from '../utils/regex';
-
 
 const Grantstarting = ({navigation}) => {
 
@@ -28,29 +28,48 @@ const Grantstarting = ({navigation}) => {
     navigation.goBack('Get starting');
   };
 
-  const gotoverif = () => {
-    /*fetch('https://4ae4-129-0-99-13.eu.ngrok.io')
-        .then(json => json.json())
-        .then(json => setItemsag(json))
-        .then(json => console.log(itemsag))
-        .catch(e => {
-          console.log(e);
-        });*/
+  /** spell of codesecure agency */
+  const checkCodesecure = async () => {
+    fetch('https://007c-102-244-221-54.eu.ngrok.io/api/createAgency',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title: Codesecurite})
+      })
+      .then(json => json.json())
+      .then(json => setGrant({gCodesecurite: json}))
+      .then(json => console.log(json))
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   const [params, setParams] = useState({
     Nomagence: "",
     Nomorganisation: "",
     Codesecurite: "",
+    Nomchefagence: "",
+    Prenomchefagence: "",
+    Numerocnichef: "",
+    Password: "",
   });
 
   const [errors, setErrors] = useState({
     Nomagence: "",
     Nomorganisation: "",
     Codesecurite: "",
+    Nomchefagence: "",
+    Prenomchefagence: "",
+    Numerocnichef: "",
+    Password: "",
   });
 
-  const {Nomagence, Nomorganisation, Codesecurite} = params;
+  const [grant, setGrant] = useState({
+    gCodesecurite: false,
+    gPassword: false
+  });
+
+  const {Nomagence, Nomorganisation, Codesecurite, Nomchefagence, Prenomchefagence, Numerocnichef, Password} = params;
+  const {gCodesecurite, gPassword} = grant;
 
   const handleOnBlurText = (fieldname) => {
     /* Handling error Nomagence message */
@@ -67,22 +86,21 @@ const Grantstarting = ({navigation}) => {
         }
       }
     }
-    /* Handling error Codesecurite message */
+    /* Handling error Nomorganisation message */
     if(fieldname == 'Nomorganisation'){
-      console.log(Nomorganisation.length);
       if(Nomorganisation == ''){
         setErrors({Nomorganisation: "ce champ est obligatoire."});
       }
       else{
         if(Nomorganisation.length < 3){
-          setErrors({Nomoraganisation: "Le nom de votre organisation doit etre explicite."});
+          setErrors({Nomorganisation: "Le nom de votre organisation doit etre explicite."});
         }
         else{
           setErrors({Nomorganisation: ""});
         }
       }
     }
-    /* Handling error Nomorganisation message */
+    /* Handling error Codesecurite message */
     if(fieldname == 'Codesecurite'){
       if(Codesecurite == ''){
         setErrors({Codesecurite: "ce champ est obligatoire."});
@@ -96,8 +114,47 @@ const Grantstarting = ({navigation}) => {
             setErrors({Codesecurite: "Votre code de sécurité doit contenir des chiffres ou [?,;.:/!§ù%*µ¨$\.\.|()=+-_}\]{[`@°&\^.']"});
           }
           else{
-            setErrors({Codesecurite: ""});
+            checkCodesecure();
+            console.log(gCodesecurite);
+            if(gCodesecurite == true){
+              setErrors({Codesecurite: "Ce code de sécurité nous parait familer! Essayez un autre"});
+            }
+            else{
+              setErrors({Codesecurite: ""});
+            }
           }
+        }
+      }
+    }
+    /* Handling error Nomchefagence message */
+    if(fieldname == 'Nomchefagence'){
+      if(Nomchefagence == ''){
+        setErrors({Nomchefagence: "ce champ est obligatoire."});
+      }
+      else{
+        setErrors({Nomchefagence: ""});
+      }
+    }
+    /* Handling error Prenomchefagence message */
+    if(fieldname == 'Prenomchefagence'){
+      if(Prenomchefagence == ''){
+        setErrors({Prenomchefagence: "ce champ est obligatoire."});
+      }
+      else{
+        setErrors({Prenomchefagence: ""});
+      }
+    }
+    /* Handling error Numerocnichef message */
+    if(fieldname == 'Numerocnichef'){
+      if(Numerocnichef == ''){
+        setErrors({Numerocnichef: "ce champ est obligatoire."});
+      }
+      else{
+        if(Numerocnichef.length < 5){
+          setErrors({Numerocnichef: "Le numéro de votre cni doit supérieur à 5 caractères"});
+        }
+        else{
+          setErrors({Numerocnichef: ""});
         }
       }
     }
@@ -109,8 +166,8 @@ const Grantstarting = ({navigation}) => {
 
   console.log(params);
   
-
   const handleSubmit = () => {
+    
     console.log("vous avez soumi le formulaire");
   }
 
@@ -154,9 +211,29 @@ const Grantstarting = ({navigation}) => {
           {errors.Codesecurite ? <Text style={styles.ui_splash_title_form_error_control}>{errors.Codesecurite}</Text> : null}
         </View>
         <View style={styles.ui_splash_contain_second_form_control}>
-          <InputGs title="Nom du chef d'agence" keyboard="alphabetic" />
-          <InputGs title="Prenom du chef d'agence" keyboard="alphabetic" />
-          <InputGs title="Numero CNI ou Recepice" keyboard="alphabetic" />
+          <InputGs title="Nom du chef d'agence" 
+                   keyboard="alphabetic"
+                   onBlur={() => handleOnBlurText('Nomchefagence')}
+                   onChangeText={(value) => handleOnChangeText(value, 'Nomchefagence')}
+          />
+          {errors.Nomchefagence ? <Text style={styles.ui_splash_title_form_error_control}>{errors.Nomchefagence}</Text> : null}
+          <InputGs title="Prenom du chef d'agence" 
+                   keyboard="alphabetic"
+                   onBlur={() => handleOnBlurText('Prenomchefagence')}
+                   onChangeText={(value) => handleOnChangeText(value, 'Prenomchefagence')}
+          />
+          {errors.Prenomchefagence ? <Text style={styles.ui_splash_title_form_error_control}>{errors.Prenomchefagence}</Text> : null}
+          <InputGs title="Numero CNI ou Recepice" 
+                   keyboard="alphabetic"
+                   onBlur={() => handleOnBlurText('Numerocnichef')}
+                   onChangeText={(value) => handleOnChangeText(value, 'Numerocnichef')}
+          />
+          {errors.Numerocnichef ? <Text style={styles.ui_splash_title_form_error_control}>{errors.Numerocnichef}</Text> : null}
+          <InputGs title="Mot de passe du chef d'agence" 
+                   keyboard="alphabetic"
+                   onBlur={() => handleOnBlurText('Password')}
+                   onChangeText={(value) => handleOnChangeText(value, 'Password')}
+          />
         </View>
       </Animated.View>
 
