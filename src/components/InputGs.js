@@ -7,15 +7,21 @@ import {
 } from 'react-native';
 
 const InputGs = (props) => {
+  const {title, keyboard, onBlur, onChangeText, errors, onFocus} = props;
+  
   return (
     <View>
-      <Text style={styles.ui_splash_title_form_control}>{props.title}</Text>
+      <Text style={styles.ui_splash_title_form_control}>{title}</Text>
       <TextInput
-          style={props.errors ? styles.ui_splash_input_form_control_error : styles.ui_splash_input_form_control}
-          keyboardType={props.keyboard}
-          onBlur={props.onBlur}
-          onChangeText={props.onChangeText}
+          style={errors ? styles.ui_splash_input_form_control_error : styles.ui_splash_input_form_control}
+          keyboardType={keyboard}
+          onBlur={onBlur}
+          onChangeText={onChangeText}
+          errors={errors}
+          onFocus={onFocus}
+          {...props}
       />
+      {errors ? <Text style={styles.ui_splash_title_form_error_control}>{errors}</Text> : null}
     </View>
   );
 };
@@ -60,6 +66,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     top: 22,
     color: '#A3BDED',
+  },
+  ui_splash_title_form_error_control: {
+    left: 26,
+    fontSize: 17,
+    color: 'red',
   },
 });
 
