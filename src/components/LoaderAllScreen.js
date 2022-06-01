@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   ui_splash_global_display_screen: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'white',
     position: 'absolute',
     zIndex: 5,
     justifyContent: 'center',
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     overflow: 'hidden',
+    borderColor: 'rgba(0,0,1,0.5)',
   },
   ui_splash_global_display_activity_items2: {
     width: 'auto',
