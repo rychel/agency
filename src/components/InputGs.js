@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 const InputGs = (props) => {
-  const {title, keyboard, onBlur, onChangeText, errors, onFocus} = props;
+  const {title, keyboard, onChange, onBlur, onChangeText, errors, onFocus} = props;
   
   return (
     <View>
@@ -15,6 +15,7 @@ const InputGs = (props) => {
       <TextInput
           style={errors ? styles.ui_splash_input_form_control_error : styles.ui_splash_input_form_control}
           keyboardType={keyboard}
+          onChange={onChange}
           onBlur={onBlur}
           onChangeText={onChangeText}
           errors={errors}
