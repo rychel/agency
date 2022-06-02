@@ -30,7 +30,7 @@ const LoaderAllScreen = (props) => {
         </View>
         <View style={styles.ui_splash_global_display_activity_items2}>
           <View>
-            <Text style={styles.ui_splash_global_display_unhandled_text2}>Votre agence a été crée avec succès vous serez redirigez dans votre espace administration dans quelques secondes. </Text>
+            <Text style={styles.ui_splash_global_display_unhandled_text2}>Votre agence a été crée avec succès vous serez redirigez dans votre espace administration dans quelques secondes... </Text>
           </View>
         </View>
       </View>
