@@ -19,19 +19,19 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
-const RDirection = ({navigation}) => {
+const RDirection = () => {
 
   return (
     <Drawer.Navigator initialRouteName='Direction'>
         <Drawer.Screen
           name="Direction"
           component={Direction}
-          options={{
-            header: () => (<HeaderUser Gtitle='Noblesse voyages' Depart='Douala' Arrive='Yaoundé' />),
+          options={({navigation}) => ({
+            header: () => (<HeaderUser Gtitle='Noblesse voyages' Depart='Douala' Arrive='Yaoundé' onPress={() => {navigation.toggleDrawer()}} />),
             headerStyle: {
               height: 70
             }
-          }}
+          })}
         />
     </Drawer.Navigator>
   );
