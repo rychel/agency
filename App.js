@@ -6,42 +6,41 @@
  * @flow strict-local
  */
 
-import 'react-native-gesture-handler'; // dependency of move screen
-import React from 'react';
-/*import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';*/
+import 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
 
-import RNBootSplash from 'react-native-bootsplash'; // For starting screen
-import {NavigationContainer} from '@react-navigation/native'; // managing all screen used
-import {createStackNavigator} from '@react-navigation/stack'; // storaged screen
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import RNBootSplash from 'react-native-bootsplash'; 
+import {NavigationContainer} from '@react-navigation/native'; 
+import {createStackNavigator} from '@react-navigation/stack'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /* import component */
 import Launchnoaccount from './src/screens/Launchnoaccount'; // First screen for no account
 import Licensecontract from './src/screens/Licensecontract'; // License component
 import Getstarting from './src/screens/Getstarting'; // Second screen for no account
 import Grantstarting from './src/screens/Grantstarting'; // Third screen for no account
-import Direction from './src/screens/Direction/Direction'; // Direction screen for agence's thief
+import RDirection from './src/routes/RDirection'; // Direction route's screen for agence's thief
+
+import Direction from './src/screens/Direction/Direction';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   //We hide starting app
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
+  useEffect(() => {
+    setTimeout(() => {
       RNBootSplash.hide();
     }, 1000);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+            name="RDirection"
+            component={RDirection}
+            options={{header: () => null}}
+        />
         <Stack.Screen
           name="Launch Home"
           component={Launchnoaccount}
@@ -50,7 +49,7 @@ const App = () => {
         <Stack.Screen
           name="License Contracts"
           component={Licensecontract}
-          options={{headerStyle: {backgroundColor: '#ffac81'}}}
+          options={{headerStyle: {backgroundColor: '#7cc3bc'}}}
         />
         <Stack.Screen
           name="Get starting"
