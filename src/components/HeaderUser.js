@@ -1,62 +1,67 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const HeaderUser = (props) => {
+const HeaderUser = props => {
   const {Gtitle, Depart, Arrive, onPress} = props;
-  
+
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
-        <TouchableOpacity 
-              activeOpacity={0.7}
-              onPress={onPress}>
-            <View style={styles.ui_splash_contain_globe_cadre_tags}>
-                <FontAwesome5 name="align-justify" size={30} color='white' />
-            </View>
+        <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
+          <View style={styles.ui_splash_contain_globe_cadre_tags}>
+            <FontAwesome5 name="align-justify" size={30} color="white" />
+          </View>
         </TouchableOpacity>
       </View>
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
         <View style={styles.ui_splash_contain_destination_items_globe2}>
-            <Text style={styles.ui_splash_contain_destination_items_text1}>{Gtitle}</Text>
+          <Text style={styles.ui_splash_contain_destination_items_text1}>
+            {Gtitle}
+          </Text>
         </View>
         <View style={styles.ui_splash_contain_destination_globe}>
           <View style={styles.ui_splash_contain_destination_items_globe1}>
-              <Text style={styles.ui_splash_contain_destination_items_text2}>agence</Text>
-              <Text style={styles.ui_splash_contain_destination_items_text2}>{Depart}-{Arrive}</Text>
+            <Text style={styles.ui_splash_contain_destination_items_text2}>
+              agence
+            </Text>
+            <Text style={styles.ui_splash_contain_destination_items_text2}>
+              {Depart}-{Arrive}
+            </Text>
           </View>
         </View>
       </View>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
-        <Text style={styles.ui_splash_contain_destination_items_text2}><FontAwesome5 name="search" size={24} /></Text>
+        <Text style={styles.ui_splash_contain_destination_items_text2}>
+          <FontAwesome5 name="search" size={24} color="white" />
+        </Text>
       </View>
     </View>
   );
 };
 
+{
+  /*#f44336 */
+}
+
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-      backgroundColor: '#f44336',
-      flexDirection: 'row',
-      height: 70,
-      justifyContent: 'center',
+    backgroundColor: '#7cc3bc',
+    flexDirection: 'row',
+    height: 70,
+    justifyContent: 'center',
   },
   ui_splash_contain_destination_globe: {
     flexDirection: 'row',
-    backgroundColor: '#f4433642',
+    backgroundColor: '#7cc3bc',
     justifyContent: 'space-between',
   },
   ui_splash_contain_globe_cadre_tags: {
     borderRadius: 100,
     width: 60,
     height: 65,
-    backgroundColor: '#f44336',
+    backgroundColor: '#7cc3bc',
     justifyContent: 'center',
     alignItems: 'center',
   },
