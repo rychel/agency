@@ -36,7 +36,23 @@ const Setting = props => {
         activeOpacity={0.7}>
         <ItemMenu Titleico="bus-alt" Titlename="Gérer les Bus" />
       </TouchableOpacity>
-      <ItemMenu Titleico="receipt" Titlename="Choisir le type de ticket" />
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Ticketconfiguration');
+        }}
+        activeOpacity={0.7}>
+        <ItemMenu Titleico="receipt" Titlename="Choisir le type de ticket" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Courrier');
+        }}
+        activeOpacity={0.7}>
+        <ItemMenu Titleico="user" Titlename="Service courrier" />
+      </TouchableOpacity>
+      <ItemMenu Titleico="user-friends" Titlename="Service caisse" />
+      <ItemMenu Titleico="user-circle" Titlename="Service clientèle(les clients)" />
+      <ItemMenu Titleico="user-circle" Titlename="Service de billeterie" />
     </View>
   );
 };
