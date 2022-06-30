@@ -5,25 +5,36 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import TipsBus from '../../components/TipsBus';
 import NoItemStatus from '../../components/NoItemStatus';
+import ItemChauffeurTips from '../../components/ItemChauffeurTips';
 
-const Chauffeur = props => {
+const Chauffeur = (props) => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#7cc3bc"
+        barStyle="default"
+        showHideTransition="fade"
+        hidden={false} />
       <NoItemStatus
         Titleico="user-slash"
         Titlestatus="aucun chauffeur enregistré"
       />
-      <ButtonAddingItems
-        titleico="plus"
-        titlebutton="ajouter"
-        borderrounds={50}
+      <ItemChauffeurTips
+        Titleico="user"
+        Titlename="Bopp"
+        Titlesubname="Dylan ngaite"
+        onDelete={() => {}}
+        onSleep={() => {}}
       />
+      <ItemBusTips Titleico='bus' Titlename='Bopp' Titlesubname='Dylan ngaite' onDelete={() => {}} onSleep={() => {}} />
     </View>
   );
 };
