@@ -29,7 +29,11 @@ const Busconfiguration = (props) => {
         Titleico="tint-slash"
         Titlestatus="aucun bus enregistré"
       />
-      <ItemBusTips Titleico='bus' Titlename='Bopp' Titlesubname='Dylan ngaite' onDelete={() => {}} onSleep={() => {}} />
+      <ButtonAddingItems
+        titleico="plus"
+        titlebutton="ajouter"
+        borderrounds={50}
+      />
     </View>
   );
 };
