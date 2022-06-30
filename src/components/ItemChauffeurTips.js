@@ -30,6 +30,9 @@ const ItemChauffeurTips = (props) => {
             <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
                 <FontAwesome5 name='times' size={26} color="#f44336bf" />
             </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
+                <FontAwesome5 name='edit' size={25} color="#8bc34a" />
+            </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={onSleep}>
                 <FontAwesome5 name='unlink' size={20} color="#d1d1d1" />
             </TouchableOpacity>
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_awesome_faps: {
     alignItems: 'center',
-    width: '18.33%',
+    width: '25.33%',
     marginTop: 14,
     marginLeft: 18,
     flexDirection: 'row',
