@@ -12,6 +12,7 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import CheckBox from '@react-native-community/checkbox';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Launchnoaccount = ({navigation}) => {
   /* Animation satrting page */
@@ -37,9 +38,12 @@ const Launchnoaccount = ({navigation}) => {
         useNativeDriver: true,
       }),
     ]).start();
+
+    //getIdconnexion();
   }, [Focus, initialPosition, Focus2]);
 
   const [agree, setAgree] = useState(false);
+
   const isChecked = () => {
     if (agree == true) {
       navigation.navigate('Get starting');
@@ -50,14 +54,28 @@ const Launchnoaccount = ({navigation}) => {
       );
     }
   };
+
   const gotoLicensecontract = () => {
     navigation.navigate('License Contracts');
   };
 
+  /*
+  const getIdconnexion = () => {
+    try {
+      AsyncStorage.getItem('Idconnexion').then((value) => {
+        if(value != null) {
+          navigation.navigate('Direction');
+        }
+      });
+    } catch(e) {
+      console.log(e);
+    }
+  }*/
+
   return (
     <ImageBackground
       style={styles.ui_splash_global_app_contain}
-      source={require('../assets/splashstart2.jpg')}>
+      source={require('../../assets/splashstart2.jpg')}>
       <Animated.View
         style={[
           {
@@ -76,7 +94,7 @@ const Launchnoaccount = ({navigation}) => {
           {opacity: Focus},
         ]}>
         <Image
-          source={require('../assets/Logo1.png')}
+          source={require('../../assets/Logo1.png')}
           resizeMode="contain"
           style={styles.ui_splash_logo_started}
         />
