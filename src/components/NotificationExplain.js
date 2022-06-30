@@ -26,22 +26,21 @@ const NotificationExplain = props => {
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
-    height: 170,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
   },
   ui_splash_contain_header_globe_message_delevry: {
     width: '92%',
-    height: 120,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f44336bf',
     borderRadius: 5,
+    padding: 5,
   },
   ui_splash_contain_header_globe_message_configs_font: {
     width: '95%',
-    height: 115,
     fontSize: 15,
     fontFamily: 'Entypo',
     textAlign: 'center',
