@@ -34,7 +34,6 @@ const Chauffeur = (props) => {
         onDelete={() => {}}
         onSleep={() => {}}
       />
-      <ItemBusTips Titleico='bus' Titlename='Bopp' Titlesubname='Dylan ngaite' onDelete={() => {}} onSleep={() => {}} />
     </View>
   );
 };
