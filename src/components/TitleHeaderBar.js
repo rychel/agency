@@ -10,7 +10,7 @@ const HeaderUser = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       <TouchableOpacity onPress={onPress} activeOpacity={0.4}>
         <View style={styles.ui_splash_contain_header_globe_zone_back_left}>
-          <FontAwesome5 name="angle-left" size={40} color="#00968869" />
+          <FontAwesome5 name="arrow-left" size={22} color="white" />
           <View style={styles.ui_splash_contain_header_globe_zone_title_name}>
             <Text style={styles.ui_splash_contain_header_globe_zone_title_text}>
               N
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe_zone_back_left: {
     width: 65,
     height: 44,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderRadius: 100,
     flexDirection: 'row',
     alignContent: 'center',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe_zone_title_name: {
     width: 40,
     height: 40,
-    backgroundColor: '#00968869',
+    backgroundColor: 'white',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe_zone_title_text: {
     fontSize: 22,
     fontFamily: 'BonheurRoyale-Regular',
+    color: '#00968869',
   },
 });
 
