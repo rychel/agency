@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
     fontSize: 17,
+    color: '#03a9f470',
   },
   ui_splash_contain_header_params_fonts5: {
     fontSize: 12,
@@ -139,7 +140,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_items_contains: {
     width: '22.33%',
     height: 80,
-    backgroundColor: '#03a9f470',
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
