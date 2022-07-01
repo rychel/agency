@@ -50,7 +50,13 @@ const Setting = props => {
         activeOpacity={0.7}>
         <ItemMenu Titleico="user" Titlename="Service courrier" />
       </TouchableOpacity>
-      <ItemMenu Titleico="user-friends" Titlename="Service caisse" />
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Caisse');
+        }}
+        activeOpacity={0.7}>
+        <ItemMenu Titleico="user-friends" Titlename="Service caisse" />
+      </TouchableOpacity>
       <ItemMenu Titleico="user-circle" Titlename="Service clientèle(les clients)" />
       <ItemMenu Titleico="user-circle" Titlename="Service de billeterie" />
     </View>
