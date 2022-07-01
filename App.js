@@ -32,6 +32,7 @@ import Chauffeur from './src/screens/Direction/Chauffeur';
 import Busconfiguration from './src/screens/Direction/Busconfiguration';
 import Ticketconfiguration from './src/screens/Direction/Ticketconfiguration';
 import Courrier from './src/screens/Direction/Courrier';
+import Caisse from './src/screens/Direction/Caisse';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
@@ -163,6 +164,20 @@ const App = () => {
             ),
           }}
         />
+        <Stack.Screen
+          name="Caisse"
+          component={Caisse}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Service caisse de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
