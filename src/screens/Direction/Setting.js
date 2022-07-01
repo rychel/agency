@@ -22,26 +22,13 @@ const Setting = props => {
         hidden={false}
       />
       <ItemMenu Titleico="chart-pie" Titlename="Soucrire à un forfait" />
+      
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('Chauffeur');
+          props.navigation.navigate('Transport');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="users" Titlename="Gérer les chauffeurs" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate('Busconfiguration');
-        }}
-        activeOpacity={0.7}>
-        <ItemMenu Titleico="bus-alt" Titlename="Gérer les Bus" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate('Ticketconfiguration');
-        }}
-        activeOpacity={0.7}>
-        <ItemMenu Titleico="receipt" Titlename="Choisir le type de ticket" />
+        <ItemMenu Titleico="bus-alt" Titlename="Service Transport" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
