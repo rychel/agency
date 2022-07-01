@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -52,6 +53,13 @@ const Direction = ({navigation}) => {
 
   return (
     <View>
+      <StatusBar
+        animated={true}
+        backgroundColor="#7cc3bc"
+        barStyle="default"
+        showHideTransition="fade"
+        hidden={false}
+      />
     <View style={styles.ui_splash_global_contain_hunts}>
       <View style={styles.ui_splash_global_contain_registered_space}>
         <View style={styles.ui_splash_global_contain_registered_global_showUser}>
