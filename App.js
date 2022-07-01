@@ -34,6 +34,7 @@ import Ticketconfiguration from './src/screens/Direction/Ticketconfiguration';
 import Courrier from './src/screens/Direction/Courrier';
 import Caisse from './src/screens/Direction/Caisse';
 import Transport from './src/screens/Direction/Transport';
+import Trajet from './src/screens/Direction/Trajet';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
@@ -186,6 +187,20 @@ const App = () => {
             header: (props) => (
               <TitleHeaderBar
                 Title="Service Transport de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        /> 
+        <Stack.Screen
+          name="Trajet"
+          component={Trajet}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Etablir les trajets de l'agence"
                 onPress={() => {
                   props.navigation.goBack();
                 }}
