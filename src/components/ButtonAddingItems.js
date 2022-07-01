@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     flexDirection: 'row',
     padding: 17,
-    width: 80,
-    height: 80,
+    width: 86,
+    height: 86,
   },
   ui_splash_contain_text_button_globe: {
     fontFamily: 'Nunito-Regular',
