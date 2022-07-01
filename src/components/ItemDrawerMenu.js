@@ -15,11 +15,9 @@ const ItemDrawerMenu = (props) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.ui_splash_contain_header_administration_awesome_baps}>
+        <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
           <FontAwesome5 name={Titleico} size={20} color="#d1d1d1" />
-        </TouchableOpacity>
+        </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
           {Titlename}
@@ -72,6 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '13.33%',
     marginTop: 14,
+    marginLeft: 18,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '100%',
