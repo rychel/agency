@@ -25,7 +25,7 @@ const ItemDrawerMenu = (props) => {
         {Titlenotif == 0 ? null : (
           <View
             style={styles.ui_splash_contain_header_administration_awesome_caps}>
-            <FontAwesome5 name="exclamation" size={17} color="white" />
+            <FontAwesome5 name="exclamation" size={14} color="white" />
           </View>
         )}
       </View>
@@ -46,24 +46,25 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 15,
-    fontSize: 23,
+    fontSize: 20,
     height: 30,
     color: '#281f1fb0',
-    top: -2,
+    top: 2,
     fontFamily: 'AmaticSC-Bold',
     fontWeight: 'light',
     justifyContent: 'center',
     alignItems: 'center',
   },
   ui_splash_contain_header_administration_awesome_caps: {
-    width: 25,
-    height: 25,
+    width: 22,
+    height: 22,
     borderRadius: 100,
     backgroundColor: '#03a9f4ad',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 18,
-    marginLeft: 50
+    marginLeft: 50,
+    top: 2,
   },
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
