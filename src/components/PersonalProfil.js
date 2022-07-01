@@ -27,7 +27,7 @@ const PersonalProfil = props => {
       </View>
 
       <View style={styles.ui_splash_contain_header_cadre_ifo_id_profil}>
-        <View>
+        <View style={styles.ui_splash_contain_header_cadre_ifo_id_conf}>
           <Text style={styles.ui_splash_contain_header_params_fonts1}>
             {Titlename}
           </Text>
@@ -38,11 +38,13 @@ const PersonalProfil = props => {
             {Titlepost}
           </Text>
         </View>
+        <Text>673835359</Text>
       </View>
     </View>
   );
 };
 
+{/*#7cc3bc */}
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
@@ -51,16 +53,17 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
     height: 340,
-    backgroundColor: 'white',
+    backgroundColor: '#7cc3bc',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   ui_splash_contain_header_cadre_cadre_logo_profil: {
-    width: '100%',
+    width: 200,
     height: 180,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    left: 10,
   },
   ui_splash_contain_header_englobe_modify_profil: {
     width: 40,
@@ -80,20 +83,27 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   ui_splash_contain_header_cadre_ifo_id_profil: {
-    width: '100%',
-    height: 40,
+    width: 280,
+    height: 90,
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
+    top: -30,
+    left: 10,
+  },
+  ui_splash_contain_header_cadre_ifo_id_conf: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   ui_splash_contain_header_params_fonts1: {
     fontWeight: '800',
     fontSize: 17,
-    margin: 4,
+    color: 'white',
   },
   ui_splash_contain_header_params_fonts2: {
     fontSize: 15,
     left: 2,
+    top: 1,
+    color: 'white',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -101,7 +111,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     fontFamily: 'BonheurRoyale-Regular',
-    padding: 4,
     borderRadius: 5,
     fontWeight: '100',
     backgroundColor: '#f44336',
