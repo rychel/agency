@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
     height: Dimensions.get('window').height,
+    backgroundColor: '#7cc3bc',
   },
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
@@ -117,17 +118,16 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_tab_stats_container: {
     width: '100%',
     height: 220,
-    top: -13,
     borderRadius: 5,
     flexDirection: 'column',
-    marginBottom: 10,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
-    borderWidth: 4,
+    borderWidth: 1,
     borderColor: '#03a9f41a',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   ui_splash_contain_header_tab_stats_contain: {
     width: '100%',
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_contains_block: {
     width: '100%',
-    height: 300,
-    top: -19,
+    height: 350,
+    backgroundColor: 'white',
   },
 });
 
