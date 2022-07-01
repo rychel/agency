@@ -40,6 +40,13 @@ const Transport = (props) => {
         activeOpacity={0.7}>
         <ItemMenu Titleico="receipt" Titlename="Choisir le type de ticket" />
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Trajet');
+        }}
+        activeOpacity={0.7}>
+        <ItemMenu Titleico="road" Titlename="Gérer vos trajets" />
+      </TouchableOpacity>
     </View>
   );
 };
