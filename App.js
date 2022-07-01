@@ -8,10 +8,11 @@
 
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
+import {View, Text, Dimensions} from 'react-native';
 
-import RNBootSplash from 'react-native-bootsplash'; 
-import {NavigationContainer} from '@react-navigation/native'; 
-import {createStackNavigator} from '@react-navigation/stack'; 
+import RNBootSplash from 'react-native-bootsplash';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /* import component */
@@ -22,7 +23,19 @@ import Grantstarting from './src/screens/Grantstarting'; // Third screen for no 
 import RDirection from './src/routes/RDirection'; // Direction route's screen for agence's thief
 
 import Direction from './src/screens/Direction/Direction';
+import Bus from './src/screens/Direction/Bus';
+import Setting from './src/screens/Direction/Setting';
+import HeaderUser from './src/components/HeaderUser';
+import DrawerDirection from './src/components/DrawerDirection';
+import TitleHeaderBar from './src/components/TitleHeaderBar';
+import Chauffeur from './src/screens/Direction/Chauffeur';
+import Busconfiguration from './src/screens/Direction/Busconfiguration';
+import Ticketconfiguration from './src/screens/Direction/Ticketconfiguration';
+import Courrier from './src/screens/Direction/Courrier';
 
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -37,9 +50,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-            name="RDirection"
-            component={RDirection}
-            options={{header: () => null}}
+          name="RDirection"
+          component={RDirection}
+          options={{header: () => null}}
         />
         <Stack.Screen
           name="Launch Home"
@@ -65,6 +78,90 @@ const App = () => {
           name="Direction"
           component={Direction}
           options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="Bus"
+          component={Bus}
+          options={({navigation}) => ({
+            header: () => (
+              <TitleHeaderBar
+                Title="Bus de Noblesse voyage"
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Setting"
+          component={Setting}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Paramètres"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Chauffeur"
+          component={Chauffeur}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Chauffeurs de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Busconfiguration"
+          component={Busconfiguration}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Gestion de bus de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Ticketconfiguration"
+          component={Ticketconfiguration}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Type de ticket de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Courrier"
+          component={Courrier}
+          options={{
+            header: (props) => (
+              <TitleHeaderBar
+                Title="Service courrier de l'agence"
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
+              />
+            ),
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
