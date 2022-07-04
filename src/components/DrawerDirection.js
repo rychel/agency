@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_contains_block: {
     width: '100%',
-    height: 350,
+    height: Dimensions.get('window').height - 550,
     backgroundColor: 'white',
   },
 });
