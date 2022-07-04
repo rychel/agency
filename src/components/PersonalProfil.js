@@ -115,6 +115,8 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     backgroundColor: '#f44336',
     color: 'white',
+    left: 10,
+    position: 'relative',
   },
 });
 
