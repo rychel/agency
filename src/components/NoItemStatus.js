@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 15,
-    fontSize: 23,
+    fontSize: 18,
     height: 40,
     color: '#101010ad',
-    top: -2,
+    top: 2,
     fontFamily: 'AmaticSC-Bold',
     justifyContent: 'center',
     alignItems: 'center',
