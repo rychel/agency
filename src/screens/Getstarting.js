@@ -1,55 +1,66 @@
-import React, {useRef} from 'react';
-import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  StatusBar,
+  Image,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSmile, faLeftLong, faRightLong} from '@fortawesome/free-solid-svg-icons';
+import {faLeftLong} from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = ({navigation}) => {
-  const Floating = useRef(new Animated.Value(-45)).current;
+  const StartSpinSticker = useRef(new Animated.Value(-45)).current;
+
   const gotoBackHome = () => {
     navigation.goBack('Launch Home');
   };
+
   const gotoGrantstarting = () => {
     navigation.navigate('admin');
   };
 
-  setInterval(() => {
-    Animated.timing(Floating, {
-      toValue: 19,
-      duration: 1000,
+  useEffect(() => {
+    Animated.timing(StartSpinSticker, {
+      toValue: 25,
+      duration: 300,
       useNativeDriver: true,
     }).start();
-  }, 1000);
-
-  const spin = Floating.interpolate({
-    inputRange: [0, 10],
-    outputRange: ['-19deg', '2deg'],
   });
 
   return (
     <LinearGradient
       start={{x: 0.0, y: 0.25}}
-      end={{x: 0.5, y: 1.0}}
-      locations={[0.05, 0.6]}
-      colors={['#A3BDED', '#A3BDED']}
+      end={{x: 0.4, y: 1.0}}
+      locations={[0.79, 0.2]}
+      colors={['#7cc3bc', 'white']}
       style={styles.ui_splash_todo_contain}>
-      <View style={styles.ui_splash_contain_widget_acxios}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#7cc3bc"
+        barStyle="default"
+        showHideTransition="fade"
+        hidden={false}
+      />
+      <View style={styles.ui_splash_contain_widget_header_acxios}>
         <Animated.View
           style={{
-            transform: [{rotate: spin}],
+            transform: [{translateY: StartSpinSticker}],
           }}>
-          <FontAwesome5 name="robot" size={160} color="white" />
+          <Image
+            source={require('../../assets/splashstart4.png')}
+            style={styles.ui_splash_contain_widget_acxios}
+          />
         </Animated.View>
-      </View>
-      <View style={styles.ui_splash_below_title_message}>
-        <Text style={styles.ui_splash_below_text_message}>
-          Faire de votre agence de voyage (par bus) une réalité.{' '}
-        </Text>
-      </View>
-      <View style={styles.ui_splash_box_create_title_message}>
-        <FontAwesome5 name="paper-plane" color="#A3BDED" size={55} />
+        <View style={styles.ui_splash_below_title_message}>
+          <Text style={styles.ui_splash_below_text_message}>
+            Maintenant gérer tout à partir de votre téléphone mobile
+          </Text>
+        </View>
         <TouchableOpacity
           style={styles.ui_splash_button_goto_starting}
           activeOpacity={0.9}
@@ -57,17 +68,20 @@ const Getstarting = ({navigation}) => {
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer une agence
           </Text>
-          <FontAwesomeIcon icon={faRightLong} size={25} color="white" />
         </TouchableOpacity>
-        <Text style={styles.ui_splash_contain_other_button_goto}>
-          creer un compte associé à une agence
-        </Text>
       </View>
+      <TouchableOpacity activeOpacity={0.6}>
+        <View style={styles.ui_splash_box_create_title_message}>
+          <Text style={styles.ui_splash_contain_other_button_goto}>
+            creer un compte associé à une agence
+          </Text>
+        </View>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.ui_splash_contain_go_back_button}
         activeOpacity={0.9}
         onPress={gotoBackHome}>
-        <FontAwesomeIcon icon={faLeftLong} size={25} color="white" />
+        <FontAwesomeIcon icon={faLeftLong} size={20} color="white" />
         <Text style={styles.ui_splash_contain_go_back_text}>retour</Text>
       </TouchableOpacity>
     </LinearGradient>
@@ -78,9 +92,15 @@ const styles = StyleSheet.create({
   ui_splash_todo_contain: {
     height: Dimensions.get('window').height,
   },
+  ui_splash_contain_widget_header_acxios: {
+    width: '100%',
+    height: 400,
+    marginBottom: 10,
+    backgroundColor: '#7cc3bc',
+  },
   ui_splash_contain_widget_acxios: {
-    width: 190,
-    height: 250,
+    width: 270,
+    height: 90,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
@@ -99,61 +119,60 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#A3BDED',
     borderRadius: 5,
   },
   ui_splash_below_text_message: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '300',
     fontFamily: 'PatrickHandSC-Regular',
     color: 'white',
   },
   ui_splash_box_create_title_message: {
     width: '90%',
-    height: 230,
-    marginTop: 40,
+    height: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    borderRadius: 20,
+    backgroundColor: '#00bcd496',
+    borderRadius: 100,
   },
   ui_splash_button_goto_starting: {
     width: '48%',
-    height: 50,
+    height: 30,
     textAlignVertical: 'center',
-    marginTop: 30,
+    marginTop: 120,
     alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: '#F9D29D',
-    borderRadius: 5,
+    borderRadius: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    textAlign: 'center',
   },
   ui_splash_button_goto_text_starting: {
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: 'Snippet-Regular',
     marginRight: 5,
     top: -1,
     color: 'white',
   },
   ui_splash_contain_other_button_goto: {
-    textDecorationLine: 'underline',
-    marginTop: 10,
+    color: 'white',
   },
   ui_splash_contain_go_back_button: {
-    width: '50%',
+    width: 85,
     position: 'relative',
-    left: 30,
+    left: 15,
     textDecorationLine: 'underline',
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: 'row',
+    backgroundColor: '#f44336',
+    borderRadius: 100,
+    justifyContent: 'center',
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
-    left: 10,
-    fontSize: 19,
+    left: 5,
+    fontSize: 16,
     top: -3,
     color: 'white',
   },
