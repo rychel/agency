@@ -48,7 +48,7 @@ const PersonalProfil = props => {
 const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
-    height: 340,
+    height: 240,
     backgroundColor: '#7cc3bc',
     flexDirection: 'column',
     justifyContent: 'space-between',
