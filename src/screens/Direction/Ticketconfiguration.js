@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -15,7 +16,7 @@ import ItemConfigSlug from '../../components/ItemConfigSlug';
 const Ticketconfiguration = (props) => {
 
   return (
-    <View style={styles.ui_splash_contain_header_globe}>
+    <ScrollView style={styles.ui_splash_contain_header_globe}>
       <StatusBar
         animated={true}
         backgroundColor="#7cc3bc"
@@ -30,7 +31,7 @@ const Ticketconfiguration = (props) => {
                 Le ticket étant numérique, le téléphone du client sera comme son ticket, ce dernier aura un code QR d'identificationà chaque fois qu'il payera un ticket." />
       <ItemConfigSlug Titlechoice='Code QR et Ticket' Titlemessage='Les clients de votre agence pourront faire couper leur ticket par Code QR ou Ticket physique.
                 Les numéros de ticket seront fournis par le système.' />
-    </View>
+    </ScrollView>
   );
 };
 
