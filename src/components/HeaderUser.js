@@ -10,7 +10,7 @@ const HeaderUser = (props) => {
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
         <TouchableOpacity activeOpacity={0.7} onPress={onPress} style={styles.ui_splash_contain_globe_cadre_tags}>
-          <FontAwesome5 name="align-justify" size={28} color="white" />
+          <FontAwesome5 name="bars" size={27} color="white" />
         </TouchableOpacity>
       </View>
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
@@ -20,8 +20,8 @@ const HeaderUser = (props) => {
         </View>
       </View>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
-        <Text style={styles.ui_splash_contain_destination_items_text2}>
-          <FontAwesome5 name="search" size={22} color="white" />
+        <Text style={styles.ui_splash_contain_destination_items_text3}>
+          <FontAwesome5 name="search" size={20} color="white" />
         </Text>
       </View>
     </View>
@@ -65,7 +65,15 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_items_text2: {
     marginLeft: 1,
     marginRight: 10,
-    color: '#bbaa12',
+    color: 'white',
+    borderRadius: 100,
+    backgroundColor: '#ffc107',
+    width: '50%',
+    paddingLeft: 5,
+  },
+  ui_splash_contain_destination_items_text3: {
+    marginLeft: 1,
+    marginRight: 10,
   },
 });
 
