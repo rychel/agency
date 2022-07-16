@@ -44,8 +44,7 @@ const Setting = props => {
         activeOpacity={0.7}>
         <ItemMenu Titleico="user-friends" Titlename="Service caisse" />
       </TouchableOpacity>
-      <ItemMenu Titleico="user-circle" Titlename="Service clientèle(les clients)" />
-      <ItemMenu Titleico="user-circle" Titlename="Service de billeterie" />
+      <ItemMenu Titleico="user-circle" Titlename="Service coupon" />
     </View>
   );
 };
