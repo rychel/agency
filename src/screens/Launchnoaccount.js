@@ -1,16 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Dimensions,
-  ToastAndroid,
   Animated,
   StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import CheckBox from '@react-native-community/checkbox';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -41,21 +38,8 @@ const Launchnoaccount = ({navigation}) => {
     //getIdconnexion();
   }, [EndWelcomeBrave, FlickedLogo, StartWelcomeBrave]);
 
-  const [agree, setAgree] = useState(false);
-
-  const isChecked = () => {
-    if (agree == true) {
-      navigation.navigate('Get starting');
-    } else {
-      ToastAndroid.show(
-        "Etes-vous sur d'avoir accepter notre politique",
-        ToastAndroid.LONG,
-      );
-    }
-  };
-
-  const gotoLicensecontract = () => {
-    navigation.navigate('License Contracts');
+  const goWelcomeBrave = () => {
+    navigation.navigate('Get starting');
   };
 
   /*
@@ -70,26 +54,6 @@ const Launchnoaccount = ({navigation}) => {
       console.log(e);
     }
   }*/
-  /*
-    <Animated.View
-        style={[
-          styles.ui_splash_started_title_contracts,
-          {opacity: EndWelcomeBrave},
-        ]}>
-        <Text style={styles.ui_splash_started_text_contracts1}>
-          Avant de continuer, veuillez lire et accepter le contrat de license et
-        </Text>
-        <View style={styles.ui_splash_started_contain_text_contracts2}>
-          <Text
-            style={styles.ui_splash_started_text_contracts2}
-            onPress={gotoLicensecontract}>
-            notre politique d'utilisation
-          </Text>
-          <CheckBox value={agree} onChange={() => setAgree(!agree)} />
-        </View>
-      </Animated.View>
-      #009688d1
-  */
 
   return (
     <View>
@@ -122,18 +86,27 @@ const Launchnoaccount = ({navigation}) => {
           </Text>
         </Animated.View>
       </View>
-      <Animated.View style={[styles.ui_splash_started_title_contracts, {transform: [{translateY: EndWelcomeBrave}]}]}>
-        <Text style={styles.ui_splash_started_text_contracts1}>Resté connecté à votre agence !</Text>
-        <Text style={styles.ui_splash_started_contain_text_contracts2}>Garder les clés en main.</Text>
-        <View style={styles.ui_splash_started_container_button_welcome}>
-          <TouchableOpacity
-              style={styles.ui_splash_started_button_welcome}
-              activeOpacity={0.9}
-              onPress={isChecked}>
-              <Text style={styles.ui_splash_started_button_text}>Commencer</Text>
-              <FontAwesome5 name="arrow-right" size={19} color='white' />
-          </TouchableOpacity>
-        </View>
+      <Animated.View
+        style={[
+          styles.ui_splash_started_title_contracts,
+          {transform: [{translateY: EndWelcomeBrave}]},
+        ]}>
+        <Text style={styles.ui_splash_started_text_contracts1}>
+          Resté connecté à votre agence !
+        </Text>
+        <Text style={styles.ui_splash_started_contain_text_contracts2}>
+          Garder les clés en main.
+        </Text>
+        <TouchableOpacity activeOpacity={0.7} onPress={goWelcomeBrave}>
+          <View style={styles.ui_splash_started_container_button_welcome}>
+            <View style={styles.ui_splash_started_button_welcome}>
+              <Text style={styles.ui_splash_started_button_text}>
+                Commencer
+              </Text>
+              <FontAwesome5 name="arrow-right" size={19} color="white" />
+            </View>
+          </View>
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
