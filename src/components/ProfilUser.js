@@ -1,33 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const ProfilUser = props => {
-  const {Utitle, Username, Uphoto, Ustatut} = props;
+  const {Utitle, Username, Ustatut} = props;
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}>
+    <TouchableOpacity activeOpacity={0.7}>
       <View style={styles.ui_splash_contain_profil_globe}>
         <View style={styles.ui_splash_contain_profil_cadre_globe}>
-          {/*Image time zone*/}
-          <Image
-            source={Uphoto}
-            resizeMode="cover"
-            style={styles.ui_splash_contain_profil_cadre_photo}
-          />
+          <Text style={styles.ui_splash_config_fonts1}>{Username}</Text>
         </View>
-        {/*Status time connect*/}
         <Text
           style={[
             styles.ui_splash_contain_profil_cadre_title_icon_connexion,
             {backgroundColor: Ustatut},
           ]}></Text>
-        {/*Name of post*/}
-        <Text>
-          {Utitle} : {Username}
-        </Text>
+        <Text style={styles.ui_splash_config_fonts2}>{Utitle}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -35,8 +25,8 @@ const ProfilUser = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_profil_globe: {
-    width: 125,
-    height: 172,
+    width: 85,
+    height: 92,
     borderWidth: 1.6,
     borderColor: '#83838321',
     justifyContent: 'center',
@@ -47,11 +37,14 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
   },
   ui_splash_contain_profil_cadre_globe: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     borderRadius: 100,
     margin: 2,
     overflow: 'hidden',
+    backgroundColor: '#03a9f49e',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ui_splash_contain_profil_cadre_title_icon_connexion: {
     position: 'relative',
@@ -62,10 +55,18 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   ui_splash_contain_profil_cadre_photo: {
-    alignSelf: 'center',
     width: 100,
     height: 100,
     borderRadius: 100,
+  },
+  ui_splash_config_fonts1: {
+    fontSize: 18,
+    fontFamily: 'Fontisto',
+    color: 'white',
+  },
+  ui_splash_config_fonts2: {
+    fontSize: 13,
+    fontFamily: 'Feather',
   },
 });
 
