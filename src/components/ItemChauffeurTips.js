@@ -5,38 +5,57 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import ItemChauffeurTipsExample from './ItemChauffeurTipsExample'
 
-const ItemChauffeurTips = (props) => {
+const ItemChauffeurTips = props => {
   const {Titleico, Titlename, Titlesubname, onDelete, onSleep} = props;
 
+  {
+    /*
+    <View
+          style={styles.ui_splash_contain_header_administration_awesome_faps}>
+          <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
+            <FontAwesome5 name="times" size={26} color="#f44336bf" />
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.8} onPress={onSleep}>
+            <FontAwesome5 name="unlink" size={20} color="#d1d1d1" />
+          </TouchableOpacity>
+        </View> */
+  }
   return (
     <View>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
-        <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
+        <View
+          style={styles.ui_splash_contain_header_administration_awesome_baps}>
           <FontAwesome5 name={Titleico} size={20} color="#d1d1d1" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
           {Titlename}
         </Text>
-        <Text
-          style={styles.ui_splash_contain_header_administration_awesome_config2}>
-          {Titlesubname}
-        </Text>
         <View style={styles.ui_splash_contain_header_administration_awesome_faps}>
-            <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
-                <FontAwesome5 name='times' size={26} color="#f44336bf" />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
-                <FontAwesome5 name='edit' size={25} color="#8bc34a" />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.8} onPress={onSleep}>
-                <FontAwesome5 name='unlink' size={20} color="#d1d1d1" />
-            </TouchableOpacity>
+          <Text
+            style={
+              styles.ui_splash_contain_header_administration_awesome_config2
+            }
+            numberOfLines={1}>
+            {Titlesubname}
+          </Text>
         </View>
+        <TouchableOpacity
+          style={styles.ui_splash_contain_header_administration_awesome_caps}
+          activeOpacity={0.5}
+          onPress={onDelete}>
+          <FontAwesome5 name="angle-down" size={25} color="#f44336b8" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ui_splash_contain_header_example_item_config}>
+        <ItemChauffeurTipsExample Titlestatus='Bus conduit' Titleinfo='676' />
+        <ItemChauffeurTipsExample Titlestatus='Type de bus' Titleinfo='VIP' />
+        <ItemChauffeurTipsExample Titlestatus='Lettre' Titleinfo='----' />
+        <ItemChauffeurTipsExample Titlestatus='Etat' Titleinfo='En panne' />
       </View>
     </View>
   );
@@ -46,7 +65,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_item_config: {
     width: '100%',
     height: 48,
-    margin: 10,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     margin: 1,
@@ -54,48 +72,44 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   ui_splash_contain_header_administration_awesome_config: {
-    margin: 15,
-    fontSize: 23,
+    marginRight: 3,
+    fontSize: 18,
     height: 38,
-    color: '#101010ad',
-    top: -2,
-    fontFamily: 'AmaticSC-Bold',
+    top: 19,
     justifyContent: 'center',
     alignItems: 'center',
   },
   ui_splash_contain_header_administration_awesome_config2: {
-    fontSize: 23,
+    fontSize: 18,
     height: 38,
-    color: '#101010ad',
-    top: -2,
-    fontFamily: 'AmaticSC-Bold',
+    top: 5,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+    flex: 1,
   },
   ui_splash_contain_header_administration_awesome_caps: {
-    width: 25,
+    width: 40,
     height: 25,
     borderRadius: 100,
-    backgroundColor: '#03a9f4ad',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 18,
-    marginLeft: 50
+    marginLeft: 80,
+    flexDirection: 'row',
   },
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '13.33%',
-    marginTop: 14,
-    marginLeft: 18,
+    marginTop: 12,
+    marginLeft: 2,
     flexDirection: 'row',
   },
   ui_splash_contain_header_administration_awesome_faps: {
     alignItems: 'center',
-    width: '25.33%',
-    marginTop: 14,
-    marginLeft: 18,
+    width: '35.33%',
+    marginTop: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 4,
@@ -107,6 +121,23 @@ const styles = StyleSheet.create({
     margin: 1,
     flexDirection: 'row',
     paddingRight: 20,
+  },
+  ui_splash_contain_header_example_item_config: {
+    width: '100%',
+    height: 132,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    margin: 1,
+    flexDirection: 'column',
+    paddingRight: 20,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    borderWidth: 0.4,
+    borderColor: '#03a9f485',
+  },
+  ui_splash_fonts_config1: {
+    fontFamily: 'Fontisto',
   },
 });
 
