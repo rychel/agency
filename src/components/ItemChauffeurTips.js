@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,11 @@ import {
   Dimensions,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import ItemChauffeurTipsExample from './ItemChauffeurTipsExample'
+import ItemChauffeurTipsExample from './ItemChauffeurTipsExample';
 
 const ItemChauffeurTips = props => {
   const {Titleico, Titlename, Titlesubname, onDelete, onSleep} = props;
+  const [details, setDetails] = useState(true);
 
   {
     /*
@@ -35,7 +36,8 @@ const ItemChauffeurTips = props => {
           style={styles.ui_splash_contain_header_administration_awesome_config}>
           {Titlename}
         </Text>
-        <View style={styles.ui_splash_contain_header_administration_awesome_faps}>
+        <View
+          style={styles.ui_splash_contain_header_administration_awesome_faps}>
           <Text
             style={
               styles.ui_splash_contain_header_administration_awesome_config2
@@ -44,19 +46,34 @@ const ItemChauffeurTips = props => {
             {Titlesubname}
           </Text>
         </View>
-        <TouchableOpacity
-          style={styles.ui_splash_contain_header_administration_awesome_caps}
-          activeOpacity={0.5}
-          onPress={onDelete}>
-          <FontAwesome5 name="angle-down" size={25} color="#f44336b8" />
-        </TouchableOpacity>
+        {details ? (
+          <TouchableOpacity
+            style={styles.ui_splash_contain_header_administration_awesome_caps}
+            activeOpacity={0.5}
+            onPress={() => {
+              setDetails(false);
+            }}>
+            <FontAwesome5 name="angle-down" size={25} color="#f44336b8" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.ui_splash_contain_header_administration_awesome_caps}
+            activeOpacity={0.5}
+            onPress={() => {
+              setDetails(true);
+            }}>
+            <FontAwesome5 name="angle-up" size={25} color="#cddc39" />
+          </TouchableOpacity>
+        )}
       </View>
-      <View style={styles.ui_splash_contain_header_example_item_config}>
-        <ItemChauffeurTipsExample Titlestatus='Bus conduit' Titleinfo='676' />
-        <ItemChauffeurTipsExample Titlestatus='Type de bus' Titleinfo='VIP' />
-        <ItemChauffeurTipsExample Titlestatus='Lettre' Titleinfo='----' />
-        <ItemChauffeurTipsExample Titlestatus='Etat' Titleinfo='En panne' />
-      </View>
+      {details ? null : (
+        <View style={styles.ui_splash_contain_header_example_item_config}>
+          <ItemChauffeurTipsExample Titlestatus="Bus conduit" Titleinfo="676" />
+          <ItemChauffeurTipsExample Titlestatus="Type de bus" Titleinfo="VIP" />
+          <ItemChauffeurTipsExample Titlestatus="Lettre" Titleinfo="----" />
+          <ItemChauffeurTipsExample Titlestatus="Etat" Titleinfo="En panne" />
+        </View>
+      )}
     </View>
   );
 };
