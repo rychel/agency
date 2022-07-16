@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const ItemConfigSlug = props => {
+const ItemConfigSlug = (props) => {
   const {Titlechoice, Titlemessage} = props;
 
   return (
@@ -18,7 +18,7 @@ const ItemConfigSlug = props => {
           {Titlechoice}
         </Text>
         <View>
-          <FontAwesome5 name="toggle-off" color="#54545480" size={30} />
+          <FontAwesome5 name="toggle-off" color="#54545480" size={25} />
         </View>
       </View>
       <View style={styles.ui_splash_contain_header_globe_config_zone_message}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   ui_splash_contain_header_globe_config_fonts: {
-    fontSize: 22,
+    fontSize: 18,
     fontFamily: 'FontAwesome',
   },
   ui_splash_contain_header_globe_config_zone_message: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
   },
   ui_splash_contain_header_globe_config_fonts2: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: 'AmaticSC-Regular',
   },
 });
