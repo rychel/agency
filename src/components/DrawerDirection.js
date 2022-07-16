@@ -17,7 +17,7 @@ import {
 import PersonalProfil from './PersonalProfil';
 import ItemDrawerMenu from './ItemDrawerMenu';
 
-const DrawerDirection = (props) => {
+const DrawerDirection = props => {
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
       <PersonalProfil
@@ -25,6 +25,7 @@ const DrawerDirection = (props) => {
         Titlename="Otello"
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
+        Titlenumber="673845359"
       />
 
       <View style={styles.ui_splash_contain_header_tab_stats_container}>
@@ -96,7 +97,14 @@ const DrawerDirection = (props) => {
           Titlename="Voir les archives"
           Titlenotif="0"
         />
-        <ItemDrawerMenu Titleico="sun" Titlename="Paramètres" Titlenotif="0" onPress={() => {props.navigation.navigate('Setting')}} />
+        <ItemDrawerMenu
+          Titleico="sun"
+          Titlename="Paramètres"
+          Titlenotif="0"
+          onPress={() => {
+            props.navigation.navigate('Setting');
+          }}
+        />
       </View>
     </DrawerContentScrollView>
   );
@@ -111,10 +119,10 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
     fontSize: 17,
-    color: '#03a9f470',
+    color: '#f44336',
   },
   ui_splash_contain_header_params_fonts5: {
-    fontSize: 12,
+    fontSize: 11,
   },
   ui_splash_contain_header_tab_stats_container: {
     width: '100%',
@@ -147,7 +155,6 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_contains_block: {
     width: '100%',
-    height: Dimensions.get('window').height - 550,
     backgroundColor: 'white',
   },
 });
