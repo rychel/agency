@@ -10,7 +10,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const PersonalProfil = props => {
-  const {Titleimage, Titlename, Titlesubname, Titlepost} = props;
+  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_cadre_logo_profil}>
@@ -38,7 +38,7 @@ const PersonalProfil = props => {
             {Titlepost}
           </Text>
         </View>
-        <Text>673835359</Text>
+        <Text>{Titlenumber}</Text>
       </View>
     </View>
   );
@@ -46,16 +46,13 @@ const PersonalProfil = props => {
 
 {/*#7cc3bc */}
 const styles = StyleSheet.create({
-  ui_splash_contain_header_globe: {
-    width: '100%',
-    height: Dimensions.get('window').height,
-  },
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
     height: 340,
     backgroundColor: '#7cc3bc',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    overflow: 'hidden',
   },
   ui_splash_contain_header_cadre_cadre_logo_profil: {
     width: 200,
@@ -78,8 +75,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   ui_splash_contain_header_globe_logo_profil: {
-    width: 140,
-    height: 140,
+    width: 130,
+    height: 130,
     borderRadius: 100,
   },
   ui_splash_contain_header_cadre_ifo_id_profil: {
@@ -115,8 +112,9 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     backgroundColor: '#f44336',
     color: 'white',
-    left: 10,
+    left: 5,
     position: 'relative',
+    marginRight: 10,
   },
 });
 
