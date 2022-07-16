@@ -34,6 +34,7 @@ const Chauffeur = (props) => {
         onDelete={() => {}}
         onSleep={() => {}}
       />
+      <ButtonAddingItems titleico='eye-dropper' titlebutton='mettre' borderrounds={50} />
     </View>
   );
 };
