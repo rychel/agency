@@ -21,7 +21,7 @@ const ButtonAddingItems = props => {
             {borderRadius: borderrounds},
             styles.ui_splash_contain_poly_button_globe,
           ]}>
-          <FontAwesome5 name={titleico} color="white" size={20} />
+          <FontAwesome5 name={titleico} color="white" size={16} />
           <Text style={styles.ui_splash_contain_text_button_globe}>
             {initTitle}
           </Text>
@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     flexDirection: 'row',
     padding: 17,
-    width: 86,
-    height: 86,
+    width: 70,
+    height: 70,
   },
   ui_splash_contain_text_button_globe: {
     fontFamily: 'Nunito-Regular',
-    fontSize: 14,
+    fontSize: 11.3,
     left: 5,
     color: 'white',
   },
