@@ -3,9 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Image,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -45,7 +42,6 @@ const styles = StyleSheet.create({
     color: '#101010ad',
     top: 2,
     fontFamily: 'AmaticSC-Bold',
-    fontWeight: 'light',
     justifyContent: 'center',
     alignItems: 'center',
   },
