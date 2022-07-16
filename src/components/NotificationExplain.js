@@ -37,14 +37,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f44336bf',
     borderRadius: 5,
-    padding: 5,
+    padding: 2,
   },
   ui_splash_contain_header_globe_message_configs_font: {
     width: '95%',
     fontSize: 15,
     fontFamily: 'Entypo',
-    textAlign: 'center',
-    padding: 4,
+    textAlign: 'justify',
+    padding: 2,
     color: 'white',
   },
 });
