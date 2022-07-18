@@ -16,6 +16,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import DashboardDirection from '../../components/DashboardDirection';
+import ItemStatDirection from '../../components/ItemStatDirection';
 
 const Direction = ({navigation}) => {
   const gotoGetstarting = () => {
@@ -156,6 +157,72 @@ const Direction = ({navigation}) => {
               </View>
             </View>
           </View>
+          <View
+            style={
+              styles.ui_splash_global_contain_registered_global_contain_title
+            }>
+            <Text
+              style={
+                styles.ui_splash_global_contain_registered_global_config_font1
+              }>
+              Statistique de l'agence
+            </Text>
+          </View>
+          <View style={styles.ui_splash_contain_header_tab_stats_container}>
+            <ScrollView
+              style={styles.ui_splash_contain_header_tab_stats_contain}
+              horizontal={true}>
+              <ItemStatDirection
+                Titleico="user-astronaut"
+                Titlesub="Chauffeur"
+                Titlestat="33"
+                Titlebg="#03a9f46b"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="car-alt"
+                Titlesub="Coaster"
+                Titlestat="30"
+                Titlebg="#f44336d1"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="bus"
+                Titlesub="Vip"
+                Titlestat="6"
+                Titlebg="#ffeb3b"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="bus-alt"
+                Titlesub="Porteur"
+                Titlestat="10"
+                Titlebg="#9c27b0e3"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="user-tag"
+                Titlesub="Caissier"
+                Titlestat="5"
+                Titlebg="#8bc34aeb"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="user-tie"
+                Titlesub="Sécrétaire"
+                Titlestat="9"
+                Titlebg="#607d8bd6"
+                Titlecl="orange"
+              />
+              <ItemStatDirection
+                Titleico="user-minus"
+                Titlesub="Composteur"
+                Titlestat="3"
+                Titlebg="#009688"
+                Titlecl="orange"
+              />
+            </ScrollView>
+          </View>
         </View>
       </ScrollView>
       {dashboard ? (
@@ -178,7 +245,6 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_space: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
   },
   ui_splash_global_contain_registered_global_showUser: {
     width: '100%',
@@ -219,6 +285,30 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_config_font5: {
     left: -5,
     color: '#f44336',
+  },
+  ui_splash_contain_header_tab_stats_container: {
+    width: '100%',
+    height: 115,
+    borderRadius: 5,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 120,
+    backgroundColor: 'white',
+  },
+  ui_splash_contain_header_tab_stats_contain: {
+    width: '100%',
+    height: 70,
+    top: 2,
+    flexDirection: 'row',
+  },
+  ui_splash_contain_header_items_contains: {
+    width: '22.33%',
+    height: 80,
+    margin: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
   },
 });
 
