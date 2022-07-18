@@ -15,21 +15,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import MiniMenuDirection from '../../components/MiniMenuDirection';
-
-
+import DashboardDirection from '../../components/DashboardDirection';
 
 const Direction = ({navigation}) => {
-
   const gotoGetstarting = () => {
     navigation.goBack('admin');
   };
 
   const [dashboard, setDashboard] = useState(false);
-  
 
   /** we store the Id of connexion contains  */
-   /*
+  /*
   useEffect(() => {
     getIdthief();
   });
@@ -54,7 +50,9 @@ const Direction = ({navigation}) => {
     setDashboard(true);
   };
   const closeDashboard = () => {
-    setDashboard(true);
+    setTimeout(() => {
+      setDashboard(false);
+    }, 100);
   };
 
   return (
@@ -68,46 +66,108 @@ const Direction = ({navigation}) => {
       />
       <ScrollView style={styles.ui_splash_global_contain_hunts}>
         <View style={styles.ui_splash_global_contain_registered_space}>
-          <View style={styles.ui_splash_global_contain_registered_global_showUser}>
-            <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font1}>Personnels agrégés</Text>
+          <View
+            style={styles.ui_splash_global_contain_registered_global_showUser}>
+            <View
+              style={
+                styles.ui_splash_global_contain_registered_global_contain_title
+              }>
+              <Text
+                style={
+                  styles.ui_splash_global_contain_registered_global_config_font1
+                }>
+                Personnels agrégés
+              </Text>
             </View>
-            <View style={styles.ui_splash_global_contain_registered_global_contain}>
-              <ProfilUser Utitle='Vous' Username='RY' Ustatut='yellow' />
-              <ProfilUser Utitle='Caissier' Username='ND' Ustatut='#8bc34a' />
-              <ProfilUser Utitle='Composteur' Username='ZA' Ustatut='#f44336' />
+            <View
+              style={styles.ui_splash_global_contain_registered_global_contain}>
+              <ProfilUser Utitle="Vous" Username="RY" Ustatut="yellow" />
+              <ProfilUser Utitle="Caissier" Username="ND" Ustatut="#8bc34a" />
+              <ProfilUser Utitle="Composteur" Username="ZA" Ustatut="#f44336" />
             </View>
           </View>
 
-          <View style={styles.ui_splash_global_contain_registered_global_showInformation}>
-            <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font1}>Forfaits préférés (Services souscris)</Text>
+          <View
+            style={
+              styles.ui_splash_global_contain_registered_global_showInformation
+            }>
+            <View
+              style={
+                styles.ui_splash_global_contain_registered_global_contain_title
+              }>
+              <Text
+                style={
+                  styles.ui_splash_global_contain_registered_global_config_font1
+                }>
+                Forfaits préférés (Services souscris)
+              </Text>
             </View>
-            <View style={styles.ui_splash_global_contain_registered_global_contain_information}>
-              <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <FontAwesome5 name="splotch" size={20} color='#ffeb3b' />
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font3}>Forfait clientèle</Text>
+            <View
+              style={
+                styles.ui_splash_global_contain_registered_global_contain_information
+              }>
+              <View
+                style={
+                  styles.ui_splash_global_contain_registered_global_contain_title
+                }>
+                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
+                <Text
+                  style={
+                    styles.ui_splash_global_contain_registered_global_config_font3
+                  }>
+                  Forfait clientèle
+                </Text>
               </View>
-              <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <FontAwesome5 name="splotch" size={20} color='#ffeb3b' />
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font3}>Forfait transport</Text>
+              <View
+                style={
+                  styles.ui_splash_global_contain_registered_global_contain_title
+                }>
+                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
+                <Text
+                  style={
+                    styles.ui_splash_global_contain_registered_global_config_font3
+                  }>
+                  Forfait transport
+                </Text>
               </View>
-              <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <FontAwesome5 name="splotch" size={20} color='#ffeb3b' />
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font3}>Forfait location (par défaut)</Text>
+              <View
+                style={
+                  styles.ui_splash_global_contain_registered_global_contain_title
+                }>
+                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
+                <Text
+                  style={
+                    styles.ui_splash_global_contain_registered_global_config_font3
+                  }>
+                  Forfait location (par défaut)
+                </Text>
               </View>
-              <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
-                <FontAwesome5 name="star" size={20} color='#f44336' />
-                <Text style={styles.ui_splash_global_contain_registered_global_config_font3}>Forfait colis</Text>
+              <View
+                style={
+                  styles.ui_splash_global_contain_registered_global_contain_title
+                }>
+                <FontAwesome5 name="star" size={20} color="#f44336" />
+                <Text
+                  style={
+                    styles.ui_splash_global_contain_registered_global_config_font3
+                  }>
+                  Forfait colis
+                </Text>
               </View>
-            </View> 
+            </View>
           </View>
-
         </View>
       </ScrollView>
-      <ButtonAddingItems titleico='eye-dropper' titlebutton='notes' borderrounds={50} />
-      {dashboard ? (<MiniMenuDirection onClick={() => closeDashboard()} />) : null}
-      
+      {dashboard ? (
+        <DashboardDirection onClose={() => closeDashboard()} />
+      ) : (
+        <ButtonAddingItems
+          titleico="eye-dropper"
+          titlebutton="notes"
+          borderrounds={50}
+          onOpen={() => openDashboard()}
+        />
+      )}
     </View>
   );
 };
@@ -147,7 +207,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'PingFang SC Regular'
+    fontFamily: 'PingFang SC Regular',
   },
   ui_splash_global_contain_registered_global_config_font2: {
     fontFamily: 'Fontisto',
@@ -160,7 +220,6 @@ const styles = StyleSheet.create({
     left: -5,
     color: '#f44336',
   },
-
 });
 
 export default Direction;
