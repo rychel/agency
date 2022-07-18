@@ -65,6 +65,9 @@ const Direction = ({navigation}) => {
       <ScrollView style={styles.ui_splash_global_contain_hunts}>
         <View style={styles.ui_splash_global_contain_registered_space}>
           <View style={styles.ui_splash_global_contain_registered_global_showUser}>
+            <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
+                <Text style={styles.ui_splash_global_contain_registered_global_config_font1}>Personnels agrégés</Text>
+            </View>
             <View style={styles.ui_splash_global_contain_registered_global_contain}>
               <ProfilUser Utitle='Vous' Username='RY' Ustatut='yellow' />
               <ProfilUser Utitle='Caissier' Username='ND' Ustatut='#8bc34a' />
@@ -73,10 +76,10 @@ const Direction = ({navigation}) => {
           </View>
 
           <View style={styles.ui_splash_global_contain_registered_global_showInformation}>
-            <View style={styles.ui_splash_global_contain_registered_global_contain_information}>
-              <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
+            <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
                 <Text style={styles.ui_splash_global_contain_registered_global_config_font1}>Forfaits préférés (Services souscris)</Text>
-              </View>
+            </View>
+            <View style={styles.ui_splash_global_contain_registered_global_contain_information}>
               <View style={styles.ui_splash_global_contain_registered_global_contain_title}>
                 <FontAwesome5 name="splotch" size={20} color='#ffeb3b' />
                 <Text style={styles.ui_splash_global_contain_registered_global_config_font3}>Forfait clientèle</Text>
@@ -113,8 +116,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_showUser: {
     width: '100%',
-    height: 100,
-    backgroundColor: '#f7f7f7',
+    height: 140,
+    backgroundColor: '#f7f5f5cc',
     justifyContent: 'center',
   },
   ui_splash_global_contain_registered_global_contain: {
@@ -122,13 +125,13 @@ const styles = StyleSheet.create({
     height: 98,
     borderWidth: 1.6,
     backgroundColor: 'white',
-    borderColor: '#f7f7f7',
+    borderColor: '#f3f1f1cc',
     flexDirection: 'row',
   },
   ui_splash_global_contain_registered_global_showInformation: {
     width: '100%',
     height: 168,
-    backgroundColor: '#ebebeb',
+    backgroundColor: '#f7f5f5cc',
     justifyContent: 'center',
   },
   ui_splash_global_contain_registered_global_contain_information: {
