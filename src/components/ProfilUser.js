@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: 85,
     height: 92,
     borderWidth: 1.6,
-    borderColor: '#83838321',
+    borderColor: '#f7f5f5cc',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 2,
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: -10,
     fontSize: 19,
-    width: 20,
-    height: 20,
+    width: 12,
+    height: 12,
     borderRadius: 100,
   },
   ui_splash_contain_profil_cadre_photo: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_config_fonts2: {
     fontSize: 13,
-    fontFamily: 'Feather',
+    fontFamily: 'PontanoSans-Regular',
   },
 });
 
