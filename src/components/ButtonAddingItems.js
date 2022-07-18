@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const ButtonAddingItems = props => {
-  const {titleico, titlebutton, borderrounds} = props;
+  const {titleico, titlebutton, borderrounds, onOpen} = props;
 
   const [initTitle, setInitTitle] = useState('');
 
@@ -15,7 +15,7 @@ const ButtonAddingItems = props => {
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      <TouchableOpacity activeOpacity={0.8}>
+      <TouchableOpacity activeOpacity={0.8} onPress={onOpen}>
         <View
           style={[
             {borderRadius: borderrounds},
