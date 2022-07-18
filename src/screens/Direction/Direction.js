@@ -123,9 +123,7 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_contain: {
     width: '100%',
     height: 98,
-    borderWidth: 1.6,
     backgroundColor: 'white',
-    borderColor: '#f3f1f1cc',
     flexDirection: 'row',
   },
   ui_splash_global_contain_registered_global_showInformation: {
