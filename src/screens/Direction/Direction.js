@@ -15,6 +15,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
+import MiniMenuDirection from '../../components/MiniMenuDirection';
+
 
 
 const Direction = ({navigation}) => {
@@ -22,13 +24,9 @@ const Direction = ({navigation}) => {
   const gotoGetstarting = () => {
     navigation.goBack('admin');
   };
+
+  const [dashboard, setDashboard] = useState(false);
   
-  const [busvoyage, setBusvoyage] = useState([
-    {key: 1, immat: 'JK76KJ76', id: 676, chauffeur: 'Bopp Dylan'},
-    {key: 2, immat: 'K7S40976', id: 726, chauffeur: 'Steve Jobs'},
-    {key: 3, immat: 'M7SFD976', id: 226, chauffeur: 'Bartholomey, ...'},
-    {key: 4, immat: 'K7SFDDZ7', id: 426, chauffeur: 'Carlos'},
-  ]);
 
   /** we store the Id of connexion contains  */
    /*
@@ -52,6 +50,12 @@ const Direction = ({navigation}) => {
       console.log(e);
     }
   }*/
+  const openDashboard = () => {
+    setDashboard(true);
+  };
+  const closeDashboard = () => {
+    setDashboard(true);
+  };
 
   return (
     <View>
@@ -102,6 +106,8 @@ const Direction = ({navigation}) => {
         </View>
       </ScrollView>
       <ButtonAddingItems titleico='eye-dropper' titlebutton='notes' borderrounds={50} />
+      {dashboard ? (<MiniMenuDirection onClick={() => closeDashboard()} />) : null}
+      
     </View>
   );
 };
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'NotoSans-Regular'
+    fontFamily: 'PingFang SC Regular'
   },
   ui_splash_global_contain_registered_global_config_font2: {
     fontFamily: 'Fontisto',
