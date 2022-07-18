@@ -22,7 +22,7 @@ const ItemStatDirection = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    width: '22.33%',
+    width: 80,
     height: 100,
     margin: 5,
     alignItems: 'center',
