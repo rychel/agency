@@ -11,13 +11,13 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const MiniMenuDirection = (props) => {
-  const {Titleico, Titleparam, onClick} = props;
+  const {Titleico, Titleparam, onClose} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <TouchableOpacity
         style={styles.ui_splash_contain_item_config_button_back}
-        onPress={onClick}>
+        onPress={onClose}>
         <FontAwesome5 name="times" color="#ffffff9c" size={20} />
       </TouchableOpacity>
       <View style={styles.ui_splash_contain_table_param}>
