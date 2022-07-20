@@ -1,13 +1,77 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const CadreTravelDay = (props) => {
-  const {Titleico, Titlesub, Titlebg} = props;
+const CadreTravelDay = props => {
+  const {
+    Titleheure,
+    Titledepart,
+    Titledestination,
+    Titlevillearret,
+    Titlemodevalidation,
+    Titlebusico,
+    Titleticketico,
+  } = props;
 
   return (
     <View style={styles.ui_splash_global_contain_global}>
-      
+      <ScrollView style={styles.ui_splash_global_contain_first_info_travel}>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Départ:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts3}>
+            Douala
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Destination:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts3}>
+            Bagangté
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Trajet:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts3}>
+            Douala-Bagangté
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Ville d'arret:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts1}>
+            Melon, Nkongsamba, Loum, Manjo, Bafang
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Mode de validation:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts3}>
+            Code QR
+          </Text>
+        </View>
+      </ScrollView>
+      <View style={styles.ui_splash_global_contain_first_info_ticket}>
+        <View style={styles.ui_splash_global_contain_first_info_cadre_logo}>
+          <FontAwesome5 name="bus-alt" size={55} color="#080808a3" />
+          <Text style={styles.ui_splash_global_contain_config_fonts4}>
+            Porteur
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_second_info_cadre_logo}>
+          <FontAwesome5 name="receipt" size={18} color="#080808a3" />
+          <Text style={styles.ui_splash_global_contain_config_fonts4}>
+            Prix du ticket 3500
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -15,27 +79,78 @@ const CadreTravelDay = (props) => {
 const styles = StyleSheet.create({
   ui_splash_global_contain_global: {
     margin: 5,
-    width: 200,
+    width: 400,
     height: 200,
-    backgroundColor: 'red',
-  },
-  ui_splash_global_contain_registered_global_contain_title: {
-    margin: 5,
+    borderWidth: 0.4,
+    borderColor: '#0808081a',
     flexDirection: 'row',
-    height: 35,
+    borderRadius: 10,
+  },
+  ui_splash_global_contain_first_info_travel: {
+    margin: 3,
+    width: 260,
+    height: 190,
+  },
+  ui_splash_global_contain_first_info_item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 2,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  ui_splash_global_contain_config_fonts1: {
+    width: 100,
+    fontFamily: 'Foundation',
+    color: '#00000094',
+    paddingBottom: 2,
+  },
+  ui_splash_global_contain_config_fonts2: {
+    fontFamily: 'Snippet-Regular',
+    color: '#000000bf',
+    padding: 3,
     borderRadius: 100,
+    backgroundColor: '#00bcd41c',
+    height: 27,
+  },
+  ui_splash_global_contain_config_fonts3: {
+    fontFamily: 'Fontisto',
+    color: '#00000094',
+    height: 17,
+  },
+  ui_splash_global_contain_config_fonts4: {
+    fontFamily: 'Fontisto',
+    color: '#000000ad',
+    fontSize: 12,
+  },
+  ui_splash_global_contain_first_info_ticket: {
+    margin: 3,
+    width: 140,
+    height: 190,
+    alignItems: 'center',
+    borderColor: '#0808081a',
+    borderWidth: 0.4,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+  },
+  ui_splash_global_contain_first_info_cadre_logo: {
+    margin: 3,
+    width: 100,
+    height: 98,
+    borderRadius: 15,
+    borderBottomEndRadius: 100,
+    borderBottomStartRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5,
+    backgroundColor: '#f44336a3',
   },
-  ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'PingFang SC Regular',
-    fontSize: 15,
-    color: '#000000b8',
-  },
-  ui_splash_global_contain_registered_logo_config: {
-    transform: [{rotateZ: '40deg'}],
-    marginRight: 5,
+  ui_splash_global_contain_second_info_cadre_logo: {
+    margin: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: '95%',
+    justifyContent: 'space-between'
   },
 });
 
