@@ -77,7 +77,7 @@ const CadreTravelDay = props => {
           </Text>
         </View>
         <View style={styles.ui_splash_global_contain_third_info_cadre_logo}>
-          <Text>Bus</Text>
+          <Text>Bus:</Text>
           <Text style={styles.ui_splash_global_contain_config_fonts5}>
             {Titleidbus}
           </Text>
@@ -85,11 +85,11 @@ const CadreTravelDay = props => {
         <View style={styles.ui_splash_global_contain_second_info_cadre_logo}>
           <FontAwesome5 name={Titleticketico} size={18} color="#080808a3" />
           <Text style={styles.ui_splash_global_contain_config_fonts5}>
-            Ticket {Titleprice}
+            Ticket: {Titleprice}
           </Text>
         </View>
         <View style={styles.ui_splash_global_contain_third_info_cadre_logo}>
-          <Text>Départ</Text>
+          <Text>Départ:</Text>
           <Text style={styles.ui_splash_global_contain_config_fonts5}>
             {Titleheure}h..
           </Text>
