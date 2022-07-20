@@ -22,12 +22,12 @@ const ItemStatDirection = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    width: 80,
+    width: 90,
     height: 100,
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 100,
+    borderRadius: 10,
   },
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
