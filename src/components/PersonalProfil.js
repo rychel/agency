@@ -4,12 +4,11 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
   Image,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const PersonalProfil = props => {
+const PersonalProfil = (props) => {
   const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber} = props;
 
   return (
@@ -25,26 +24,26 @@ const PersonalProfil = props => {
           <FontAwesome5 name="plus" size={20} color="white" />
         </TouchableOpacity>
       </View>
-
       <View style={styles.ui_splash_contain_header_cadre_ifo_id_profil}>
         <View style={styles.ui_splash_contain_header_cadre_ifo_id_conf}>
-          <Text style={styles.ui_splash_contain_header_params_fonts1}>
-            {Titlename}
-          </Text>
-          <Text style={styles.ui_splash_contain_header_params_fonts2}>
-            {Titlesubname}
-          </Text>
+          <View style={styles.ui_splash_contain_header_cadre_ifo_id_conf2}>
+            <Text style={styles.ui_splash_contain_header_params_fonts1}>
+              {Titlename}
+            </Text>
+            <Text style={styles.ui_splash_contain_header_params_fonts2}>
+              {Titlesubname}
+            </Text>
+          </View>
           <Text style={styles.ui_splash_contain_header_params_fonts3}>
             {Titlepost}
           </Text>
         </View>
-        <Text>{Titlenumber}</Text>
+        <Text style={styles.ui_splash_contain_header_params_fonts4}>{Titlenumber}</Text>
       </View>
     </View>
   );
 };
 
-{/*#7cc3bc */}
 const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
@@ -88,8 +87,11 @@ const styles = StyleSheet.create({
     left: 10,
   },
   ui_splash_contain_header_cadre_ifo_id_conf: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
+  },
+  ui_splash_contain_header_cadre_ifo_id_conf2: {
+    flexDirection: 'row',
   },
   ui_splash_contain_header_params_fonts1: {
     fontWeight: '800',
@@ -112,9 +114,15 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     backgroundColor: '#f44336',
     color: 'white',
-    left: 5,
     position: 'relative',
     marginRight: 10,
+    width: 120,
+  },
+  ui_splash_contain_header_params_fonts4: {
+    fontSize: 15,
+    left: 2,
+    top: 10,
+    color: '#0000007a',
   },
 });
 
