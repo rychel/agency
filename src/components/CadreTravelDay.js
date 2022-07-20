@@ -12,6 +12,9 @@ const CadreTravelDay = props => {
     Titlemodevalidation,
     Titlebusico,
     Titleticketico,
+    Titleprice,
+    Titleidbus,
+    Titlechauffeur,
   } = props;
 
   return (
@@ -22,7 +25,7 @@ const CadreTravelDay = props => {
             Départ:
           </Text>
           <Text style={styles.ui_splash_global_contain_config_fonts3}>
-            Douala
+            {Titledepart}
           </Text>
         </View>
         <View style={styles.ui_splash_global_contain_first_info_item}>
@@ -30,7 +33,7 @@ const CadreTravelDay = props => {
             Destination:
           </Text>
           <Text style={styles.ui_splash_global_contain_config_fonts3}>
-            Bagangté
+            {Titledestination}
           </Text>
         </View>
         <View style={styles.ui_splash_global_contain_first_info_item}>
@@ -38,7 +41,7 @@ const CadreTravelDay = props => {
             Trajet:
           </Text>
           <Text style={styles.ui_splash_global_contain_config_fonts3}>
-            Douala-Bagangté
+            {Titledepart}-{Titledestination}
           </Text>
         </View>
         <View style={styles.ui_splash_global_contain_first_info_item}>
@@ -54,21 +57,41 @@ const CadreTravelDay = props => {
             Mode de validation:
           </Text>
           <Text style={styles.ui_splash_global_contain_config_fonts3}>
-            Code QR
+            {Titlemodevalidation}
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_first_info_item}>
+          <Text style={styles.ui_splash_global_contain_config_fonts2}>
+            Chauffeur:
+          </Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts3}>
+            {Titlechauffeur}
           </Text>
         </View>
       </ScrollView>
       <View style={styles.ui_splash_global_contain_first_info_ticket}>
         <View style={styles.ui_splash_global_contain_first_info_cadre_logo}>
-          <FontAwesome5 name="bus-alt" size={55} color="#080808a3" />
+          <FontAwesome5 name={Titlebusico} size={55} color="#080808a3" />
           <Text style={styles.ui_splash_global_contain_config_fonts4}>
             Porteur
           </Text>
         </View>
+        <View style={styles.ui_splash_global_contain_third_info_cadre_logo}>
+          <Text>Bus</Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts5}>
+            {Titleidbus}
+          </Text>
+        </View>
         <View style={styles.ui_splash_global_contain_second_info_cadre_logo}>
-          <FontAwesome5 name="receipt" size={18} color="#080808a3" />
-          <Text style={styles.ui_splash_global_contain_config_fonts4}>
-            Prix du ticket 3500
+          <FontAwesome5 name={Titleticketico} size={18} color="#080808a3" />
+          <Text style={styles.ui_splash_global_contain_config_fonts5}>
+            Ticket {Titleprice}
+          </Text>
+        </View>
+        <View style={styles.ui_splash_global_contain_third_info_cadre_logo}>
+          <Text>Départ</Text>
+          <Text style={styles.ui_splash_global_contain_config_fonts5}>
+            {Titleheure}h..
           </Text>
         </View>
       </View>
@@ -85,6 +108,7 @@ const styles = StyleSheet.create({
     borderColor: '#0808081a',
     flexDirection: 'row',
     borderRadius: 10,
+    backgroundColor: '#ffeb3b2e',
   },
   ui_splash_global_contain_first_info_travel: {
     margin: 3,
@@ -122,6 +146,12 @@ const styles = StyleSheet.create({
     color: '#000000ad',
     fontSize: 12,
   },
+  ui_splash_global_contain_config_fonts5: {
+    fontFamily: 'Fontisto',
+    color: '#000000ad',
+    fontSize: 12,
+    left: 10,
+  },
   ui_splash_global_contain_first_info_ticket: {
     margin: 3,
     width: 140,
@@ -147,10 +177,14 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_second_info_cadre_logo: {
     margin: 3,
     alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'row',
     width: '95%',
-    justifyContent: 'space-between'
+  },
+  ui_splash_global_contain_third_info_cadre_logo: {
+    margin: 3,
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '95%',
   },
 });
 
