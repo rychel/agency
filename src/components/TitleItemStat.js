@@ -20,6 +20,7 @@ const TitleItemStat = props => {
 const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_contain_title: {
     margin: 5,
+    marginTop: 10,
   },
   ui_splash_global_contain_registered_global_config_font1: {
     fontFamily: 'Feather',
