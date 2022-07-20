@@ -192,11 +192,9 @@ const Direction = ({navigation}) => {
                 Titledestination="Bagangté"
                 Titlemodevalidation="Code QR"
                 Titlebusico="bus-alt"
-                Titleticketico="receipt"
                 Titleprice="3500"
-                Titleheure="08"
+                Titleheure="08h.."
                 Titleidbus="676"
-                Titlechauffeur="Simon dibeng"
               />
             </ScrollView>
           </View>
