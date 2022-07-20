@@ -196,6 +196,15 @@ const Direction = ({navigation}) => {
                 Titleheure="08h.."
                 Titleidbus="676"
               />
+              <CadreTravelDay
+                Titledepart="Douala"
+                Titledestination="Bagangté"
+                Titlemodevalidation="Ticket"
+                Titlebusico="bus-alt"
+                Titleprice="3500"
+                Titleheure="12h.."
+                Titleidbus="476"
+              />
             </ScrollView>
           </View>
         </View>
@@ -217,6 +226,7 @@ const Direction = ({navigation}) => {
 const styles = StyleSheet.create({
   ui_splash_global_contain_hunts: {
     height: Dimensions.get('window').height,
+    backgroundColor: 'white',
   },
   ui_splash_global_contain_registered_space: {
     width: Dimensions.get('window').width,
@@ -224,7 +234,6 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_showUser: {
     width: '100%',
     height: 140,
-    backgroundColor: '#f7f5f5cc',
     justifyContent: 'center',
   },
   ui_splash_global_contain_registered_global_contain: {
@@ -236,7 +245,6 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_showInformation: {
     width: '100%',
     height: 168,
-    backgroundColor: '#f7f5f5cc',
     justifyContent: 'center',
   },
   ui_splash_global_contain_registered_global_contain_information: {
@@ -267,7 +275,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_tab_journal_contain: {
     width: '100%',
-    height: 260,
+    height: 310,
     top: 2,
     flexDirection: 'column',
     backgroundColor: 'white',
