@@ -104,8 +104,6 @@ const styles = StyleSheet.create({
     margin: 5,
     width: 400,
     height: 200,
-    borderWidth: 0.4,
-    borderColor: '#0808081a',
     flexDirection: 'row',
     borderRadius: 10,
     backgroundColor: '#ffeb3b2e',
