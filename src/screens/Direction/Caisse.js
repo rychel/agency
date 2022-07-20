@@ -8,8 +8,9 @@ import {
   StatusBar,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
 import ButtonAddingItems from '../../components/ButtonAddingItems';
+import NoItemStatus from '../../components/NoItemStatus';
+import ChooseCaissier from '../../components/ChooseCaissier';
 
 const Caisse = (props) => {
   
@@ -22,7 +23,14 @@ const Caisse = (props) => {
         showHideTransition="fade"
         hidden={false}
       />
-        <ButtonAddingItems titleico='plus' titlebutton='ajouter' borderrounds={50} />
+      <NoItemStatus
+        Titleico="user-slash"
+        Titlestatus="aucune caissière enregistrée"
+      />
+
+      
+      <ButtonAddingItems titleico='plus' titlebutton='ajouter' borderrounds={50} />
+      <ChooseCaissier />
     </View>
   )
 };
