@@ -30,25 +30,37 @@ const CadreTravelDay = props => {
         <View style={styles.ui_splash_global_contain_first_info_travel}>
           <View style={styles.ui_splash_global_contain_wrapped_info_ticket}>
             <View style={styles.ui_splash_global_contain_first_info_item}>
+              <Text style={styles.ui_splash_global_contain_config_fonts3}>
+                Départ: 
+              </Text>
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
-                Départ: {Titledepart}-{Titledestination}
+                {Titledepart}-{Titledestination}
               </Text>
             </View>
             <View style={styles.ui_splash_global_contain_first_info_item}>
+              <Text style={styles.ui_splash_global_contain_config_fonts3}>
+                Validation:
+              </Text>
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
-                Validation: {Titlemodevalidation}
+                {Titlemodevalidation}
               </Text>
             </View>
           </View>
           <View style={styles.ui_splash_global_contain_wrapped_info_ticket}>
             <View style={styles.ui_splash_global_contain_first_info_item}>
+              <Text style={styles.ui_splash_global_contain_config_fonts3}>
+                Ticket:
+              </Text>
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
-                Ticket: {Titleprice}
+                {Titleprice}
               </Text>
             </View>
             <View style={styles.ui_splash_global_contain_first_info_item}>
+              <Text style={styles.ui_splash_global_contain_config_fonts3}>
+                Heure:
+              </Text>
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
-                Heure: {Titleheure}
+                {Titleheure}
               </Text>
             </View>
           </View>
@@ -72,7 +84,7 @@ const styles = StyleSheet.create({
     width: 320,
     height: 210,
     flexDirection: 'column',
-    borderRadius: 7,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0.2,
@@ -96,19 +108,21 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
   },
   ui_splash_global_contain_config_fonts2: {
-    fontFamily: 'Feather',
-    color: '#f44336',
+    color: 'white',
     padding: 3,
-    borderRadius: 5,
-    backgroundColor: '#ddd7d730',
+    borderRadius: 100,
+    backgroundColor: '#ff9800bd',
     height: 23,
     textAlignVertical: 'center',
     fontSize: 13,
   },
   ui_splash_global_contain_config_fonts3: {
-    fontFamily: 'Fontisto',
-    color: '#00000094',
-    height: 17,
+    color: '#000000a3',
+    padding: 3,
+    borderRadius: 5,
+    height: 23,
+    textAlignVertical: 'center',
+    fontSize: 13,
   },
   ui_splash_global_contain_config_fonts4: {
     fontFamily: 'Fontisto',
