@@ -13,11 +13,10 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 
-/* utils imports */
 import PersonalProfil from './PersonalProfil';
 import ItemDrawerMenu from './ItemDrawerMenu';
 
-const DrawerDirection = props => {
+const DrawerDirection = (props) => {
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
       <PersonalProfil
@@ -27,8 +26,6 @@ const DrawerDirection = props => {
         Titlepost="Chef d'agence"
         Titlenumber="673845359"
       />
-
-      {/*administration session*/}
       <View
         style={styles.ui_splash_contain_header_administration_contains_block}>
         <ItemDrawerMenu
