@@ -20,6 +20,7 @@ import ItemStatDirection from '../../components/ItemStatDirection';
 import TitleItemStat from '../../components/TitleItemStat';
 import ItemForfaitTips from '../../components/ItemForfaitTips';
 import TitleTravelDay from '../../components/TitleTravelDay';
+import CadreTravelDay from '../../components/CadreTravelDay';
 
 const Direction = ({navigation}) => {
   const gotoGetstarting = () => {
@@ -183,6 +184,21 @@ const Direction = ({navigation}) => {
                 Titlebg="#00000014"
               />
             </ScrollView>
+            <ScrollView
+              style={styles.ui_splash_contain_cadre_scroll_day_grant_journal}
+              horizontal={true}>
+              <CadreTravelDay
+                Titledepart="Douala"
+                Titledestination="Bagangté"
+                Titlemodevalidation="Code QR"
+                Titlebusico="bus-alt"
+                Titleticketico="receipt"
+                Titleprice="3500"
+                Titleheure="08"
+                Titleidbus="676"
+                Titlechauffeur="Simon dibeng"
+              />
+            </ScrollView>
           </View>
         </View>
       </ScrollView>
@@ -253,17 +269,22 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_tab_journal_contain: {
     width: '100%',
-    height: 290,
+    height: 260,
     top: 2,
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: 'white',
-    marginBottom: 80,
+    marginBottom: 100,
   },
   ui_splash_contain_header_scroll_title_grant_journal: {
     width: Dimensions.get('window').width,
     height: 56,
     flexDirection: 'row',
     marginTop: 1,
+  },
+  ui_splash_contain_cadre_scroll_day_grant_journal: {
+    width: '100%',
+    height: 240,
+    flexDirection: 'row',
   },
 });
 
