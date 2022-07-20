@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_contain_title: {
     margin: 5,
     flexDirection: 'row',
-    height: 35,
+    height: 30,
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_config_font1: {
     fontFamily: 'PingFang SC Regular',
-    fontSize: 15,
+    fontSize: 14.4,
     color: '#000000b8',
   },
   ui_splash_global_contain_registered_logo_config: {
