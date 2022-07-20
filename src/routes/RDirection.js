@@ -1,25 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {
-  View,
-  Text,
-  Image,
   StyleSheet,
-  ImageBackground,
   Dimensions,
-  ToastAndroid,
-  Animated,
 } from 'react-native';
 
-/** import utils component */
 import Direction from '../screens/Direction/Direction';
 import HeaderUser from '../components/HeaderUser';
 import DrawerDirection from '../components/DrawerDirection';
 import Bus from '../screens/Direction/Bus';
 import TitleHeaderBar from '../components/TitleHeaderBar';
 
-
 import {createDrawerNavigator} from '@react-navigation/drawer';
-
 const Drawer = createDrawerNavigator();
 
 const RDirection = () => {
@@ -28,7 +19,7 @@ const RDirection = () => {
       initialRouteName="Direction"
       screenOptions={{
         drawerStyle: {
-          width: Dimensions.get('window').width - 30,
+          width: Dimensions.get('window').width - 60,
         },
       }}
       drawerType="permanent"
