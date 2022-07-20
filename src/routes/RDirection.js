@@ -28,7 +28,7 @@ const RDirection = () => {
       initialRouteName="Direction"
       screenOptions={{
         drawerStyle: {
-          width: Dimensions.get('window').width - 70,
+          width: Dimensions.get('window').width - 30,
         },
       }}
       drawerType="permanent"
