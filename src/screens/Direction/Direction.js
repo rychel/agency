@@ -18,6 +18,8 @@ import ButtonAddingItems from '../../components/ButtonAddingItems';
 import DashboardDirection from '../../components/DashboardDirection';
 import ItemStatDirection from '../../components/ItemStatDirection';
 import TitleItemStat from '../../components/TitleItemStat';
+import ItemForfaitTips from '../../components/ItemForfaitTips';
+import TitleTravelDay from '../../components/TitleTravelDay';
 
 const Direction = ({navigation}) => {
   const gotoGetstarting = () => {
@@ -78,7 +80,6 @@ const Direction = ({navigation}) => {
               <ProfilUser Utitle="Composteur" Username="ZA" Ustatut="#f44336" />
             </View>
           </View>
-
           <View
             style={
               styles.ui_splash_global_contain_registered_global_showInformation
@@ -88,54 +89,26 @@ const Direction = ({navigation}) => {
               style={
                 styles.ui_splash_global_contain_registered_global_contain_information
               }>
-              <View
-                style={
-                  styles.ui_splash_global_contain_registered_global_contain_title
-                }>
-                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
-                <Text
-                  style={
-                    styles.ui_splash_global_contain_registered_global_config_font3
-                  }>
-                  Forfait clientèle
-                </Text>
-              </View>
-              <View
-                style={
-                  styles.ui_splash_global_contain_registered_global_contain_title
-                }>
-                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
-                <Text
-                  style={
-                    styles.ui_splash_global_contain_registered_global_config_font3
-                  }>
-                  Forfait transport
-                </Text>
-              </View>
-              <View
-                style={
-                  styles.ui_splash_global_contain_registered_global_contain_title
-                }>
-                <FontAwesome5 name="splotch" size={20} color="#ffeb3b" />
-                <Text
-                  style={
-                    styles.ui_splash_global_contain_registered_global_config_font3
-                  }>
-                  Forfait location (par défaut)
-                </Text>
-              </View>
-              <View
-                style={
-                  styles.ui_splash_global_contain_registered_global_contain_title
-                }>
-                <FontAwesome5 name="star" size={20} color="#f44336" />
-                <Text
-                  style={
-                    styles.ui_splash_global_contain_registered_global_config_font3
-                  }>
-                  Forfait colis
-                </Text>
-              </View>
+              <ItemForfaitTips
+                Titleico="splotch"
+                Titlesub="Forfait clientèle"
+                Titlecl="#ffeb3b"
+              />
+              <ItemForfaitTips
+                Titleico="splotch"
+                Titlesub="Forfait transport"
+                Titlecl="#ffeb3b"
+              />
+              <ItemForfaitTips
+                Titleico="splotch"
+                Titlesub="Forfait location (par défaut)"
+                Titlecl="#ffeb3b"
+              />
+              <ItemForfaitTips
+                Titleico="splotch"
+                Titlesub="Forfait colis"
+                Titlecl="#f44336"
+              />
             </View>
           </View>
           <TitleItemStat Titlesub="Statistique de l'agence" />
@@ -194,7 +167,23 @@ const Direction = ({navigation}) => {
               />
             </ScrollView>
           </View>
-          <TitleItemStat Titlesub="Tableau de bord du jour" />
+          <TitleItemStat Titlesub="Tableau de bord" />
+          <View style={styles.ui_splash_contain_header_tab_journal_contain}>
+            <ScrollView
+              style={styles.ui_splash_contain_header_scroll_title_grant_journal}
+              horizontal={true}>
+              <TitleTravelDay
+                Titlesub="Voyage d'aujourd'hui"
+                Titleico="thumbtack"
+                Titlebg="#0061ab40"
+              />
+              <TitleTravelDay Titlesub="Voyage de demain" Titlebg="#00000014" />
+              <TitleTravelDay
+                Titlesub="Voyage d'après demain"
+                Titlebg="#00000014"
+              />
+            </ScrollView>
+          </View>
         </View>
       </ScrollView>
       {dashboard ? (
@@ -240,19 +229,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
   },
-  ui_splash_global_contain_registered_global_contain_title: {
-    margin: 5,
-    flexDirection: 'row',
-  },
-  ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'PingFang SC Regular',
-  },
   ui_splash_global_contain_registered_global_config_font2: {
     fontFamily: 'Fontisto',
-  },
-  ui_splash_global_contain_registered_global_config_font3: {
-    margin: 2,
-    left: 5,
   },
   ui_splash_global_contain_registered_global_config_font5: {
     left: -5,
@@ -273,13 +251,19 @@ const styles = StyleSheet.create({
     top: 2,
     flexDirection: 'row',
   },
-  ui_splash_contain_header_items_contains: {
-    width: '22.33%',
-    height: 80,
-    margin: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 100,
+  ui_splash_contain_header_tab_journal_contain: {
+    width: '100%',
+    height: 290,
+    top: 2,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    marginBottom: 80,
+  },
+  ui_splash_contain_header_scroll_title_grant_journal: {
+    width: Dimensions.get('window').width,
+    height: 56,
+    flexDirection: 'row',
+    marginTop: 1,
   },
 });
 
