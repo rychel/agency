@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const TitleItemStat = props => {
+const TitleItemStat = (props) => {
   const {Titlesub} = props;
 
   return (
@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_config_font1: {
     fontFamily: 'PingFang SC Regular',
+    fontSize: 14.7,
+    color: '#00000094',
   },
 });
 
