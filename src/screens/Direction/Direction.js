@@ -17,6 +17,7 @@ import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import DashboardDirection from '../../components/DashboardDirection';
 import ItemStatDirection from '../../components/ItemStatDirection';
+import TitleItemStat from '../../components/TitleItemStat';
 
 const Direction = ({navigation}) => {
   const gotoGetstarting = () => {
@@ -69,17 +70,7 @@ const Direction = ({navigation}) => {
         <View style={styles.ui_splash_global_contain_registered_space}>
           <View
             style={styles.ui_splash_global_contain_registered_global_showUser}>
-            <View
-              style={
-                styles.ui_splash_global_contain_registered_global_contain_title
-              }>
-              <Text
-                style={
-                  styles.ui_splash_global_contain_registered_global_config_font1
-                }>
-                Personnels agrégés
-              </Text>
-            </View>
+            <TitleItemStat Titlesub="Personnels agrégés" />
             <View
               style={styles.ui_splash_global_contain_registered_global_contain}>
               <ProfilUser Utitle="Vous" Username="RY" Ustatut="yellow" />
@@ -92,17 +83,7 @@ const Direction = ({navigation}) => {
             style={
               styles.ui_splash_global_contain_registered_global_showInformation
             }>
-            <View
-              style={
-                styles.ui_splash_global_contain_registered_global_contain_title
-              }>
-              <Text
-                style={
-                  styles.ui_splash_global_contain_registered_global_config_font1
-                }>
-                Forfaits préférés (Services souscris)
-              </Text>
-            </View>
+            <TitleItemStat Titlesub="Forfaits préférés (Services souscris)" />
             <View
               style={
                 styles.ui_splash_global_contain_registered_global_contain_information
@@ -157,17 +138,7 @@ const Direction = ({navigation}) => {
               </View>
             </View>
           </View>
-          <View
-            style={
-              styles.ui_splash_global_contain_registered_global_contain_title
-            }>
-            <Text
-              style={
-                styles.ui_splash_global_contain_registered_global_config_font1
-              }>
-              Statistique de l'agence
-            </Text>
-          </View>
+          <TitleItemStat Titlesub="Statistique de l'agence" />
           <View style={styles.ui_splash_contain_header_tab_stats_container}>
             <ScrollView
               style={styles.ui_splash_contain_header_tab_stats_contain}
@@ -223,6 +194,7 @@ const Direction = ({navigation}) => {
               />
             </ScrollView>
           </View>
+          <TitleItemStat Titlesub="Tableau de bord du jour" />
         </View>
       </ScrollView>
       {dashboard ? (
@@ -289,11 +261,10 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_tab_stats_container: {
     width: '100%',
     height: 115,
-    borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 120,
+    marginBottom: 5,
     backgroundColor: 'white',
   },
   ui_splash_contain_header_tab_stats_contain: {
