@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const PersonalProfil = props => {
-  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber, onOpen} =
+  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber, onOpen, onClose} =
     props;
 
   const [replaceicon, setReplaceicon] = useState(false);
@@ -55,7 +55,7 @@ const PersonalProfil = props => {
               onPress={() => {
                 setReplaceicon(true);
               }}
-              onPressIn={onOpen}>
+              onPressIn={onClose}>
               <FontAwesome5 name="angle-down" size={20} color="white" />
             </TouchableOpacity>
           )}
