@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const CadreTravelDay = props => {
@@ -15,15 +15,49 @@ const CadreTravelDay = props => {
     Titlereste,
     Titleplace,
   } = props;
+  const StartWelcomeBrave = useRef(new Animated.Value(64)).current;
+
+  const ShowTitleidbus = () => {
+    Animated.sequence([
+      Animated.timing(StartWelcomeBrave, {
+        toValue: 25,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
+    setTimeout(() => {
+      HideTitleidbus();
+    }, 2000);
+  }
+
+  const HideTitleidbus = () => {
+    Animated.sequence([
+      Animated.timing(StartWelcomeBrave, {
+        toValue: 64,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }
+
 
   return (
-    <View style={styles.ui_splash_global_contain_global}>
+    <TouchableOpacity
+      style={styles.ui_splash_global_contain_global}
+      onPressIn={ShowTitleidbus}>
       <View style={styles.ui_splash_global_contain_second_info_cadre_logo}>
         <View style={styles.ui_splash_global_contain_first_info_ticket}>
-          <View style={styles.ui_splash_global_contain_first_info_cadre_logo}>
-            <Text style={styles.ui_splash_global_contain_config_fonts4}>
+          <Animated.View
+            style={[
+              styles.ui_splash_global_contain_fouth_info_ticket,
+              {translateY: StartWelcomeBrave},
+            ]}>
+            <Text style={styles.ui_splash_global_contain_config_fonts9}>
               {Titleidbus}
             </Text>
+          </Animated.View>
+          <View style={styles.ui_splash_global_contain_first_info_cadre_logo}>
             <FontAwesome5 name={Titlebusico} size={55} color="#000000b3" />
             <Text style={styles.ui_splash_global_contain_config_fonts4}>
               {Titlebus}
@@ -90,7 +124,7 @@ const CadreTravelDay = props => {
         activeOpacity={0.5}>
         <FontAwesome5 name="ellipsis-h" size={30} color="white" />
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -174,6 +208,15 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontSize: 10,
   },
+  ui_splash_global_contain_config_fonts9: {
+    color: '#000000d1',
+    padding: 3,
+    borderRadius: 100,
+    backgroundColor: 'white',
+    height: 23,
+    textAlignVertical: 'center',
+    fontSize: 13,
+  },
   ui_splash_global_contain_first_info_ticket: {
     margin: 3,
     width: 110,
@@ -219,6 +262,15 @@ const styles = StyleSheet.create({
     margin: 2,
     marginLeft: 2,
     marginRight: 5,
+  },
+  ui_splash_global_contain_fouth_info_ticket: {
+    margin: 3,
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    transform: [{translateY: 68}],
   },
 });
 
