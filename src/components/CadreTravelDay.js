@@ -12,6 +12,8 @@ const CadreTravelDay = props => {
     Titleprice,
     Titleidbus,
     Titlebus,
+    Titlereste,
+    Titleplace,
   } = props;
 
   return (
@@ -32,7 +34,7 @@ const CadreTravelDay = props => {
           <View style={styles.ui_splash_global_contain_wrapped_info_ticket}>
             <View style={styles.ui_splash_global_contain_first_info_item}>
               <Text style={styles.ui_splash_global_contain_config_fonts3}>
-                Départ: 
+                Départ:
               </Text>
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
                 {Titledepart}-{Titledestination}
@@ -45,6 +47,22 @@ const CadreTravelDay = props => {
               <Text style={styles.ui_splash_global_contain_config_fonts2}>
                 {Titlemodevalidation}
               </Text>
+            </View>
+            <View style={styles.ui_splash_global_contain_first_info_item}>
+              <Text style={styles.ui_splash_global_contain_config_fonts3}>
+                Statut:
+              </Text>
+              <View style={styles.ui_splash_global_contain_second_info_item}>
+                <Text style={styles.ui_splash_global_contain_config_fonts6}>
+                  {Titlereste}(occupée)
+                </Text>
+                <Text style={styles.ui_splash_global_contain_config_fonts7}>
+                  /
+                </Text>
+                <Text style={styles.ui_splash_global_contain_config_fonts8}>
+                  {Titleplace}(reste)
+                </Text>
+              </View>
             </View>
           </View>
           <View style={styles.ui_splash_global_contain_wrapped_info_ticket}>
@@ -74,7 +92,6 @@ const CadreTravelDay = props => {
       </TouchableOpacity>
     </View>
   );
-  {/*#ffeb3b61 */}
 };
 
 const styles = StyleSheet.create({
@@ -110,7 +127,7 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 3,
     borderRadius: 100,
-    backgroundColor: '#ffeb3b61',
+    backgroundColor: '#ffc107',
     height: 23,
     textAlignVertical: 'center',
     fontSize: 13,
@@ -121,7 +138,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 23,
     textAlignVertical: 'center',
-    fontSize: 13,
+    fontSize: 12,
+    textTransform: 'uppercase',
   },
   ui_splash_global_contain_config_fonts4: {
     fontFamily: 'Fontisto',
@@ -134,9 +152,31 @@ const styles = StyleSheet.create({
     fontSize: 12,
     left: -4,
   },
+  ui_splash_global_contain_config_fonts6: {
+    color: 'white',
+    padding: 3,
+    borderRadius: 100,
+    backgroundColor: '#f44336',
+    height: 23,
+    textAlignVertical: 'center',
+    fontSize: 10,
+  },
+  ui_splash_global_contain_config_fonts7: {
+    color: 'white',
+    fontSize: 12,
+  },
+  ui_splash_global_contain_config_fonts8: {
+    color: 'white',
+    padding: 3,
+    borderRadius: 100,
+    backgroundColor: '#8bc34a',
+    height: 23,
+    textAlignVertical: 'center',
+    fontSize: 10,
+  },
   ui_splash_global_contain_first_info_ticket: {
     margin: 3,
-    width: 140,
+    width: 110,
     height: 160,
     alignItems: 'center',
     justifyContent: 'center',
@@ -172,6 +212,13 @@ const styles = StyleSheet.create({
     margin: 3,
     flexDirection: 'column',
     width: '90%',
+  },
+  ui_splash_global_contain_second_info_item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 2,
+    marginLeft: 2,
+    marginRight: 5,
   },
 });
 
