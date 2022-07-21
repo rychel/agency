@@ -26,6 +26,10 @@ const Getstarting = ({navigation}) => {
     navigation.navigate('admin');
   };
 
+  const gotoGConnecting = () => {
+    navigation.navigate('Connecting');
+  };
+
   useEffect(() => {
     Animated.sequence([
       Animated.timing(StartSpinSticker, {
@@ -90,9 +94,17 @@ const Getstarting = ({navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ui_splash_contain_go_back_button}
-        activeOpacity={0.9}
+        activeOpacity={0.6}
         onPress={gotoBackHome}>
         <FontAwesomeIcon icon={faLeftLong} size={24} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.ui_splash_contain_header_connect_button}
+        activeOpacity={0.6}
+        onPress={gotoGConnecting}>
+        <Text style={styles.ui_splash_contain_connect_button}>
+          Je me connecte !
+        </Text>
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -183,7 +195,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginTop: 10,
     flexDirection: 'row',
-    backgroundColor: '#e9de91',
+    backgroundColor: '#ffc107',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
@@ -194,6 +206,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     top: -3,
     color: 'white',
+  },
+  ui_splash_contain_header_connect_button: {
+    width: 150,
+    height: 40,
+    position: 'relative',
+    left: -25,
+    textDecorationLine: 'underline',
+    marginTop: 40,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+  },
+  ui_splash_contain_connect_button: {
+    position: 'relative',
+    textDecorationLine: 'underline',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'materialcommunityIcons',
   },
 });
 
