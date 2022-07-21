@@ -11,11 +11,6 @@ const HeaderUser = props => {
       <TouchableOpacity onPress={onPress} activeOpacity={0.4}>
         <View style={styles.ui_splash_contain_header_globe_zone_back_left}>
           <FontAwesome5 name="arrow-left" size={22} color="white" />
-          <View style={styles.ui_splash_contain_header_globe_zone_title_name}>
-            <Text style={styles.ui_splash_contain_header_globe_zone_title_text}>
-              N
-            </Text>
-          </View>
         </View>
       </TouchableOpacity>
       <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>
@@ -33,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#7cc3bc',
   },
   ui_splash_contain_header_globe_zone_back_left: {
-    width: 65,
+    width: 40,
     height: 44,
     backgroundColor: 'transparent',
     borderRadius: 100,
