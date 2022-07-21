@@ -78,7 +78,7 @@ const Getstarting = ({navigation}) => {
         </View>
         <TouchableOpacity
           style={styles.ui_splash_button_goto_starting}
-          activeOpacity={0.9}
+          activeOpacity={0.8}
           onPress={gotoGrantstarting}>
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer une agence
