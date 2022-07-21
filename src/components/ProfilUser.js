@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: 'PontanoSans-Regular',
     top: -15,
-    color: 'black',
+    color: '#000000a3',
   },
 });
 
