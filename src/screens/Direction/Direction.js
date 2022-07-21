@@ -103,7 +103,7 @@ const Direction = ({navigation}) => {
               />
               <ItemForfaitTips
                 Titleico="splotch"
-                Titlesub="Forfait location (par défaut)"
+                Titlesub="Forfait location"
                 Titlecl="#ffeb3b"
               />
               <ItemForfaitTips
@@ -275,7 +275,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_tab_journal_contain: {
     width: '100%',
     height: 310,
-    top: 2,
     flexDirection: 'column',
     backgroundColor: 'white',
     marginBottom: 100,
@@ -284,11 +283,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 56,
     flexDirection: 'row',
-    marginTop: 1,
   },
   ui_splash_contain_cadre_scroll_day_grant_journal: {
     width: '100%',
-    height: 240,
+    height: 238,
     flexDirection: 'row',
   },
 });
