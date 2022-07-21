@@ -15,6 +15,8 @@ import {faLeftLong} from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = ({navigation}) => {
   const StartSpinSticker = useRef(new Animated.Value(-45)).current;
+  const FlickedTopContain = useRef(new Animated.Value(0)).current;
+  const FlickedBottomContain = useRef(new Animated.Value(0)).current;
 
   const gotoBackHome = () => {
     navigation.goBack('Launch Home');
@@ -25,12 +27,24 @@ const Getstarting = ({navigation}) => {
   };
 
   useEffect(() => {
-    Animated.timing(StartSpinSticker, {
-      toValue: 25,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  });
+    Animated.sequence([
+      Animated.timing(StartSpinSticker, {
+        toValue: 25,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(FlickedTopContain, {
+        toValue: 100,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(FlickedBottomContain, {
+        toValue: 30,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [StartSpinSticker, FlickedTopContain, FlickedBottomContain]);
 
   return (
     <LinearGradient
@@ -38,7 +52,7 @@ const Getstarting = ({navigation}) => {
       end={{x: 0.4, y: 1.0}}
       locations={[0.79, 0.2]}
       colors={['#7cc3bc', 'white']}
-      style={styles.ui_splash_todo_contain}>
+      style={[styles.ui_splash_todo_contain]}>
       <StatusBar
         animated={true}
         backgroundColor="#7cc3bc"
@@ -93,6 +107,7 @@ const styles = StyleSheet.create({
     height: 360,
     marginBottom: 10,
     backgroundColor: '#7cc3bc',
+    borderRadius: 30,
   },
   ui_splash_contain_widget_acxios: {
     width: 270,
