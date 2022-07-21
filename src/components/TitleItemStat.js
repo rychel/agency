@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_config_font1: {
     fontFamily: 'Feather',
-    fontSize: 13.7,
+    fontSize: 15.7,
     color: '#00000094',
     left: 2,
     padding: 3,
