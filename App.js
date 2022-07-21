@@ -51,7 +51,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Launch Home">
         <Stack.Screen
           name="RDirection"
           component={RDirection}
