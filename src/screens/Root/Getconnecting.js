@@ -11,30 +11,20 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import InputGc from '../../components/InputGc';
+import Space from '../../components/Space';
 const Getconnecting = ({navigation}) => {
-  const StartWelcomeBrave = useRef(new Animated.Value(0)).current;
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
-  const FlickedLogo = useRef(new Animated.Value(50)).current;
 
   useEffect(() => {
     Animated.sequence([
-      Animated.timing(StartWelcomeBrave, {
-        toValue: -78,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-      Animated.timing(FlickedLogo, {
-        toValue: 90,
-        duration: 200,
-        useNativeDriver: true,
-      }),
       Animated.timing(EndWelcomeBrave, {
         toValue: 0,
         duration: 50,
         useNativeDriver: true,
       }),
     ]).start();
-  }, [EndWelcomeBrave, FlickedLogo, StartWelcomeBrave]);
+  }, [EndWelcomeBrave]);
 
   const goWelcomeBrave = () => {
     navigation.navigate('Get starting');
@@ -62,11 +52,7 @@ const Getconnecting = ({navigation}) => {
             :)
           </Animated.Text>
         </View>
-        <Animated.View
-          style={[
-            styles.ui_splash_started_title_welcome,
-            {transform: [{translateY: StartWelcomeBrave}]},
-          ]}>
+        <Animated.View style={styles.ui_splash_started_title_welcome}>
           <Text style={styles.ui_splash_started_font_config1}>
             Connecte toi à ton agence.
           </Text>
@@ -77,6 +63,20 @@ const Getconnecting = ({navigation}) => {
           styles.ui_splash_started_title_contracts,
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
+        <Space Hwidth={20} />
+        <InputGc
+          title="Votre identifiant"
+          keyboard="alphabetic"
+          Placeholder="user"
+          Icon="user"
+        />
+        <InputGc
+          title="Mot de passe"
+          keyboard="alphabetic"
+          Placeholder="secure"
+          Icon="lock"
+          secureTextEntry
+        />
         <TouchableOpacity activeOpacity={0.7} onPress={goWelcomeBrave}>
           <View style={styles.ui_splash_started_container_button_welcome}>
             <View style={styles.ui_splash_started_button_welcome}>
