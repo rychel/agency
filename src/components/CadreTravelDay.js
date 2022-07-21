@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 0.2,
     backgroundColor: '#0061aba6',
   },
   ui_splash_global_contain_first_info_travel: {
