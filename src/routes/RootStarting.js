@@ -8,9 +8,9 @@
 import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Launchnoaccount from '../screens/Launchnoaccount';
-import Getstarting from '../screens/Getstarting';
-import Grantstarting from '../screens/Grantstarting';
+import Launchnoaccount from '../screens/Root/Launchnoaccount';
+import Getstarting from '../screens/Root/Getstarting';
+import Grantstarting from '../screens/Root/Grantstarting';
 
 const Stack = createStackNavigator();
 
