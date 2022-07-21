@@ -2,13 +2,11 @@ import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
-  ImageBackground,
   Dimensions,
   ToastAndroid,
-  Animated,
   ScrollView,
+  StatusBar
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -305,13 +303,20 @@ const Grantstarting = ({navigation}) => {
 
   return (
     <ScrollView>
+      <StatusBar
+        animated={true}
+        backgroundColor="#7cc3bc"
+        barStyle="default"
+        showHideTransition="fade"
+        hidden={false}
+      />
       <LinearGradient
         start={{x: 0.30, y: 0.5}}
-        end={{x: 0.35, y: 1.0}}
-        locations={[0.5, 0.6]}
-        colors={['#A3BDED', '#A3BDED']}
+        end={{x: 0.65, y: 1.0}}
+        locations={[0.2, 4.6]}
+        colors={['white', '#4cafa6eb']}
         style={styles.ui_splash_todo_contain}>
-        <Animated.View style={styles.ui_splash_contain_form_control}>
+        <View style={styles.ui_splash_contain_form_control}>
           <View style={styles.ui_splash_below_title_message}>
             <Text style={styles.ui_splash_below_text_message}>
               Utiliser les informations d'une piece officielle pour creer votre
@@ -408,26 +413,26 @@ const Grantstarting = ({navigation}) => {
               }}
             />
           </View>
-          <Text style={styles.ui_splash_contain_grant_error_text}>{yup}</Text>
-        </Animated.View>
+          {/*<Text style={styles.ui_splash_contain_grant_error_text}>{yup}</Text> */}
+        </View>
 
         <View style={styles.ui_splash_contain_grant_button_create_cancel_option}>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_sucess_button}
             activeOpacity={0.6}
             onPress={handleSubmit}>
-            <Text style={styles.ui_splash_contain_go_sucess_text}>Créer</Text>
-            <FontAwesome5 name='plus' size={16} color='white' />
+            <Text style={styles.ui_splash_contain_go_sucess_text}>Je crée mon agence !</Text>
+            <FontAwesome5 name='paper-plane' size={16} color='white' />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
-            <FontAwesome5 name='times-circle' size={25} color='white' />
+            <FontAwesome5 name='angle-left' size={31} color='white' />
           </TouchableOpacity>
         </View>
         
-        <Space Hwidth={10} />
+        <Space Hwidth={50} />
       </LinearGradient>
       {validate == true ? <LoaderAllScreen /> : null}
     </ScrollView>
@@ -441,13 +446,13 @@ const styles = StyleSheet.create({
   ui_splash_below_title_message: {
     width: '90%',
     height: 54,
-    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#e91e63c4',
-    borderRadius: 5,
+    backgroundColor: '#4cafa6a3',
     flexDirection: 'row',
     alignSelf: 'center',
+    borderBottomStartRadius: 5,
+    borderBottomEndRadius: 5,
   },
   ui_splash_below_text_message: {
     marginTop: 8,
@@ -460,10 +465,8 @@ const styles = StyleSheet.create({
   ui_splash_contain_form_control: {
     width: '100%',
     alignSelf: 'center',
-    borderWidth: 2,
-    borderBottomLeftRadius: 5,
+    borderBottomLeftRadius: 3,
     borderBottomRightRadius: 5,
-    borderColor: 'white',
     backgroundColor: 'white',
   },
   ui_splash_title_form_error_control: {
@@ -472,26 +475,26 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   ui_splash_contain_go_back_button: {
-    width: 35,
+    width: 45,
     height: 35,
     position: 'relative',
     left: -5,
     textDecorationLine: 'underline',
     flexDirection: 'row',
-    backgroundColor: '#46434a30',
+    backgroundColor: '#ff5722',
     borderRadius: 100,
     paddingLeft: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
   ui_splash_contain_go_sucess_button: {
-    width: 80,
-    height: 35,
+    width: 190,
+    height: 38,
     position: 'relative',
     left: 2,
     textDecorationLine: 'underline',
     flexDirection: 'row',
-    backgroundColor: '#46434a30',
+    backgroundColor: '#00bcd4',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
@@ -524,7 +527,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 10,
   },
 });
 
