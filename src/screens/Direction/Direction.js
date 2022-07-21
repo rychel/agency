@@ -196,15 +196,17 @@ const Direction = ({navigation}) => {
                 Titleprice="3500"
                 Titleheure="08h.."
                 Titleidbus="676"
+                Titlebus="Porteur"
               />
               <CadreTravelDay
                 Titledepart="Douala"
                 Titledestination="Bagangté"
                 Titlemodevalidation="Ticket"
-                Titlebusico="bus-alt"
+                Titlebusico="car-alt"
                 Titleprice="3500"
                 Titleheure="12h.."
                 Titleidbus="476"
+                Titlebus="Coaster"
               />
             </ScrollView>
           </View>
