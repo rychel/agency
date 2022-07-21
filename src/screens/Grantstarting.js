@@ -435,20 +435,17 @@ const Grantstarting = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Space Hwidth={25} />
+        <Space Hwidth={30} />
       </LinearGradient>
       {validate == true ? <LoaderAllScreen /> : null}
     </ScrollView>
   );
 };
-{
-  /*#83d1f5 */
-}
 
 const styles = StyleSheet.create({
   ui_splash_global_todo_contain: {
     width: '100%',
-    backgroundColor: '#ff5722',
+    backgroundColor: 'white',
   },
   ui_splash_todo_contain: {
     width: '100%',
@@ -458,7 +455,7 @@ const styles = StyleSheet.create({
     height: 54,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#7cc3bc',
     flexDirection: 'row',
     alignSelf: 'center',
     borderBottomStartRadius: 5,
@@ -477,7 +474,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderBottomLeftRadius: 3,
     borderBottomRightRadius: 5,
-    backgroundColor: '#ff572226',
+    backgroundColor: 'white',
   },
   ui_splash_title_form_error_control: {
     left: 26,
