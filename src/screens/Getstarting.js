@@ -51,10 +51,7 @@ const Getstarting = ({navigation}) => {
           style={{
             transform: [{translateY: StartSpinSticker}],
           }}>
-          <Image
-            source={require('../../assets/splashstart4.png')}
-            style={styles.ui_splash_contain_widget_acxios}
-          />
+          <Text style={styles.ui_splash_contain_widget_acxios}>WELCOME !</Text>
         </Animated.View>
         <View style={styles.ui_splash_below_title_message}>
           <Text style={styles.ui_splash_below_text_message}>
@@ -70,19 +67,18 @@ const Getstarting = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity activeOpacity={0.6}>
-        <View style={styles.ui_splash_box_create_title_message}>
-          <Text style={styles.ui_splash_contain_other_button_goto}>
-            creer un compte associé à une agence
-          </Text>
-        </View>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={styles.ui_splash_box_create_title_message}>
+        <Text style={styles.ui_splash_contain_other_button_goto}>
+          creer un compte associé à une agence
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.ui_splash_contain_go_back_button}
         activeOpacity={0.9}
         onPress={gotoBackHome}>
-        <FontAwesomeIcon icon={faLeftLong} size={20} color="white" />
-        <Text style={styles.ui_splash_contain_go_back_text}>retour</Text>
+        <FontAwesomeIcon icon={faLeftLong} size={24} color="white" />
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -94,7 +90,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_widget_header_acxios: {
     width: '100%',
-    height: 400,
+    height: 360,
     marginBottom: 10,
     backgroundColor: '#7cc3bc',
   },
@@ -103,10 +99,16 @@ const styles = StyleSheet.create({
     height: 90,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
     alignSelf: 'center',
     marginTop: 20,
     marginBottom: 10,
+    fontSize: 40,
+    color: 'white',
+    fontFamily: 'Nunito-ExtraBold',
+    fontWeight: '700',
+    textShadowColor: 'black',
+    borderWidth: 0.3,
+    borderColor: 'white',
   },
   body: {
     color: 'red',
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_box_create_title_message: {
     width: '90%',
-    height: 25,
+    height: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -138,12 +140,12 @@ const styles = StyleSheet.create({
   },
   ui_splash_button_goto_starting: {
     width: '48%',
-    height: 30,
+    height: 35,
     textAlignVertical: 'center',
-    marginTop: 120,
+    marginTop: 100,
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: '#F9D29D',
+    backgroundColor: 'white',
     borderRadius: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -153,21 +155,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Snippet-Regular',
     marginRight: 5,
     top: -1,
-    color: 'white',
+    color: '#000000a1',
   },
   ui_splash_contain_other_button_goto: {
     color: 'white',
   },
   ui_splash_contain_go_back_button: {
-    width: 85,
+    width: 60,
+    height: 40,
     position: 'relative',
     left: 15,
     textDecorationLine: 'underline',
     marginTop: 10,
     flexDirection: 'row',
-    backgroundColor: '#f44336',
+    backgroundColor: '#e9de91',
     borderRadius: 100,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
