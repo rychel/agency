@@ -69,10 +69,7 @@ const CadreTravelDay = props => {
       <TouchableOpacity
         style={styles.ui_splash_global_contain_third_info_cadre_logo}
         activeOpacity={0.5}>
-        <Text style={styles.ui_splash_global_contain_config_fonts5}>
-          Modifier
-        </Text>
-        <FontAwesome5 name="ellipsis-h" size={30} color="#000000b3" />
+        <FontAwesome5 name="ellipsis-h" size={30} color="white" />
       </TouchableOpacity>
     </View>
   );
@@ -111,7 +108,7 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 3,
     borderRadius: 100,
-    backgroundColor: '#ff9800bd',
+    backgroundColor: '#0061aba6',
     height: 23,
     textAlignVertical: 'center',
     fontSize: 13,
@@ -161,9 +158,9 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_third_info_cadre_logo: {
     alignItems: 'center',
     flexDirection: 'row',
-    width: 100,
+    width: 50,
     height: 50,
-    backgroundColor: 'yellow',
+    backgroundColor: '#ffeb3b',
     borderRadius: 100,
     top: 20,
     alignItems: 'center',
