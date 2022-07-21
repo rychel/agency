@@ -74,12 +74,13 @@ const Direction = ({navigation}) => {
           <View
             style={styles.ui_splash_global_contain_registered_global_showUser}>
             <TitleItemStat Titlesub="Personnels agrégés" />
-            <View
-              style={styles.ui_splash_global_contain_registered_global_contain}>
-              <ProfilUser Utitle="Vous" Username="RY" Ustatut="yellow" />
-              <ProfilUser Utitle="Caissier" Username="ND" Ustatut="#8bc34a" />
-              <ProfilUser Utitle="Composteur" Username="ZA" Ustatut="#f44336" />
-            </View>
+            <ScrollView
+              style={styles.ui_splash_global_contain_registered_global_contain}
+              horizontal={true}>
+              <ProfilUser Utitle="Vous" Username="RY" Ustatut="yellow" Uphoto={require('../../../assets/Logo3.jpg')} />
+              <ProfilUser Utitle="Caissier" Username="ND" Ustatut="#8bc34a" Uphoto={require('../../../assets/Logo4.jpg')} />
+              <ProfilUser Utitle="Composteur" Username="ZA" Ustatut="#f44336" Uphoto={require('../../../assets/Logo3.jpg')} />
+            </ScrollView>
           </View>
           <View
             style={
@@ -233,13 +234,11 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_showUser: {
     width: '100%',
-    height: 140,
     justifyContent: 'center',
+    height: 190,
   },
   ui_splash_global_contain_registered_global_contain: {
     width: '100%',
-    height: 98,
-    backgroundColor: 'white',
     flexDirection: 'row',
   },
   ui_splash_global_contain_registered_global_showInformation: {
