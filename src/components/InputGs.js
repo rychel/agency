@@ -23,26 +23,27 @@ const InputGs = props => {
         {...props}
       />
       {errors ? (
-        <Text style={styles.ui_splash_title_form_error_control}>{errors}</Text>
+        <View style={styles.ui_splash_title_form_error_caps_control}>
+          <Text style={styles.ui_splash_title_form_error_control}>
+            {errors}
+          </Text>
+        </View>
       ) : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  ui_splash_global_control: {
-    
-  },
   ui_splash_input_form_control: {
     width: '90%',
-    height: 34,
+    height: 39,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0.6,
-    borderColor: '#00000036',
+    borderColor: 'white',
     fontSize: 15,
-    color: 'orange',
+    color: 'white',
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
@@ -64,13 +65,19 @@ const styles = StyleSheet.create({
     left: 16,
     fontSize: 15,
     top: 5,
-    color: '#A3BDED',
+    color: '#d9d9d9',
     fontFamily: 'PatrickHandSC-Regular',
   },
   ui_splash_title_form_error_control: {
-    left: 18,
-    fontSize: 14,
+    left: 14,
+    fontSize: 10.45,
     color: 'red',
+    padding: 3,
+    backgroundColor: '#ffeb3b',
+    borderRadius: 100,
+  },
+  ui_splash_title_form_error_caps_control: {
+    flexDirection: 'row',
   },
 });
 
