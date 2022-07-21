@@ -11,11 +11,11 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import InputGs from '../components/InputGs';
-import Space from '../components/Space';
-import LoaderAllScreen from '../components/LoaderAllScreen';
+import InputGs from '../../components/InputGs';
+import Space from '../../components/Space';
+import LoaderAllScreen from '../../components/LoaderAllScreen';
 
-import {validEmail, validChiffre, validSpecials} from '../utils/regex';
+import {validEmail, validChiffre, validSpecials} from '../../utils/regex';
 
 const Grantstarting = ({navigation}) => {
   const gotoGetstarting = () => {

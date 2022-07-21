@@ -52,7 +52,7 @@ const Launchnoaccount = ({navigation}) => {
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
           <Animated.Image
-            source={require('../../assets/Logo1.png')}
+            source={require('../../../assets/Logo1.png')}
             resizeMode="contain"
             style={[
               styles.ui_splash_logo_started,
