@@ -11,6 +11,7 @@ const CadreTravelDay = props => {
     Titlebusico,
     Titleprice,
     Titleidbus,
+    Titlebus,
   } = props;
 
   return (
@@ -23,7 +24,7 @@ const CadreTravelDay = props => {
             </Text>
             <FontAwesome5 name={Titlebusico} size={55} color="#000000b3" />
             <Text style={styles.ui_splash_global_contain_config_fonts4}>
-              Porteur
+              {Titlebus}
             </Text>
           </View>
         </View>
