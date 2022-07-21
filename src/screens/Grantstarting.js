@@ -415,7 +415,6 @@ const Grantstarting = ({navigation}) => {
           </View>
           {/*<Text style={styles.ui_splash_contain_grant_error_text}>{yup}</Text> */}
         </View>
-
         <View
           style={styles.ui_splash_contain_grant_button_create_cancel_option}>
           <TouchableOpacity
@@ -436,13 +435,15 @@ const Grantstarting = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Space Hwidth={5} />
+        <Space Hwidth={25} />
       </LinearGradient>
       {validate == true ? <LoaderAllScreen /> : null}
     </ScrollView>
   );
 };
-{/*#83d1f5 */}
+{
+  /*#83d1f5 */
+}
 
 const styles = StyleSheet.create({
   ui_splash_global_todo_contain: {
