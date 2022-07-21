@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Foundation',
     textAlign: 'left',
     position: 'relative',
-    Top: 105,
+    top: 5,
     marginTop: 18,
     left: 12,
     height: 20,
