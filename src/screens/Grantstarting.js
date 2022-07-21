@@ -6,7 +6,7 @@ import {
   Dimensions,
   ToastAndroid,
   ScrollView,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -302,7 +302,7 @@ const Grantstarting = ({navigation}) => {
   console.log(validate);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.ui_splash_global_todo_contain}>
       <StatusBar
         animated={true}
         backgroundColor="#7cc3bc"
@@ -311,10 +311,10 @@ const Grantstarting = ({navigation}) => {
         hidden={false}
       />
       <LinearGradient
-        start={{x: 0.30, y: 0.5}}
-        end={{x: 0.65, y: 1.0}}
-        locations={[0.2, 4.6]}
-        colors={['white', '#4cafa6eb']}
+        start={{x: 0.3, y: 0.5}}
+        end={{x: 3.65, y: 1.0}}
+        locations={[1.2, 0.6]}
+        colors={['#ff5722', 'white']}
         style={styles.ui_splash_todo_contain}>
         <View style={styles.ui_splash_contain_form_control}>
           <View style={styles.ui_splash_below_title_message}>
@@ -334,7 +334,7 @@ const Grantstarting = ({navigation}) => {
               onFocus={() => {
                 handleErrorOnBlur('eNomagence', null);
               }}
-              Icon='tags'
+              Icon="tags"
             />
             <InputGs
               title="Nom de l'organisation"
@@ -416,31 +416,39 @@ const Grantstarting = ({navigation}) => {
           {/*<Text style={styles.ui_splash_contain_grant_error_text}>{yup}</Text> */}
         </View>
 
-        <View style={styles.ui_splash_contain_grant_button_create_cancel_option}>
+        <View
+          style={styles.ui_splash_contain_grant_button_create_cancel_option}>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_sucess_button}
             activeOpacity={0.6}
             onPress={handleSubmit}>
-            <Text style={styles.ui_splash_contain_go_sucess_text}>Je crée mon agence !</Text>
-            <FontAwesome5 name='paper-plane' size={16} color='white' />
+            <Text style={styles.ui_splash_contain_go_sucess_text}>
+              Je crée mon agence !
+            </Text>
+            <FontAwesome5 name="paper-plane" size={16} color="white" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
             <Text style={styles.ui_splash_contain_go_back_text}>ou non</Text>
-            <FontAwesome5 name='angle-left' size={18} color='white' />
+            <FontAwesome5 name="angle-left" size={18} color="white" />
           </TouchableOpacity>
         </View>
-        
-        <Space Hwidth={50} />
+
+        <Space Hwidth={5} />
       </LinearGradient>
       {validate == true ? <LoaderAllScreen /> : null}
     </ScrollView>
   );
 };
+{/*#83d1f5 */}
 
 const styles = StyleSheet.create({
+  ui_splash_global_todo_contain: {
+    width: '100%',
+    backgroundColor: '#ff5722',
+  },
   ui_splash_todo_contain: {
     width: '100%',
   },
@@ -449,7 +457,7 @@ const styles = StyleSheet.create({
     height: 54,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4cafa6a3',
+    backgroundColor: '#00bcd4',
     flexDirection: 'row',
     alignSelf: 'center',
     borderBottomStartRadius: 5,
@@ -468,7 +476,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderBottomLeftRadius: 3,
     borderBottomRightRadius: 5,
-    backgroundColor: 'white',
+    backgroundColor: '#ff572226',
   },
   ui_splash_title_form_error_control: {
     left: 26,
@@ -492,7 +500,7 @@ const styles = StyleSheet.create({
     width: 190,
     height: 38,
     position: 'relative',
-    left: 2,
+    left: 10,
     textDecorationLine: 'underline',
     flexDirection: 'row',
     backgroundColor: '#00bcd4',
@@ -528,6 +536,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
+    backgroundColor: '#ff5722',
+    borderRadius: 100,
   },
 });
 
