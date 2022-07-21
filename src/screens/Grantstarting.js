@@ -428,7 +428,8 @@ const Grantstarting = ({navigation}) => {
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
-            <FontAwesome5 name='angle-left' size={31} color='white' />
+            <Text style={styles.ui_splash_contain_go_back_text}>ou non</Text>
+            <FontAwesome5 name='angle-left' size={18} color='white' />
           </TouchableOpacity>
         </View>
         
@@ -475,7 +476,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   ui_splash_contain_go_back_button: {
-    width: 45,
+    width: 65,
     height: 35,
     position: 'relative',
     left: -5,
@@ -501,9 +502,9 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
-    left: 5,
-    fontSize: 15,
-    top: -3,
+    left: -2,
+    fontSize: 13,
+    top: -1,
     color: 'white',
   },
   ui_splash_contain_go_sucess_text: {
