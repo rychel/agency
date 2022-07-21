@@ -73,6 +73,7 @@ const CadreTravelDay = props => {
       </TouchableOpacity>
     </View>
   );
+  {/*#ffeb3b61 */}
 };
 
 const styles = StyleSheet.create({
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0.2,
+    backgroundColor: '#0061aba6',
   },
   ui_splash_global_contain_first_info_travel: {
     width: 200,
@@ -108,13 +110,13 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 3,
     borderRadius: 100,
-    backgroundColor: '#0061aba6',
+    backgroundColor: '#ffeb3b61',
     height: 23,
     textAlignVertical: 'center',
     fontSize: 13,
   },
   ui_splash_global_contain_config_fonts3: {
-    color: '#000000a3',
+    color: 'white',
     padding: 3,
     borderRadius: 5,
     height: 23,
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ffeb3b61',
+    backgroundColor: 'white',
   },
   ui_splash_global_contain_second_info_cadre_logo: {
     margin: 3,
