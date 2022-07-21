@@ -13,14 +13,12 @@ import {View, Text, Dimensions} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-/* import component */
 import Launchnoaccount from './src/screens/Launchnoaccount'; // First screen for no account
 import Licensecontract from './src/screens/Licensecontract'; // License component
 import Getstarting from './src/screens/Getstarting'; // Second screen for no account
 import Grantstarting from './src/screens/Grantstarting'; // Third screen for no account
-import RDirection from './src/routes/RDirection'; // Direction route's screen for agence's thief
+import RDirection from './src/routes/RootDirection'; // Direction route's screen for agence's thief
 
 import Direction from './src/screens/Direction/Direction';
 import Bus from './src/screens/Direction/Bus';
@@ -37,12 +35,12 @@ import Transport from './src/screens/Direction/Transport';
 import Trajet from './src/screens/Direction/Trajet';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import RootStarting from './src/routes/RootStarting';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
-  //We hide starting app
   useEffect(() => {
     setTimeout(() => {
       RNBootSplash.hide();
@@ -51,30 +49,11 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Launch Home">
+      <RootStarting />
+      {/*<Stack.Navigator>
         <Stack.Screen
           name="RDirection"
           component={RDirection}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="Launch Home"
-          component={Launchnoaccount}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="License Contracts"
-          component={Licensecontract}
-          options={{headerStyle: {backgroundColor: '#7cc3bc'}}}
-        />
-        <Stack.Screen
-          name="Get starting"
-          component={Getstarting}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="admin"
-          component={Grantstarting}
           options={{header: () => null}}
         />
         <Stack.Screen
@@ -208,7 +187,7 @@ const App = () => {
             ),
           }}
         /> 
-      </Stack.Navigator>
+      </Stack.Navigator>*/}
     </NavigationContainer>
   );
 };
