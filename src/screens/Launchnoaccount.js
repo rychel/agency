@@ -25,7 +25,7 @@ const Launchnoaccount = ({navigation}) => {
       }),
       Animated.timing(FlickedLogo, {
         toValue: 50,
-        duration: 500,
+        duration: 400,
         useNativeDriver: true,
       }),
       Animated.timing(EndWelcomeBrave, {
@@ -34,26 +34,11 @@ const Launchnoaccount = ({navigation}) => {
         useNativeDriver: true,
       }),
     ]).start();
-
-    //getIdconnexion();
   }, [EndWelcomeBrave, FlickedLogo, StartWelcomeBrave]);
 
   const goWelcomeBrave = () => {
     navigation.navigate('Get starting');
   };
-
-  /*
-  const getIdconnexion = () => {
-    try {
-      AsyncStorage.getItem('Idconnexion').then((value) => {
-        if(value != null) {
-          navigation.navigate('Direction');
-        }
-      });
-    } catch(e) {
-      console.log(e);
-    }
-  }*/
 
   return (
     <View>
@@ -152,7 +137,7 @@ const styles = StyleSheet.create({
     width: '85%',
     alignSelf: 'center',
     height: 50,
-    backgroundColor: 'transparent',
+    backgroundColor: '#7addd3c9',
     marginTop: 10,
     marginBottom: 10,
     position: 'relative',
@@ -160,8 +145,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderRadius: 100,
     top: 100,
-    borderWidth: 0.3,
-    borderColor: 'white',
     padding: 5,
   },
   ui_splash_started_font_config1: {
@@ -173,12 +156,12 @@ const styles = StyleSheet.create({
     height: 153,
     marginTop: -58,
     position: 'relative',
-    backgroundColor: '#ffc107',
+    backgroundColor: 'white',
     borderTopStartRadius: 40,
     borderTopEndRadius: 40,
   },
   ui_splash_started_text_contracts1: {
-    color: '#edecec',
+    color: '#000000c4',
     fontSize: 16,
     fontFamily: 'Foundation',
     textAlign: 'left',
@@ -189,9 +172,8 @@ const styles = StyleSheet.create({
     height: 20,
   },
   ui_splash_started_contain_text_contracts2: {
-    left: 12,
+    left: 10,
     fontSize: 13,
-    backgroundColor: 'white',
     width: 160,
     padding: 3,
     borderRadius: 100,
