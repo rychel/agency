@@ -197,6 +197,8 @@ const Direction = ({navigation}) => {
                 Titleheure="08h.."
                 Titleidbus="676"
                 Titlebus="Porteur"
+                Titlereste='12'
+                Titleplace='72'
               />
               <CadreTravelDay
                 Titledepart="Douala"
