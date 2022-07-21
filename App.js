@@ -8,12 +8,11 @@
 
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
-import {View, Text, Dimensions} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import RootDirection from './src/routes/RootDirection'; // Direction route's screen for agence's thief
+import RootDirection from './src/routes/RootDirection';
 
 import Direction from './src/screens/Direction/Direction';
 import Bus from './src/screens/Direction/Bus';
@@ -29,10 +28,8 @@ import Caisse from './src/screens/Direction/Caisse';
 import Transport from './src/screens/Direction/Transport';
 import Trajet from './src/screens/Direction/Trajet';
 
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import RootStarting from './src/routes/RootStarting';
 
-const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -44,7 +41,8 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <RootStarting />
+      {/*<RootStarting />*/}
+      <RootDirection />
       {/*<Stack.Navigator>
         <Stack.Screen
           name="RDirection"
