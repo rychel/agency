@@ -18,9 +18,8 @@ const HeaderUser = props => {
           </View>
         </View>
       </TouchableOpacity>
-
-      <View>
-        <Text>{Title}</Text>
+      <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>
+        <Text style={styles.ui_splash_contain_header_globe_zone_title_text2}>{Title}</Text>
       </View>
     </View>
   );
@@ -57,6 +56,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'BonheurRoyale-Regular',
     color: '#00968869',
+  },
+  ui_splash_contain_header_globe_contain_title_text2: {
+    left: -10,
+  },
+  ui_splash_contain_header_globe_zone_title_text2: {
+    fontSize: 17,
+    fontFamily: 'BonheurRoyale-Regular',
+    color: 'white',
   },
 });
 
