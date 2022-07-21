@@ -45,7 +45,8 @@ const CadreTravelDay = props => {
   return (
     <TouchableOpacity
       style={styles.ui_splash_global_contain_global}
-      onPressIn={ShowTitleidbus}>
+      onPressIn={ShowTitleidbus}
+      onPressOut={ShowTitleidbus}>
       <View style={styles.ui_splash_global_contain_second_info_cadre_logo}>
         <View style={styles.ui_splash_global_contain_first_info_ticket}>
           <Animated.View
@@ -210,12 +211,15 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_config_fonts9: {
     color: '#000000d1',
-    padding: 3,
-    borderRadius: 100,
+    padding: 5,
+    borderRadius: 2,
     backgroundColor: 'white',
     height: 23,
     textAlignVertical: 'center',
     fontSize: 13,
+    width: 80,
+    textAlign: 'center',
+    borderRadius: 5,
   },
   ui_splash_global_contain_first_info_ticket: {
     margin: 3,
