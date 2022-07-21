@@ -13,11 +13,7 @@ import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Launchnoaccount from './src/screens/Launchnoaccount'; // First screen for no account
-import Licensecontract from './src/screens/Licensecontract'; // License component
-import Getstarting from './src/screens/Getstarting'; // Second screen for no account
-import Grantstarting from './src/screens/Grantstarting'; // Third screen for no account
-import RDirection from './src/routes/RootDirection'; // Direction route's screen for agence's thief
+import RootDirection from './src/routes/RootDirection'; // Direction route's screen for agence's thief
 
 import Direction from './src/screens/Direction/Direction';
 import Bus from './src/screens/Direction/Bus';
