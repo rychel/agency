@@ -314,8 +314,8 @@ const Grantstarting = ({navigation}) => {
         <Animated.View style={styles.ui_splash_contain_form_control}>
           <View style={styles.ui_splash_below_title_message}>
             <Text style={styles.ui_splash_below_text_message}>
-              utiliser les informations d'une piece officielle pour creer votre
-              agence, pour que celle-ci soit légale
+              Utiliser les informations d'une piece officielle pour creer votre
+              agence, nous aurons besoin de ces informations
             </Text>
           </View>
           <View style={styles.ui_splash_contain_second_form_control}>
@@ -436,23 +436,26 @@ const Grantstarting = ({navigation}) => {
 
 const styles = StyleSheet.create({
   ui_splash_todo_contain: {
-    
+    width: '100%',
   },
   ui_splash_below_title_message: {
     width: '90%',
-    height: 65,
+    height: 54,
     marginTop: 10,
-    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ffc107',
+    backgroundColor: '#e91e63c4',
     borderRadius: 5,
+    flexDirection: 'row',
+    alignSelf: 'center',
   },
   ui_splash_below_text_message: {
-    fontSize: 17,
-    fontWeight: '300',
-    fontFamily: 'PatrickHandSC-Regular',
+    marginTop: 8,
+    fontSize: 14,
+    fontWeight: '100',
+    fontFamily: 'Fontisto',
     color: 'white',
+    height: 54,
   },
   ui_splash_contain_form_control: {
     width: '100%',
