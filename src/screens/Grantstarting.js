@@ -12,12 +12,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import CheckBox from '@react-native-community/checkbox';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTimes, faTimesCircle, faPlus} from '@fortawesome/free-solid-svg-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import InputGs from '../components/InputGs';
 import Space from '../components/Space';
 import LoaderAllScreen from '../components/LoaderAllScreen';
@@ -334,6 +329,7 @@ const Grantstarting = ({navigation}) => {
               onFocus={() => {
                 handleErrorOnBlur('eNomagence', null);
               }}
+              Icon='tags'
             />
             <InputGs
               title="Nom de l'organisation"
@@ -421,13 +417,13 @@ const Grantstarting = ({navigation}) => {
             activeOpacity={0.6}
             onPress={handleSubmit}>
             <Text style={styles.ui_splash_contain_go_sucess_text}>Créer</Text>
-            <FontAwesomeIcon icon={faPlus} size={16} color="white" />
+            <FontAwesome5 name='plus' size={16} color='white' />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
-            <FontAwesomeIcon icon={faTimesCircle} size={25} color="white" />
+            <FontAwesome5 name='times-circle' size={25} color='white' />
           </TouchableOpacity>
         </View>
         
