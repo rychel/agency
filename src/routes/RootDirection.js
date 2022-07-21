@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import React from 'react';
+import {Dimensions} from 'react-native';
 
 import Direction from '../screens/Direction/Direction';
-import Bus from '../screens/Direction/Bus';
 import Setting from '../screens/Direction/Setting';
 import Chauffeur from '../screens/Direction/Chauffeur';
 import Busconfiguration from '../screens/Direction/Busconfiguration';
@@ -29,7 +28,7 @@ const RDirection = () => {
       }}
       drawerType="permanent"
       drawerContent={props => <DrawerDirection {...props} />}
-      backBehavior='history'
+      backBehavior="history"
       >
       <Drawer.Screen
         name="Direction"
@@ -48,20 +47,6 @@ const RDirection = () => {
           headerStyle: {
             height: 70,
           },
-        })}
-      />
-      <Drawer.Screen
-        name="Bus"
-        component={Bus}
-        options={({navigation}) => ({
-          header: () => (
-            <TitleHeaderBar
-              Title="Bus de Noblesse voyage"
-              onPress={() => {
-                navigation.goBack();
-              }}
-            />
-          ),
         })}
       />
       <Drawer.Screen
@@ -179,7 +164,5 @@ const RDirection = () => {
     </Drawer.Navigator>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default RDirection;
