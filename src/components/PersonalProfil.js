@@ -1,15 +1,13 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {faTruckMedical} from '@fortawesome/free-solid-svg-icons';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const PersonalProfil = (props) => {
-  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber} = props;
+const PersonalProfil = props => {
+  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber, onOpen} =
+    props;
+
+  const [replaceicon, setReplaceicon] = useState(false);
 
   return (
     <View style={styles.ui_splash_contain_header_cadre_logo_profil}>
@@ -38,7 +36,30 @@ const PersonalProfil = (props) => {
             {Titlepost}
           </Text>
         </View>
-        <Text style={styles.ui_splash_contain_header_params_fonts4}>{Titlenumber}</Text>
+        <View style={styles.ui_splash_contain_header_button_show_option}>
+          <Text style={styles.ui_splash_contain_header_params_fonts4}>
+            {Titlenumber}
+          </Text>
+          {replaceicon ? (
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => {
+                setReplaceicon(false);
+              }}
+              onPressIn={onOpen}>
+              <FontAwesome5 name="angle-up" size={20} color="white" />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => {
+                setReplaceicon(true);
+              }}
+              onPressIn={onOpen}>
+              <FontAwesome5 name="angle-down" size={20} color="white" />
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -118,10 +139,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
     width: 120,
   },
+  ui_splash_contain_header_button_show_option: {
+    width: 230,
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   ui_splash_contain_header_params_fonts4: {
     fontSize: 15,
     left: 2,
-    top: 10,
     color: '#0000007a',
   },
 });
