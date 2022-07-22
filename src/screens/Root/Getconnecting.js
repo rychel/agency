@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import InputGc from '../../components/InputGc';
 import Space from '../../components/Space';
+
 const Getconnecting = ({navigation}) => {
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
 
@@ -20,7 +21,7 @@ const Getconnecting = ({navigation}) => {
     Animated.sequence([
       Animated.timing(EndWelcomeBrave, {
         toValue: 0,
-        duration: 50,
+        duration: 300,
         useNativeDriver: true,
       }),
     ]).start();
@@ -41,16 +42,14 @@ const Getconnecting = ({navigation}) => {
       />
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
-          <Animated.Text style={[styles.ui_splash_logo_started]}>
-            Bienvenue
-          </Animated.Text>
-          <Animated.Text
+          <Text style={styles.ui_splash_logo_started}>Bienvenue</Text>
+          <Text
             style={[
               styles.ui_splash_logo_started,
               {transform: [{rotateZ: '150deg'}]},
             ]}>
             :)
-          </Animated.Text>
+          </Text>
         </View>
         <Animated.View style={styles.ui_splash_started_title_welcome}>
           <Text style={styles.ui_splash_started_font_config1}>
@@ -65,7 +64,7 @@ const Getconnecting = ({navigation}) => {
         ]}>
         <Space Hwidth={20} />
         <InputGc
-          title="Votre identifiant"
+          title="Utilisateur"
           keyboard="alphabetic"
           Placeholder="user"
           Icon="user"
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     fontFamily: 'cursive',
     fontSize: 20,
     borderRadius: 100,
-    top: 100,
+    top: 22,
     padding: 5,
   },
   ui_splash_started_font_config1: {
