@@ -76,15 +76,13 @@ const Getconnecting = ({navigation}) => {
           Icon="lock"
           secureTextEntry
         />
-        <TouchableOpacity activeOpacity={0.7} onPress={goWelcomeBrave}>
-          <View style={styles.ui_splash_started_container_button_welcome}>
-            <View style={styles.ui_splash_started_button_welcome}>
-              <Text style={styles.ui_splash_started_button_text}>
-                Commencer
-              </Text>
-              <FontAwesome5 name="arrow-right" size={19} color="white" />
-            </View>
-          </View>
+        <TouchableOpacity
+          style={styles.ui_splash_contain_go_sucess_button}
+          activeOpacity={0.6}>
+          <Text style={styles.ui_splash_contain_go_sucess_text}>
+            Se connecter !
+          </Text>
+          <FontAwesome5 name="paper-plane" size={16} color="white" />
         </TouchableOpacity>
       </Animated.View>
     </View>
@@ -174,38 +172,33 @@ const styles = StyleSheet.create({
     fontFamily: 'Foundation',
     marginTop: 5,
   },
-  ui_splash_started_container_button_welcome: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 100,
+  ui_splash_contain_go_sucess_button: {
+    width: 140,
+    height: 38,
     position: 'relative',
-    left: 10,
-    fontFamily: 'cursive',
-    fontSize: 20,
-    borderRadius: 5,
-    top: -5,
-  },
-  ui_splash_started_button_welcome: {
-    width: 120,
-    height: 30,
-    alignItems: 'center',
+    left: -10,
+    textDecorationLine: 'underline',
     flexDirection: 'row',
+    backgroundColor: '#00bcd4',
     justifyContent: 'center',
-    backgroundColor: '#009688d1',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    left: 80,
-    top: 10,
+    alignItems: 'center',
+    borderRadius: 100,
+    marginTop: 20,
+    alignSelf: 'flex-end',
   },
-  ui_splash_started_button_text: {
-    fontSize: 15,
-    marginRight: 5,
-    fontFamily: 'Feather',
+  ui_splash_contain_go_back_text: {
     position: 'relative',
+    left: -2,
+    fontSize: 13,
     top: -1,
     color: 'white',
+  },
+  ui_splash_contain_go_sucess_text: {
+    position: 'relative',
+    fontSize: 15,
+    color: 'white',
+    fontFamily: 'PatrickHandSC-Regular',
+    left: -7,
   },
 });
 
