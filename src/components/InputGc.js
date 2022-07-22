@@ -3,9 +3,10 @@ import {View, Text, StyleSheet, TextInput, Animated} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const InputGc = props => {
-  const {title, keyboard, onChange, onChangeText, Icon, Placeholder} = props;
 
+  const {title, keyboard, onChange, onChangeText, Icon, Placeholder} = props;
   const opaque = useRef(new Animated.Value(1)).current;
+  const [iconcolor, setIconcolor] = useState(false);
 
   const overflow = () => {
     Animated.sequence([
@@ -32,8 +33,6 @@ const InputGc = props => {
       setIconcolor(false);
     }, 200);
   };
-
-  const [iconcolor, setIconcolor] = useState(false);
 
   return (
     <View>
@@ -67,9 +66,8 @@ const InputGc = props => {
           keyboardType={keyboard}
           onChange={onChange}
           onBlur={() => {
-            overshow();
+            overshow()
           }}
-          onChangeText={onChangeText}
           onFocus={() => {
             overflow();
           }}
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
     top: 5,
     color: '#000000a6',
     fontFamily: 'Feather',
-    height: 15,
+    height: 18,
   },
   ui_splash_title_logo_control: {
     left: 10,
