@@ -67,7 +67,7 @@ const Getconnecting = ({navigation}) => {
           title="Utilisateur"
           keyboard="alphabetic"
           Placeholder="user"
-          Icon="user"
+          Icon="user-clock"
         />
         <InputGc
           title="Mot de passe"
