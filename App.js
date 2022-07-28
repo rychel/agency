@@ -12,22 +12,7 @@ import RNBootSplash from 'react-native-bootsplash';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import RootDirection from './src/routes/RootDirection';
-
-import Direction from './src/screens/Direction/Direction';
-import Bus from './src/screens/Direction/Bus';
-import Setting from './src/screens/Direction/Setting';
-import HeaderUser from './src/components/HeaderUser';
-import DrawerDirection from './src/components/DrawerDirection';
-import TitleHeaderBar from './src/components/TitleHeaderBar';
-import Chauffeur from './src/screens/Direction/Chauffeur';
-import Busconfiguration from './src/screens/Direction/Busconfiguration';
-import Ticketconfiguration from './src/screens/Direction/Ticketconfiguration';
-import Courrier from './src/screens/Direction/Courrier';
-import Caisse from './src/screens/Direction/Caisse';
-import Transport from './src/screens/Direction/Transport';
-import Trajet from './src/screens/Direction/Trajet';
-
+//import RootDirection from './src/routes/RootDirection';
 import RootStarting from './src/routes/RootStarting';
 
 const Stack = createStackNavigator();
@@ -36,13 +21,14 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       RNBootSplash.hide();
-    }, 1000);
+    }, 800);
   }, []);
+  
 
   return (
     <NavigationContainer>
-      {/*<RootStarting />*/}
-      <RootDirection />
+      <RootStarting />
+      {/*<RootDirection />*/}
       {/*<Stack.Navigator>
         <Stack.Screen
           name="RDirection"
