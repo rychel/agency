@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faAngleLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import InputGs from '../../components/InputGs';
 import Space from '../../components/Space';
 import LoaderAllScreen from '../../components/LoaderAllScreen';
@@ -424,14 +425,14 @@ const Grantstarting = ({navigation}) => {
             <Text style={styles.ui_splash_contain_go_sucess_text}>
               Je crée mon agence !
             </Text>
-            <FontAwesome5 name="paper-plane" size={16} color="white" />
+            <FontAwesomeIcon icon={faPaperPlane} size={16} color="white" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
             <Text style={styles.ui_splash_contain_go_back_text}>ou non</Text>
-            <FontAwesome5 name="angle-left" size={18} color="white" />
+            <FontAwesomeIcon icon={faAngleLeft} size={18} color="white" />
           </TouchableOpacity>
         </View>
 

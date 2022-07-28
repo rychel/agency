@@ -8,8 +8,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import InputGc from '../../components/InputGc';
 import Space from '../../components/Space';
@@ -67,13 +67,13 @@ const Getconnecting = ({navigation}) => {
           title="Utilisateur"
           keyboard="alphabetic"
           Placeholder="user"
-          Icon="user-clock"
+          Icon="faUserClock"
         />
         <InputGc
           title="Mot de passe"
           keyboard="alphabetic"
           Placeholder="secure"
-          Icon="lock"
+          Icon="faLock"
           secureTextEntry
         />
         <TouchableOpacity
@@ -82,7 +82,7 @@ const Getconnecting = ({navigation}) => {
           <Text style={styles.ui_splash_contain_go_sucess_text}>
             Se connecter !
           </Text>
-          <FontAwesome5 name="paper-plane" size={16} color="white" />
+          <FontAwesomeIcon icon={faPaperPlane} size={16} color="white" />
         </TouchableOpacity>
       </Animated.View>
     </View>

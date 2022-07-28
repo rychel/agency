@@ -8,8 +8,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Launchnoaccount = ({navigation}) => {
   const StartWelcomeBrave = useRef(new Animated.Value(0)).current;
@@ -88,7 +88,7 @@ const Launchnoaccount = ({navigation}) => {
               <Text style={styles.ui_splash_started_button_text}>
                 Commencer
               </Text>
-              <FontAwesome5 name="arrow-right" size={19} color="white" />
+              <FontAwesomeIcon icon={faArrowRight} size={19} color="white" />
             </View>
           </View>
         </TouchableOpacity>
