@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Animated} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 const InputGc = props => {
 
@@ -47,15 +48,15 @@ const InputGc = props => {
             : styles.ui_splash_global_control
         }>
         {iconcolor ? (
-          <FontAwesome5
-            name={Icon}
+          <FontAwesomeIcon
+            icon={Icon}
             size={20}
             color="#009688d1"
             style={styles.ui_splash_title_logo_control}
           />
         ) : (
-          <FontAwesome5
-            name={Icon}
+          <FontAwesomeIcon
+            icon={Icon}
             size={20}
             color="#00000073"
             style={styles.ui_splash_title_logo_control}
