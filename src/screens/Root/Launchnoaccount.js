@@ -8,8 +8,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 
 const Launchnoaccount = ({navigation}) => {
   const StartWelcomeBrave = useRef(new Animated.Value(0)).current;
@@ -82,14 +82,13 @@ const Launchnoaccount = ({navigation}) => {
         <Text style={styles.ui_splash_started_contain_text_contracts2}>
           Garder les clés en main.
         </Text>
-        <TouchableOpacity activeOpacity={0.7} onPress={goWelcomeBrave}>
-          <View style={styles.ui_splash_started_container_button_welcome}>
-            <View style={styles.ui_splash_started_button_welcome}>
-              <Text style={styles.ui_splash_started_button_text}>
-                Commencer
-              </Text>
-              <FontAwesomeIcon icon={faArrowRight} size={19} color="white" />
-            </View>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={goWelcomeBrave}
+          style={styles.ui_splash_started_container_button_welcome}>
+          <View style={styles.ui_splash_started_button_welcome}>
+            <Text style={styles.ui_splash_started_button_text}>Commencer</Text>
+            <FontAwesomeIcon icon={faArrowRight} size={17} color="white" />
           </View>
         </TouchableOpacity>
       </Animated.View>
@@ -163,7 +162,7 @@ const styles = StyleSheet.create({
   ui_splash_started_text_contracts1: {
     color: '#000000c4',
     fontSize: 16,
-    fontFamily: 'Foundation',
+    fontFamily: 'FontAwesome',
     textAlign: 'left',
     position: 'relative',
     top: 5,
@@ -177,13 +176,15 @@ const styles = StyleSheet.create({
     width: 160,
     padding: 3,
     borderRadius: 100,
+    fontFamily: 'Nunito-Light'
   },
   ui_splash_started_text_contracts2: {
     color: '#f44336bd',
     textDecorationLine: 'underline',
     fontSize: 15,
     width: '88%',
-    fontFamily: 'Foundation',
+    fontWeight: '300',
+    fontFamily: 'SairaCondensed-Medium',
     marginTop: 5,
   },
   ui_splash_started_container_button_welcome: {
@@ -198,12 +199,12 @@ const styles = StyleSheet.create({
     top: -5,
   },
   ui_splash_started_button_welcome: {
-    width: 120,
+    width: 105,
     height: 30,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#009688d1',
+    backgroundColor: '#9c27b0',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     borderTopRightRadius: 30,
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   ui_splash_started_button_text: {
     fontSize: 15,
     marginRight: 5,
-    fontFamily: 'Feather',
+    fontFamily: 'Dosis-VariableFont_wght',
     position: 'relative',
     top: -1,
     color: 'white',

@@ -69,43 +69,47 @@ const Getstarting = ({navigation}) => {
           style={{
             transform: [{translateY: StartSpinSticker}],
           }}>
-          <Text style={styles.ui_splash_contain_widget_acxios}>WELCOME !</Text>
+          <Text style={styles.ui_splash_contain_widget_acxios}>Oulala !</Text>
         </Animated.View>
         <View style={styles.ui_splash_below_title_message}>
           <Text style={styles.ui_splash_below_text_message}>
             Maintenant gérer tout à partir de votre téléphone mobile
           </Text>
         </View>
+        <View style={styles.ui_splash_below_title_message2}>
+          <TouchableOpacity
+            style={styles.ui_splash_contain_go_back_button}
+            activeOpacity={0.6}
+            onPress={gotoBackHome}>
+            <FontAwesomeIcon icon={faLeftLong} size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ui_splash_button_goto_starting}
+            activeOpacity={0.8}
+            onPress={gotoGrantstarting}>
+            <Text style={styles.ui_splash_button_goto_text_starting}>
+              creer une agence
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.ui_splash_below_title_message3}>
         <TouchableOpacity
-          style={styles.ui_splash_button_goto_starting}
-          activeOpacity={0.8}
-          onPress={gotoGrantstarting}>
-          <Text style={styles.ui_splash_button_goto_text_starting}>
-            creer une agence
+          activeOpacity={0.6}
+          style={styles.ui_splash_box_create_title_message}>
+          <Text style={styles.ui_splash_contain_other_button_goto}>
+            creer un autre compte
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.ui_splash_contain_header_connect_button}
+          activeOpacity={0.6}
+          onPress={gotoGConnecting}>
+          <Text style={styles.ui_splash_contain_connect_button}>
+            Je me connecte !
           </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        activeOpacity={0.6}
-        style={styles.ui_splash_box_create_title_message}>
-        <Text style={styles.ui_splash_contain_other_button_goto}>
-          creer un compte associé à une agence
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.ui_splash_contain_go_back_button}
-        activeOpacity={0.6}
-        onPress={gotoBackHome}>
-        <FontAwesomeIcon icon={faLeftLong} size={24} color="white" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.ui_splash_contain_header_connect_button}
-        activeOpacity={0.6}
-        onPress={gotoGConnecting}>
-        <Text style={styles.ui_splash_contain_connect_button}>
-          Je me connecte !
-        </Text>
-      </TouchableOpacity>
     </LinearGradient>
   );
 };
@@ -118,7 +122,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 360,
     marginBottom: 10,
-    backgroundColor: '#7cc3bc',
     borderRadius: 30,
   },
   ui_splash_contain_widget_acxios: {
@@ -143,33 +146,52 @@ const styles = StyleSheet.create({
   },
   ui_splash_below_title_message: {
     width: '90%',
-    height: 50,
+    height: 60,
     marginTop: 40,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
   },
+  ui_splash_below_title_message2: {
+    width: '90%',
+    height: 60,
+    marginTop: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+  },
+  ui_splash_below_title_message3: {
+    width: '100%',
+    height: 50,
+    marginTop: 124,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
   ui_splash_below_text_message: {
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: '300',
-    fontFamily: 'PatrickHandSC-Regular',
+    fontFamily: 'Nunito-Light',
     color: 'white',
   },
   ui_splash_box_create_title_message: {
-    width: '90%',
+    width: 150,
     height: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00bcd496',
     borderRadius: 100,
+    left: 13,
   },
   ui_splash_button_goto_starting: {
-    width: '48%',
-    height: 35,
+    width: 130,
+    height: 33,
     textAlignVertical: 'center',
-    marginTop: 100,
     alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -179,26 +201,27 @@ const styles = StyleSheet.create({
   },
   ui_splash_button_goto_text_starting: {
     fontSize: 15,
-    fontFamily: 'Snippet-Regular',
+    fontFamily: 'PingFang SC Regular',
     marginRight: 5,
     top: -1,
     color: '#000000a1',
   },
   ui_splash_contain_other_button_goto: {
     color: 'white',
+    fontFamily: 'opensanscondensedbold'
   },
   ui_splash_contain_go_back_button: {
-    width: 60,
+    width: 50,
     height: 40,
     position: 'relative',
     left: 15,
     textDecorationLine: 'underline',
-    marginTop: 10,
     flexDirection: 'row',
     backgroundColor: '#ffc107',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'SairaCondensed-Light',
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
@@ -208,26 +231,24 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   ui_splash_contain_header_connect_button: {
-    width: 150,
-    height: 40,
+    width: 130,
+    height: 35,
     position: 'relative',
-    left: -25,
-    textDecorationLine: 'underline',
-    marginTop: 40,
     flexDirection: 'row',
-    backgroundColor: 'transparent',
+    backgroundColor: '#f44336',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'flex-end',
+    borderWidth: 1,
+    borderColor: '#f44336',
   },
   ui_splash_contain_connect_button: {
     position: 'relative',
-    textDecorationLine: 'underline',
-    borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'materialcommunityIcons',
+    fontFamily: 'PontanoSans-Regular',
+    color: 'white',
+    fontSize: 15,
   },
 });
 
