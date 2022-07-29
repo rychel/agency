@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-
+import {faUsers, faBusAlt, faReceipt, faRoad } from '@fortawesome/free-solid-svg-icons';
 
 import ItemMenu from '../../components/ItemMenu';
 
@@ -24,28 +24,28 @@ const Transport = (props) => {
           props.navigation.navigate('Chauffeur');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="users" Titlename="Gérer les chauffeurs" />
+        <ItemMenu Titleico={faUsers} Titlename="Gérer les chauffeurs" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Busconfiguration');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="bus-alt" Titlename="Gérer les Bus" />
+        <ItemMenu Titleico={faBusAlt} Titlename="Gérer les Bus" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Ticketconfiguration');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="receipt" Titlename="Choisir le type de ticket" />
+        <ItemMenu Titleico={faReceipt} Titlename="Choisir le type de ticket" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Trajet');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="road" Titlename="Gérer vos trajets" />
+        <ItemMenu Titleico={faRoad} Titlename="Gérer vos trajets" />
       </TouchableOpacity>
     </View>
   );
