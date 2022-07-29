@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     color: '#281f1fb0',
     top: 2,
     fontFamily: 'AmaticSC-Bold',
-    fontWeight: 'light',
+    fontWeight: '100',
     justifyContent: 'center',
     alignItems: 'center',
   },
