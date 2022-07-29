@@ -13,13 +13,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   faSplotch,
-  faUserAstronaut,
   faCarAlt,
   faBus,
   faBusAlt,
   faUserTag,
-  faUserTie,
-  faUserMinus,
   faThumbTack,
   faEyeDropper,
 } from '@fortawesome/free-solid-svg-icons';
@@ -84,7 +81,7 @@ const Direction = ({navigation}) => {
         <View style={styles.ui_splash_global_contain_registered_space}>
           <View
             style={styles.ui_splash_global_contain_registered_global_showUser}>
-            <TitleItemStat Titlesub="Personnels agrégés" />
+            <TitleItemStat Titlesub="Personnels de l'agence" />
             <ScrollView
               style={styles.ui_splash_global_contain_registered_global_contain}
               horizontal={true}>
@@ -112,7 +109,7 @@ const Direction = ({navigation}) => {
             style={
               styles.ui_splash_global_contain_registered_global_showInformation
             }>
-            <TitleItemStat Titlesub="Forfaits préférés (Services souscris)" />
+            <TitleItemStat Titlesub="Forfaits favoris (Services souscris)" />
             <View
               style={
                 styles.ui_splash_global_contain_registered_global_contain_information
@@ -145,53 +142,54 @@ const Direction = ({navigation}) => {
               style={styles.ui_splash_contain_header_tab_stats_contain}
               horizontal={true}>
               <ItemStatDirection
-                Titleico={faUserAstronaut}
                 Titlesub="Chauffeur"
                 Titlestat="33"
-                Titlebg="#03a9f46b"
-                Titlecl="orange"
+                Titlebg="#03a9f424"
+                Titlecl="#03a9f4cf"
               />
               <ItemStatDirection
-                Titleico={faCarAlt}
                 Titlesub="Coaster"
                 Titlestat="30"
-                Titlebg="#f44336d1"
-                Titlecl="orange"
-              />
-              <ItemStatDirection
-                Titleico={faBus}
-                Titlesub="Vip"
-                Titlestat="6"
-                Titlebg="#ffeb3b"
-                Titlecl="orange"
+                Titlebg="#f4433624"
+                Titlecl="#f44336d1"
+                Titleicl="white"
               />
               <ItemStatDirection
                 Titleico={faBusAlt}
+                Titlesub="Vip"
+                Titlestat="6"
+                Titlebg="#ffeb3b33"
+                Titlecl="#ffeb3b"
+                Titleicl="#726f4dd1"
+              />
+              <ItemStatDirection
+                Titleico={faBus}
                 Titlesub="Porteur"
                 Titlestat="10"
-                Titlebg="#9c27b0e3"
-                Titlecl="orange"
+                Titlebg="#9c27b03b"
+                Titlecl="#9c27b0e3"
+                Titleicl="#5c4560bf"
               />
               <ItemStatDirection
                 Titleico={faUserTag}
                 Titlesub="Caissier"
                 Titlestat="5"
-                Titlebg="#8bc34aeb"
-                Titlecl="orange"
+                Titlebg="#8bc34a30"
+                Titlecl="#8bc34aeb"
+                Titleicl="#5c4560bf"
               />
               <ItemStatDirection
-                Titleico={faUserTie}
                 Titlesub="Sécrétaire"
-                Titlestat="9"
-                Titlebg="#607d8bd6"
-                Titlecl="orange"
+                Titlestat="3"
+                Titlebg="#607d8b2b"
+                Titlecl="#607d8bd6"
+                Titleicl="#5c4560bf"
               />
               <ItemStatDirection
-                Titleico={faUserMinus}
                 Titlesub="Composteur"
                 Titlestat="3"
-                Titlebg="#009688"
-                Titlecl="orange"
+                Titlebg="#0096882e"
+                Titlecl="#009688"
               />
             </ScrollView>
           </View>
