@@ -51,7 +51,7 @@ const ItemChauffeurTips = props => {
             onPress={() => {
               setDetails(true);
             }}>
-            <FontAwesome5 icon={faAngleUp} size={25} color="#cddc39" />
+            <FontAwesomeIcon icon={faAngleUp} size={25} color="#cddc39" />
           </TouchableOpacity>
         )}
       </View>
