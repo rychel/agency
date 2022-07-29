@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_globe_zone_title_text2: {
     fontSize: 17,
-    fontFamily: 'BonheurRoyale-Regular',
+    fontFamily: 'Nunito-Light',
     color: 'white',
   },
 });
