@@ -6,31 +6,20 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faAngleDown,faAngleUp} from '@fortawesome/free-solid-svg-icons';
 import ItemChauffeurTipsExample from './ItemChauffeurTipsExample';
 
 const ItemChauffeurTips = props => {
   const {Titleico, Titlename, Titlesubname, onDelete, onSleep} = props;
   const [details, setDetails] = useState(true);
 
-  {
-    /*
-    <View
-          style={styles.ui_splash_contain_header_administration_awesome_faps}>
-          <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
-            <FontAwesome5 name="times" size={26} color="#f44336bf" />
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} onPress={onSleep}>
-            <FontAwesome5 name="unlink" size={20} color="#d1d1d1" />
-          </TouchableOpacity>
-        </View> */
-  }
   return (
     <View>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
         <View
           style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesome5 name={Titleico} size={20} color="#d1d1d1" />
+          <FontAwesomeIcon icon={Titleico} size={20} color="#d1d1d1" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
@@ -53,7 +42,7 @@ const ItemChauffeurTips = props => {
             onPress={() => {
               setDetails(false);
             }}>
-            <FontAwesome5 name="angle-down" size={25} color="#f44336b8" />
+            <FontAwesomeIcon icon={faAngleDown} size={25} color="#f44336b8" />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -62,7 +51,7 @@ const ItemChauffeurTips = props => {
             onPress={() => {
               setDetails(true);
             }}>
-            <FontAwesome5 name="angle-up" size={25} color="#cddc39" />
+            <FontAwesome5 icon={faAngleUp} size={25} color="#cddc39" />
           </TouchableOpacity>
         )}
       </View>

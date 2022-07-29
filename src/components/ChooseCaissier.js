@@ -9,7 +9,8 @@ import {
   Image,
   Picker, 
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const ChooseCaissier = props => {
   const {Titleimage, Titlename, Titlesubname} = props;
@@ -18,9 +19,9 @@ const ChooseCaissier = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       <ScrollView style={styles.ui_splash_contain_modals_message_globe}>
         <View style={styles.ui_splash_contain_header_message_title_grants}>
-            <FontAwesome5 name='times' size={20} color='white' />
+            <FontAwesomeIcon icon={faTimes} size={20} color='white' />
             <Text style={styles.ui_config_fonts_blocks1}>Choisir le titulaire du poste</Text>
-            <FontAwesome5 name='check' size={20} color='white' />
+            <FontAwesomeIcon icon={faCheck} size={20} color='white' />
         </View>
         <View style={styles.ui_splash_contain_modals_profil_globe_occupant}>
           <Image

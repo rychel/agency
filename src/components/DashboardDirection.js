@@ -9,7 +9,8 @@ import {
   Image,
   Animated,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faTimes,faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 const MiniMenuDirection = props => {
   const {Titleico, Titleparam, onClose} = props;
@@ -36,14 +37,14 @@ const MiniMenuDirection = props => {
       <TouchableOpacity
         style={styles.ui_splash_contain_item_config_button_back}
         onPress={onClose}>
-        <FontAwesome5 name="times" color="#ffffff9c" size={20} />
+        <FontAwesomeIcon icon={faTimes} color="#ffffff9c" size={20} />
       </TouchableOpacity>
       <View style={styles.ui_splash_contain_table_param}>
         <TouchableOpacity
           style={styles.ui_splash_contain_item_config_param}
           activeOpacity={0.6}>
           <Animated.View style={{transform: [{translateX: FlickedLogo}]}}>
-            <FontAwesome5 name="calendar-alt" color="#ffc107" size={25} />
+            <FontAwesomeIcon icon={faCalendarAlt} color="#ffc107" size={25} />
           </Animated.View>
           <Animated.Text
             style={[

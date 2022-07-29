@@ -6,14 +6,14 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ItemStatDirection = props => {
   const {Titleico, Titlestat, Titlesub, Titlebg, Titlecl} = props;
 
   return (
     <View style={[styles.ui_splash_contain_header_globe, {backgroundColor: Titlebg}]}>
-      <FontAwesome5 name={Titleico} size={20} color="white" />
+      <FontAwesomeIcon icon={Titleico} size={20} color="white" />
       <Text style={[styles.ui_splash_contain_header_params_fonts4, {color: Titlecl}]}>{Titlestat}</Text>
       <Text style={styles.ui_splash_contain_header_params_fonts5}>{Titlesub}</Text>
     </View>

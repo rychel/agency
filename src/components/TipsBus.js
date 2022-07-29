@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const TipsBus = (props) => {
   const {Idbus, Immatbus, Chauffeurbus, Typebus} = props;

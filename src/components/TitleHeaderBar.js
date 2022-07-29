@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
   const {Title, onPress} = props;
@@ -10,7 +10,7 @@ const HeaderUser = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       <TouchableOpacity onPress={onPress} activeOpacity={0.4}>
         <View style={styles.ui_splash_contain_header_globe_zone_back_left}>
-          <FontAwesome5 name="arrow-left" size={22} color="white" />
+          <FontAwesomeIcon icon={faArrowLeft} size={22} color="white" />
         </View>
       </TouchableOpacity>
       <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>

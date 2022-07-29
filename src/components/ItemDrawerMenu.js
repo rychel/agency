@@ -7,7 +7,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 const ItemDrawerMenu = (props) => {
   const {Titleico, Titlename, Titlenotif, onPress} = props;
@@ -16,7 +17,7 @@ const ItemDrawerMenu = (props) => {
     <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
         <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesome5 name={Titleico} size={20} color="#00000059" />
+          <FontAwesomeIcon icon={Titleico} size={20} color="#00000059" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
@@ -25,7 +26,7 @@ const ItemDrawerMenu = (props) => {
         {Titlenotif == 0 ? null : (
           <View
             style={styles.ui_splash_contain_header_administration_awesome_caps}>
-            <FontAwesome5 name="exclamation" size={14} color="white" />
+            <FontAwesomeIcon icon={faExclamation} size={14} color="white" />
           </View>
         )}
       </View>

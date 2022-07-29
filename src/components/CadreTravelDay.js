@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 const CadreTravelDay = props => {
   const {
@@ -59,7 +60,7 @@ const CadreTravelDay = props => {
             </Text>
           </Animated.View>
           <View style={styles.ui_splash_global_contain_first_info_cadre_logo}>
-            <FontAwesome5 name={Titlebusico} size={55} color="#000000b3" />
+            <FontAwesomeIcon icon={Titlebusico} size={55} color="#000000b3" />
             <Text style={styles.ui_splash_global_contain_config_fonts4}>
               {Titlebus}
             </Text>
@@ -123,7 +124,7 @@ const CadreTravelDay = props => {
       <TouchableOpacity
         style={styles.ui_splash_global_contain_third_info_cadre_logo}
         activeOpacity={0.5}>
-        <FontAwesome5 name="ellipsis-h" size={30} color="white" />
+        <FontAwesomeIcon icon={faEllipsisH} size={30} color="white" />
       </TouchableOpacity>
     </TouchableOpacity>
   );

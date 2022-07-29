@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const ItemChauffeurTipsExample = (props) => {
   const {Titlestatus, Titleinfo} = props;

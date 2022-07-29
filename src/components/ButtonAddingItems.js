@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ButtonAddingItems = props => {
   const {titleico, titlebutton, borderrounds, onOpen} = props;
@@ -21,7 +21,7 @@ const ButtonAddingItems = props => {
             {borderRadius: borderrounds},
             styles.ui_splash_contain_poly_button_globe,
           ]}>
-          <FontAwesome5 name={titleico} color="white" size={16} />
+          <FontAwesomeIcon icon={titleico} color="white" size={16} />
           <Text style={styles.ui_splash_contain_text_button_globe}>
             {initTitle}
           </Text>

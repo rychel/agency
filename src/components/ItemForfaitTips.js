@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ItemForfaitTips = props => {
   const {Titleico, Titlesub, Titlecl} = props;
@@ -8,7 +8,7 @@ const ItemForfaitTips = props => {
   return (
     <View
       style={styles.ui_splash_global_contain_registered_global_contain_title}>
-      <FontAwesome5 name={Titleico} size={20} color={Titlecl} />
+      <FontAwesomeIcon icon={Titleico} size={20} color={Titlecl} />
       <Text
         style={styles.ui_splash_global_contain_registered_global_config_font3}>
         {Titlesub}

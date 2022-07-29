@@ -1,7 +1,7 @@
-import {faTruckMedical} from '@fortawesome/free-solid-svg-icons';
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlus, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const PersonalProfil = props => {
   const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber, onOpen, onClose} =
@@ -19,7 +19,7 @@ const PersonalProfil = props => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.ui_splash_contain_header_englobe_modify_profil}>
-          <FontAwesome5 name="plus" size={20} color="white" />
+          <FontAwesomeIcon icon={faPlus} size={20} color="white" />
         </TouchableOpacity>
       </View>
       <View style={styles.ui_splash_contain_header_cadre_ifo_id_profil}>
@@ -47,7 +47,7 @@ const PersonalProfil = props => {
                 setReplaceicon(false);
               }}
               onPressIn={onOpen}>
-              <FontAwesome5 name="angle-up" size={20} color="white" />
+              <FontAwesomeIcon icon={faAngleUp} size={20} color="white" />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -56,7 +56,7 @@ const PersonalProfil = props => {
                 setReplaceicon(true);
               }}
               onPressIn={onClose}>
-              <FontAwesome5 name="angle-down" size={20} color="white" />
+              <FontAwesomeIcon icon={faAngleDown} size={20} color="white" />
             </TouchableOpacity>
           )}
         </View>

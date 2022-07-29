@@ -7,8 +7,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faTimes, faEdit, faUnlink} from '@fortawesome/free-solid-svg-icons';
 const ItemBusTips = (props) => {
   const {Titleico, Titlename, Titlesubname, onDelete, onSleep} = props;
 
@@ -16,7 +16,7 @@ const ItemBusTips = (props) => {
     <View>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
         <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesome5 name={Titleico} size={20} color="#d1d1d1" />
+          <FontAwesomeIcon name={Titleico} size={20} color="#d1d1d1" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
@@ -28,13 +28,13 @@ const ItemBusTips = (props) => {
         </Text>
         <View style={styles.ui_splash_contain_header_administration_awesome_faps}>
             <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
-                <FontAwesome5 name='times' size={26} color="#f44336bf" />
+                <FontAwesomeIcon name={faTimes} size={26} color="#f44336bf" />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={onDelete}>
-                <FontAwesome5 name='edit' size={25} color="#8bc34a" />
+                <FontAwesome5 name={faEdit} size={25} color="#8bc34a" />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={onSleep}>
-                <FontAwesome5 name='unlink' size={20} color="#d1d1d1" />
+                <FontAwesome5 name={faUnlink} size={20} color="#d1d1d1" />
             </TouchableOpacity>
         </View>
       </View>

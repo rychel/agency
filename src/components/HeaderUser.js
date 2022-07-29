@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faBars,faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = (props) => {
   const {Gtitle, Depart, Arrive, onPress} = props;
@@ -10,7 +10,7 @@ const HeaderUser = (props) => {
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
         <TouchableOpacity activeOpacity={0.7} onPress={onPress} style={styles.ui_splash_contain_globe_cadre_tags}>
-          <FontAwesome5 name="bars" size={27} color="white" />
+          <FontAwesomeIcon icon={faBars} size={27} color="white" />
         </TouchableOpacity>
       </View>
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
@@ -21,7 +21,7 @@ const HeaderUser = (props) => {
       </View>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
         <Text style={styles.ui_splash_contain_destination_items_text3}>
-          <FontAwesome5 name="search" size={20} color="white" />
+          <FontAwesomeIcon icon={faSearch} size={20} color="white" />
         </Text>
       </View>
     </View>

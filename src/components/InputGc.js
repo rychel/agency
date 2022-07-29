@@ -1,11 +1,9 @@
 import React, {useRef, useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Animated} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import Space from '../components/Space';
 
 const InputGc = props => {
-
-  const {title, keyboard, onChange, onChangeText, Icon, Placeholder} = props;
+  const {title, keyboard, onChange, onChangeText, Placeholder} = props;
   const opaque = useRef(new Animated.Value(1)).current;
   const [iconcolor, setIconcolor] = useState(false);
 
@@ -37,117 +35,57 @@ const InputGc = props => {
 
   return (
     <View>
-      <Animated.Text
-        style={[styles.ui_splash_title_form_control, {opacity: opaque}]}>
-        {title}
-      </Animated.Text>
-      <View
-        style={
-          iconcolor
-            ? styles.ui_splash_global_control_focus
-            : styles.ui_splash_global_control
-        }>
-        {iconcolor ? (
-          <FontAwesomeIcon
-            icon={Icon}
-            size={20}
-            color="#009688d1"
-            style={styles.ui_splash_title_logo_control}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={Icon}
-            size={20}
-            color="#00000073"
-            style={styles.ui_splash_title_logo_control}
-          />
-        )}
-        <TextInput
-          style={styles.ui_splash_input_form_control}
-          keyboardType={keyboard}
-          onChange={onChange}
-          onBlur={() => {
-            overshow()
-          }}
-          onFocus={() => {
-            overflow();
-          }}
-          placeholder={Placeholder}
-          {...props}
-        />
+      <View style={styles.ui_splash_contain_title_form_control}>
+        <Animated.Text
+          style={[styles.ui_splash_title_form_control, {opacity: opaque}]}>
+          {title}
+        </Animated.Text>
       </View>
+      <TextInput
+        style={styles.ui_splash_input_form_control}
+        keyboardType={keyboard}
+        onChange={onChange}
+        onBlur={() => {
+          overshow();
+        }}
+        onFocus={() => {
+          overflow();
+        }}
+        placeholder={Placeholder}
+        {...props}
+      />
+      <Space Hwidth={10} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  ui_splash_global_control: {
-    width: '90%',
-    alignSelf: 'center',
-    marginBottom: 1,
-    left: -7,
-    flexDirection: 'row',
-    borderWidth: 0.4,
-    top: 4,
-    borderColor: '#0000003b',
-    borderRadius: 3,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-  },
-  ui_splash_global_control_focus: {
-    width: '90%',
-    alignSelf: 'center',
-    marginBottom: 1,
-    left: -7,
-    flexDirection: 'row',
-    borderWidth: 0.7,
-    top: 4,
-    borderColor: '#009688d1',
-    borderRadius: 3,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-  },
   ui_splash_input_form_control: {
     width: '90%',
-    height: 37,
+    height: 38,
     alignSelf: 'center',
-    borderWidth: 0.6,
-    borderColor: '#0000007d',
+    borderWidth: 10,
     fontSize: 15,
     color: '#009688d1',
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-    marginBottom: 1,
-    left: 20,
-    alignItems: 'flex-start',
+    borderWidth: 0.4,
+    left: 4,
+    top: 10,
+    borderRadius: 3,
+    marginBottom: 5,
   },
-  ui_splash_title_form_control: {
-    left: 20,
-    fontSize: 16,
-    top: 5,
-    color: '#000000a6',
-    fontFamily: 'Feather',
-    height: 18,
-  },
-  ui_splash_title_logo_control: {
-    left: 10,
-    fontSize: 15,
+  ui_splash_contain_title_form_control: {
+    flexDirection: 'row',
     top: 10,
   },
-  ui_splash_title_form_error_control: {
-    left: 14,
-    fontSize: 10.45,
-    color: 'red',
-    padding: 3,
-    backgroundColor: '#ffeb3b',
-    borderRadius: 100,
-  },
-  ui_splash_title_form_error_caps_control: {
-    flexDirection: 'row',
+  ui_splash_title_form_control: {
+    left: 22,
+    fontSize: 12,
+    color: '#ff6a5f',
+    fontFamily: 'MaterialIcons',
+    height: 15,
+    backgroundColor: 'white',
+    marginBottom: 4,
+    textTransform: 'uppercase',
   },
 });
 

@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 const NotificationExplain = props => {
   const {Titlemessage} = props;
@@ -16,7 +17,7 @@ const NotificationExplain = props => {
         <Text
           style={styles.ui_splash_contain_header_globe_message_configs_font}>
           {Titlemessage}
-          <FontAwesome5 name="lock" color="white" size={18} />
+          <FontAwesomeIcon name={faLock} color="white" size={18} />
         </Text>
       </View>
     </View>

@@ -7,7 +7,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const NoItemStatus = (props) => {
   const {Titleico, Titlestatus} = props;
@@ -16,7 +16,7 @@ const NoItemStatus = (props) => {
     <View>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
         <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesome5 name={Titleico} size={20} color="#d1d1d1" />
+          <FontAwesomeIcon icon={Titleico} size={20} color="#d1d1d1" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>

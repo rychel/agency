@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faDoorOpen  } from '@fortawesome/free-solid-svg-icons';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 
 import PersonalProfil from './PersonalProfil';
@@ -33,8 +34,8 @@ const DrawerDirection = props => {
             <TouchableOpacity
               style={styles.ui_splash_contain_header_deconnexion_contains_block}
               activeOpacity={0.6}>
-              <FontAwesome5
-                name="door-open"
+              <FontAwesomeIcon
+                icon={faDoorOpen}
                 size={17}
                 color="white"
                 style={styles.ui_splash_contain_log_sign_configs1}
