@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const TitleTravelDay = props => {
   const {Titleico, Titlesub, Titlebg} = props;
@@ -8,7 +8,10 @@ const TitleTravelDay = props => {
   return (
     <View style={styles.ui_splash_global_contain_global}>
       <View
-        style={[styles.ui_splash_global_contain_registered_global_contain_title, {backgroundColor: Titlebg}]}>
+        style={[
+          styles.ui_splash_global_contain_registered_global_contain_title,
+          {backgroundColor: Titlebg},
+        ]}>
         <Text
           style={
             styles.ui_splash_global_contain_registered_global_config_font1
@@ -16,12 +19,14 @@ const TitleTravelDay = props => {
           {Titlesub}
         </Text>
       </View>
-      <FontAwesomeIcon
-        icon={Titleico}
-        size={20}
-        color="#0061ab73"
-        style={styles.ui_splash_global_contain_registered_logo_config}
-      />
+      {Titleico ? (
+        <FontAwesomeIcon
+          icon={Titleico}
+          size={20}
+          color="#0061ab73"
+          style={styles.ui_splash_global_contain_registered_logo_config}
+        />
+      ) : null}
     </View>
   );
 };
