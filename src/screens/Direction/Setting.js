@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
+import { faBusAlt, faChartPie, faUser, faUserCheck, faUserCircle, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
-/* import utils */
 import ItemMenu from '../../components/ItemMenu';
 
 const Setting = props => {
@@ -20,30 +20,30 @@ const Setting = props => {
         showHideTransition="fade"
         hidden={false}
       />
-      <ItemMenu Titleico="chart-pie" Titlename="Soucrire à un forfait" />
+      <ItemMenu Titleico={faChartPie} Titlename="Soucrire à un forfait" />
       
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Transport');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="bus-alt" Titlename="Service Transport" />
+        <ItemMenu Titleico={faBusAlt} Titlename="Service Transport" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Courrier');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="user" Titlename="Service courrier" />
+        <ItemMenu Titleico={faUser} Titlename="Service courrier" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Caisse');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico="user-friends" Titlename="Service caisse" />
+        <ItemMenu Titleico={faUserFriends} Titlename="Service caisse" />
       </TouchableOpacity>
-      <ItemMenu Titleico="user-circle" Titlename="Service coupon" />
+      <ItemMenu Titleico={faUserCircle} Titlename="Service coupon" />
     </View>
   );
 };
