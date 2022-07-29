@@ -19,7 +19,7 @@ const ItemConfigSlug = (props) => {
           {Titlechoice}
         </Text>
         <View>
-          <FontAwesome5 name={faToggleOff} color="#54545480" size={25} />
+          <FontAwesomeIcon icon={faToggleOff} color="#54545480" size={25} />
         </View>
       </View>
       <View style={styles.ui_splash_contain_header_globe_config_zone_message}>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_globe_config_fonts2: {
     fontSize: 14,
-    fontFamily: 'AmaticSC-Regular',
+    fontFamily: 'NotoSans-Regular',
   },
 });
 
