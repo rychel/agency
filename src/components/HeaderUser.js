@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_destination_globe: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   ui_splash_contain_globe_cadre_tags: {
     borderRadius: 100,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_items_text1: {
     color: 'white',
     fontSize: 18,
-    fontFamily: 'Foundation',
+    fontFamily: 'NotoSans-Regular',
     padding: 2,
   },
   ui_splash_contain_destination_items_globe_text2: {
@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 100,
     backgroundColor: '#ffc107',
-    width: '50%',
+    width: 106,
     paddingLeft: 5,
+    fontFamily: 'PontanoSans-Regular',
   },
   ui_splash_contain_destination_items_text3: {
     marginLeft: 1,
