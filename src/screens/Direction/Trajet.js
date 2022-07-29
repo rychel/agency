@@ -11,6 +11,7 @@ import {
 import NotificationExplain from '../../components/NotificationExplain';
 import ItemConfigSlug from '../../components/ItemConfigSlug';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = (props) => {
 
@@ -26,7 +27,7 @@ const Trajet = (props) => {
      
       <ItemConfigSlug Titlechoice='Ticket' Titlemessage='Les clients de votre agence auront un ticket physique et qui sera utilisé par le composteur.
                 Les numéros de ticket seront fournis par le système.' />
-      <ButtonAddingItems titleico='plus' titlebutton='ajouter' borderrounds={50} />
+      <ButtonAddingItems titleico={faPlus} titlebutton='ajouter' borderrounds={50} />
     </View>
   );
 };
