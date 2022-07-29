@@ -6,15 +6,24 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {faDoorOpen  } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faBookmark,
+  faDoorOpen,
+  faSignOutAlt,
+  faSun,
+  faUserFriends,
+} from '@fortawesome/free-solid-svg-icons';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
+import { AuthContext } from '../utils/AuthContext';
 
 import PersonalProfil from './PersonalProfil';
 import ItemDrawerMenu from './ItemDrawerMenu';
 
 const DrawerDirection = props => {
-  const [signout, setSignout] = useState(false);
+  const {signOut} = React.useContext(AuthContext);
+
+  const [sigout, setSigout] = useState(false);
 
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
@@ -24,18 +33,18 @@ const DrawerDirection = props => {
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
         Titlenumber="673845359"
-        onOpen={() => setSignout(false)}
-        onClose={() => setSignout(true)}
+        onOpen={() => setSigout(false)}
+        onClose={() => setSigout(true)}
       />
       <View
         style={styles.ui_splash_contain_header_administration_contains_block}>
-        {signout ? (
+        {sigout ? (
           <View style={styles.ui_splash_contain_header_deconnexion_contains}>
             <TouchableOpacity
               style={styles.ui_splash_contain_header_deconnexion_contains_block}
               activeOpacity={0.6}>
               <FontAwesomeIcon
-                icon={faDoorOpen}
+                icon={faSignOutAlt}
                 size={17}
                 color="white"
                 style={styles.ui_splash_contain_log_sign_configs1}
@@ -47,17 +56,17 @@ const DrawerDirection = props => {
           </View>
         ) : null}
         <ItemDrawerMenu
-          Titleico="user-friends"
+          Titleico={faUserFriends}
           Titlename="Créer un poste"
           Titlenotif="1"
         />
         <ItemDrawerMenu
-          Titleico="bookmark"
+          Titleico={faBookmark}
           Titlename="Voir les archives"
           Titlenotif="0"
         />
         <ItemDrawerMenu
-          Titleico="sun"
+          Titleico={faSun}
           Titlename="Paramètres"
           Titlenotif="0"
           onPress={() => {
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_deconnexion_contains: {
     width: '100%',
     height: 40,
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#7cc3bcbf',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
