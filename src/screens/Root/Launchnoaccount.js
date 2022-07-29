@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     top: -5,
   },
   ui_splash_started_button_welcome: {
-    width: 105,
+    width: 115,
     height: 30,
     alignItems: 'center',
     flexDirection: 'row',
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   ui_splash_started_button_text: {
     fontSize: 15,
     marginRight: 5,
-    fontFamily: 'Dosis-VariableFont_wght',
+    fontFamily: 'Entypo',
     position: 'relative',
     top: -1,
     color: 'white',
