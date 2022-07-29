@@ -6,16 +6,30 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const ItemStatDirection = props => {
   const {Titleico, Titlestat, Titlesub, Titlebg, Titlecl, Titleicl} = props;
 
   return (
-    <View style={[styles.ui_splash_contain_header_globe, {backgroundColor: Titlebg}]}>
-      <FontAwesomeIcon icon={Titleico} size={20} color={Titleicl} />
-      <Text style={[styles.ui_splash_contain_header_params_fonts4, {color: Titlecl}]}>{Titlestat}</Text>
-      <Text style={styles.ui_splash_contain_header_params_fonts5}>{Titlesub}</Text>
+    <View
+      style={[
+        styles.ui_splash_contain_header_globe,
+        {backgroundColor: Titlebg},
+      ]}>
+      {Titleico ? (
+        <FontAwesomeIcon icon={Titleico} size={20} color={Titleicl} />
+      ) : null}
+      <Text
+        style={[
+          styles.ui_splash_contain_header_params_fonts4,
+          {color: Titlecl},
+        ]}>
+        {Titlestat}
+      </Text>
+      <Text style={styles.ui_splash_contain_header_params_fonts5}>
+        {Titlesub}
+      </Text>
     </View>
   );
 };
