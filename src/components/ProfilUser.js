@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   ui_splash_config_fonts2: {
-    fontSize: 13,
-    fontFamily: 'PontanoSans-Regular',
+    fontSize: 15,
+    fontFamily: 'Snippet-Regular',
     top: -15,
     color: '#000000a3',
   },

@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   ui_splash_global_contain_registered_global_config_font3: {
     margin: 2,
     left: 5,
+    top: -4,
+    fontSize: 18,
+    fontFamily: 'OpenSansCondensed-Light'
   },
 });
 

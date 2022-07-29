@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'Feather',
+    fontFamily: 'PingFang SC Regular',
     fontSize: 15.7,
     color: '#00000094',
     left: 2,
