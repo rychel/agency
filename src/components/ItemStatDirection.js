@@ -9,11 +9,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ItemStatDirection = props => {
-  const {Titleico, Titlestat, Titlesub, Titlebg, Titlecl} = props;
+  const {Titleico, Titlestat, Titlesub, Titlebg, Titlecl, Titleicl} = props;
 
   return (
     <View style={[styles.ui_splash_contain_header_globe, {backgroundColor: Titlebg}]}>
-      <FontAwesomeIcon icon={Titleico} size={20} color="white" />
+      <FontAwesomeIcon icon={Titleico} size={20} color={Titleicl} />
       <Text style={[styles.ui_splash_contain_header_params_fonts4, {color: Titlecl}]}>{Titlestat}</Text>
       <Text style={styles.ui_splash_contain_header_params_fonts5}>{Titlesub}</Text>
     </View>
@@ -22,7 +22,7 @@ const ItemStatDirection = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    width: 90,
+    width: 120,
     height: 100,
     margin: 5,
     alignItems: 'center',
@@ -31,12 +31,13 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
-    fontSize: 20,
+    fontSize: 27,
     color: '#f44336',
+    fontFamily: 'PontanoSans-Regular',
   },
   ui_splash_contain_header_params_fonts5: {
-    fontSize: 11,
-    fontFamily: 'Nunito-Regular',
+    fontSize: 17,
+    fontFamily: 'SairaCondensed-Thin',
   },
 });
 
