@@ -8,7 +8,6 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import NotificationExplain from '../../components/NotificationExplain';
 import ItemConfigSlug from '../../components/ItemConfigSlug';

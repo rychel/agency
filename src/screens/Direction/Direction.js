@@ -11,7 +11,18 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {
+  faSplotch,
+  faUserAstronaut,
+  faCarAlt,
+  faBus,
+  faBusAlt,
+  faUserTag,
+  faUserTie,
+  faUserMinus,
+  faThumbTack,
+  faEyeDropper,
+} from '@fortawesome/free-solid-svg-icons';
 
 import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
@@ -77,9 +88,24 @@ const Direction = ({navigation}) => {
             <ScrollView
               style={styles.ui_splash_global_contain_registered_global_contain}
               horizontal={true}>
-              <ProfilUser Utitle="Vous" Username="RY" Ustatut="yellow" Uphoto={require('../../../assets/Logo3.jpg')} />
-              <ProfilUser Utitle="Caissier" Username="ND" Ustatut="#8bc34a" Uphoto={require('../../../assets/Logo4.jpg')} />
-              <ProfilUser Utitle="Composteur" Username="ZA" Ustatut="#f44336" Uphoto={require('../../../assets/Logo3.jpg')} />
+              <ProfilUser
+                Utitle="Vous"
+                Username="RY"
+                Ustatut="yellow"
+                Uphoto={require('../../../assets/Logo3.jpg')}
+              />
+              <ProfilUser
+                Utitle="Caissier"
+                Username="ND"
+                Ustatut="#8bc34a"
+                Uphoto={require('../../../assets/Logo4.jpg')}
+              />
+              <ProfilUser
+                Utitle="Composteur"
+                Username="ZA"
+                Ustatut="#f44336"
+                Uphoto={require('../../../assets/Logo3.jpg')}
+              />
             </ScrollView>
           </View>
           <View
@@ -92,22 +118,22 @@ const Direction = ({navigation}) => {
                 styles.ui_splash_global_contain_registered_global_contain_information
               }>
               <ItemForfaitTips
-                Titleico="splotch"
+                Titleico={faSplotch}
                 Titlesub="Forfait clientèle"
                 Titlecl="#ffeb3b"
               />
               <ItemForfaitTips
-                Titleico="splotch"
+                Titleico={faSplotch}
                 Titlesub="Forfait transport"
                 Titlecl="#ffeb3b"
               />
               <ItemForfaitTips
-                Titleico="splotch"
+                Titleico={faSplotch}
                 Titlesub="Forfait location"
                 Titlecl="#ffeb3b"
               />
               <ItemForfaitTips
-                Titleico="splotch"
+                Titleico={faSplotch}
                 Titlesub="Forfait colis"
                 Titlecl="#f44336"
               />
@@ -119,49 +145,49 @@ const Direction = ({navigation}) => {
               style={styles.ui_splash_contain_header_tab_stats_contain}
               horizontal={true}>
               <ItemStatDirection
-                Titleico="user-astronaut"
+                Titleico={faUserAstronaut}
                 Titlesub="Chauffeur"
                 Titlestat="33"
                 Titlebg="#03a9f46b"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="car-alt"
+                Titleico={faCarAlt}
                 Titlesub="Coaster"
                 Titlestat="30"
                 Titlebg="#f44336d1"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="bus"
+                Titleico={faBus}
                 Titlesub="Vip"
                 Titlestat="6"
                 Titlebg="#ffeb3b"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="bus-alt"
+                Titleico={faBusAlt}
                 Titlesub="Porteur"
                 Titlestat="10"
                 Titlebg="#9c27b0e3"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="user-tag"
+                Titleico={faUserTag}
                 Titlesub="Caissier"
                 Titlestat="5"
                 Titlebg="#8bc34aeb"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="user-tie"
+                Titleico={faUserTie}
                 Titlesub="Sécrétaire"
                 Titlestat="9"
                 Titlebg="#607d8bd6"
                 Titlecl="orange"
               />
               <ItemStatDirection
-                Titleico="user-minus"
+                Titleico={faUserMinus}
                 Titlesub="Composteur"
                 Titlestat="3"
                 Titlebg="#009688"
@@ -176,7 +202,7 @@ const Direction = ({navigation}) => {
               horizontal={true}>
               <TitleTravelDay
                 Titlesub="Voyage d'aujourd'hui"
-                Titleico="thumbtack"
+                Titleico={faThumbTack}
                 Titlebg="#0061ab40"
               />
               <TitleTravelDay Titlesub="Voyage de demain" Titlebg="#00000014" />
@@ -192,19 +218,19 @@ const Direction = ({navigation}) => {
                 Titledepart="Douala"
                 Titledestination="Bagangté"
                 Titlemodevalidation="Code QR"
-                Titlebusico="bus-alt"
+                Titlebusico={faBusAlt}
                 Titleprice="3500"
                 Titleheure="08h.."
                 Titleidbus="676"
                 Titlebus="Porteur"
-                Titlereste='12'
-                Titleplace='72'
+                Titlereste="12"
+                Titleplace="72"
               />
               <CadreTravelDay
                 Titledepart="Douala"
                 Titledestination="Bagangté"
                 Titlemodevalidation="Ticket"
-                Titlebusico="car-alt"
+                Titlebusico={faCarAlt}
                 Titleprice="3500"
                 Titleheure="12h.."
                 Titleidbus="476"
@@ -218,7 +244,7 @@ const Direction = ({navigation}) => {
         <DashboardDirection onClose={() => closeDashboard()} />
       ) : (
         <ButtonAddingItems
-          titleico="eye-dropper"
+          titleico={faEyeDropper}
           titlebutton="notes"
           borderrounds={50}
           onOpen={() => openDashboard()}

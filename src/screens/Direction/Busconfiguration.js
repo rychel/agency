@@ -7,7 +7,6 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import TipsBus from '../../components/TipsBus';

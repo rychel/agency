@@ -3,10 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import TipsBus from '../../components/TipsBus';
@@ -27,7 +25,7 @@ const Bus = (props) => {
                  Immatbus='M7SFD976' 
                  Chauffeurbus='Bartholomey' 
                  Typebus='Vip' />
-        <ButtonAddingItems titleico='plus' titlebutton='ajouter' borderrounds={50} />
+        <ButtonAddingItems titleico='faPlus' titlebutton='ajouter' borderrounds={50} />
     </View>
   )
 };

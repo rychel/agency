@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 /* import utils */
 import ItemMenu from '../../components/ItemMenu';

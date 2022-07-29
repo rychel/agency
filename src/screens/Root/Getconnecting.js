@@ -6,10 +6,11 @@ import {
   Dimensions,
   Animated,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import InputGc from '../../components/InputGc';
 import Space from '../../components/Space';
@@ -32,7 +33,7 @@ const Getconnecting = ({navigation}) => {
   };
 
   return (
-    <View style={styles.ui_splash_global_app_contain}>
+    <ScrollView style={styles.ui_splash_global_app_contain}>
       <StatusBar
         animated={true}
         backgroundColor="#7cc3bc"
@@ -62,30 +63,28 @@ const Getconnecting = ({navigation}) => {
           styles.ui_splash_started_title_contracts,
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
-        <Space Hwidth={20} />
+        <Space Hwidth={10} />
         <InputGc
           title="Utilisateur"
           keyboard="alphabetic"
-          Placeholder="user"
-          Icon="faUserClock"
+          Placeholder="ex. cafrey"
         />
         <InputGc
           title="Mot de passe"
           keyboard="alphabetic"
-          Placeholder="secure"
-          Icon="faLock"
+          Placeholder=""
           secureTextEntry
         />
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
           activeOpacity={0.6}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
-            Se connecter !
+            connexion 
           </Text>
-          <FontAwesomeIcon icon={faPaperPlane} size={16} color="white" />
+          <FontAwesomeIcon icon={faLock} size={16} color="white" />
         </TouchableOpacity>
       </Animated.View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_started_title_contracts: {
     width: '100%',
-    height: 153,
+    height: 253,
     marginTop: -58,
     position: 'relative',
     backgroundColor: 'white',
@@ -173,18 +172,18 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   ui_splash_contain_go_sucess_button: {
-    width: 140,
+    width: 115,
     height: 38,
     position: 'relative',
-    left: -10,
+    left: 22,
     textDecorationLine: 'underline',
     flexDirection: 'row',
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#ff6a5f',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
+    borderRadius: 500,
     marginTop: 20,
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     fontSize: 15,
     color: 'white',
-    fontFamily: 'PatrickHandSC-Regular',
+    fontFamily: 'EvilIcons',
     left: -7,
   },
 });
