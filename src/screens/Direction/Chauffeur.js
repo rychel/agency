@@ -7,7 +7,7 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
-import { faUserSlash } from '@fortawesome/free-solid-svg-icons';
+import { faUserSlash, faUser,faEyeDropper } from '@fortawesome/free-solid-svg-icons';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import TipsBus from '../../components/TipsBus';
 import NoItemStatus from '../../components/NoItemStatus';
@@ -23,17 +23,17 @@ const Chauffeur = (props) => {
         showHideTransition="fade"
         hidden={false} />
       <NoItemStatus
-        Titleico="faUserSlash"
+        Titleico={faUserSlash}
         Titlestatus="aucun chauffeur enregistré"
       />
       <ItemChauffeurTips
-        Titleico="faUser"
+        Titleico={faUser}
         Titlename="Bopp"
         Titlesubname="Dylan ngaite"
         onDelete={() => {}}
         onSleep={() => {}}
       />
-      <ButtonAddingItems titleico='eye-dropper' titlebutton='mettre' borderrounds={50} />
+      <ButtonAddingItems titleico={faEyeDropper} titlebutton='mettre' borderrounds={50} />
     </View>
   );
 };
