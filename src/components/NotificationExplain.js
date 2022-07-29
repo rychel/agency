@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_globe_message_configs_font: {
     width: '95%',
-    fontSize: 15,
-    fontFamily: 'Entypo',
+    fontSize: 17,
+    fontFamily: 'Dosis-VariableFont_wght',
     textAlign: 'justify',
     padding: 2,
     color: 'white',

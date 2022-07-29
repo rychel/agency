@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     height: 40,
     color: '#101010ad',
     top: 2,
-    fontFamily: 'AmaticSC-Bold',
+    fontFamily: 'Dosis-VariableFont_wght',
     justifyContent: 'center',
     alignItems: 'center',
   },
