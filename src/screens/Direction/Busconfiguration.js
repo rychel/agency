@@ -9,10 +9,8 @@ import {
 } from 'react-native';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import TipsBus from '../../components/TipsBus';
 import NoItemStatus from '../../components/NoItemStatus';
-import ItemChauffeurTips from '../../components/ItemChauffeurTips';
-import ItemBusTips from '../../components/ItemBusTips';
+import { faPlus, faTintSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Busconfiguration = (props) => {
 
@@ -25,11 +23,11 @@ const Busconfiguration = (props) => {
         showHideTransition="fade"
         hidden={false} />
       <NoItemStatus
-        Titleico="tint-slash"
+        Titleico={faTintSlash}
         Titlestatus="aucun bus enregistré"
       />
       <ButtonAddingItems
-        titleico="plus"
+        titleico={faPlus}
         titlebutton="ajouter"
         borderrounds={50}
       />
