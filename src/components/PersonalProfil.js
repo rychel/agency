@@ -120,17 +120,18 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   ui_splash_contain_header_params_fonts2: {
-    fontSize: 15,
+    fontSize: 17,
     left: 2,
-    top: 1,
+    top: -1,
     color: 'white',
+    fontFamily: 'OpenSansCondensed-Light',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 15,
+    fontSize: 13,
     textAlign: 'center',
-    fontFamily: 'SairaCondensed-Thin',
+    fontFamily: 'PingFang SC Regular',
     borderRadius: 5,
     fontWeight: '100',
     backgroundColor: '#f44336',
@@ -149,7 +150,8 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts4: {
     fontSize: 15,
     left: 2,
-    color: '#0000007a',
+    color: 'yellow',
+    fontFamily: 'PingFang SC Regular',
   },
 });
 
