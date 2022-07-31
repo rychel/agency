@@ -11,7 +11,7 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faAngleLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import InputGs from '../../components/InputGs';
 import Space from '../../components/Space';
 import LoaderAllScreen from '../../components/LoaderAllScreen';
@@ -315,7 +315,7 @@ const Grantstarting = ({navigation}) => {
         start={{x: 0.3, y: 0.5}}
         end={{x: 3.65, y: 1.0}}
         locations={[1.2, 0.6]}
-        colors={['#ff5722', 'white']}
+        colors={['white', 'white']}
         style={styles.ui_splash_todo_contain}>
         <View style={styles.ui_splash_contain_form_control}>
           <View style={styles.ui_splash_below_title_message}>
@@ -423,7 +423,7 @@ const Grantstarting = ({navigation}) => {
             activeOpacity={0.6}
             onPress={handleSubmit}>
             <Text style={styles.ui_splash_contain_go_sucess_text}>
-              Je crée mon agence !
+              C'est parti !
             </Text>
             <FontAwesomeIcon icon={faPaperPlane} size={16} color="white" />
           </TouchableOpacity>
@@ -431,8 +431,8 @@ const Grantstarting = ({navigation}) => {
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
-            <Text style={styles.ui_splash_contain_go_back_text}>ou non</Text>
-            <FontAwesomeIcon icon={faAngleLeft} size={18} color="white" />
+            <Text style={styles.ui_splash_contain_go_back_text}>Non, merci.</Text>
+            <FontAwesomeIcon icon={faAngleRight} size={18} color="#f44336" style={styles.ui_splash_contain_go_logo_back_button} />
           </TouchableOpacity>
         </View>
 
@@ -483,20 +483,22 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   ui_splash_contain_go_back_button: {
-    width: 65,
+    width: 100,
     height: 35,
     position: 'relative',
     left: -5,
     textDecorationLine: 'underline',
     flexDirection: 'row',
-    backgroundColor: '#ff5722',
-    borderRadius: 100,
     paddingLeft: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  ui_splash_contain_go_logo_back_button: {
+    top: -2,
+    color: 'blue',
   },
   ui_splash_contain_go_sucess_button: {
-    width: 190,
+    width: 115,
     height: 38,
     position: 'relative',
     left: 10,
@@ -510,15 +512,16 @@ const styles = StyleSheet.create({
   ui_splash_contain_go_back_text: {
     position: 'relative',
     left: -2,
-    fontSize: 13,
+    fontSize: 15,
     top: -1,
-    color: 'white',
+    color: '#f44336',
+    fontFamily: 'PontanoSans-Regular',
   },
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
     fontSize: 15,
     color: 'white',
-    fontFamily: 'PatrickHandSC-Regular',
+    fontFamily: 'PontanoSans-Regular',
     left: -7,
   },
   ui_splash_contain_grant_error_text: {
@@ -535,7 +538,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
-    backgroundColor: '#ff5722',
+    backgroundColor: 'white',
     borderRadius: 100,
   },
 });
