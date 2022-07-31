@@ -11,6 +11,8 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
+import {useDispatch} from 'react-redux';
+import {Login} from '../../store/Log/actions'
 
 import InputGc from '../../components/InputGc';
 import Space from '../../components/Space';
@@ -32,6 +34,11 @@ const Getconnecting = ({navigation}) => {
     navigation.navigate('Get starting');
   };
 
+  const dispatch = useDispatch();
+
+  const FakeLog = () =>{
+    dispatch(Login('rick', '123'));
+  }
   return (
     <ScrollView style={styles.ui_splash_global_app_contain}>
       <StatusBar
@@ -77,7 +84,7 @@ const Getconnecting = ({navigation}) => {
         />
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
-          activeOpacity={0.6}>
+          activeOpacity={0.6} onPress={FakeLog}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
             connexion 
           </Text>
