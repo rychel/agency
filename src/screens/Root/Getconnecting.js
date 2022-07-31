@@ -12,7 +12,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
 import {useDispatch} from 'react-redux';
-import {Login} from '../../store/Log/actions'
+import {Login} from '../../store/Log/actions';
 
 import InputGc from '../../components/InputGc';
 import Space from '../../components/Space';
