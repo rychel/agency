@@ -9,19 +9,25 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faBookmark,
-  faDoorOpen,
   faSignOutAlt,
   faSun,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
+import {useDispatch} from 'react-redux';
+import {LogOut} from '../store/Log/actions';
 
 import PersonalProfil from './PersonalProfil';
 import ItemDrawerMenu from './ItemDrawerMenu';
 
 const DrawerDirection = props => {
-
   const [sigout, setSigout] = useState(false);
+
+  const dispatch = useDispatch();
+  
+  const signOut = () => {
+    dispatch(LogOut());
+  }
 
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
@@ -38,19 +44,25 @@ const DrawerDirection = props => {
         style={styles.ui_splash_contain_header_administration_contains_block}>
         {sigout ? (
           <View style={styles.ui_splash_contain_header_deconnexion_contains}>
-            <TouchableOpacity
-              style={styles.ui_splash_contain_header_deconnexion_contains_block}
-              activeOpacity={0.6}>
-              <FontAwesomeIcon
-                icon={faSignOutAlt}
-                size={17}
-                color="#03a9f4"
-                style={styles.ui_splash_contain_log_sign_configs1}
-              />
-              <Text style={styles.ui_splash_contain_text_configs1}>
-                Se déconnecter
-              </Text>
-            </TouchableOpacity>
+            <View
+              style={
+                styles.ui_splash_contain_header_deconnexion_contains_block
+              }>
+              <TouchableOpacity style={
+                styles.ui_splash_contain_header_deconnexion_contains_block
+              }
+                onPress={signOut}>
+                <FontAwesomeIcon
+                  icon={faSignOutAlt}
+                  size={17}
+                  color="#03a9f4"
+                  style={styles.ui_splash_contain_log_sign_configs1}
+                />
+                <Text style={styles.ui_splash_contain_text_configs1}>
+                  Se déconnecter
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         ) : null}
         <ItemDrawerMenu
