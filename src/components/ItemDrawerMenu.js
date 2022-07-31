@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 30,
     color: '#281f1fb0',
     top: 2,
-    fontFamily: 'AmaticSC-Bold',
+    fontFamily: 'Nunito-Regular',
     fontWeight: '100',
     justifyContent: 'center',
     alignItems: 'center',
