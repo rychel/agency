@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,11 @@ import {
   Animated,
   StatusBar,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
+import {Picker} from '@react-native-picker/picker';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
 
@@ -19,7 +20,6 @@ import Space from '../../components/Space';
 
 const Getconnecting = ({navigation}) => {
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
-
   useEffect(() => {
     Animated.sequence([
       Animated.timing(EndWelcomeBrave, {
@@ -30,15 +30,13 @@ const Getconnecting = ({navigation}) => {
     ]).start();
   }, [EndWelcomeBrave]);
 
-  const goWelcomeBrave = () => {
-    navigation.navigate('Get starting');
-  };
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   const dispatch = useDispatch();
-
-  const FakeLog = () =>{
+  const FakeLog = () => {
     dispatch(Login('rick', '123'));
-  }
+  };
+
   return (
     <ScrollView style={styles.ui_splash_global_app_contain}>
       <StatusBar
@@ -50,27 +48,21 @@ const Getconnecting = ({navigation}) => {
       />
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
-          <Text style={styles.ui_splash_logo_started}>Bienvenue</Text>
-          <Text
-            style={[
-              styles.ui_splash_logo_started,
-              {transform: [{rotateZ: '150deg'}]},
-            ]}>
-            :)
-          </Text>
+          <Text style={styles.ui_splash_logo_started2}>acxios</Text>
+          <Text style={styles.ui_splash_logo_started}>connexion</Text>
         </View>
-        <Animated.View style={styles.ui_splash_started_title_welcome}>
+        <View style={styles.ui_splash_started_title_welcome}>
           <Text style={styles.ui_splash_started_font_config1}>
             Connecte toi à ton agence.
           </Text>
-        </Animated.View>
+        </View>
       </View>
       <Animated.View
         style={[
           styles.ui_splash_started_title_contracts,
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
-        <Space Hwidth={10} />
+        <Space Hwidth={0} />
         <InputGc
           title="Utilisateur"
           keyboard="alphabetic"
@@ -79,16 +71,37 @@ const Getconnecting = ({navigation}) => {
         <InputGc
           title="Mot de passe"
           keyboard="alphabetic"
-          Placeholder=""
+          Placeholder="xxx-xxx"
           secureTextEntry
         />
+        <Text style={styles.ui_splash_contain_title_cle_connexion}>se connecter en tant que</Text>
+        <Picker
+          selectedValue={selectedLanguage}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedLanguage(itemValue)
+          }
+          themeVariant='light'
+          mode='dropdown'
+          style={styles.ui_splash_contain_globe_role_connexion}>
+          <Picker.Item label="Directeur" value="dir" />
+          <Picker.Item label="Caissier" value="cai" />
+          <Picker.Item label="Composteur" value="com" />
+          <Picker.Item label="Sécrétaire" value="sec" />
+          <Picker.Item label="Chauffeur" value="cha" />
+        </Picker>
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
-          activeOpacity={0.6} onPress={FakeLog}>
+          activeOpacity={0.6}
+          onPress={FakeLog}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
-            connexion 
+            je me connecte
           </Text>
-          <FontAwesomeIcon icon={faLock} size={16} color="white" />
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            size={16}
+            color="#f44336"
+            style={styles.ui_splash_contain_logo_sucess_button}
+          />
         </TouchableOpacity>
       </Animated.View>
     </ScrollView>
@@ -102,7 +115,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_app_header_contain: {
     height: 230,
-    width: Dimensions.get('window').width,
+    width: '100%',
     marginBottom: 20,
     backgroundColor: '#7cc3bc',
     justifyContent: 'center',
@@ -122,6 +135,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 35,
     fontFamily: 'materialcommunityIcons',
+    transform: [{rotateZ: '4deg'}],
+  },
+  ui_splash_logo_started2: {
+    alignSelf: 'center',
+    color: 'white',
+    fontSize: 35,
+    fontFamily: 'SairaCondensed-Light',
   },
   ui_splash_started_title_welcome: {
     alignItems: 'center',
@@ -130,7 +150,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 30,
     backgroundColor: '#7addd3c9',
-    marginTop: 10,
+    marginTop: 0,
     marginBottom: 10,
     position: 'relative',
     fontFamily: 'cursive',
@@ -145,7 +165,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_started_title_contracts: {
     width: '100%',
-    height: 253,
+    height: 293,
     marginTop: -58,
     position: 'relative',
     backgroundColor: 'white',
@@ -167,44 +187,57 @@ const styles = StyleSheet.create({
     left: 10,
     fontSize: 13,
     width: 160,
-    padding: 3,
     borderRadius: 100,
   },
   ui_splash_started_text_contracts2: {
-    color: '#f44336bd',
-    textDecorationLine: 'underline',
-    fontSize: 15,
     width: '88%',
-    fontFamily: 'Foundation',
+    height: 100,
     marginTop: 5,
+    backgroundColor: 'red',
   },
   ui_splash_contain_go_sucess_button: {
-    width: 115,
-    height: 38,
+    width: 135,
+    height: 45,
     position: 'relative',
     left: 22,
-    textDecorationLine: 'underline',
     flexDirection: 'row',
-    backgroundColor: '#ff6a5f',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 500,
-    marginTop: 20,
-    alignSelf: 'flex-start',
+    marginTop: 10,
+  },
+  ui_splash_contain_logo_sucess_button: {
+    position: 'relative',
+    left: -5,
+    top: 1.1,
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
     left: -2,
     fontSize: 13,
     top: -1,
-    color: 'white',
   },
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
     fontSize: 15,
-    color: 'white',
-    fontFamily: 'EvilIcons',
-    left: -7,
+    color: '#f44336',
+    fontFamily: 'PontanoSans-Regular',
+    left: -12,
+  },
+  ui_splash_contain_globe_role_connexion: {
+    borderWidth: 1,
+    borderColor: 'red',
+    color: '#00bcd4',
+    width: '98%',
+    left: 5,
+    fontFamily: 'PontanoSans-Regular',
+  },
+  ui_splash_contain_title_cle_connexion: {
+    position: 'relative',
+    fontSize: 14,
+    color: '#00000094',
+    fontFamily: 'PontanoSans-Regular',
+    left: 20,
   },
 });
 
