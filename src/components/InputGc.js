@@ -1,91 +1,82 @@
-import React, {useRef, useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Animated} from 'react-native';
-import Space from '../components/Space';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 const InputGc = props => {
-  const {title, keyboard, onChange, onChangeText, Placeholder} = props;
-  const opaque = useRef(new Animated.Value(1)).current;
-  const [iconcolor, setIconcolor] = useState(false);
-
-  const overflow = () => {
-    Animated.sequence([
-      Animated.timing(opaque, {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: true,
-      }),
-    ]).start();
-    setTimeout(() => {
-      setIconcolor(true);
-    }, 200);
-  };
-
-  const overshow = () => {
-    Animated.sequence([
-      Animated.timing(opaque, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }),
-    ]).start();
-    setTimeout(() => {
-      setIconcolor(false);
-    }, 200);
-  };
+  const {title, keyboard, Placeholder} = props;
 
   return (
     <View>
       <View style={styles.ui_splash_contain_title_form_control}>
-        <Animated.Text
-          style={[styles.ui_splash_title_form_control, {opacity: opaque}]}>
-          {title}
-        </Animated.Text>
+        <View style={styles.ui_splash_title_block_form_control}>
+          <Text style={styles.ui_splash_title_form_control}>{title}</Text>
+        </View>
+        <View style={styles.ui_splash_contain_saisi_form_display}>
+          <TextInput
+            style={styles.ui_splash_input_form_control}
+            keyboardType={keyboard}
+            placeholder={Placeholder}
+            {...props}
+          />
+          <FontAwesomeIcon
+            icon={faAngleRight}
+            style={styles.ui_splash_contain_saisi_form_logo_direction}
+            color="#00000014"
+            size={15}
+          />
+        </View>
       </View>
-      <TextInput
-        style={styles.ui_splash_input_form_control}
-        keyboardType={keyboard}
-        onChange={onChange}
-        onBlur={() => {
-          overshow();
-        }}
-        onFocus={() => {
-          overflow();
-        }}
-        placeholder={Placeholder}
-        {...props}
-      />
-      <Space Hwidth={10} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   ui_splash_input_form_control: {
-    width: '90%',
-    height: 38,
-    alignSelf: 'center',
-    borderWidth: 10,
-    fontSize: 15,
-    color: '#009688d1',
-    borderWidth: 0.4,
+    width: '97%',
+    height: 50,
+    fontSize: 14,
+    borderWidth: 0.5,
     left: 4,
-    top: 10,
-    borderRadius: 3,
+    borderRadius: 4,
     marginBottom: 5,
+    top: 3,
+    borderColor: '#101010a6',
+    color: '#00bcd4',
+    fontFamily: 'NotoSans-Regular',
   },
   ui_splash_contain_title_form_control: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     top: 10,
+    backgroundColor: 'white',
+    height: 75,
+    width: '90%',
+    alignSelf: 'center',
+  },
+  ui_splash_title_block_form_control: {
+    flexDirection: 'row',
   },
   ui_splash_title_form_control: {
-    left: 22,
-    fontSize: 12,
-    color: '#ff6a5f',
-    fontFamily: 'MaterialIcons',
+    fontSize: 10,
+    color: '#101010a6',
+    fontFamily: 'NotoSans-Regular',
     height: 15,
-    backgroundColor: 'white',
     marginBottom: 4,
-    textTransform: 'uppercase',
+    top: 2,
+    zIndex: 2,
+    transform: [{translateY: 14}],
+    opacity: 1,
+    left: 8,
+  },
+  ui_splash_contain_saisi_form_display: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    height: 70,
+    alignItems: 'center',
+    top: -14,
+  },
+  ui_splash_contain_saisi_form_logo_direction: {
+    left: -30,
   },
 });
 
