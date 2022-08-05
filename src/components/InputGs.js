@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     top: 5,
     color: '#0a0a0a9e',
-    fontFamily: 'SairaCondensed-Light',
-    textTransform: 'uppercase',
+    fontFamily: 'Nunito-ExtraLight',
   },
   ui_splash_title_form_error_control: {
     left: 14,
