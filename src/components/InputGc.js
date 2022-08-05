@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     top: 3,
     borderColor: '#101010a6',
-    color: '#00bcd4',
+    color: '#f44336',
     fontFamily: 'NotoSans-Regular',
   },
   ui_splash_contain_title_form_control: {

@@ -66,7 +66,7 @@ const Getconnecting = ({navigation}) => {
         <InputGc
           title="Utilisateur"
           keyboard="alphabetic"
-          Placeholder="ex. cafrey"
+          Placeholder="John doe"
         />
         <InputGc
           title="Mot de passe"
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_globe_role_connexion: {
     borderWidth: 1,
     borderColor: 'red',
-    color: '#00bcd4',
+    color: '#f44336',
     width: '98%',
     left: 5,
     fontFamily: 'PontanoSans-Regular',
