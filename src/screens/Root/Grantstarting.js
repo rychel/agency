@@ -10,158 +10,56 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faAngleRight, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faAngleRight, faPaperPlane, faBoxOpen} from '@fortawesome/free-solid-svg-icons';
 import InputGs from '../../components/InputGs';
 import Space from '../../components/Space';
 import LoaderAllScreen from '../../components/LoaderAllScreen';
 
-import {validEmail, validChiffre, validSpecials} from '../../utils/regex';
+import {validEmail, validChiffre, validLettre} from '../../utils/regex';
 
 const Grantstarting = ({navigation}) => {
   const gotoGetstarting = () => {
     navigation.goBack('Get starting');
   };
 
-  /** spell of codesecure agency */
-  const checkCodesecure = async () => {
-    fetch(
-      'https://c83a-129-0-99-19.eu.ngrok.io/api/createAgency/Codesecurite',
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title: Codesecurite}),
-      },
-    )
-      .then(json => json.json())
-      .then(json => setGrant({gCodesecurite: json}))
-      .catch(e => {
-        ToastAndroid.show(
-          'connexion pertubée, reconnexion ...',
-          ToastAndroid.LONG,
-        );
-      });
-  };
+  const [nomagence, setNomagence] = useState('');
+  const [nomorganisation, setNomorganisation] = useState('');
+  const [codesecurite, setCodesecurite] = useState('');
+  const [nomchefagence, setNomchefagence] = useState('');
+  const [prenomchefagence, setPrenomchefagence] = useState('');
+  const [numerocnichef, setNumerocnichef] = useState('');
+  const [password, setPassword] = useState('');
 
-  /** spell password's chief */
-  const checkPassword = async () => {
-    fetch('https://c83a-129-0-99-19.eu.ngrok.io/api/createAgency/Password', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({title: Password}),
-    })
-      .then(json => json.json())
-      .then(json => setGrant({gPassword: json}))
-      .catch(e => {
-        ToastAndroid.show(
-          'connexion pertubée, reconnexion ...',
-          ToastAndroid.LONG,
-        );
-      });
-  };
-
-  /** create a thief */
-  const createAgency = async () => {
-    const data = {
-      nom: Nomchefagence,
-      prenom: Prenomchefagence,
-      numerocni: Numerocnichef,
-      password: Password,
-      nomagence: Nomagence,
-      nomorganisation: Nomorganisation,
-      codesecurite: Codesecurite,
-    };
-
-    fetch(
-      'https://c83a-129-0-99-19.eu.ngrok.io/api/createAgency/Create_Thief',
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title: data}),
-      },
-    )
-      .then(json => json.json())
-      .then(json => setGrant({gId: json.handle}))
-      .then(json => console.log('La valeur : ' + json))
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  /** save id of thief */
-  const storeIdconnexion = async value => {
-    try {
-      await AsyncStorage.setItem('Idconnexion', value);
-    } catch (e) {
-      ToastAndroid.show(
-        'connexion pertubée, reconnexion ...',
-        ToastAndroid.LONG,
-      );
-    }
-  };
-
-  const [params, setParams] = useState({
-    Nomagence: '',
-    Nomorganisation: '',
-    Codesecurite: '',
-    Nomchefagence: '',
-    Prenomchefagence: '',
-    Numerocnichef: '',
-    Password: '',
+  const [errors, setErrors] = useState({
+    eNom: '',
+    ePrenom: '',
+    eNumerocnichef: '',
+    ePassword: '',
+    eNomagence: '',
+    eNomorganisation: '',
+    eCodesecurite: '',
   });
 
-  /** All required errors input form */
-  const [errors, setErrors] = useState({});
-
-  /** All check errors in BD values */
-  const [grant, setGrant] = useState({
+  const [bypass, setBypass] = useState({
     gCodesecurite: false,
     gPassword: false,
     gId: 0,
   });
 
-  /** Data object used for create agency */
-  const {
-    Nomagence,
-    Nomorganisation,
-    Codesecurite,
-    Nomchefagence,
-    Prenomchefagence,
-    Numerocnichef,
-    Password,
-  } = params;
-
-  /** grant for codesecure and password  */
-  const {gCodesecurite, gPassword, gId} = grant;
-
-  /** Boolean validation */
-  const [validate, setValidate] = useState(false);
-
-  /** Message granted */
-  const [yup, setYup] = useState(null);
-
   const handleOnBlurText = fieldname => {
-    /* Handling error Nomagence message */
     if (fieldname == 'Nomagence') {
-      if (Nomagence == '') {
+      if (nomagence == '') {
         handleErrorOnBlur('eNomagence', 'ce champ est obligatoire.');
       } else {
-        if (Nomagence.length < 3) {
-          handleErrorOnBlur(
-            'eNomagence',
-            'Le nom de votre agence doit etre explicite.',
-          );
-        } else {
-          handleErrorOnBlur('eNomagence', '');
-        }
+        handleErrorOnBlur('eNomagence', '');
       }
     }
-    /* Handling error Nomorganisation message */
     if (fieldname == 'Nomorganisation') {
-      if (Nomorganisation == '') {
+      if (nomorganisation == '') {
         handleErrorOnBlur('eNomorganisation', 'ce champ est obligatoire.');
       } else {
-        if (Nomorganisation.length < 3) {
+        if (nomorganisation.length < 3) {
           handleErrorOnBlur(
             'eNomorganisation',
             'Le nom de votre organisation doit etre explicite.',
@@ -171,91 +69,54 @@ const Grantstarting = ({navigation}) => {
         }
       }
     }
-    /* Handling error Codesecurite message */
     if (fieldname == 'Codesecurite') {
-      if (Codesecurite == '') {
+      if (codesecurite == '') {
         handleErrorOnBlur('eCodesecurite', 'ce champ est obligatoire.');
       } else {
-        if (Codesecurite.length < 7) {
+        if (codesecurite.length < 5) {
           handleErrorOnBlur(
             'eCodesecurite',
             'Le code de sécurité de votre agence doit etre fiable.',
           );
         } else {
-          if (
-            validChiffre.test(Codesecurite) == false ||
-            validSpecials.test(Codesecurite) == false
-          ) {
-            handleErrorOnBlur(
-              'eCodesecurite',
-              "Votre code de sécurité doit contenir des chiffres ou [?,;.:/!§ù%*µ¨$..|()=+-_}]{[`@°&^.'",
-            );
-          } else {
-            checkCodesecure();
-            if (gCodesecurite == true) {
+          if (validChiffre.test(codesecurite)) {
+            if (validLettre.test(codesecurite)) {
+              console.log('good');
+            } else {
               handleErrorOnBlur(
                 'eCodesecurite',
-                'Ce code de sécurité nous paraît familer! Essayez un autre',
+                'Votre code de sécurité doit contenir des majuscules',
               );
-            } else {
-              handleErrorOnBlur('eCodesecurite', '');
             }
-          }
-        }
-      }
-    }
-    /* Handling error Password message */
-    if (fieldname == 'Password') {
-      if (Password == '') {
-        handleErrorOnBlur('ePassword', 'ce champ est obligatoire.');
-      } else {
-        if (Password.length < 4) {
-          handleErrorOnBlur(
-            'ePassword',
-            'Votre mot de passe doit etre fiable.',
-          );
-        } else {
-          if (validChiffre.test(Password) == false) {
-            handleErrorOnBlur(
-              'ePassword',
-              'Votre mot de passe doit contenir des chiffres aussi',
-            );
+            handleErrorOnBlur('eCodesecurite', '');
           } else {
-            checkPassword();
-            if (gPassword == true) {
-              handleErrorOnBlur(
-                'ePassword',
-                "Conseil d'amis ! Essayez un autre",
-              );
-            } else {
-              handleErrorOnBlur('ePassword', '');
-            }
+            handleErrorOnBlur(
+              'eCodesecurite',
+              'Votre code de sécurité doit contenir des nombres',
+            );
           }
         }
       }
     }
-    /* Handling error Nomchefagence message */
     if (fieldname == 'Nomchefagence') {
-      if (Nomchefagence == '') {
+      if (nomchefagence == '') {
         handleErrorOnBlur('eNomchefagence', 'ce champ est obligatoire.');
       } else {
         handleErrorOnBlur('eNomchefagence', '');
       }
     }
-    /* Handling error Prenomchefagence message */
     if (fieldname == 'Prenomchefagence') {
-      if (Prenomchefagence == '') {
+      if (prenomchefagence == '') {
         handleErrorOnBlur('ePrenomchefagence', 'ce champ est obligatoire.');
       } else {
         handleErrorOnBlur('ePrenomchefagence', '');
       }
     }
-    /* Handling error Numerocnichef message */
     if (fieldname == 'Numerocnichef') {
-      if (Numerocnichef == '') {
+      if (numerocnichef == '') {
         handleErrorOnBlur('eNumerocnichef', 'ce champ est obligatoire.');
       } else {
-        if (Numerocnichef.length < 5) {
+        if (numerocnichef.length < 5) {
           handleErrorOnBlur(
             'eNumerocnichef',
             'Le numéro de votre cni doit supérieur à 5 caractères',
@@ -267,40 +128,22 @@ const Grantstarting = ({navigation}) => {
     }
   };
 
-  /** Handle function of Grantstarting */
-  const handleOnChangeText = (value, fieldname) => {
-    setParams({...params, [fieldname]: value});
-  };
-
-  const handleErrorOnBlur = (fieldname, value) => {
-    setErrors({...errors, [fieldname]: value});
+  const handleErrorOnBlur = (label, value) => {
+    setErrors({...errors, [label]: value});
   };
 
   const handleSubmit = () => {
-    if (errors) {
-      // && errors.eNomorganisation == '' && errors.eCodesecurite == '' && errors.eNomchefagence == '' && errors.ePrenomchefagence == '' && errors.eNumerocnichef == '' && errors.ePassword == ''
-      /*if(errors.eNomagence == '' && errors.eNomorganisation == '' && errors.eCodesecurite == '' && errors.eNomchefagence == '' && errors.ePrenomchefagence == '' && errors.eNumerocnichef == '' && errors.ePassword == ''){
-        // Display success message screen
-        setValidate(true);
-        // Remove global error message
-        setYup(null);
-        setTimeout(() => {
-          createAgency(); // agency created
-          console.log("To send : " + gId);
-          storeIdconnexion(JSON.stringify(gId)); // store Idconnexion
-          navigation.navigate('Direction'); // goto success
-        }, 5000);
-      }
-      else{
-        // Display global error message 
-        setYup('Vérifier tous vos champs avant de valider');
-      }*/
-    }
-    storeIdconnexion(JSON.stringify(10));
-    navigation.navigate('Direction');
+    const API = 'https://localhost:5000/api/create_agency/hello';
+    fetch(API, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+    })
+      .then(json => json.json())
+      .then(value => console.log(value))
+      .catch(e => {
+        console.log(e);
+      });
   };
-
-  console.log(validate);
 
   return (
     <ScrollView style={styles.ui_splash_global_todo_contain}>
@@ -327,10 +170,12 @@ const Grantstarting = ({navigation}) => {
           <View style={styles.ui_splash_contain_second_form_control}>
             <InputGs
               title="Nom de l'agence"
+              value={nomagence}
               keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Nomagence')}
               onBlur={() => handleOnBlurText('Nomagence')}
-              onChangeText={value => handleOnChangeText(value, 'Nomagence')}
+              onChangeText={value => {
+                setNomagence(value);
+              }}
               errors={errors.eNomagence}
               onFocus={() => {
                 handleErrorOnBlur('eNomagence', null);
@@ -339,13 +184,11 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Nom de l'organisation"
-              value={Nomorganisation}
+              value={nomorganisation}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Nomorganisation')}
               onBlur={() => handleOnBlurText('Nomorganisation')}
-              onChangeText={value =>
-                handleOnChangeText(value, 'Nomorganisation')
-              }
+              onChangeText={value => setNomorganisation(value)}
               errors={errors.eNomorganisation}
               onFocus={() => {
                 handleErrorOnBlur('eNomorganisation', null);
@@ -353,11 +196,13 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Code de sécurité de l'agence"
-              value={Codesecurite}
+              value={codesecurite}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Codesecurite')}
               onBlur={() => handleOnBlurText('Codesecurite')}
-              onChangeText={value => handleOnChangeText(value, 'Codesecurite')}
+              onChangeText={value => {
+                setCodesecurite(value);
+              }}
               errors={errors.eCodesecurite}
               onFocus={() => {
                 handleErrorOnBlur('eCodesecurite', null);
@@ -365,11 +210,13 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Nom du chef d'agence"
-              value={Nomchefagence}
+              value={nomchefagence}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Nomchefagence')}
               onBlur={() => handleOnBlurText('Nomchefagence')}
-              onChangeText={value => handleOnChangeText(value, 'Nomchefagence')}
+              onChangeText={value => {
+                setNomchefagence(value);
+              }}
               errors={errors.eNomchefagence}
               onFocus={() => {
                 handleErrorOnBlur('eNomchefagence', null);
@@ -377,13 +224,13 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Prenom du chef d'agence"
-              value={Prenomchefagence}
+              value={prenomchefagence}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Prenomchefagence')}
               onBlur={() => handleOnBlurText('Prenomchefagence')}
-              onChangeText={value =>
-                handleOnChangeText(value, 'Prenomchefagence')
-              }
+              onChangeText={value => {
+                setPrenomchefagence(value);
+              }}
               errors={errors.ePrenomchefagence}
               onFocus={() => {
                 handleErrorOnBlur('ePrenomchefagence', null);
@@ -391,11 +238,13 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Numero CNI ou Recepice"
-              value={Numerocnichef}
+              value={numerocnichef}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Numerocnichef')}
               onBlur={() => handleOnBlurText('Numerocnichef')}
-              onChangeText={value => handleOnChangeText(value, 'Numerocnichef')}
+              onChangeText={value => {
+                setNumerocnichef(value);
+              }}
               errors={errors.eNumerocnichef}
               onFocus={() => {
                 handleErrorOnBlur('eNumerocnichef', null);
@@ -403,18 +252,19 @@ const Grantstarting = ({navigation}) => {
             />
             <InputGs
               title="Mot de passe du chef d'agence"
-              value={Password}
+              value={password}
               keyboard="alphabetic"
               onChange={() => handleOnBlurText('Password')}
               onBlur={() => handleOnBlurText('Password')}
-              onChangeText={value => handleOnChangeText(value, 'Password')}
+              onChangeText={value => {
+                setPassword(value);
+              }}
               errors={errors.ePassword}
               onFocus={() => {
                 handleErrorOnBlur('ePassword', null);
               }}
             />
           </View>
-          {/*<Text style={styles.ui_splash_contain_grant_error_text}>{yup}</Text> */}
         </View>
         <View
           style={styles.ui_splash_contain_grant_button_create_cancel_option}>
@@ -423,22 +273,28 @@ const Grantstarting = ({navigation}) => {
             activeOpacity={0.6}
             onPress={handleSubmit}>
             <Text style={styles.ui_splash_contain_go_sucess_text}>
-              C'est parti !
+              création
             </Text>
-            <FontAwesomeIcon icon={faPaperPlane} size={16} color="white" />
+            <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button}
             activeOpacity={0.9}
             onPress={gotoGetstarting}>
-            <Text style={styles.ui_splash_contain_go_back_text}>Non, merci.</Text>
-            <FontAwesomeIcon icon={faAngleRight} size={18} color="#f44336" style={styles.ui_splash_contain_go_logo_back_button} />
+            <Text style={styles.ui_splash_contain_go_back_text}>
+              après, merci
+            </Text>
+            <FontAwesomeIcon
+              icon={faAngleRight}
+              size={18}
+              color="#f44336"
+              style={styles.ui_splash_contain_go_logo_back_button}
+            />
           </TouchableOpacity>
         </View>
 
         <Space Hwidth={30} />
       </LinearGradient>
-      {validate == true ? <LoaderAllScreen /> : null}
     </ScrollView>
   );
 };
@@ -452,23 +308,19 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   ui_splash_below_title_message: {
-    width: '90%',
-    height: 54,
+    width: '100%',
+    height: 94,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#7cc3bc',
     flexDirection: 'row',
     alignSelf: 'center',
-    borderBottomStartRadius: 5,
-    borderBottomEndRadius: 5,
   },
   ui_splash_below_text_message: {
-    marginTop: 8,
     fontSize: 14,
     fontWeight: '100',
-    fontFamily: 'Fontisto',
+    fontFamily: 'Nunito-Light',
     color: 'white',
-    height: 54,
   },
   ui_splash_contain_form_control: {
     width: '100%',
@@ -498,7 +350,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   ui_splash_contain_go_sucess_button: {
-    width: 115,
+    width: 105,
     height: 38,
     position: 'relative',
     left: 10,
