@@ -133,7 +133,7 @@ const Grantstarting = ({navigation}) => {
   };
 
   const handleSubmit = () => {
-    const API = 'https://localhost:5000/api/create_agency/hello';
+    const API = 'https://ed64-41-202-219-250.sa.ngrok.io/api/hello';
     fetch(API, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},
