@@ -11,7 +11,7 @@ import {
   Image,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRight, faTheaterMasks} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
@@ -124,10 +124,10 @@ const Getconnecting = ({navigation}) => {
             console.log(value);
           }}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
-            je me connecte
+            me connecter
           </Text>
           <FontAwesomeIcon
-            icon={faArrowRight}
+            icon={faTheaterMasks}
             size={16}
             color="#f44336"
             style={styles.ui_splash_contain_logo_sucess_button}
@@ -231,18 +231,19 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_go_sucess_button: {
     width: 135,
-    height: 45,
+    height: 40,
     position: 'relative',
     left: 22,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: '#e91e6324',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
+    borderRadius: 30,
   },
   ui_splash_contain_logo_sucess_button: {
     position: 'relative',
-    left: -5,
+    left: -2,
     top: 1.1,
   },
   ui_splash_contain_go_back_text: {
@@ -254,9 +255,10 @@ const styles = StyleSheet.create({
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
     fontSize: 15,
-    color: '#f44336',
-    fontFamily: 'PontanoSans-Regular',
-    left: -12,
+    color: '#101010c9',
+    fontFamily: 'Hind-Medium',
+    left: -8,
+    fontWeight: '100',
   },
   ui_splash_contain_title_cle_connexion: {
     position: 'relative',
