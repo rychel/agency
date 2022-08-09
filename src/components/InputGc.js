@@ -1,28 +1,33 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {faSquare} from '@fortawesome/free-solid-svg-icons';
 
 const InputGc = props => {
-  const {title, keyboard, Placeholder} = props;
+  const {keyboard, Placeholder, onFocus, syncInput, onBlur} = props;
 
   return (
     <View>
       <View style={styles.ui_splash_contain_title_form_control}>
-        <View style={styles.ui_splash_title_block_form_control}>
-          <Text style={styles.ui_splash_title_form_control}>{title}</Text>
-        </View>
         <View style={styles.ui_splash_contain_saisi_form_display}>
+          <FontAwesomeIcon
+            icon={faSquare}
+            style={styles.ui_splash_contain_saisi_form_logo_left}
+            color={syncInput ? "white" : "none"}
+            size={15}
+          />
           <TextInput
-            style={styles.ui_splash_input_form_control}
+            style={syncInput ? styles.ui_splash_input_form_control_focus : styles.ui_splash_input_form_control}
             keyboardType={keyboard}
             placeholder={Placeholder}
+            onFocus={onFocus}
+            onBlur={onBlur}
             {...props}
           />
           <FontAwesomeIcon
-            icon={faAngleRight}
-            style={styles.ui_splash_contain_saisi_form_logo_direction}
-            color="#00000014"
+            icon={faSquare}
+            style={styles.ui_splash_contain_saisi_form_logo_right}
+            color={syncInput ? "white" : "none"}
             size={15}
           />
         </View>
@@ -33,9 +38,9 @@ const InputGc = props => {
 
 const styles = StyleSheet.create({
   ui_splash_input_form_control: {
-    width: '97%',
+    width: '88%',
     height: 50,
-    fontSize: 14,
+    fontSize: 16,
     borderWidth: 0.5,
     left: 4,
     borderRadius: 4,
@@ -43,15 +48,30 @@ const styles = StyleSheet.create({
     top: 3,
     borderColor: '#101010a6',
     color: '#f44336',
-    fontFamily: 'NotoSans-Regular',
+    fontFamily: 'Hind-Light',
+  },
+  ui_splash_input_form_control_focus: {
+    width: '88%',
+    height: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    left: 4,
+    borderRadius: 4,
+    marginBottom: 5,
+    top: 3,
+    borderColor: '#2196f3',
+    color: '#f44336',
+    fontFamily: 'Hind-Light',
   },
   ui_splash_contain_title_form_control: {
     flexDirection: 'column',
     top: 10,
     backgroundColor: 'white',
-    height: 75,
-    width: '90%',
-    alignSelf: 'center',
+    height: 60,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
   },
   ui_splash_title_block_form_control: {
     flexDirection: 'row',
@@ -70,13 +90,16 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_saisi_form_display: {
     flexDirection: 'row',
-    backgroundColor: 'transparent',
-    height: 70,
+    backgroundColor: 'white',
+    height: 57,
     alignItems: 'center',
-    top: -14,
   },
-  ui_splash_contain_saisi_form_logo_direction: {
-    left: -30,
+  ui_splash_contain_saisi_form_logo_left: {
+    left: 9,
+    zIndex: 1,
+  },
+  ui_splash_contain_saisi_form_logo_right: {
+    left: -5,
   },
 });
 
