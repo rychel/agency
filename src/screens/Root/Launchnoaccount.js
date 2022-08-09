@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     backgroundColor: '#f4433654',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
