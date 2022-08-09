@@ -8,15 +8,15 @@ import {
   StatusBar,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
 
 import InputGc from '../../components/InputGc';
-import Space from '../../components/Space';
 
 const Getconnecting = ({navigation}) => {
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
@@ -30,7 +30,18 @@ const Getconnecting = ({navigation}) => {
     ]).start();
   }, [EndWelcomeBrave]);
 
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [syncput, setSyncput] = useState(false);
+  const [syncput2, setSyncput2] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Directeur', value: 'directeur'},
+    {label: 'Sécrétaire', value: 'secretaire'},
+    {label: 'Caissier', value: 'caissier'},
+    {label: 'Composteur', value: 'composteur'},
+    {label: 'Chauffeur', value: 'chauffeur'},
+  ]);
 
   const dispatch = useDispatch();
   const FakeLog = () => {
@@ -48,13 +59,14 @@ const Getconnecting = ({navigation}) => {
       />
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
-          <Text style={styles.ui_splash_logo_started2}>acxios</Text>
           <Text style={styles.ui_splash_logo_started}>connexion</Text>
         </View>
         <View style={styles.ui_splash_started_title_welcome}>
-          <Text style={styles.ui_splash_started_font_config1}>
-            Connecte toi à ton agence.
-          </Text>
+          <Image
+            source={require('../../../assets/Shown.png')}
+            style={styles.ui_splash_started_pixart_welcome}
+            resizeMode="contain"
+          />
         </View>
       </View>
       <Animated.View
@@ -62,37 +74,56 @@ const Getconnecting = ({navigation}) => {
           styles.ui_splash_started_title_contracts,
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
-        <Space Hwidth={0} />
         <InputGc
           title="Utilisateur"
-          keyboard="alphabetic"
-          Placeholder="John doe"
+          keyboard="numeric"
+          Placeholder="Numéro de téléphone"
+          onFocus={() => {
+            setSyncput(true);
+          }}
+          onBlur={() => {
+            setSyncput(false);
+          }}
+          syncInput={syncput}
         />
         <InputGc
           title="Mot de passe"
-          keyboard="alphabetic"
-          Placeholder="xxx-xxx"
+          keyboard="default"
+          Placeholder="Mot de passe"
+          onFocus={() => {
+            setSyncput2(true);
+          }}
+          onBlur={() => {
+            setSyncput2(false);
+          }}
+          syncInput={syncput2}
           secureTextEntry
         />
-        <Text style={styles.ui_splash_contain_title_cle_connexion}>se connecter en tant que</Text>
-        <Picker
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedLanguage(itemValue)
-          }
-          themeVariant='light'
-          mode='dropdown'
-          style={styles.ui_splash_contain_globe_role_connexion}>
-          <Picker.Item label="Directeur" value="dir" />
-          <Picker.Item label="Caissier" value="cai" />
-          <Picker.Item label="Composteur" value="com" />
-          <Picker.Item label="Sécrétaire" value="sec" />
-          <Picker.Item label="Chauffeur" value="cha" />
-        </Picker>
+        <Text style={styles.ui_splash_contain_title_cle_connexion}>
+          se connecter en tant que
+        </Text>
+        <ScrollView nestedScrollEnabled={false}>
+          <DropDownPicker
+            open={open}
+            placeholder="votre poste"
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            textStyle={{
+              fontSize: 15,
+              fontFamily: 'Hind-Light',
+            }}
+            style={styles.ui_splash_contain_dropdown_cadre}
+          />
+        </ScrollView>
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
           activeOpacity={0.6}
-          onPress={FakeLog}>
+          onPress={() => {
+            console.log(value);
+          }}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
             je me connecte
           </Text>
@@ -114,28 +145,33 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   ui_splash_global_app_header_contain: {
-    height: 230,
+    height: 200,
     width: '100%',
-    marginBottom: 20,
-    backgroundColor: '#7cc3bc',
     justifyContent: 'center',
     position: 'relative',
+    flexDirection: 'row',
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: '#ffc10730',
+    top: -5,
   },
   ui_splash_contain_header_logo_started: {
     alignSelf: 'center',
-    height: 90,
-    backgroundColor: 'transparent',
+    height: 140,
+    backgroundColor: '#03a9f47a',
     overflow: 'hidden',
-    top: -20,
-    left: -40,
+    top: -60,
+    left: 5,
     flexDirection: 'row',
+    borderTopEndRadius: 80,
+    borderBottomStartRadius: 2,
   },
   ui_splash_logo_started: {
     alignSelf: 'center',
-    color: 'white',
-    fontSize: 35,
-    fontFamily: 'materialcommunityIcons',
-    transform: [{rotateZ: '4deg'}],
+    color: 'black',
+    fontSize: 34,
+    fontFamily: 'Montserrat-VariableFont_wght',
+    transform: [{rotateZ: '6deg'}],
   },
   ui_splash_logo_started2: {
     alignSelf: 'center',
@@ -146,18 +182,21 @@ const styles = StyleSheet.create({
   ui_splash_started_title_welcome: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '85%',
+    width: 160,
     alignSelf: 'center',
-    height: 30,
-    backgroundColor: '#7addd3c9',
-    marginTop: 0,
-    marginBottom: 10,
+    height: 230,
+    backgroundColor: '#7addd32e',
     position: 'relative',
     fontFamily: 'cursive',
     fontSize: 20,
     borderRadius: 100,
-    top: 22,
+    top: 52,
     padding: 5,
+    left: -30,
+  },
+  ui_splash_started_pixart_welcome: {
+    width: 90,
+    height: 180,
   },
   ui_splash_started_font_config1: {
     fontSize: 14,
@@ -165,12 +204,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_started_title_contracts: {
     width: '100%',
-    height: 293,
-    marginTop: -58,
+    height: 323,
     position: 'relative',
-    backgroundColor: 'white',
-    borderTopStartRadius: 40,
-    borderTopEndRadius: 40,
   },
   ui_splash_started_text_contracts1: {
     color: '#000000c4',
@@ -224,20 +259,22 @@ const styles = StyleSheet.create({
     fontFamily: 'PontanoSans-Regular',
     left: -12,
   },
-  ui_splash_contain_globe_role_connexion: {
-    borderWidth: 1,
-    borderColor: 'red',
-    color: '#f44336',
-    width: '98%',
-    left: 5,
-    fontFamily: 'PontanoSans-Regular',
-  },
   ui_splash_contain_title_cle_connexion: {
     position: 'relative',
     fontSize: 14,
     color: '#00000094',
+    fontFamily: 'Rajdhani-Regular',
+    left: 24,
+  },
+  ui_splash_contain_dropdown_cadre: {
+    borderWidth: 0.4,
+    borderColor: '#101010a6',
+    color: '#f44336',
+    width: '88%',
+    left: 4,
     fontFamily: 'PontanoSans-Regular',
-    left: 20,
+    alignSelf: 'center',
+    borderRadius: 4,
   },
 });
 
