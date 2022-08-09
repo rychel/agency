@@ -102,23 +102,21 @@ const Getconnecting = ({navigation}) => {
         <Text style={styles.ui_splash_contain_title_cle_connexion}>
           se connecter en tant que
         </Text>
-        <ScrollView nestedScrollEnabled={false}>
-          <DropDownPicker
-            open={open}
-            placeholder="votre poste"
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            textStyle={{
-              fontSize: 15,
-              fontFamily: 'Hind-Light',
-            }}
-            listMode="MODAL"
-            style={styles.ui_splash_contain_dropdown_cadre}
-          />
-        </ScrollView>
+        <DropDownPicker
+          open={open}
+          placeholder="votre poste"
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          textStyle={{
+            fontSize: 15,
+            fontFamily: 'Hind-Light',
+          }}
+          listMode="MODAL"
+          style={styles.ui_splash_contain_dropdown_cadre}
+        />
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
           activeOpacity={0.6}
