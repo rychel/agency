@@ -6,6 +6,7 @@ import {
   Dimensions,
   Animated,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -41,7 +42,7 @@ const Launchnoaccount = ({navigation}) => {
   };
 
   return (
-    <View>
+    <ScrollView>
       <StatusBar
         animated={true}
         backgroundColor="#7cc3bc"
@@ -87,12 +88,11 @@ const Launchnoaccount = ({navigation}) => {
           onPress={goWelcomeBrave}
           style={styles.ui_splash_started_container_button_welcome}>
           <View style={styles.ui_splash_started_button_welcome}>
-            <Text style={styles.ui_splash_started_button_text}>Commencer</Text>
-            <FontAwesomeIcon icon={faArrowRight} size={17} color="white" />
+            <Text style={styles.ui_splash_started_button_text}>débutez maintenant !</Text>
           </View>
         </TouchableOpacity>
       </Animated.View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_app_header_contain: {
     height: 430,
-    width: Dimensions.get('window').width,
+    width: '100%',
     marginBottom: 20,
     backgroundColor: '#7cc3bc',
     alignContent: 'center',
@@ -172,11 +172,11 @@ const styles = StyleSheet.create({
   },
   ui_splash_started_contain_text_contracts2: {
     left: 10,
-    fontSize: 13,
+    fontSize: 14,
     width: 160,
     padding: 3,
     borderRadius: 100,
-    fontFamily: 'Nunito-Light'
+    fontFamily: 'PoiretOne-Regular'
   },
   ui_splash_started_text_contracts2: {
     color: '#f44336bd',
@@ -199,26 +199,26 @@ const styles = StyleSheet.create({
     top: -5,
   },
   ui_splash_started_button_welcome: {
-    width: 115,
+    width: 175,
     height: 30,
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: '#9c27b0',
+    justifyContent: 'flex-end',
+    backgroundColor: '#f4433654',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    left: 80,
+    left: -20,
     top: 10,
+    alignSelf: 'flex-end',
   },
   ui_splash_started_button_text: {
     fontSize: 15,
     marginRight: 5,
-    fontFamily: 'Entypo',
+    fontFamily: 'Quicksand-VariableFont_wght',
     position: 'relative',
-    top: -1,
-    color: 'white',
+    color: '#000000a6',
   },
 });
 
