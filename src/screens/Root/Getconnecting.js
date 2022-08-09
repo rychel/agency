@@ -11,7 +11,7 @@ import {
   Image,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faArrowRight, faTheaterMasks} from '@fortawesome/free-solid-svg-icons';
+import {faTheaterMasks} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
