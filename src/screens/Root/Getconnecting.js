@@ -115,6 +115,7 @@ const Getconnecting = ({navigation}) => {
               fontSize: 15,
               fontFamily: 'Hind-Light',
             }}
+            listMode="MODAL"
             style={styles.ui_splash_contain_dropdown_cadre}
           />
         </ScrollView>
