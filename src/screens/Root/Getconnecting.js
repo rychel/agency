@@ -11,7 +11,7 @@ import {
   Image,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTheaterMasks} from '@fortawesome/free-solid-svg-icons';
+import {faTheaterMasks, faCaretSquareLeft} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
@@ -46,6 +46,10 @@ const Getconnecting = ({navigation}) => {
   const dispatch = useDispatch();
   const FakeLog = () => {
     dispatch(Login('rick', '123'));
+  };
+
+  const gotoGetstarting = () => {
+    navigation.goBack('Get starting');
   };
 
   return (
@@ -132,6 +136,20 @@ const Getconnecting = ({navigation}) => {
             color="#f44336"
             style={styles.ui_splash_contain_logo_sucess_button}
           />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.ui_splash_contain_go_return_button}
+          activeOpacity={0.6}
+          onPress={gotoGetstarting}>
+          <FontAwesomeIcon
+            icon={faCaretSquareLeft}
+            size={16}
+            color="#948eddb5"
+            style={styles.ui_splash_contain_logo_return_button}
+          />
+          <Text style={styles.ui_splash_contain_go_return_text}>
+            retour
+          </Text>
         </TouchableOpacity>
       </Animated.View>
     </ScrollView>
@@ -244,6 +262,23 @@ const styles = StyleSheet.create({
   ui_splash_contain_logo_sucess_button: {
     position: 'relative',
     left: -2,
+    top: 1.1,
+  },
+  ui_splash_contain_go_return_button: {
+    width: 88,
+    height: 40,
+    position: 'relative',
+    left: 22,
+    flexDirection: 'row',
+    backgroundColor: '#948edd42',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    borderRadius: 30,
+  },
+  ui_splash_contain_logo_return_button: {
+    position: 'relative',
+    left: -10,
     top: 1.1,
   },
   ui_splash_contain_go_back_text: {
