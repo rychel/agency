@@ -7,32 +7,30 @@ const InputGc = props => {
   const {onFocus, syncInput, onBlur} = props;
 
   return (
-    <View>
-      <View style={styles.ui_splash_contain_title_form_control}>
-        <View style={styles.ui_splash_contain_saisi_form_display}>
-          <FontAwesomeIcon
-            icon={faSquare}
-            style={styles.ui_splash_contain_saisi_form_logo_left}
-            color={syncInput ? 'white' : 'none'}
-            size={15}
-          />
-          <TextInput
-            style={
-              syncInput
-                ? styles.ui_splash_input_form_control_focus
-                : styles.ui_splash_input_form_control
-            }
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...props}
-          />
-          <FontAwesomeIcon
-            icon={faSquare}
-            style={styles.ui_splash_contain_saisi_form_logo_right}
-            color={syncInput ? 'white' : 'none'}
-            size={15}
-          />
-        </View>
+    <View style={styles.ui_splash_contain_title_form_control}>
+      <View style={styles.ui_splash_contain_saisi_form_display}>
+        <FontAwesomeIcon
+          icon={faSquare}
+          style={styles.ui_splash_contain_saisi_form_logo_left}
+          color={syncInput ? 'white' : 'none'}
+          size={15}
+        />
+        <TextInput
+          style={
+            syncInput
+              ? styles.ui_splash_input_form_control_focus
+              : styles.ui_splash_input_form_control
+          }
+          onFocus={onFocus}
+          onBlur={onBlur}
+          {...props}
+        />
+        <FontAwesomeIcon
+          icon={faSquare}
+          style={styles.ui_splash_contain_saisi_form_logo_right}
+          color={syncInput ? 'white' : 'none'}
+          size={15}
+        />
       </View>
     </View>
   );

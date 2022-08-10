@@ -1,27 +1,35 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faSquare} from '@fortawesome/free-solid-svg-icons';
 
 const InputGs = props => {
-  const {title, keyboard, onChange, onBlur, onChangeText, errors, onFocus} =
-    props;
+  const {Footus, onChange, onBlur, onChangeText, errors, onFocus} = props;
 
   return (
     <View style={styles.ui_splash_global_control}>
-      <Text style={styles.ui_splash_title_form_control}>{title}</Text>
-      <TextInput
-        style={
-          errors
-            ? styles.ui_splash_input_form_control_error
-            : styles.ui_splash_input_form_control
-        }
-        keyboardType={keyboard}
-        onChange={onChange}
-        onBlur={onBlur}
-        onChangeText={onChangeText}
-        errors={errors}
-        onFocus={onFocus}
-        {...props}
-      />
+      <View style={styles.ui_splash_input_fusion_globe_control}>
+        <FontAwesomeIcon
+          icon={faSquare}
+          size={21}
+          color={Footus ? 'white' : 'none'}
+          style={styles.ui_splash_contain_saisi_form_logo_left}
+        />
+        <TextInput
+          style={
+            Footus
+              ? styles.ui_splash_input_form_control_focus
+              : styles.ui_splash_input_form_control
+          }
+          onChange={onChange}
+          onBlur={onBlur}
+          onChangeText={onChangeText}
+          errors={errors}
+          onFocus={onFocus}
+          {...props}
+        />
+      </View>
+
       {errors ? (
         <View style={styles.ui_splash_title_form_error_caps_control}>
           <Text style={styles.ui_splash_title_form_error_control}>
@@ -34,51 +42,58 @@ const InputGs = props => {
 };
 
 const styles = StyleSheet.create({
+  ui_splash_global_control: {
+    width: '98%',
+    fontSize: 12,
+    color: '#9c27b0',
+    overflow: 'hidden',
+    flexDirection: 'column',
+  },
+  ui_splash_input_fusion_globe_control: {
+    width: '98%',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    height: 66,
+  },
   ui_splash_input_form_control: {
-    width: '90%',
-    height: 34,
+    width: '97%',
+    height: 55,
     alignSelf: 'center',
-    borderWidth: 0.6,
+    borderWidth: 0.8,
     borderColor: '#0a0a0a61',
-    fontSize: 12,
+    fontSize: 14,
     color: '#9c27b0',
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    marginBottom: 1,
-    left: -4,
+    top: -13,
+    borderRadius: 4,
+    fontFamily: 'Roboto-Light',
   },
-  ui_splash_input_form_control_error: {
-    width: '90%',
-    height: 34,
+  ui_splash_input_form_control_focus: {
+    width: '97%',
+    height: 55,
     alignSelf: 'center',
-    borderWidth: 0.6,
-    borderColor: 'red',
-    fontSize: 12,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
+    borderWidth: 1.5,
+    borderColor: '#7baffd',
+    fontSize: 14,
     color: '#9c27b0',
-    marginBottom: 1,
-    left: -4,
-  },
-  ui_splash_title_form_control: {
-    left: 16,
-    fontSize: 15,
-    top: 5,
-    color: '#0a0a0a9e',
-    fontFamily: 'Nunito-ExtraLight',
+    borderRadius: 4,
+    top: -13,
+    fontFamily: 'Roboto-Light',
   },
   ui_splash_title_form_error_control: {
-    left: 14,
+    left: 7,
     fontSize: 10.45,
     color: 'red',
     padding: 3,
     backgroundColor: '#ffeb3b',
-    borderRadius: 100,
+    borderRadius: 3,
   },
   ui_splash_title_form_error_caps_control: {
     flexDirection: 'row',
+  },
+  ui_splash_contain_saisi_form_logo_left: {
+    left: 1,
+    zIndex: 1,
+    top: 1,
   },
 });
 
