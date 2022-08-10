@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-solid-svg-icons';
 
 const InputGc = props => {
-  const {keyboard, Placeholder, onFocus, syncInput, onBlur} = props;
+  const {onFocus, syncInput, onBlur} = props;
 
   return (
     <View>
@@ -18,8 +18,6 @@ const InputGc = props => {
           />
           <TextInput
             style={syncInput ? styles.ui_splash_input_form_control_focus : styles.ui_splash_input_form_control}
-            keyboardType={keyboard}
-            placeholder={Placeholder}
             onFocus={onFocus}
             onBlur={onBlur}
             {...props}
