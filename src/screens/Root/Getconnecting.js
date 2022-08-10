@@ -79,7 +79,6 @@ const Getconnecting = ({navigation}) => {
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
         <InputGc
-          title="Utilisateur"
           keyboard="numeric"
           Placeholder="Numéro de téléphone"
           onFocus={() => {
@@ -91,7 +90,6 @@ const Getconnecting = ({navigation}) => {
           syncInput={syncput}
         />
         <InputGc
-          title="Mot de passe"
           keyboard="default"
           Placeholder="Mot de passe"
           onFocus={() => {
