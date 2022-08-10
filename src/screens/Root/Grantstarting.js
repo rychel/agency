@@ -9,13 +9,17 @@ import {
   StatusBar,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faAngleRight, faPaperPlane, faBoxOpen} from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleRight,
+  faPaperPlane,
+  faBoxOpen,
+  faAngleDoubleLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import InputGs from '../../components/InputGs';
+import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
 import LoaderAllScreen from '../../components/LoaderAllScreen';
-
 import {validEmail, validChiffre, validLettre} from '../../utils/regex';
 
 const Grantstarting = ({navigation}) => {
@@ -23,22 +27,44 @@ const Grantstarting = ({navigation}) => {
     navigation.goBack('Get starting');
   };
 
+  const [countstep, setCountstep] = useState(0);
+
   const [nomagence, setNomagence] = useState('');
   const [nomorganisation, setNomorganisation] = useState('');
   const [codesecurite, setCodesecurite] = useState('');
   const [nomchefagence, setNomchefagence] = useState('');
   const [prenomchefagence, setPrenomchefagence] = useState('');
-  const [numerocnichef, setNumerocnichef] = useState('');
+  const [numero, setNumero] = useState('');
   const [password, setPassword] = useState('');
 
+  const [success, setSuccess] = useState({
+    sNomchefagence: false,
+    sPrenomchefagence: false,
+    sNumero: false,
+    sPassword: false,
+    sNomagence: false,
+    sNomorganisation: false,
+    sCodesecurite: false,
+  });
+
   const [errors, setErrors] = useState({
-    eNom: '',
-    ePrenom: '',
-    eNumerocnichef: '',
+    eNomchefagence: '',
+    ePrenomchefagence: '',
+    eNumero: '',
     ePassword: '',
     eNomagence: '',
     eNomorganisation: '',
     eCodesecurite: '',
+  });
+
+  const [footus, setFootus] = useState({
+    fNomchefagence: false,
+    fPrenomchefagence: false,
+    fNomagence: false,
+    fNomorganisation: false,
+    fCodesecurite: false,
+    fPassword: false,
+    fNumero: false,
   });
 
   const [bypass, setBypass] = useState({
@@ -53,6 +79,7 @@ const Grantstarting = ({navigation}) => {
         handleErrorOnBlur('eNomagence', 'ce champ est obligatoire.');
       } else {
         handleErrorOnBlur('eNomagence', '');
+        handleSuccessField('sNomagence', true);
       }
     }
     if (fieldname == 'Nomorganisation') {
@@ -66,6 +93,7 @@ const Grantstarting = ({navigation}) => {
           );
         } else {
           handleErrorOnBlur('eNomorganisation', '');
+          handleSuccessField('sNomorganisation', true);
         }
       }
     }
@@ -89,6 +117,7 @@ const Grantstarting = ({navigation}) => {
               );
             }
             handleErrorOnBlur('eCodesecurite', '');
+            handleSuccessField('sCodesecurite', true);
           } else {
             handleErrorOnBlur(
               'eCodesecurite',
@@ -103,6 +132,7 @@ const Grantstarting = ({navigation}) => {
         handleErrorOnBlur('eNomchefagence', 'ce champ est obligatoire.');
       } else {
         handleErrorOnBlur('eNomchefagence', '');
+        handleSuccessField('sNomchefagence', true);
       }
     }
     if (fieldname == 'Prenomchefagence') {
@@ -110,19 +140,40 @@ const Grantstarting = ({navigation}) => {
         handleErrorOnBlur('ePrenomchefagence', 'ce champ est obligatoire.');
       } else {
         handleErrorOnBlur('ePrenomchefagence', '');
+        handleSuccessField('sPrenomchefagence', true);
       }
     }
-    if (fieldname == 'Numerocnichef') {
-      if (numerocnichef == '') {
-        handleErrorOnBlur('eNumerocnichef', 'ce champ est obligatoire.');
+    if (fieldname == 'Password') {
+      if (password == '') {
+        handleErrorOnBlur('ePassword', 'ce champ est obligatoire.');
       } else {
-        if (numerocnichef.length < 5) {
+        if (password.length < 5) {
           handleErrorOnBlur(
-            'eNumerocnichef',
-            'Le numéro de votre cni doit supérieur à 5 caractères',
+            'ePassword',
+            'Votre mot de passe doit etre fiable.',
           );
         } else {
-          handleErrorOnBlur('eNumerocnichef', '');
+          if (validChiffre.test(password)) {
+            handleErrorOnBlur('ePassword', '');
+            handleSuccessField('sPassword', true);
+          } else {
+            handleErrorOnBlur(
+              'ePassword',
+              'Votre mot de passe doit contenir des nombres',
+            );
+          }
+        }
+      }
+    }
+    if (fieldname == 'Numero') {
+      if (numero == '') {
+        handleErrorOnBlur('eNumero', 'ce champ est obligatoire.');
+      } else {
+        if (numero.length == 9 && !Number.isNaN(password)) {
+          handleErrorOnBlur('eNumero', '');
+          handleSuccessField('sNumero', true);
+        } else {
+          handleErrorOnBlur('eNumero', 'Numéro de téléphone invalide');
         }
       }
     }
@@ -132,18 +183,34 @@ const Grantstarting = ({navigation}) => {
     setErrors({...errors, [label]: value});
   };
 
-  const handleSubmit = () => {
-    const API = 'https://ed64-41-202-219-250.sa.ngrok.io/api/hello';
-    fetch(API, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(json => json.json())
-      .then(value => console.log(value))
-      .catch(e => {
-        console.log(e);
-      });
+  const handleStyleField = (label, value) => {
+    setFootus({...footus, [label]: value});
   };
+
+  const handleSuccessField = (label, value) => {
+    setSuccess({...success, [label]: value});
+  };
+
+  const handleSubmit = () => {
+    if (
+      success.sNomagence &&
+      success.sNomorganisation &&
+      success.sCodesecurite
+    ) {
+      setCountstep(1);
+    }
+    if (success.sNomchefagence && success.sPrenomchefagence) {
+      setCountstep(2);
+    }
+  };
+
+  const handleForward = () => {
+    if (countstep > 0) {
+      setCountstep(countstep - 1);
+    }
+  };
+
+  console.log(countstep);
 
   return (
     <ScrollView style={styles.ui_splash_global_todo_contain}>
@@ -154,12 +221,7 @@ const Grantstarting = ({navigation}) => {
         showHideTransition="fade"
         hidden={false}
       />
-      <LinearGradient
-        start={{x: 0.3, y: 0.5}}
-        end={{x: 3.65, y: 1.0}}
-        locations={[1.2, 0.6]}
-        colors={['white', 'white']}
-        style={styles.ui_splash_todo_contain}>
+      <View style={styles.ui_splash_todo_contain}>
         <View style={styles.ui_splash_contain_form_control}>
           <View style={styles.ui_splash_below_title_message}>
             <Text style={styles.ui_splash_below_text_message}>
@@ -168,106 +230,186 @@ const Grantstarting = ({navigation}) => {
             </Text>
           </View>
           <View style={styles.ui_splash_contain_second_form_control}>
-            <InputGs
-              title="Nom de l'agence"
-              value={nomagence}
-              keyboard="alphabetic"
-              onBlur={() => handleOnBlurText('Nomagence')}
-              onChangeText={value => {
-                setNomagence(value);
-              }}
-              errors={errors.eNomagence}
-              onFocus={() => {
-                handleErrorOnBlur('eNomagence', null);
-              }}
-              Icon="tags"
-            />
-            <InputGs
-              title="Nom de l'organisation"
-              value={nomorganisation}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Nomorganisation')}
-              onBlur={() => handleOnBlurText('Nomorganisation')}
-              onChangeText={value => setNomorganisation(value)}
-              errors={errors.eNomorganisation}
-              onFocus={() => {
-                handleErrorOnBlur('eNomorganisation', null);
-              }}
-            />
-            <InputGs
-              title="Code de sécurité de l'agence"
-              value={codesecurite}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Codesecurite')}
-              onBlur={() => handleOnBlurText('Codesecurite')}
-              onChangeText={value => {
-                setCodesecurite(value);
-              }}
-              errors={errors.eCodesecurite}
-              onFocus={() => {
-                handleErrorOnBlur('eCodesecurite', null);
-              }}
-            />
-            <InputGs
-              title="Nom du chef d'agence"
-              value={nomchefagence}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Nomchefagence')}
-              onBlur={() => handleOnBlurText('Nomchefagence')}
-              onChangeText={value => {
-                setNomchefagence(value);
-              }}
-              errors={errors.eNomchefagence}
-              onFocus={() => {
-                handleErrorOnBlur('eNomchefagence', null);
-              }}
-            />
-            <InputGs
-              title="Prenom du chef d'agence"
-              value={prenomchefagence}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Prenomchefagence')}
-              onBlur={() => handleOnBlurText('Prenomchefagence')}
-              onChangeText={value => {
-                setPrenomchefagence(value);
-              }}
-              errors={errors.ePrenomchefagence}
-              onFocus={() => {
-                handleErrorOnBlur('ePrenomchefagence', null);
-              }}
-            />
-            <InputGs
-              title="Numero CNI ou Recepice"
-              value={numerocnichef}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Numerocnichef')}
-              onBlur={() => handleOnBlurText('Numerocnichef')}
-              onChangeText={value => {
-                setNumerocnichef(value);
-              }}
-              errors={errors.eNumerocnichef}
-              onFocus={() => {
-                handleErrorOnBlur('eNumerocnichef', null);
-              }}
-            />
-            <InputGs
-              title="Mot de passe du chef d'agence"
-              value={password}
-              keyboard="alphabetic"
-              onChange={() => handleOnBlurText('Password')}
-              onBlur={() => handleOnBlurText('Password')}
-              onChangeText={value => {
-                setPassword(value);
-              }}
-              errors={errors.ePassword}
-              onFocus={() => {
-                handleErrorOnBlur('ePassword', null);
-              }}
-            />
+            {countstep > 0 ? (
+              <TitleInputGs
+                Title="Et puis parlons un peu de vous"
+                Subtitle="Que pouvez-vous nous dire sur vous ?"
+              />
+            ) : (
+              <TitleInputGs
+                Title="Parlant de votre nouvelle agence"
+                Subtitle="Que pouvez-vous nous dire dessus ?"
+              />
+            )}
+            <Space Hwidth={30} />
+            {countstep === 0 ? (
+              <View style={styles.ui_splash_contain_second_globe_form_control}>
+                <InputGs
+                  value={nomagence}
+                  keyboard="default"
+                  onBlur={() => {
+                    handleOnBlurText('Nomagence');
+                    handleStyleField('fNomagence', false);
+                  }}
+                  onChangeText={value => {
+                    setNomagence(value);
+                  }}
+                  errors={errors.eNomagence}
+                  onFocus={() => {
+                    handleErrorOnBlur('eNomagence', null);
+                    handleStyleField('fNomagence', true);
+                  }}
+                  placeholder="Nom de l'agence"
+                  Footus={footus.fNomagence}
+                />
+                <InputGs
+                  value={nomorganisation}
+                  keyboard="alphabetic"
+                  onChange={() => handleOnBlurText('Nomorganisation')}
+                  onBlur={() => {
+                    handleOnBlurText('Nomorganisation');
+                    handleStyleField('fNomorganisation', false);
+                  }}
+                  onChangeText={value => setNomorganisation(value)}
+                  errors={errors.eNomorganisation}
+                  onFocus={() => {
+                    handleErrorOnBlur('eNomorganisation', null);
+                    handleStyleField('fNomorganisation', true);
+                  }}
+                  placeholder="Nom de l'organisation"
+                  Footus={footus.fNomorganisation}
+                />
+                <InputGs
+                  value={codesecurite}
+                  keyboard="alphabetic"
+                  onChange={() => handleOnBlurText('Codesecurite')}
+                  onBlur={() => {
+                    handleOnBlurText('Codesecurite');
+                    handleStyleField('fCodesecurite', false);
+                  }}
+                  onChangeText={value => {
+                    setCodesecurite(value);
+                  }}
+                  errors={errors.eCodesecurite}
+                  onFocus={() => {
+                    handleErrorOnBlur('eCodesecurite', null);
+                    handleStyleField('fCodesecurite', true);
+                  }}
+                  placeholder="Code de sécurité"
+                  Footus={footus.fCodesecurite}
+                />
+              </View>
+            ) : null}
+            {countstep === 1 ? (
+              <View style={styles.ui_splash_contain_second_globe_form_control}>
+                <InputGs
+                  value={nomchefagence}
+                  keyboard="alphabetic"
+                  onChange={() => handleOnBlurText('Nomchefagence')}
+                  onBlur={() => {
+                    handleOnBlurText('Nomchefagence');
+                    handleStyleField('fNomchefagence', false);
+                  }}
+                  onChangeText={value => {
+                    setNomchefagence(value);
+                  }}
+                  errors={errors.eNomchefagence}
+                  onFocus={() => {
+                    handleErrorOnBlur('eNomchefagence', null);
+                    handleStyleField('fNomchefagence', true);
+                  }}
+                  placeholder="Nom chef d'agence"
+                  Footus={footus.fNomchefagence}
+                />
+                <InputGs
+                  value={prenomchefagence}
+                  keyboard="alphabetic"
+                  onChange={() => handleOnBlurText('Prenomchefagence')}
+                  onBlur={() => {
+                    handleOnBlurText('Prenomchefagence');
+                    handleStyleField('fPrenomchefagence', false);
+                  }}
+                  onChangeText={value => {
+                    setPrenomchefagence(value);
+                  }}
+                  errors={errors.ePrenomchefagence}
+                  onFocus={() => {
+                    handleErrorOnBlur('ePrenomchefagence', null);
+                    handleStyleField('fPrenomchefagence', true);
+                  }}
+                  placeholder="Prenom chef d'agence"
+                  Footus={footus.fPrenomchefagence}
+                />
+              </View>
+            ) : null}
+            {countstep === 2 ? (
+              <View style={styles.ui_splash_contain_second_globe_form_control}>
+                <InputGs
+                  value={password}
+                  keyboard="alphabetic"
+                  onChange={() => handleOnBlurText('Password')}
+                  onBlur={() => {
+                    handleOnBlurText('Password');
+                    handleStyleField('fPassword', false);
+                  }}
+                  onChangeText={value => {
+                    setPassword(value);
+                  }}
+                  errors={errors.ePassword}
+                  onFocus={() => {
+                    handleErrorOnBlur('ePassword', null);
+                    handleStyleField('fPassword', true);
+                  }}
+                  placeholder="Mot de passe"
+                  Footus={footus.fPassword}
+                />
+                <InputGs
+                  value={numero}
+                  keyboard="numeric"
+                  onChange={() => handleOnBlurText('Numero')}
+                  onBlur={() => {
+                    handleOnBlurText('Numero');
+                    handleStyleField('fNumero', false);
+                  }}
+                  onChangeText={value => {
+                    setNumero(value);
+                  }}
+                  errors={errors.eNumero}
+                  onFocus={() => {
+                    handleErrorOnBlur('eNumero', null);
+                    handleStyleField('eNumero', true);
+                  }}
+                  placeholder="Numéro MTN/ORANGE"
+                  Footus={footus.fNumero}
+                />
+              </View>
+            ) : null}
           </View>
         </View>
         <View
           style={styles.ui_splash_contain_grant_button_create_cancel_option}>
+          <TouchableOpacity
+            style={styles.ui_splash_contain_go_back_button}
+            activeOpacity={0.9}
+            onPress={gotoGetstarting}>
+            <Text style={styles.ui_splash_contain_go_back_text}>
+              non, merci
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ui_splash_contain_go_back_button_forward}
+            activeOpacity={0.6}
+            onPress={handleForward}>
+            <FontAwesomeIcon
+              icon={faAngleDoubleLeft}
+              size={18}
+              color="#9c27b0"
+              style={styles.ui_splash_contain_go_logo_back_button}
+            />
+            <Text style={styles.ui_splash_contain_go_back_text_reward}>
+              precedent
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.ui_splash_contain_go_sucess_button}
             activeOpacity={0.6}
@@ -277,24 +419,9 @@ const Grantstarting = ({navigation}) => {
             </Text>
             <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.ui_splash_contain_go_back_button}
-            activeOpacity={0.9}
-            onPress={gotoGetstarting}>
-            <Text style={styles.ui_splash_contain_go_back_text}>
-              après, merci
-            </Text>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              size={18}
-              color="#f44336"
-              style={styles.ui_splash_contain_go_logo_back_button}
-            />
-          </TouchableOpacity>
         </View>
-
         <Space Hwidth={30} />
-      </LinearGradient>
+      </View>
     </ScrollView>
   );
 };
@@ -309,18 +436,19 @@ const styles = StyleSheet.create({
   },
   ui_splash_below_title_message: {
     width: '100%',
-    height: 94,
+    height: 134,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#7cc3bc',
+    backgroundColor: '#7cc3bc1f',
     flexDirection: 'row',
     alignSelf: 'center',
+    /* #7cc3bc */
   },
   ui_splash_below_text_message: {
     fontSize: 14,
     fontWeight: '100',
-    fontFamily: 'Nunito-Light',
-    color: 'white',
+    fontFamily: 'Montserrat-Italic-VariableFont_wght',
+    color: '#000000a6',
   },
   ui_splash_contain_form_control: {
     width: '100%',
@@ -329,45 +457,80 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
     backgroundColor: 'white',
   },
+  ui_splash_contain_second_form_control: {
+    width: '100%',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 10,
+    height: 300,
+  },
+  ui_splash_contain_second_globe_form_control: {
+    width: '99%',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   ui_splash_title_form_error_control: {
     left: 26,
     fontSize: 17,
     color: 'red',
   },
   ui_splash_contain_go_back_button: {
-    width: 100,
+    width: 80,
     height: 35,
     position: 'relative',
     left: -5,
-    textDecorationLine: 'underline',
-    flexDirection: 'row',
-    paddingLeft: 2,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ui_splash_contain_go_logo_back_button: {
-    top: -2,
+    top: 1,
+    left: -2,
+  },
+  ui_splash_contain_go_back_button_forward: {
+    width: 105,
+    height: 40,
+    position: 'relative',
+    left: -5,
+    flexDirection: 'row',
+    paddingLeft: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#9c27b01f',
+    borderRadius: 4,
+  },
+  ui_splash_contain_go_logo_back_button_reward: {
     color: 'blue',
+  },
+  ui_splash_contain_go_back_text_reward: {
+    position: 'relative',
+    left: 1,
+    fontSize: 15,
+    color: '#9c27b0',
+    fontFamily: 'PingFang SC Regular',
   },
   ui_splash_contain_go_sucess_button: {
     width: 105,
-    height: 38,
+    height: 40,
     position: 'relative',
-    left: 10,
+    left: -1,
     textDecorationLine: 'underline',
     flexDirection: 'row',
     backgroundColor: '#00bcd4',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
+    borderRadius: 7,
   },
   ui_splash_contain_go_back_text: {
     position: 'relative',
     left: -2,
     fontSize: 15,
     top: -1,
-    color: '#f44336',
-    fontFamily: 'PontanoSans-Regular',
+    color: '#14100bab',
+    fontFamily: 'Nunito-Light',
   },
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
@@ -387,11 +550,9 @@ const styles = StyleSheet.create({
     width: '100%',
     top: 5,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     marginTop: 10,
-    backgroundColor: 'white',
-    borderRadius: 100,
   },
 });
 
