@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-solid-svg-icons';
 
@@ -13,11 +13,15 @@ const InputGc = props => {
           <FontAwesomeIcon
             icon={faSquare}
             style={styles.ui_splash_contain_saisi_form_logo_left}
-            color={syncInput ? "white" : "none"}
+            color={syncInput ? 'white' : 'none'}
             size={15}
           />
           <TextInput
-            style={syncInput ? styles.ui_splash_input_form_control_focus : styles.ui_splash_input_form_control}
+            style={
+              syncInput
+                ? styles.ui_splash_input_form_control_focus
+                : styles.ui_splash_input_form_control
+            }
             onFocus={onFocus}
             onBlur={onBlur}
             {...props}
@@ -25,7 +29,7 @@ const InputGc = props => {
           <FontAwesomeIcon
             icon={faSquare}
             style={styles.ui_splash_contain_saisi_form_logo_right}
-            color={syncInput ? "white" : "none"}
+            color={syncInput ? 'white' : 'none'}
             size={15}
           />
         </View>
