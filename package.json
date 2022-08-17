@@ -13,6 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-native-fontawesome": "^0.2.7",
+    "@hookform/resolvers": "^2.9.7",
     "@react-native-async-storage/async-storage": "^1.17.6",
     "@react-native-community/checkbox": "^0.5.12",
     "@react-native-masked-view/masked-view": "^0.2.6",
@@ -22,6 +23,7 @@
     "@react-navigation/stack": "^6.2.1",
     "lottie-react-native": "^5.1.4",
     "react": "17.0.2",
+    "react-hook-form": "^7.34.2",
     "react-native": "0.68.0",
     "react-native-bootsplash": "^4.1.4",
     "react-native-dropdown-picker": "^5.4.2",
@@ -33,7 +35,8 @@
     "react-native-svg": "^12.3.0",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
