@@ -21,7 +21,6 @@ const InputGs = props => {
               ? styles.ui_splash_input_form_control_focus
               : styles.ui_splash_input_form_control
           }
-          onChange={onChange}
           onBlur={onBlur}
           onChangeText={onChangeText}
           errors={errors}
