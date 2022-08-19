@@ -19,6 +19,8 @@ const InputGs = props => {
           style={
             Footus
               ? styles.ui_splash_input_form_control_focus
+              : errors
+              ? styles.ui_splash_input_form_control_error
               : styles.ui_splash_input_form_control
           }
           onBlur={onBlur}
@@ -60,10 +62,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 0.8,
     borderColor: '#0a0a0a61',
-    fontSize: 14,
-    color: '#9c27b0',
+    fontSize: 15,
+    color: '#7baffd',
     top: -13,
     borderRadius: 4,
+    fontFamily: 'Roboto-Light',
+  },
+  ui_splash_input_form_control_error: {
+    width: '97%',
+    height: 55,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: '#f44336',
+    borderRadius: 4,
+    fontSize: 14,
+    color: '#7baffd',
+    top: -13,
     fontFamily: 'Roboto-Light',
   },
   ui_splash_input_form_control_focus: {
@@ -73,7 +87,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#7baffd',
     fontSize: 14,
-    color: '#9c27b0',
+    color: '#7baffd',
     borderRadius: 4,
     top: -13,
     fontFamily: 'Roboto-Light',
