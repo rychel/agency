@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
   },
   ui_splash_text_font_config1: {
     fontSize: 18,
-    color: '#5688d3',
-    fontFamily: 'Montserrat-VariableFont_wght',
+    color: '#00000094',
+    fontFamily: 'WorkSans-VariableFont_wght',
   },
   ui_splash_text_font_config2: {
     fontSize: 15,
     color: '#f3b457',
-    fontFamily: 'FredokaOne-Regular',
+    fontFamily: 'Roboto-Regular',
   },
 });
 
