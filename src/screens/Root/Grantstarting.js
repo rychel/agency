@@ -1,26 +1,18 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  ToastAndroid,
-  ScrollView,
-  StatusBar,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faAngleRight,
-  faPaperPlane,
-  faBoxOpen,
-  faAngleDoubleLeft,
-} from '@fortawesome/free-solid-svg-icons';
+import {faAngleLeft, faBoxOpen} from '@fortawesome/free-solid-svg-icons';
+import {validEmail, validChiffre, validLettre} from '../../utils/regex';
+import * as yup from 'yup';
+import {useForm, Controller} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
 import LoaderAllScreen from '../../components/LoaderAllScreen';
-import {validEmail, validChiffre, validLettre} from '../../utils/regex';
+import LoaderGs from '../../components/LoaderGs';
 
 const Grantstarting = ({navigation}) => {
   const gotoGetstarting = () => {
@@ -28,34 +20,10 @@ const Grantstarting = ({navigation}) => {
   };
 
   const [countstep, setCountstep] = useState(0);
+  const [activity, setActivity] = useState(false);
 
-  const [nomagence, setNomagence] = useState('');
-  const [nomorganisation, setNomorganisation] = useState('');
-  const [codesecurite, setCodesecurite] = useState('');
-  const [nomchefagence, setNomchefagence] = useState('');
-  const [prenomchefagence, setPrenomchefagence] = useState('');
   const [numero, setNumero] = useState('');
   const [password, setPassword] = useState('');
-
-  const [success, setSuccess] = useState({
-    sNomchefagence: false,
-    sPrenomchefagence: false,
-    sNumero: false,
-    sPassword: false,
-    sNomagence: false,
-    sNomorganisation: false,
-    sCodesecurite: false,
-  });
-
-  const [errors, setErrors] = useState({
-    eNomchefagence: '',
-    ePrenomchefagence: '',
-    eNumero: '',
-    ePassword: '',
-    eNomagence: '',
-    eNomorganisation: '',
-    eCodesecurite: '',
-  });
 
   const [footus, setFootus] = useState({
     fNomchefagence: false,
@@ -73,135 +41,8 @@ const Grantstarting = ({navigation}) => {
     gId: 0,
   });
 
-  const handleOnBlurText = fieldname => {
-    if (fieldname == 'Nomagence') {
-      if (nomagence == '') {
-        handleErrorOnBlur('eNomagence', 'ce champ est obligatoire.');
-      } else {
-        handleErrorOnBlur('eNomagence', '');
-        handleSuccessField('sNomagence', true);
-      }
-    }
-    if (fieldname == 'Nomorganisation') {
-      if (nomorganisation == '') {
-        handleErrorOnBlur('eNomorganisation', 'ce champ est obligatoire.');
-      } else {
-        if (nomorganisation.length < 3) {
-          handleErrorOnBlur(
-            'eNomorganisation',
-            'Le nom de votre organisation doit etre explicite.',
-          );
-        } else {
-          handleErrorOnBlur('eNomorganisation', '');
-          handleSuccessField('sNomorganisation', true);
-        }
-      }
-    }
-    if (fieldname == 'Codesecurite') {
-      if (codesecurite == '') {
-        handleErrorOnBlur('eCodesecurite', 'ce champ est obligatoire.');
-      } else {
-        if (codesecurite.length < 5) {
-          handleErrorOnBlur(
-            'eCodesecurite',
-            'Le code de sécurité de votre agence doit etre fiable.',
-          );
-        } else {
-          if (validChiffre.test(codesecurite)) {
-            if (validLettre.test(codesecurite)) {
-              console.log('good');
-            } else {
-              handleErrorOnBlur(
-                'eCodesecurite',
-                'Votre code de sécurité doit contenir des majuscules',
-              );
-            }
-            handleErrorOnBlur('eCodesecurite', '');
-            handleSuccessField('sCodesecurite', true);
-          } else {
-            handleErrorOnBlur(
-              'eCodesecurite',
-              'Votre code de sécurité doit contenir des nombres',
-            );
-          }
-        }
-      }
-    }
-    if (fieldname == 'Nomchefagence') {
-      if (nomchefagence == '') {
-        handleErrorOnBlur('eNomchefagence', 'ce champ est obligatoire.');
-      } else {
-        handleErrorOnBlur('eNomchefagence', '');
-        handleSuccessField('sNomchefagence', true);
-      }
-    }
-    if (fieldname == 'Prenomchefagence') {
-      if (prenomchefagence == '') {
-        handleErrorOnBlur('ePrenomchefagence', 'ce champ est obligatoire.');
-      } else {
-        handleErrorOnBlur('ePrenomchefagence', '');
-        handleSuccessField('sPrenomchefagence', true);
-      }
-    }
-    if (fieldname == 'Password') {
-      if (password == '') {
-        handleErrorOnBlur('ePassword', 'ce champ est obligatoire.');
-      } else {
-        if (password.length < 5) {
-          handleErrorOnBlur(
-            'ePassword',
-            'Votre mot de passe doit etre fiable.',
-          );
-        } else {
-          if (validChiffre.test(password)) {
-            handleErrorOnBlur('ePassword', '');
-            handleSuccessField('sPassword', true);
-          } else {
-            handleErrorOnBlur(
-              'ePassword',
-              'Votre mot de passe doit contenir des nombres',
-            );
-          }
-        }
-      }
-    }
-    if (fieldname == 'Numero') {
-      if (numero == '') {
-        handleErrorOnBlur('eNumero', 'ce champ est obligatoire.');
-      } else {
-        if (numero.length == 9 && !Number.isNaN(password)) {
-          handleErrorOnBlur('eNumero', '');
-          handleSuccessField('sNumero', true);
-        } else {
-          handleErrorOnBlur('eNumero', 'Numéro de téléphone invalide');
-        }
-      }
-    }
-  };
-
-  const handleErrorOnBlur = (label, value) => {
-    setErrors({...errors, [label]: value});
-  };
-
   const handleStyleField = (label, value) => {
     setFootus({...footus, [label]: value});
-  };
-
-  const handleSuccessField = (label, value) => {
-    setSuccess({...success, [label]: value});
-  };
-
-  const handleSubmit = () => {
-    if (
-      success.sNomagence &&
-      success.sNomorganisation &&
-      success.sCodesecurite
-    ) {
-      setCountstep(1);
-    }
-    if (success.sNomchefagence && success.sPrenomchefagence) {
-      setCountstep(2);
-    }
   };
 
   const handleForward = () => {
@@ -210,6 +51,72 @@ const Grantstarting = ({navigation}) => {
     }
   };
 
+  const schemeValidate = yup.object().shape({
+    nomagence: yup.string().required('ce champ est obligatoire.'),
+    nomorganisation: yup
+      .string()
+      .required('ce champ est obligatoire.')
+      .min(3, 'Le nom de votre organisation doit etre explicite.'),
+    codesecurite: yup
+      .string()
+      .required('ce champ est obligatoire.')
+      .min(6, 'Le code sécurité doit avoir au-moins 6 caractères.')
+  });
+  const schemeValidate1 = yup.object().shape({
+    nomchefagence: yup.string().required('ce champ est obligatoire.'),
+    prenomchefagence: yup.string().required('ce champ est obligatoire.'),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemeValidate),
+  });
+
+  const {
+    control: control1,
+    handleSubmit: handleSubmit1,
+    formState: {errors: errors1},
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemeValidate1),
+  });
+
+  const {
+    control: control2,
+    handleSubmit: handleSubmit2,
+    formState: {errors: errors2},
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemeValidate),
+  });
+
+  const SignStep = () => {
+    setActivity(true);
+    setTimeout(() => {
+      setActivity(false);
+    }, 1000);
+    setTimeout(() => {
+      setCountstep(1);
+    }, 500);
+  };
+
+  const SignStep1 = () => {
+    setActivity(true);
+    setTimeout(() => {
+      setActivity(false);
+    }, 1000);
+    setTimeout(() => {
+      setCountstep(2);
+    }, 500);
+  };
+
+  console.log(errors);
+  console.log('------------------------');
+  console.log(errors1);
   console.log(countstep);
 
   return (
@@ -226,10 +133,14 @@ const Grantstarting = ({navigation}) => {
           <View style={styles.ui_splash_below_title_message}>
             <Text style={styles.ui_splash_below_text_message}>
               Utiliser les informations d'une piece officielle pour creer votre
-              agence, nous aurons besoin de ces informations
+              agence, nous aurons besoin de ces informations en temps voulu.
             </Text>
           </View>
           <View style={styles.ui_splash_contain_second_form_control}>
+            {activity ? (
+              <LoaderGs Titleindiq="Juste un effort, encore un peu" />
+            ) : null}
+            <Space Hwidth={30} />
             {countstep > 0 ? (
               <TitleInputGs
                 Title="Et puis parlons un peu de vous"
@@ -242,107 +153,115 @@ const Grantstarting = ({navigation}) => {
               />
             )}
             <Space Hwidth={30} />
-            {countstep === 0 ? (
+            {countstep == 0 ? (
               <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <InputGs
-                  value={nomagence}
-                  keyboard="default"
-                  onBlur={() => {
-                    handleOnBlurText('Nomagence');
-                    handleStyleField('fNomagence', false);
-                  }}
-                  onChangeText={value => {
-                    setNomagence(value);
-                  }}
-                  errors={errors.eNomagence}
-                  onFocus={() => {
-                    handleErrorOnBlur('eNomagence', null);
-                    handleStyleField('fNomagence', true);
-                  }}
-                  placeholder="Nom de l'agence"
-                  Footus={footus.fNomagence}
+                <Controller
+                  control={control}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fNomagence', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fNomagence', true);
+                      }}
+                      placeholder="Nom de l'agence"
+                      Footus={footus.fNomagence}
+                    />
+                  )}
+                  name="nomagence"
                 />
-                <InputGs
-                  value={nomorganisation}
-                  keyboard="alphabetic"
-                  onChange={() => handleOnBlurText('Nomorganisation')}
-                  onBlur={() => {
-                    handleOnBlurText('Nomorganisation');
-                    handleStyleField('fNomorganisation', false);
-                  }}
-                  onChangeText={value => setNomorganisation(value)}
-                  errors={errors.eNomorganisation}
-                  onFocus={() => {
-                    handleErrorOnBlur('eNomorganisation', null);
-                    handleStyleField('fNomorganisation', true);
-                  }}
-                  placeholder="Nom de l'organisation"
-                  Footus={footus.fNomorganisation}
+                <Controller
+                  control={control}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fNomorganisation', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fNomorganisation', true);
+                      }}
+                      placeholder="Nom de l'organisation"
+                      Footus={footus.fNomorganisation}
+                    />
+                  )}
+                  name="nomorganisation"
                 />
-                <InputGs
-                  value={codesecurite}
-                  keyboard="alphabetic"
-                  onChange={() => handleOnBlurText('Codesecurite')}
-                  onBlur={() => {
-                    handleOnBlurText('Codesecurite');
-                    handleStyleField('fCodesecurite', false);
-                  }}
-                  onChangeText={value => {
-                    setCodesecurite(value);
-                  }}
-                  errors={errors.eCodesecurite}
-                  onFocus={() => {
-                    handleErrorOnBlur('eCodesecurite', null);
-                    handleStyleField('fCodesecurite', true);
-                  }}
-                  placeholder="Code de sécurité"
-                  Footus={footus.fCodesecurite}
+                <Controller
+                  control={control}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fCodesecurite', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fCodesecurite', true);
+                      }}
+                      placeholder="Code de sécurité"
+                      Footus={footus.fCodesecurite}
+                    />
+                  )}
+                  name="codesecurite"
                 />
               </View>
             ) : null}
-            {countstep === 1 ? (
+            {countstep == 1 ? (
               <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <InputGs
-                  value={nomchefagence}
-                  keyboard="alphabetic"
-                  onChange={() => handleOnBlurText('Nomchefagence')}
-                  onBlur={() => {
-                    handleOnBlurText('Nomchefagence');
-                    handleStyleField('fNomchefagence', false);
-                  }}
-                  onChangeText={value => {
-                    setNomchefagence(value);
-                  }}
-                  errors={errors.eNomchefagence}
-                  onFocus={() => {
-                    handleErrorOnBlur('eNomchefagence', null);
-                    handleStyleField('fNomchefagence', true);
-                  }}
-                  placeholder="Nom chef d'agence"
-                  Footus={footus.fNomchefagence}
+                <Controller
+                  control={control1}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fNomchefagence', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fNomchefagence', true);
+                      }}
+                      placeholder="Nom chef d'agence"
+                      Footus={footus.fNomchefagence}
+                    />
+                  )}
+                  name="nomchefagence"
                 />
-                <InputGs
-                  value={prenomchefagence}
-                  keyboard="alphabetic"
-                  onChange={() => handleOnBlurText('Prenomchefagence')}
-                  onBlur={() => {
-                    handleOnBlurText('Prenomchefagence');
-                    handleStyleField('fPrenomchefagence', false);
-                  }}
-                  onChangeText={value => {
-                    setPrenomchefagence(value);
-                  }}
-                  errors={errors.ePrenomchefagence}
-                  onFocus={() => {
-                    handleErrorOnBlur('ePrenomchefagence', null);
-                    handleStyleField('fPrenomchefagence', true);
-                  }}
-                  placeholder="Prenom chef d'agence"
-                  Footus={footus.fPrenomchefagence}
+                <Controller
+                  control={control1}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fPrenomchefagence', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fPrenomchefagence', true);
+                      }}
+                      placeholder="Prenom chef d'agence"
+                      Footus={footus.fPrenomchefagence}
+                    />
+                  )}
+                  name="prenomchefagence"
                 />
               </View>
             ) : null}
-            {countstep === 2 ? (
+            {countstep == 2 ? (
               <View style={styles.ui_splash_contain_second_globe_form_control}>
                 <InputGs
                   value={password}
@@ -366,7 +285,9 @@ const Grantstarting = ({navigation}) => {
                 <InputGs
                   value={numero}
                   keyboard="numeric"
-                  onChange={() => handleOnBlurText('Numero')}
+                  onChange={() => {
+                    handleOnBlurText('Numero');
+                  }}
                   onBlur={() => {
                     handleOnBlurText('Numero');
                     handleStyleField('fNumero', false);
@@ -401,9 +322,9 @@ const Grantstarting = ({navigation}) => {
             activeOpacity={0.6}
             onPress={handleForward}>
             <FontAwesomeIcon
-              icon={faAngleDoubleLeft}
+              icon={faAngleLeft}
               size={18}
-              color="#9c27b0"
+              color="#f44336b5"
               style={styles.ui_splash_contain_go_logo_back_button}
             />
             <Text style={styles.ui_splash_contain_go_back_text_reward}>
@@ -413,14 +334,23 @@ const Grantstarting = ({navigation}) => {
           <TouchableOpacity
             style={styles.ui_splash_contain_go_sucess_button}
             activeOpacity={0.6}
-            onPress={handleSubmit}>
-            <Text style={styles.ui_splash_contain_go_sucess_text}>
-              création
+            onPress={
+              countstep == 0 ? handleSubmit(SignStep) : handleSubmit1(SignStep1)
+            }>
+            <Text style={styles.ui_splash_contain_go_before_sucess_text}>
+              suivant
             </Text>
-            <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
+            {countstep == 5 ? (
+              <>
+                <Text style={styles.ui_splash_contain_go_sucess_text}>
+                  création
+                </Text>
+                <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
+              </>
+            ) : null}
           </TouchableOpacity>
         </View>
-        <Space Hwidth={30} />
+        <Space Hwidth={18} />
       </View>
     </ScrollView>
   );
@@ -436,19 +366,17 @@ const styles = StyleSheet.create({
   },
   ui_splash_below_title_message: {
     width: '100%',
-    height: 134,
+    height: 104,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#7cc3bc1f',
+    backgroundColor: '#7cc3bc',
     flexDirection: 'row',
     alignSelf: 'center',
-    /* #7cc3bc */
   },
   ui_splash_below_text_message: {
-    fontSize: 14,
-    fontWeight: '100',
-    fontFamily: 'Montserrat-Italic-VariableFont_wght',
-    color: '#000000a6',
+    fontSize: 15,
+    fontFamily: 'WorkSans-VariableFont_wght',
+    color: 'white',
   },
   ui_splash_contain_form_control: {
     width: '100%',
@@ -462,8 +390,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 10,
-    height: 300,
+    height: 320,
   },
   ui_splash_contain_second_globe_form_control: {
     width: '99%',
@@ -477,46 +404,49 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   ui_splash_contain_go_back_button: {
-    width: 80,
-    height: 35,
+    width: 74,
+    height: 40,
     position: 'relative',
-    left: -5,
+    left: -2,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#f44336b5',
+    borderRadius: 7,
   },
   ui_splash_contain_go_logo_back_button: {
     top: 1,
-    left: -2,
+    left: -6,
   },
   ui_splash_contain_go_back_button_forward: {
-    width: 105,
+    width: 115,
     height: 40,
     position: 'relative',
-    left: -5,
+    left: -3,
     flexDirection: 'row',
     paddingLeft: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9c27b01f',
-    borderRadius: 4,
+    backgroundColor: 'white',
+    borderRadius: 7,
+    borderWidth: 1,
+    borderColor: '#f44336b5',
   },
   ui_splash_contain_go_logo_back_button_reward: {
     color: 'blue',
   },
   ui_splash_contain_go_back_text_reward: {
     position: 'relative',
-    left: 1,
+    left: -2,
     fontSize: 15,
-    color: '#9c27b0',
+    color: '#f44336b5',
     fontFamily: 'PingFang SC Regular',
   },
   ui_splash_contain_go_sucess_button: {
     width: 105,
     height: 40,
     position: 'relative',
-    left: -1,
     textDecorationLine: 'underline',
     flexDirection: 'row',
     backgroundColor: '#00bcd4',
@@ -527,10 +457,16 @@ const styles = StyleSheet.create({
   ui_splash_contain_go_back_text: {
     position: 'relative',
     left: -2,
-    fontSize: 15,
+    fontSize: 14,
     top: -1,
-    color: '#14100bab',
+    color: 'white',
     fontFamily: 'Nunito-Light',
+  },
+  ui_splash_contain_go_before_sucess_text: {
+    position: 'relative',
+    fontSize: 15,
+    color: 'white',
+    fontFamily: 'PontanoSans-Regular',
   },
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
@@ -552,7 +488,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 70,
   },
 });
 
