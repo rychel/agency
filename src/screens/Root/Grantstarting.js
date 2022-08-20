@@ -2,7 +2,11 @@ import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faAngleLeft, faBoxOpen} from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleLeft,
+  faBoxOpen,
+  faAngleRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {validEmail, validChiffre, validLettre} from '../../utils/regex';
 import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
@@ -15,10 +19,6 @@ import LoaderAllScreen from '../../components/LoaderAllScreen';
 import LoaderGs from '../../components/LoaderGs';
 
 const Grantstarting = ({navigation}) => {
-  const gotoGetstarting = () => {
-    navigation.goBack('Get starting');
-  };
-
   const [countstep, setCountstep] = useState(0);
   const [activity, setActivity] = useState(false);
 
@@ -46,8 +46,9 @@ const Grantstarting = ({navigation}) => {
   };
 
   const handleForward = () => {
-    if (countstep > 0) {
-      setCountstep(countstep - 1);
+    setCountstep(countstep - 1);
+    if (countstep == -1) {
+      navigation.goBack('Get starting');
     }
   };
 
@@ -60,7 +61,7 @@ const Grantstarting = ({navigation}) => {
     codesecurite: yup
       .string()
       .required('ce champ est obligatoire.')
-      .min(6, 'Le code sécurité doit avoir au-moins 6 caractères.')
+      .min(6, 'Le code sécurité doit avoir au-moins 6 caractères.'),
   });
   const schemeValidate1 = yup.object().shape({
     nomchefagence: yup.string().required('ce champ est obligatoire.'),
@@ -310,14 +311,6 @@ const Grantstarting = ({navigation}) => {
         <View
           style={styles.ui_splash_contain_grant_button_create_cancel_option}>
           <TouchableOpacity
-            style={styles.ui_splash_contain_go_back_button}
-            activeOpacity={0.9}
-            onPress={gotoGetstarting}>
-            <Text style={styles.ui_splash_contain_go_back_text}>
-              non, merci
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             style={styles.ui_splash_contain_go_back_button_forward}
             activeOpacity={0.6}
             onPress={handleForward}>
@@ -347,7 +340,9 @@ const Grantstarting = ({navigation}) => {
                 </Text>
                 <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
               </>
-            ) : null}
+            ) : (
+              <FontAwesomeIcon icon={faAngleRight} size={16} color="white" style={{left: 5}} />
+            )}
           </TouchableOpacity>
         </View>
         <Space Hwidth={18} />
@@ -403,18 +398,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: 'red',
   },
-  ui_splash_contain_go_back_button: {
-    width: 74,
-    height: 40,
-    position: 'relative',
-    left: -2,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f44336b5',
-    borderRadius: 7,
-  },
   ui_splash_contain_go_logo_back_button: {
     top: 1,
     left: -6,
@@ -453,14 +436,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 7,
-  },
-  ui_splash_contain_go_back_text: {
-    position: 'relative',
-    left: -2,
-    fontSize: 14,
-    top: -1,
-    color: 'white',
-    fontFamily: 'Nunito-Light',
   },
   ui_splash_contain_go_before_sucess_text: {
     position: 'relative',
