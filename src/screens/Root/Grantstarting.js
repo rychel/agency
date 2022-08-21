@@ -11,6 +11,7 @@ import {validEmail, validChiffre, validLettre} from '../../utils/regex';
 import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import AnimatedLottieView from 'lottie-react-native';
 
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
@@ -61,11 +62,38 @@ const Grantstarting = ({navigation}) => {
     codesecurite: yup
       .string()
       .required('ce champ est obligatoire.')
-      .min(6, 'Le code sécurité doit avoir au-moins 6 caractères.'),
+      .matches(
+        /[A-Z]/,
+        'Il doit aussi avoir des majuscules dans votre code de sécurité',
+        {excludeEmptyString: true},
+      )
+      .min(8, 'Le code sécurité doit avoir au-moins 8 caractères.')
+      .matches(/[0-9]/, 'Le code sécurité doit contenir des chiffres', {
+        excludeEmptyString: true,
+      }),
   });
   const schemeValidate1 = yup.object().shape({
     nomchefagence: yup.string().required('ce champ est obligatoire.'),
     prenomchefagence: yup.string().required('ce champ est obligatoire.'),
+  });
+  const schemeValidate2 = yup.object().shape({
+    motdepasse: yup
+      .string()
+      .required('ce champ est obligatoire.')
+      .min(6, 'Le mot de passe doit avoir au-moins 6 caractères.')
+      .matches(/[0-9]/, 'Mot de passe faible, ajoutez quelques des chiffres', {
+        excludeEmptyString: true,
+      }),
+    numero: yup
+      .string()
+      .required('ce champ est obligatoire.')
+      .matches(
+        /[679]{1}[0-9]{4}[0-9]{4}/,
+        'Le numéro de téléphone doit seulement avoir 9 chiffres',
+        {
+          excludeEmptyString: true,
+        },
+      ),
   });
 
   const {
@@ -92,7 +120,7 @@ const Grantstarting = ({navigation}) => {
     formState: {errors: errors2},
   } = useForm({
     mode: 'onChange',
-    resolver: yupResolver(schemeValidate),
+    resolver: yupResolver(schemeValidate2),
   });
 
   const SignStep = () => {
@@ -118,6 +146,9 @@ const Grantstarting = ({navigation}) => {
   console.log(errors);
   console.log('------------------------');
   console.log(errors1);
+  console.log('------------------------');
+  console.log(errors2);
+  console.log('------------------------');
   console.log(countstep);
 
   return (
@@ -137,22 +168,30 @@ const Grantstarting = ({navigation}) => {
               agence, nous aurons besoin de ces informations en temps voulu.
             </Text>
           </View>
+          <View style={styles.ui_splash_contain_globe_icon_animated_cfs1}>
+            <AnimatedLottieView
+              source={require('../../../assets/93248-send-message.json')}
+              autoPlay
+              style={styles.ui_splash_icon_animated_cfs1}
+            />
+          </View>
+          <Space Hwidth={35} />
+          {countstep > 0 ? (
+            <TitleInputGs
+              Title="Et puis parlons un peu de vous"
+              Subtitle="Que pouvez-vous nous dire sur vous ?"
+            />
+          ) : (
+            <TitleInputGs
+              Title="Parlant de votre nouvelle agence"
+              Subtitle="Que pouvez-vous nous dire dessus ?"
+            />
+          )}
           <View style={styles.ui_splash_contain_second_form_control}>
             {activity ? (
               <LoaderGs Titleindiq="Juste un effort, encore un peu" />
             ) : null}
-            <Space Hwidth={30} />
-            {countstep > 0 ? (
-              <TitleInputGs
-                Title="Et puis parlons un peu de vous"
-                Subtitle="Que pouvez-vous nous dire sur vous ?"
-              />
-            ) : (
-              <TitleInputGs
-                Title="Parlant de votre nouvelle agence"
-                Subtitle="Que pouvez-vous nous dire dessus ?"
-              />
-            )}
+
             <Space Hwidth={30} />
             {countstep == 0 ? (
               <View style={styles.ui_splash_contain_second_globe_form_control}>
@@ -264,45 +303,45 @@ const Grantstarting = ({navigation}) => {
             ) : null}
             {countstep == 2 ? (
               <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <InputGs
-                  value={password}
-                  keyboard="alphabetic"
-                  onChange={() => handleOnBlurText('Password')}
-                  onBlur={() => {
-                    handleOnBlurText('Password');
-                    handleStyleField('fPassword', false);
-                  }}
-                  onChangeText={value => {
-                    setPassword(value);
-                  }}
-                  errors={errors.ePassword}
-                  onFocus={() => {
-                    handleErrorOnBlur('ePassword', null);
-                    handleStyleField('fPassword', true);
-                  }}
-                  placeholder="Mot de passe"
-                  Footus={footus.fPassword}
+                <Controller
+                  control={control2}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fPassword', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fPassword', true);
+                      }}
+                      placeholder="Mot de passe"
+                      Footus={footus.fPassword}
+                    />
+                  )}
+                  name="motdepasse"
                 />
-                <InputGs
-                  value={numero}
-                  keyboard="numeric"
-                  onChange={() => {
-                    handleOnBlurText('Numero');
-                  }}
-                  onBlur={() => {
-                    handleOnBlurText('Numero');
-                    handleStyleField('fNumero', false);
-                  }}
-                  onChangeText={value => {
-                    setNumero(value);
-                  }}
-                  errors={errors.eNumero}
-                  onFocus={() => {
-                    handleErrorOnBlur('eNumero', null);
-                    handleStyleField('eNumero', true);
-                  }}
-                  placeholder="Numéro MTN/ORANGE"
-                  Footus={footus.fNumero}
+                <Controller
+                  control={control2}
+                  render={({field: {onChange, value}, fieldState: {error}}) => (
+                    <InputGs
+                      value={value}
+                      keyboard="default"
+                      onBlur={() => {
+                        handleStyleField('fNumero', false);
+                      }}
+                      onChangeText={onChange}
+                      errors={error?.message}
+                      onFocus={() => {
+                        handleStyleField('fNumero', true);
+                      }}
+                      placeholder="Numéro MTN ou ORANGE money"
+                      Footus={footus.fNumero}
+                    />
+                  )}
+                  name="numero"
                 />
               </View>
             ) : null}
@@ -341,7 +380,12 @@ const Grantstarting = ({navigation}) => {
                 <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
               </>
             ) : (
-              <FontAwesomeIcon icon={faAngleRight} size={16} color="white" style={{left: 5}} />
+              <FontAwesomeIcon
+                icon={faAngleRight}
+                size={16}
+                color="white"
+                style={{left: 5}}
+              />
             )}
           </TouchableOpacity>
         </View>
@@ -373,6 +417,28 @@ const styles = StyleSheet.create({
     fontFamily: 'WorkSans-VariableFont_wght',
     color: 'white',
   },
+  ui_splash_contain_globe_icon_animated_cfs1: {
+    width: 90,
+    height: 68,
+    overflow: 'hidden',
+    backgroundColor: 'white',
+    top: 74,
+    alignSelf: 'center',
+    position: 'absolute',
+    left: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    shadowOffset: {width: 0, height: 4},
+    shadowColor: 'red',
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  ui_splash_icon_animated_cfs1: {
+    width: 68,
+    height: 68,
+  },
   ui_splash_contain_form_control: {
     width: '100%',
     alignSelf: 'center',
@@ -383,15 +449,17 @@ const styles = StyleSheet.create({
   ui_splash_contain_second_form_control: {
     width: '100%',
     backgroundColor: 'white',
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 320,
+    height: 280,
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   ui_splash_contain_second_globe_form_control: {
     width: '99%',
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
+    top: -20,
   },
   ui_splash_title_form_error_control: {
     left: 26,
@@ -463,7 +531,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: 70,
+    marginTop: 25,
   },
 });
 
