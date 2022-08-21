@@ -1,9 +1,9 @@
-const Api = (methods, value, path) => {
+const Api = (method, value, path) => {
   const url = 'https://9082-129-0-81-247.eu.ngrok.io/' + path;
 
-  if (paths == 'POST') {
+  if (path == 'POST') {
     return fetch(url, {
-      method: methods,
+      method: method,
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({title: value}),
     }).then(res => res.json());
