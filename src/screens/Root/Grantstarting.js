@@ -7,7 +7,6 @@ import {
   faBoxOpen,
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import {validEmail, validChiffre, validLettre} from '../../utils/regex';
 import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -16,15 +15,12 @@ import AnimatedLottieView from 'lottie-react-native';
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
-import LoaderAllScreen from '../../components/LoaderAllScreen';
 import LoaderGs from '../../components/LoaderGs';
+import LoaderSuccessGs from '../../components/LoaderSuccessGs';
 
 const Grantstarting = ({navigation}) => {
   const [countstep, setCountstep] = useState(0);
   const [activity, setActivity] = useState(false);
-
-  const [numero, setNumero] = useState('');
-  const [password, setPassword] = useState('');
 
   const [footus, setFootus] = useState({
     fNomchefagence: false,
@@ -35,7 +31,6 @@ const Grantstarting = ({navigation}) => {
     fPassword: false,
     fNumero: false,
   });
-
   const [bypass, setBypass] = useState({
     gCodesecurite: false,
     gPassword: false,
@@ -87,9 +82,10 @@ const Grantstarting = ({navigation}) => {
     numero: yup
       .string()
       .required('ce champ est obligatoire.')
+      .max(9, 'Le numéro de téléphone doit seulement avoir 9 chiffres')
       .matches(
         /[679]{1}[0-9]{4}[0-9]{4}/,
-        'Le numéro de téléphone doit seulement avoir 9 chiffres',
+        'Assurez-vous que ce soit un numéro valide MTN/ORANGE',
         {
           excludeEmptyString: true,
         },
@@ -143,6 +139,22 @@ const Grantstarting = ({navigation}) => {
     }, 500);
   };
 
+  const SignStep2 = () => {
+    setActivity(true);
+    setTimeout(() => {
+      setActivity(false);
+    }, 1000);
+    setTimeout(() => {
+      setCountstep(3);
+    }, 500);
+  };
+
+  const SignStep3 = () => {
+    setTimeout(() => {
+      setCountstep(5);
+    }, 500);
+  };
+
   console.log(errors);
   console.log('------------------------');
   console.log(errors1);
@@ -152,246 +164,297 @@ const Grantstarting = ({navigation}) => {
   console.log(countstep);
 
   return (
-    <ScrollView style={styles.ui_splash_global_todo_contain}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
-      <View style={styles.ui_splash_todo_contain}>
-        <View style={styles.ui_splash_contain_form_control}>
-          <View style={styles.ui_splash_below_title_message}>
-            <Text style={styles.ui_splash_below_text_message}>
-              Utiliser les informations d'une piece officielle pour creer votre
-              agence, nous aurons besoin de ces informations en temps voulu.
-            </Text>
-          </View>
-          <View style={styles.ui_splash_contain_globe_icon_animated_cfs1}>
-            <AnimatedLottieView
-              source={require('../../../assets/93248-send-message.json')}
-              autoPlay
-              style={styles.ui_splash_icon_animated_cfs1}
-            />
-          </View>
-          <Space Hwidth={35} />
-          {countstep > 0 ? (
-            <TitleInputGs
-              Title="Et puis parlons un peu de vous"
-              Subtitle="Que pouvez-vous nous dire sur vous ?"
-            />
-          ) : (
-            <TitleInputGs
-              Title="Parlant de votre nouvelle agence"
-              Subtitle="Que pouvez-vous nous dire dessus ?"
-            />
-          )}
-          <View style={styles.ui_splash_contain_second_form_control}>
-            {activity ? (
-              <LoaderGs Titleindiq="Juste un effort, encore un peu" />
-            ) : null}
-
-            <Space Hwidth={30} />
-            {countstep == 0 ? (
-              <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <Controller
-                  control={control}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fNomagence', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fNomagence', true);
-                      }}
-                      placeholder="Nom de l'agence"
-                      Footus={footus.fNomagence}
-                    />
-                  )}
-                  name="nomagence"
-                />
-                <Controller
-                  control={control}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fNomorganisation', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fNomorganisation', true);
-                      }}
-                      placeholder="Nom de l'organisation"
-                      Footus={footus.fNomorganisation}
-                    />
-                  )}
-                  name="nomorganisation"
-                />
-                <Controller
-                  control={control}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fCodesecurite', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fCodesecurite', true);
-                      }}
-                      placeholder="Code de sécurité"
-                      Footus={footus.fCodesecurite}
-                    />
-                  )}
-                  name="codesecurite"
-                />
-              </View>
-            ) : null}
-            {countstep == 1 ? (
-              <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <Controller
-                  control={control1}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fNomchefagence', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fNomchefagence', true);
-                      }}
-                      placeholder="Nom chef d'agence"
-                      Footus={footus.fNomchefagence}
-                    />
-                  )}
-                  name="nomchefagence"
-                />
-                <Controller
-                  control={control1}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fPrenomchefagence', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fPrenomchefagence', true);
-                      }}
-                      placeholder="Prenom chef d'agence"
-                      Footus={footus.fPrenomchefagence}
-                    />
-                  )}
-                  name="prenomchefagence"
-                />
-              </View>
-            ) : null}
-            {countstep == 2 ? (
-              <View style={styles.ui_splash_contain_second_globe_form_control}>
-                <Controller
-                  control={control2}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fPassword', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fPassword', true);
-                      }}
-                      placeholder="Mot de passe"
-                      Footus={footus.fPassword}
-                    />
-                  )}
-                  name="motdepasse"
-                />
-                <Controller
-                  control={control2}
-                  render={({field: {onChange, value}, fieldState: {error}}) => (
-                    <InputGs
-                      value={value}
-                      keyboard="default"
-                      onBlur={() => {
-                        handleStyleField('fNumero', false);
-                      }}
-                      onChangeText={onChange}
-                      errors={error?.message}
-                      onFocus={() => {
-                        handleStyleField('fNumero', true);
-                      }}
-                      placeholder="Numéro MTN ou ORANGE money"
-                      Footus={footus.fNumero}
-                    />
-                  )}
-                  name="numero"
-                />
-              </View>
-            ) : null}
-          </View>
-        </View>
-        <View
-          style={styles.ui_splash_contain_grant_button_create_cancel_option}>
-          <TouchableOpacity
-            style={styles.ui_splash_contain_go_back_button_forward}
-            activeOpacity={0.6}
-            onPress={handleForward}>
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              size={18}
-              color="#f44336b5"
-              style={styles.ui_splash_contain_go_logo_back_button}
-            />
-            <Text style={styles.ui_splash_contain_go_back_text_reward}>
-              precedent
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.ui_splash_contain_go_sucess_button}
-            activeOpacity={0.6}
-            onPress={
-              countstep == 0 ? handleSubmit(SignStep) : handleSubmit1(SignStep1)
-            }>
-            <Text style={styles.ui_splash_contain_go_before_sucess_text}>
-              suivant
-            </Text>
-            {countstep == 5 ? (
-              <>
-                <Text style={styles.ui_splash_contain_go_sucess_text}>
-                  création
-                </Text>
-                <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
-              </>
+    <>
+      <ScrollView style={styles.ui_splash_global_todo_contain}>
+        <StatusBar
+          animated={true}
+          backgroundColor="#7cc3bc"
+          barStyle="default"
+          showHideTransition="fade"
+          hidden={false}
+        />
+        <View style={styles.ui_splash_todo_contain}>
+          <View style={styles.ui_splash_contain_form_control}>
+            <View style={styles.ui_splash_below_title_message}>
+              <Text style={styles.ui_splash_below_text_message}>
+                Utiliser les informations d'une piece officielle pour creer
+                votre agence, nous aurons besoin de ces informations en temps
+                voulu.
+              </Text>
+            </View>
+            <View style={styles.ui_splash_contain_globe_icon_animated_cfs1}>
+              <AnimatedLottieView
+                source={require('../../../assets/93248-send-message.json')}
+                autoPlay
+                style={styles.ui_splash_icon_animated_cfs1}
+              />
+            </View>
+            <Space Hwidth={35} />
+            {countstep > 0 ? (
+              <TitleInputGs
+                Title="Et puis parlons un peu de vous"
+                Subtitle="Que pouvez-vous nous dire sur vous ?"
+              />
             ) : (
-              <FontAwesomeIcon
-                icon={faAngleRight}
-                size={16}
-                color="white"
-                style={{left: 5}}
+              <TitleInputGs
+                Title="Parlant de votre nouvelle agence"
+                Subtitle="Que pouvez-vous nous dire dessus ?"
               />
             )}
-          </TouchableOpacity>
+            <View style={styles.ui_splash_contain_second_form_control}>
+              {activity ? (
+                <LoaderGs Titleindiq="Juste un effort, encore un peu" />
+              ) : null}
+
+              <Space Hwidth={30} />
+              {countstep == 0 ? (
+                <View
+                  style={styles.ui_splash_contain_second_globe_form_control}>
+                  <Controller
+                    control={control}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fNomagence', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fNomagence', true);
+                        }}
+                        placeholder="Nom de l'agence"
+                        Footus={footus.fNomagence}
+                      />
+                    )}
+                    name="nomagence"
+                  />
+                  <Controller
+                    control={control}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fNomorganisation', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fNomorganisation', true);
+                        }}
+                        placeholder="Nom de l'organisation"
+                        Footus={footus.fNomorganisation}
+                      />
+                    )}
+                    name="nomorganisation"
+                  />
+                  <Controller
+                    control={control}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fCodesecurite', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fCodesecurite', true);
+                        }}
+                        placeholder="Code de sécurité"
+                        Footus={footus.fCodesecurite}
+                      />
+                    )}
+                    name="codesecurite"
+                  />
+                </View>
+              ) : null}
+              {countstep == 1 ? (
+                <View
+                  style={styles.ui_splash_contain_second_globe_form_control}>
+                  <Controller
+                    control={control1}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fNomchefagence', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fNomchefagence', true);
+                        }}
+                        placeholder="Nom chef d'agence"
+                        Footus={footus.fNomchefagence}
+                      />
+                    )}
+                    name="nomchefagence"
+                  />
+                  <Controller
+                    control={control1}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fPrenomchefagence', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fPrenomchefagence', true);
+                        }}
+                        placeholder="Prenom chef d'agence"
+                        Footus={footus.fPrenomchefagence}
+                      />
+                    )}
+                    name="prenomchefagence"
+                  />
+                </View>
+              ) : null}
+              {countstep == 2 ? (
+                <View
+                  style={styles.ui_splash_contain_second_globe_form_control}>
+                  <Controller
+                    control={control2}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        value={value}
+                        keyboard="default"
+                        onBlur={() => {
+                          handleStyleField('fPassword', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fPassword', true);
+                        }}
+                        placeholder="Mot de passe"
+                        Footus={footus.fPassword}
+                      />
+                    )}
+                    name="motdepasse"
+                  />
+                  <Controller
+                    control={control2}
+                    render={({
+                      field: {onChange, value},
+                      fieldState: {error},
+                    }) => (
+                      <InputGs
+                        keyboard="numeric"
+                        value={value}
+                        onBlur={() => {
+                          handleStyleField('fNumero', false);
+                        }}
+                        onChangeText={onChange}
+                        errors={error?.message}
+                        onFocus={() => {
+                          handleStyleField('fNumero', true);
+                        }}
+                        placeholder="Numéro MTN ou ORANGE money"
+                        Footus={footus.fNumero}
+                      />
+                    )}
+                    name="numero"
+                  />
+                </View>
+              ) : null}
+              {countstep == 3 ? (
+                <Text style={styles.ui_splash_global_display_unhandled_text1}>
+                  Nous y sommes presque !
+                </Text>
+              ) : null}
+              {countstep == 4 ? (
+                <TitleInputGs Title="Nous y sommes presque appuyez juste sur le bouton creation" />
+              ) : null}
+            </View>
+          </View>
+          <View
+            style={styles.ui_splash_contain_grant_button_create_cancel_option}>
+            <TouchableOpacity
+              style={styles.ui_splash_contain_go_back_button_forward}
+              activeOpacity={0.6}
+              onPress={handleForward}>
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                size={18}
+                color="#f44336b5"
+                style={styles.ui_splash_contain_go_logo_back_button}
+              />
+              <Text style={styles.ui_splash_contain_go_back_text_reward}>
+                precedent
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.ui_splash_contain_go_sucess_button}
+              activeOpacity={0.6}
+              onPress={
+                countstep == 0
+                  ? handleSubmit(SignStep)
+                  : countstep == 1
+                  ? handleSubmit1(SignStep1)
+                  : countstep == 2
+                  ? handleSubmit2(SignStep2)
+                  : countstep == 3
+                  ? SignStep3
+                  : null
+              }>
+              {countstep == 3 ? (
+                <>
+                  <Text style={styles.ui_splash_contain_go_sucess_text}>
+                    création
+                  </Text>
+                  <FontAwesomeIcon icon={faBoxOpen} size={16} color="white" />
+                </>
+              ) : (
+                <>
+                  <Text style={styles.ui_splash_contain_go_before_sucess_text}>
+                    suivant
+                  </Text>
+                  <FontAwesomeIcon
+                    icon={faAngleRight}
+                    size={16}
+                    color="white"
+                    style={{left: 5}}
+                  />
+                </>
+              )}
+            </TouchableOpacity>
+          </View>
+          <Space Hwidth={18} />
         </View>
-        <Space Hwidth={18} />
-      </View>
-    </ScrollView>
+      </ScrollView>
+      {countstep == 5 ? (
+        <LoaderSuccessGs
+          Lottietitle={require('../../../assets/116406-carousel-swipe-animation.json')}
+          Titlesuccess="acxios crée votre agence, merci de patienter quelques minutes. Après vous serez redirigé dans votre espace administration."
+        />
+      ) : null}
+    </>
   );
 };
 
@@ -532,6 +595,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     marginTop: 25,
+  },
+  ui_splash_global_display_unhandled_text1: {
+    position: 'relative',
+    fontFamily: 'Quicksand-VariableFont_wght',
+    fontSize: 17,
   },
 });
 
