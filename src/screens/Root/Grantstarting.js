@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  ToastAndroid,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -11,7 +18,7 @@ import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import AnimatedLottieView from 'lottie-react-native';
-
+import Api from '../../utils/Api';
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
@@ -31,11 +38,6 @@ const Grantstarting = ({navigation}) => {
     fPassword: false,
     fNumero: false,
   });
-  const [bypass, setBypass] = useState({
-    gCodesecurite: false,
-    gPassword: false,
-    gId: 0,
-  });
 
   const handleStyleField = (label, value) => {
     setFootus({...footus, [label]: value});
@@ -46,6 +48,35 @@ const Grantstarting = ({navigation}) => {
     if (countstep == -1) {
       navigation.goBack('Get starting');
     }
+  };
+  fetch('https://fakerapi.it/api/v1/companies?_seed=12456')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.movies);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+  const checkCodesecure = async valueToCheck => {
+    /*Api('POST', valueToCheck, 'api/check_codesecure_agency')
+      .then(value => {
+        console.log(value);
+        console.log("good aproach :)");
+        return value;
+      })
+      .catch(() => {
+        console.log("Something it happened :(");
+        return false;
+      });*/
+    fetch('https://096f-129-0-81-252.eu.ngrok.io/api/hello', {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+      //body: JSON.stringify({title: valueToCheck}),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+    return false;
   };
 
   const schemeValidate = yup.object().shape({
@@ -65,7 +96,27 @@ const Grantstarting = ({navigation}) => {
       .min(8, 'Le code sécurité doit avoir au-moins 8 caractères.')
       .matches(/[0-9]/, 'Le code sécurité doit contenir des chiffres', {
         excludeEmptyString: true,
-      }),
+      })
+      .test(
+        'is-exists',
+        "Votre code de sécurité n'est pas sure, essayez un autre",
+        async value => {
+          fetch('https://8cdc-129-0-81-252.eu.ngrok.io/api/hello', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            //body: JSON.stringify({title: value}),
+          })
+            .then(res => res.json())
+            .then(res => {
+              console.log('La valeur : ' + res.response);
+            })
+            .catch(err => {
+              console.log('it wrong: ' + err);
+            });
+        },
+      ),
   });
   const schemeValidate1 = yup.object().shape({
     nomchefagence: yup.string().required('ce champ est obligatoire.'),
@@ -95,6 +146,7 @@ const Grantstarting = ({navigation}) => {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: {errors},
   } = useForm({
     mode: 'onChange',
@@ -155,13 +207,13 @@ const Grantstarting = ({navigation}) => {
     }, 500);
   };
 
-  console.log(errors);
+  /*console.log(errors);
   console.log('------------------------');
   console.log(errors1);
   console.log('------------------------');
   console.log(errors2);
   console.log('------------------------');
-  console.log(countstep);
+  console.log(countstep);*/
 
   return (
     <>

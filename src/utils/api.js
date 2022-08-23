@@ -1,8 +1,7 @@
 const Api = (method, value, path) => {
-  const url = 'https://9082-129-0-81-247.eu.ngrok.io/' + path;
+  const url = 'https://096f-129-0-81-252.eu.ngrok.io/' + path;
 
   if (method === 'POST') {
-    console.log('this method');
     return fetch(url, {
       method: method,
       headers: {'Content-Type': 'application/json'},
@@ -10,7 +9,6 @@ const Api = (method, value, path) => {
     }).then(res => res.json())
     .then(res => console.log(res));
   } else {
-    console.log('other method');
     return fetch(url).then(res => res.json());
   }
 };
