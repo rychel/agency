@@ -69,7 +69,7 @@ const Grantstarting = ({navigation}) => {
       })
       .test(
         'is-exists',
-        "Votre code de sécurité n'est pas sure, essayez un autre",
+        "Votre code de sécurité n'est pas sûr, essayez un autre",
         async value => {
           try{
             const request = await fetch(
@@ -105,7 +105,7 @@ const Grantstarting = ({navigation}) => {
       })
       .test(
         'is-exists',
-        "Votre mot de passe n'est pas sure, essayez un autre",
+        "Votre mot de passe n'est pas sûr, essayez un autre",
         async value => {
           try{
             const request = await fetch(
