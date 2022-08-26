@@ -71,7 +71,7 @@ const Grantstarting = ({navigation}) => {
         'is-exists',
         "Votre code de sécurité n'est pas sûr, essayez un autre",
         async value => {
-          try{
+          try {
             const request = await fetch(
               'http://192.168.43.45:5000/api/check_codesecure_agency',
               {
@@ -84,8 +84,7 @@ const Grantstarting = ({navigation}) => {
             );
             const success = await request.json();
             return success.response == false;
-          }
-          catch(err){
+          } catch (err) {
             console.log('it wrong: ' + err);
           }
         },
@@ -107,7 +106,7 @@ const Grantstarting = ({navigation}) => {
         'is-exists',
         "Votre mot de passe n'est pas sûr, essayez un autre",
         async value => {
-          try{
+          try {
             const request = await fetch(
               'http://192.168.43.45:5000/api/check_password_direction',
               {
@@ -120,8 +119,7 @@ const Grantstarting = ({navigation}) => {
             );
             const success = await request.json();
             return success.response == false;
-          }
-          catch(err){
+          } catch (err) {
             console.log('it wrong: ' + err);
           }
         },
@@ -139,12 +137,7 @@ const Grantstarting = ({navigation}) => {
       ),
   });
 
-  const {
-    control,
-    handleSubmit,
-    getValues,
-    formState: {errors},
-  } = useForm({
+  const {control, handleSubmit, getValues} = useForm({
     mode: 'onChange',
     resolver: yupResolver(schemeValidate),
   });
@@ -152,7 +145,7 @@ const Grantstarting = ({navigation}) => {
   const {
     control: control1,
     handleSubmit: handleSubmit1,
-    formState: {errors: errors1},
+    getValues: getValues1,
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(schemeValidate1),
@@ -161,7 +154,7 @@ const Grantstarting = ({navigation}) => {
   const {
     control: control2,
     handleSubmit: handleSubmit2,
-    formState: {errors: errors2},
+    getValues: getValues2,
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(schemeValidate2),
@@ -197,19 +190,37 @@ const Grantstarting = ({navigation}) => {
     }, 500);
   };
 
-  const SignStep3 = () => {
-    setTimeout(() => {
-      setCountstep(5);
-    }, 500);
+  const SignStep3 = async () => {
+    try {
+      const create_once = await {
+        nomchefagence: getValues1().nomchefagence,
+        prenomchefagence: getValues1().prenomchefagence,
+        motdepasse: getValues2().motdepasse,
+        numero: getValues2().numero,
+        nomagence: getValues().nomagence,
+        nomorganisation: getValues().nomorganisation,
+        codesecurite: getValues().codesecurite,
+      };
+      const request = await fetch(
+        'http://192.168.43.45:5000/api/build_agency',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(create_once),
+        },
+      );
+      const success = await request.json();
+      if (success.response == true) {
+        setTimeout(() => {
+          setCountstep(5);
+        }, 500);
+      }
+    } catch (err) {
+      console.log('it wrong: ' + err);
+    }
   };
-
-  /*console.log(errors);
-  console.log('------------------------');
-  console.log(errors1);
-  console.log('------------------------');
-  console.log(errors2);
-  console.log('------------------------');
-  console.log(countstep);*/
 
   return (
     <>
