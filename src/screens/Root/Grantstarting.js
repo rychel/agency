@@ -18,7 +18,6 @@ import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import AnimatedLottieView from 'lottie-react-native';
-import Api from '../../utils/Api';
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
@@ -49,35 +48,6 @@ const Grantstarting = ({navigation}) => {
       navigation.goBack('Get starting');
     }
   };
-  fetch('https://fakerapi.it/api/v1/companies?_seed=12456')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json.movies);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-
-  const checkCodesecure = async valueToCheck => {
-    /*Api('POST', valueToCheck, 'api/check_codesecure_agency')
-      .then(value => {
-        console.log(value);
-        console.log("good aproach :)");
-        return value;
-      })
-      .catch(() => {
-        console.log("Something it happened :(");
-        return false;
-      });*/
-    fetch('https://096f-129-0-81-252.eu.ngrok.io/api/hello', {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
-      //body: JSON.stringify({title: valueToCheck}),
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
-    return false;
-  };
 
   const schemeValidate = yup.object().shape({
     nomagence: yup.string().required('ce champ est obligatoire.'),
@@ -101,20 +71,23 @@ const Grantstarting = ({navigation}) => {
         'is-exists',
         "Votre code de sécurité n'est pas sure, essayez un autre",
         async value => {
-          fetch('https://8cdc-129-0-81-252.eu.ngrok.io/api/hello', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            //body: JSON.stringify({title: value}),
-          })
-            .then(res => res.json())
-            .then(res => {
-              console.log('La valeur : ' + res.response);
-            })
-            .catch(err => {
-              console.log('it wrong: ' + err);
-            });
+          try{
+            const request = await fetch(
+              'http://192.168.43.45:5000/api/check_codesecure_agency',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({title: value}),
+              },
+            );
+            const success = await request.json();
+            return success.response == false;
+          }
+          catch(err){
+            console.log('it wrong: ' + err);
+          }
         },
       ),
   });
@@ -533,8 +506,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   ui_splash_contain_globe_icon_animated_cfs1: {
-    width: 90,
-    height: 68,
+    width: 55,
+    height: 57,
     overflow: 'hidden',
     backgroundColor: 'white',
     top: 74,
@@ -544,11 +517,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 100,
-    shadowOffset: {width: 0, height: 4},
-    shadowColor: 'red',
-    shadowOpacity: 5,
-    shadowRadius: 1,
-    elevation: 1,
   },
   ui_splash_icon_animated_cfs1: {
     width: 68,
