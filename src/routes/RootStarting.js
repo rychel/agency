@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Launchnoaccount from '../screens/Root/Launchnoaccount';
@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const RootStarting = () => {
   return (
     <Stack.Navigator>
-      {/*<Stack.Screen
+      <Stack.Screen
         name="Launch Home"
         component={Launchnoaccount}
         options={{header: () => null}}
@@ -25,7 +25,7 @@ const RootStarting = () => {
         name="Connecting"
         component={Getconnecting}
         options={{header: () => null}}
-      />*/}
+      />
       <Stack.Screen
         name="admin"
         component={Grantstarting}
