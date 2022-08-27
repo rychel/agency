@@ -18,6 +18,8 @@ import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import AnimatedLottieView from 'lottie-react-native';
+import {useDispatch} from 'react-redux';
+import {Login} from '../../store/Log/actions';
 import InputGs from '../../components/InputGs';
 import TitleInputGs from '../../components/TitleInputGs';
 import Space from '../../components/Space';
@@ -25,7 +27,10 @@ import LoaderGs from '../../components/LoaderGs';
 import LoaderSuccessGs from '../../components/LoaderSuccessGs';
 
 const Grantstarting = ({navigation}) => {
+  const dispatch = useDispatch();
+
   const [countstep, setCountstep] = useState(0);
+
   const [activity, setActivity] = useState(false);
 
   const [footus, setFootus] = useState({
@@ -221,7 +226,9 @@ const Grantstarting = ({navigation}) => {
           setCountstep(5);
         }, 500);
 
-        setTimeout(() => {}, 3000);
+        setTimeout(() => {
+          dispatch(Login(JSON.stringify(success.user), "direction"));
+        }, 3000);
       }
     } catch (err) {
       console.log('it wrong: ' + err);
