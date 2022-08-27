@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const TitleItemStat = props => {
@@ -8,10 +8,12 @@ const TitleItemStat = props => {
     <View
       style={styles.ui_splash_global_contain_registered_global_contain_title}>
       <View>
-      <Text
-        style={styles.ui_splash_global_contain_registered_global_config_font1}>
-        {Titlesub}
-      </Text>
+        <Text
+          style={
+            styles.ui_splash_global_contain_registered_global_config_font1
+          }>
+          {Titlesub}
+        </Text>
       </View>
     </View>
   );
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   ui_splash_global_contain_registered_global_config_font1: {
-    fontFamily: 'PingFang SC Regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 15.7,
     color: '#00000094',
     left: 2,
