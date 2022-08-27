@@ -71,21 +71,23 @@ const Grantstarting = ({navigation}) => {
         'is-exists',
         "Votre code de sécurité n'est pas sûr, essayez un autre",
         async value => {
-          try {
-            const request = await fetch(
-              'http://192.168.43.45:5000/api/check_codesecure_agency',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
+          if (value != undefined) {
+            try {
+              const request = await fetch(
+                'http://192.168.43.45:5000/api/check_codesecure_agency',
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({title: value}),
                 },
-                body: JSON.stringify({title: value}),
-              },
-            );
-            const success = await request.json();
-            return success.response == false;
-          } catch (err) {
-            console.log('it wrong: ' + err);
+              );
+              const success = await request.json();
+              return success.response == false;
+            } catch (err) {
+              console.log('it wrong: ' + err);
+            }
           }
         },
       ),
@@ -106,21 +108,23 @@ const Grantstarting = ({navigation}) => {
         'is-exists',
         "Votre mot de passe n'est pas sûr, essayez un autre",
         async value => {
-          try {
-            const request = await fetch(
-              'http://192.168.43.45:5000/api/check_password_direction',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
+          if (value != undefined) {
+            try {
+              const request = await fetch(
+                'http://192.168.43.45:5000/api/check_password_direction',
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({title: value}),
                 },
-                body: JSON.stringify({title: value}),
-              },
-            );
-            const success = await request.json();
-            return success.response == false;
-          } catch (err) {
-            console.log('it wrong: ' + err);
+              );
+              const success = await request.json();
+              return success.response == false;
+            } catch (err) {
+              console.log('it wrong: ' + err);
+            }
           }
         },
       ),
@@ -216,6 +220,8 @@ const Grantstarting = ({navigation}) => {
         setTimeout(() => {
           setCountstep(5);
         }, 500);
+
+        setTimeout(() => {}, 3000);
       }
     } catch (err) {
       console.log('it wrong: ' + err);
