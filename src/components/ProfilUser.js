@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 const ProfilUser = props => {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_config_fonts2: {
     fontSize: 15,
-    fontFamily: 'Snippet-Regular',
+    fontFamily: 'WorkSans-VariableFont_wght',
     top: -15,
     color: '#000000a3',
   },

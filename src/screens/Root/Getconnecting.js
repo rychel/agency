@@ -45,7 +45,7 @@ const Getconnecting = ({navigation}) => {
 
   const dispatch = useDispatch();
   const FakeLog = () => {
-    dispatch(Login('rick', '123'));
+    dispatch(Login('rick'));
   };
 
   const gotoGetstarting = () => {
