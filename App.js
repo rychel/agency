@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
 import RNBootSplash from 'react-native-bootsplash';
@@ -17,7 +10,8 @@ import RootDirection from './src/routes/RootDirection';
 import RootStarting from './src/routes/RootStarting';
 
 const AppAuth = () => {
-  const token = useSelector(state => state.LoginReducer.authtoken);
+  const token = useSelector(state => state.LoginReducer.token);
+  const role = useSelector(state => state.LoginReducer.role);
   const dispatch = useDispatch();
 
   const start = () => {
@@ -30,7 +24,7 @@ const AppAuth = () => {
 
   return (
     <NavigationContainer>
-      {token != null ? <RootDirection /> : <RootStarting />}
+      {token === null ? <RootStarting /> : role === "direction" ?  <RootDirection /> : null}
     </NavigationContainer>
   );
 };
