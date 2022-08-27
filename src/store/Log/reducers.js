@@ -1,7 +1,6 @@
 const initialstate = {
-  authtoken: null,
-  authid: null,
-  authrole: null,
+  token: null,
+  role: null
 };
 
 export default (state = initialstate, action) => {
@@ -9,11 +8,12 @@ export default (state = initialstate, action) => {
     case 'LOGIN':
       return {
         ...state,
-        authtoken: action.payload,
+        token: action.token,
+        role: action.role,
       };
     case 'LOGOUT':
       return {
-        authtoken: null,
+        token: null,
     };
     default: 
       return state;
