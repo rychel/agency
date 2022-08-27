@@ -5,7 +5,7 @@ export const Start = () => {
     const token = await AsyncStorage.getItem('token');
     const role = await AsyncStorage.getItem('role');
     if (token !== undefined) {
-      Login(token, role);
+      dispatch({type: 'LOGIN', token: token, role: role});
     }
     else{
       console.log('not store token');
