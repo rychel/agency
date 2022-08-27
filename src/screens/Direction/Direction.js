@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     height: 190,
+    marginBottom: 5,
   },
   ui_splash_global_contain_registered_global_contain: {
     width: '100%',
