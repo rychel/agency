@@ -31,10 +31,6 @@ import TitleTravelDay from '../../components/TitleTravelDay';
 import CadreTravelDay from '../../components/CadreTravelDay';
 
 const Direction = ({navigation}) => {
-  const gotoGetstarting = () => {
-    navigation.goBack('admin');
-  };
-
   const [dashboard, setDashboard] = useState(false);
 
   /** we store the Id of connexion contains  */
@@ -84,7 +80,8 @@ const Direction = ({navigation}) => {
             <TitleItemStat Titlesub="Personnels de l'agence" />
             <ScrollView
               style={styles.ui_splash_global_contain_registered_global_contain}
-              horizontal={true}>
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
               <ProfilUser
                 Utitle="Vous"
                 Username="RY"
@@ -140,7 +137,8 @@ const Direction = ({navigation}) => {
           <View style={styles.ui_splash_contain_header_tab_stats_container}>
             <ScrollView
               style={styles.ui_splash_contain_header_tab_stats_contain}
-              horizontal={true}>
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
               <ItemStatDirection
                 Titlesub="Chauffeur"
                 Titlestat="33"
@@ -197,7 +195,8 @@ const Direction = ({navigation}) => {
           <View style={styles.ui_splash_contain_header_tab_journal_contain}>
             <ScrollView
               style={styles.ui_splash_contain_header_scroll_title_grant_journal}
-              horizontal={true}>
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
               <TitleTravelDay
                 Titlesub="Voyage d'aujourd'hui"
                 Titleico={faThumbTack}
@@ -211,7 +210,8 @@ const Direction = ({navigation}) => {
             </ScrollView>
             <ScrollView
               style={styles.ui_splash_contain_cadre_scroll_day_grant_journal}
-              horizontal={true}>
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
               <CadreTravelDay
                 Titledepart="Douala"
                 Titledestination="Bagangté"
