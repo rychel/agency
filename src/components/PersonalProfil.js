@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   ui_splash_contain_header_params_fonts2: {
-    fontSize: 17,
+    fontSize: 15,
     left: 2,
-    top: -1,
+    top: 1,
     color: 'white',
-    fontFamily: 'OpenSansCondensed-Light',
+    fontFamily: 'NotoSans-Regular',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -138,7 +138,9 @@ const styles = StyleSheet.create({
     color: 'white',
     position: 'relative',
     marginRight: 10,
-    width: 90,
+    width: 95,
+    height: 25,
+    textAlignVertical: 'center',
   },
   ui_splash_contain_header_button_show_option: {
     width: 230,
@@ -150,8 +152,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts4: {
     fontSize: 15,
     left: 2,
-    color: 'yellow',
+    color: 'white',
     fontFamily: 'PingFang SC Regular',
+    backgroundColor: '#ffc107',
+    borderRadius: 5,
+    height: 25,
+    textAlignVertical: 'center',
   },
 });
 
