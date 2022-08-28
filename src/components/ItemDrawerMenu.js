@@ -4,20 +4,19 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
-  Image,
 } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faExclamation} from '@fortawesome/free-solid-svg-icons';
 
-const ItemDrawerMenu = (props) => {
+const ItemDrawerMenu = props => {
   const {Titleico, Titlename, Titlenotif, onPress} = props;
 
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
-        <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesomeIcon icon={Titleico} size={20} color="#00000059" />
+        <View
+          style={styles.ui_splash_contain_header_administration_awesome_baps}>
+          <FontAwesomeIcon icon={Titleico} size={20} color="#4c444757" />
         </View>
         <Text
           style={styles.ui_splash_contain_header_administration_awesome_config}>
@@ -50,8 +49,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 30,
     color: '#281f1fb0',
-    top: 2,
-    fontFamily: 'Nunito-Regular',
+    top: 5,
+    fontFamily: 'Rajdhani-Regular',
     fontWeight: '100',
     justifyContent: 'center',
     alignItems: 'center',
