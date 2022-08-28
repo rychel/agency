@@ -1,6 +1,8 @@
-import React from 'react';
-import {Dimensions} from 'react-native';
-
+import React, {useEffect, useRef, useState} from 'react';
+import {Dimensions, FlatList, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {get_agency_direction} from '../store/Log/Dir/DirActions';
 import Direction from '../screens/Direction/Direction';
 import Setting from '../screens/Direction/Setting';
 import Chauffeur from '../screens/Direction/Chauffeur';
@@ -18,30 +20,52 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 const Drawer = createDrawerNavigator();
 
 const RDirection = () => {
+  const info_agency = useSelector(state => state.DirReducers.info_agency);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        dispatch(get_agency_direction(value));
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  console.log(info_agency);
+
   return (
     <Drawer.Navigator
       initialRouteName="Direction"
       screenOptions={{
         drawerStyle: {
-          width: Dimensions.get('window').width - 60,
+          width: Dimensions.get('window').width - 40,
         },
       }}
       drawerType="permanent"
       drawerContent={props => <DrawerDirection {...props} />}
-      backBehavior="history"
-      >
+      backBehavior="history">
       <Drawer.Screen
         name="Direction"
         component={Direction}
         options={({navigation}) => ({
           header: () => (
-            <HeaderUser
-              Gtitle="Noblesse voyages"
-              Depart="Douala"
-              Arrive="Yaoundé"
-              onPress={() => {
-                navigation.toggleDrawer();
-              }}
+            <FlatList
+              data={info_agency}
+              renderItem={trucks => (
+                (
+                  <HeaderUser
+                    Gtitle={trucks.item.NomAgence}
+                    Depart="Douala"
+                    Arrive="Yaoundé"
+                    onPress={() => {
+                      navigation.toggleDrawer();
+                    }}
+                  />
+                )
+              )}
+              keyExtractor={(item, index) => index.toString()}
             />
           ),
           headerStyle: {
