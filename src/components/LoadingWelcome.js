@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     fontFamily: 'Hind-Light',
     fontSize: 15,
-    width: 120,
     height: 50,
     textAlignVertical: 'center',
     textAlign: 'center',
