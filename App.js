@@ -26,7 +26,7 @@ const AppAuth = () => {
   });
 
   if (loading) {
-    return <LoadingWelcome Messagewaiting="patientez juste." />;
+    return <LoadingWelcome Messagewaiting="acxios charge le contenu ..." />;
   }
 
   return (
@@ -44,7 +44,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       RNBootSplash.hide();
-    }, 100);
+    });
   }, []);
 
   return (
