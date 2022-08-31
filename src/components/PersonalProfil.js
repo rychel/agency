@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    left: 10,
+    alignSelf: 'center'
   },
   ui_splash_contain_header_englobe_modify_profil: {
     width: 40,
@@ -113,18 +113,18 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_cadre_ifo_id_conf2: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   ui_splash_contain_header_params_fonts1: {
-    fontWeight: '800',
     fontSize: 17,
     color: 'white',
+    fontFamily: 'Hind-Light',
   },
   ui_splash_contain_header_params_fonts2: {
-    fontSize: 15,
+    fontSize: 17,
     left: 2,
-    top: 1,
     color: 'white',
-    fontFamily: 'NotoSans-Regular',
+    fontFamily: 'Hind-Light',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
     fontFamily: 'PingFang SC Regular',
     borderRadius: 5,
     fontWeight: '100',
-    backgroundColor: '#f44336',
+    backgroundColor: '#f4433640',
     color: 'white',
     position: 'relative',
     marginRight: 10,
-    width: 95,
-    height: 25,
+    width: 115,
+    height: 30,
     textAlignVertical: 'center',
   },
   ui_splash_contain_header_button_show_option: {
@@ -154,10 +154,13 @@ const styles = StyleSheet.create({
     left: 2,
     color: 'white',
     fontFamily: 'PingFang SC Regular',
-    backgroundColor: '#ffc107',
     borderRadius: 5,
+    width: 115,
     height: 25,
     textAlignVertical: 'center',
+    textAlign: 'center',
+    borderWidth: 0.5,
+    borderColor: '#f4433640',
   },
 });
 
