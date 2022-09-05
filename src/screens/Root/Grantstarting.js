@@ -47,10 +47,10 @@ const Grantstarting = ({navigation}) => {
   };
 
   const handleForward = () => {
-    setCountstep(countstep - 1);
-    if (countstep == -1) {
+    if (countstep == -1 || countstep == 0) {
       navigation.goBack('Get starting');
     }
+    setCountstep(countstep - 1);
   };
 
   const schemeValidate = yup.object().shape({
@@ -271,7 +271,7 @@ const Grantstarting = ({navigation}) => {
               ) : null}
 
               <Space Hwidth={30} />
-              {countstep == 0 ? (
+              {countstep == 0 || countstep < 0 ? (
                 <View
                   style={styles.ui_splash_contain_second_globe_form_control}>
                   <Controller
