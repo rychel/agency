@@ -3,6 +3,7 @@ import {Dimensions, FlatList, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {get_agency_direction} from '../store/Log/Dir/DirActions';
+import NetInfo from '@react-native-community/netinfo';
 import Direction from '../screens/Direction/Direction';
 import Setting from '../screens/Direction/Setting';
 import Chauffeur from '../screens/Direction/Chauffeur';
@@ -19,9 +20,14 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
-const RDirection = () => {
+const RootDirection = () => {
   const info_agency = useSelector(state => state.DirReducers.info_agency);
   const dispatch = useDispatch();
+  const [isOnline, setOnlineStatus] = useState(false);
+
+  NetInfo.refresh().then(state => {
+    setOnlineStatus(state.isConnected);
+  });
 
   useEffect(() => {
     try {
@@ -32,8 +38,6 @@ const RDirection = () => {
       console.log(e);
     }
   }, []);
-
-  console.log(info_agency);
 
   return (
     <Drawer.Navigator
@@ -49,29 +53,21 @@ const RDirection = () => {
       <Drawer.Screen
         name="Direction"
         component={Direction}
-        options={({navigation}) => ({
-          header: () => (
-            <FlatList
-              data={info_agency}
-              renderItem={trucks => (
-                (
-                  <HeaderUser
-                    Gtitle={trucks.item.NomAgence}
-                    Depart="Douala"
-                    Arrive="Yaoundé"
-                    onPress={() => {
-                      navigation.toggleDrawer();
-                    }}
-                  />
-                )
-              )}
-              keyExtractor={(item, index) => index.toString()}
+        options={{
+          header: props => (
+            <HeaderUser
+              Gtitle={info_agency[0]?.NomAgence}
+              Depart="Douala"
+              Arrive="Yaoundé"
+              onPress={() => {
+                props.navigation.toggleDrawer();
+              }}
             />
           ),
           headerStyle: {
             height: 70,
           },
-        })}
+        }}
       />
       <Drawer.Screen
         name="Setting"
@@ -189,4 +185,4 @@ const RDirection = () => {
   );
 };
 
-export default RDirection;
+export default RootDirection;
