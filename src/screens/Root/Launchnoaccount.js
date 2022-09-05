@@ -7,8 +7,10 @@ import {
   Animated,
   StatusBar,
   ScrollView,
+  Image,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -20,7 +22,7 @@ const Launchnoaccount = ({navigation}) => {
   useEffect(() => {
     Animated.sequence([
       Animated.timing(StartWelcomeBrave, {
-        toValue: -70,
+        toValue: -150,
         duration: 300,
         useNativeDriver: true,
       }),
@@ -50,7 +52,12 @@ const Launchnoaccount = ({navigation}) => {
         showHideTransition="fade"
         hidden={false}
       />
-      <View style={styles.ui_splash_global_app_header_contain}>
+      <LinearGradient
+        style={styles.ui_splash_global_app_header_contain}
+        start={{x: 0.0, y: 0.25}}
+        end={{x: 0.5, y: 1.0}}
+        locations={[0.05, 0.6]}
+        colors={['#00CDAC', '#00CDAC']}>
         <View style={styles.ui_splash_contain_header_logo_started}>
           <Animated.Image
             source={require('../../../assets/Logo1.png')}
@@ -71,7 +78,7 @@ const Launchnoaccount = ({navigation}) => {
             d'agence.
           </Text>
         </Animated.View>
-      </View>
+      </LinearGradient>
       <Animated.View
         style={[
           styles.ui_splash_started_title_contracts,
@@ -83,14 +90,19 @@ const Launchnoaccount = ({navigation}) => {
         <Text style={styles.ui_splash_started_contain_text_contracts2}>
           Garder les clés en main.
         </Text>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={goWelcomeBrave}
-          style={styles.ui_splash_started_container_button_welcome}>
-          <View style={styles.ui_splash_started_button_welcome}>
-            <Text style={styles.ui_splash_started_button_text}>débutez maintenant !</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.ui_splash_started_container_button_welcome}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={goWelcomeBrave}
+            style={styles.ui_splash_started_button_welcome}>
+            <Text style={styles.ui_splash_started_button_text}>
+              débutez maintenant !
+            </Text>
+            <Text style={styles.ui_splash_started_button_text2}>
+              débutez maintenant !
+            </Text>
+          </TouchableOpacity>
+        </View>
       </Animated.View>
     </ScrollView>
   );
@@ -104,27 +116,27 @@ const styles = StyleSheet.create({
     height: 430,
     width: '100%',
     marginBottom: 20,
-    backgroundColor: '#7cc3bc',
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     position: 'relative',
     alignSelf: 'center',
+    flexDirection: 'column',
   },
   ui_splash_contain_header_logo_started: {
     alignSelf: 'center',
-    width: 90,
-    height: 90,
+    width: 100,
+    height: 100,
     backgroundColor: 'transparent',
     borderTopEndRadius: 49,
     borderTopStartRadius: 49,
     borderBottomEndRadius: 49,
     overflow: 'hidden',
-    top: -70,
+    top: 20,
   },
   ui_splash_logo_started: {
     alignSelf: 'center',
-    width: 90,
-    height: 90,
+    width: 95,
+    height: 95,
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 100,
@@ -136,7 +148,7 @@ const styles = StyleSheet.create({
     width: '85%',
     alignSelf: 'center',
     height: 50,
-    backgroundColor: '#7addd3c9',
+    backgroundColor: '#02e5be',
     marginTop: 10,
     marginBottom: 10,
     position: 'relative',
@@ -145,6 +157,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     top: 100,
     padding: 5,
+    shadowOffset: {width: 35, height: -31},
+    elevation: 0.3,
   },
   ui_splash_started_font_config1: {
     fontSize: 14,
@@ -176,7 +190,7 @@ const styles = StyleSheet.create({
     width: 160,
     padding: 3,
     borderRadius: 100,
-    fontFamily: 'PoiretOne-Regular'
+    fontFamily: 'Rajdhani-Light',
   },
   ui_splash_started_text_contracts2: {
     color: '#f44336bd',
@@ -191,27 +205,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 100,
+    width: 200,
     position: 'relative',
-    left: 10,
+    left: -8,
     fontFamily: 'cursive',
     fontSize: 20,
     borderRadius: 5,
     top: -5,
+    alignSelf: 'flex-end',
   },
   ui_splash_started_button_welcome: {
     width: 175,
-    height: 30,
+    height: 43,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#f4433654',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    left: -20,
+    left: -10,
     top: 10,
     alignSelf: 'flex-end',
+    flexDirection: 'column',
   },
   ui_splash_started_button_text: {
     fontSize: 15,
@@ -219,6 +235,27 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand-VariableFont_wght',
     position: 'relative',
     color: '#000000a6',
+    backgroundColor: '#02e5be',
+    padding: 6,
+    borderRadius: 100,
+    zIndex: 1,
+    top: 8,
+  },
+  ui_splash_started_button_text2: {
+    fontSize: 15,
+    marginRight: 5,
+    fontFamily: 'Quicksand-VariableFont_wght',
+    position: 'relative',
+    color: '#f443365c',
+    backgroundColor: '#f443365c',
+    borderRadius: 100,
+    top: -11,
+    zIndex: 0,
+    transform: [{rotate: '-2deg'}],
+  },
+  ui_splash_started_logo_welcome_speak: {
+    width: 90,
+    height: 90,
   },
 });
 
