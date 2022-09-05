@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  StatusBar,
   ScrollView,
   TouchableOpacity,
   Image,
@@ -54,13 +53,6 @@ const Getconnecting = ({navigation}) => {
 
   return (
     <ScrollView style={styles.ui_splash_global_app_contain}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
           <Text style={styles.ui_splash_logo_started}>connexion</Text>

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
@@ -43,13 +42,6 @@ const Getlaunching = ({navigation}) => {
 
   return (
     <ScrollView>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <LinearGradient
         style={styles.ui_splash_global_app_header_contain}
         start={{x: 0.0, y: 0.25}}

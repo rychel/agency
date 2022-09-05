@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  StatusBar,
   Image,
   ScrollView,
 } from 'react-native';
@@ -58,13 +57,6 @@ const Getstarting = ({navigation}) => {
 
   return (
     <ScrollView style={styles.ui_splash_todo_contain}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <View style={styles.ui_splash_contain_welcome_header_message}>
         <View style={styles.ui_splash_contain_welcome_globe_conts}>
           <Animated.View

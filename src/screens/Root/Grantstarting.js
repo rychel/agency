@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  StatusBar,
   ToastAndroid,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -238,13 +237,6 @@ const Grantstarting = ({navigation}) => {
   return (
     <>
       <ScrollView style={styles.ui_splash_global_todo_contain}>
-        <StatusBar
-          animated={true}
-          backgroundColor="#7cc3bc"
-          barStyle="default"
-          showHideTransition="fade"
-          hidden={false}
-        />
         <View style={styles.ui_splash_todo_contain}>
           <View style={styles.ui_splash_contain_form_control}>
             <View style={styles.ui_splash_below_title_message}>
