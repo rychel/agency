@@ -12,7 +12,7 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Getlaunching = () => {
+const Getlaunching = ({navigation}) => {
   const StartWelcomeBrave = useRef(new Animated.Value(0)).current;
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
   const FlickedLogo = useRef(new Animated.Value(0)).current;
