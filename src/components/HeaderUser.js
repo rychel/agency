@@ -1,23 +1,38 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBars,faSearch } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faBars, faSearch} from '@fortawesome/free-solid-svg-icons';
 
-const HeaderUser = (props) => {
-  const {Gtitle, Depart, Arrive, onPress} = props;
+const HeaderUser = props => {
+  const {Gtitle, Depart, Arrive, onPress, Netstatus} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
-        <TouchableOpacity activeOpacity={0.7} onPress={onPress} style={styles.ui_splash_contain_globe_cadre_tags}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={onPress}
+          style={styles.ui_splash_contain_globe_cadre_tags}>
           <FontAwesomeIcon icon={faBars} size={27} color="white" />
         </TouchableOpacity>
       </View>
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
-        <View style={styles.ui_splash_contain_destination_globe}>
-          <Text style={styles.ui_splash_contain_destination_items_text1}>{Gtitle}</Text>
-          <Text style={styles.ui_splash_contain_destination_items_text2}>{Depart}-{Arrive}</Text>
-        </View>
+        {Netstatus == false ? (
+          <View style={styles.ui_splash_contain_destination_globe}>
+            <Text style={styles.ui_splash_contain_destination_items_text1}>
+              connexion...
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.ui_splash_contain_destination_globe}>
+            <Text style={styles.ui_splash_contain_destination_items_text1}>
+              {Gtitle}
+            </Text>
+            <Text style={styles.ui_splash_contain_destination_items_text2}>
+              {Depart}-{Arrive}
+            </Text>
+          </View>
+        )}
       </View>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
         <Text style={styles.ui_splash_contain_destination_items_text3}>
