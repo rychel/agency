@@ -1,7 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
-import Launchnoaccount from '../screens/Root/Launchnoaccount';
+import Getlaunching from '../screens/Root/Getlaunching';
 import Getstarting from '../screens/Root/Getstarting';
 import Grantstarting from '../screens/Root/Grantstarting';
 import Getconnecting from '../screens/Root/Getconnecting';
@@ -13,7 +12,7 @@ const RootStarting = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="Launch Home"
-        component={Launchnoaccount}
+        component={Getlaunching}
         options={{header: () => null}}
       />
       <Stack.Screen
