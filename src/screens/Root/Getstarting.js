@@ -9,13 +9,12 @@ import {
   ScrollView,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import LinearGradient from 'react-native-linear-gradient';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faLeftLong,
   faBezierCurve,
-  faClock,
   faMinus,
+  faUserNurse,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = ({navigation}) => {
@@ -91,7 +90,7 @@ const Getstarting = ({navigation}) => {
           activeOpacity={0.6}
           style={styles.ui_splash_box_create_title_message}
           onPress={gotoGConnecting}>
-          <FontAwesomeIcon icon={faClock} color="white" />
+          <FontAwesomeIcon icon={faUserNurse} color="#0000009c" />
           <Text style={styles.ui_splash_contain_other_button_goto}>
             me connecter.
           </Text>
