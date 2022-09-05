@@ -21,15 +21,14 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 const Drawer = createDrawerNavigator();
 
 const RootDirection = () => {
-  const info_agency = useSelector(state => state.DirReducers.info_agency);
-  const dispatch = useDispatch();
-  const [isOnline, setOnlineStatus] = useState(false);
-
+  const [isOnline, setOnlineStatus] = useState(
+    NetInfo.useNetInfo().isConnected
+  );
   NetInfo.refresh().then(state => {
     setOnlineStatus(state.isConnected);
   });
 
-  useEffect(() => {
+  const getInfo_agency = () => {
     try {
       AsyncStorage.getItem('token').then(value => {
         dispatch(get_agency_direction(value));
@@ -37,7 +36,12 @@ const RootDirection = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  };
+  
+  const info_agency = useSelector(state => state.DirReducers.info_agency);
+  const dispatch = useDispatch();
+
+  getInfo_agency();
 
   return (
     <Drawer.Navigator
@@ -62,6 +66,7 @@ const RootDirection = () => {
               onPress={() => {
                 props.navigation.toggleDrawer();
               }}
+              Netstatus={isOnline}
             />
           ),
           headerStyle: {
