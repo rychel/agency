@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTheaterMasks, faCaretSquareLeft} from '@fortawesome/free-solid-svg-icons';
+import {faTheaterMasks, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
@@ -44,7 +44,7 @@ const Getconnecting = ({navigation}) => {
 
   const dispatch = useDispatch();
   const FakeLog = () => {
-    dispatch(Login('rick'));
+    dispatch(Login());
   };
 
   const gotoGetstarting = () => {
@@ -80,6 +80,7 @@ const Getconnecting = ({navigation}) => {
             setSyncput(false);
           }}
           syncInput={syncput}
+          placeholder="Numéro de tél."
         />
         <InputGc
           keyboard="default"
@@ -91,6 +92,7 @@ const Getconnecting = ({navigation}) => {
             setSyncput2(false);
           }}
           syncInput={syncput2}
+          placeholder="Mot de passe."
           secureTextEntry
         />
         <Text style={styles.ui_splash_contain_title_cle_connexion}>
@@ -118,12 +120,12 @@ const Getconnecting = ({navigation}) => {
             console.log(value);
           }}>
           <Text style={styles.ui_splash_contain_go_sucess_text}>
-            me connecter
+            connexion
           </Text>
           <FontAwesomeIcon
             icon={faTheaterMasks}
             size={16}
-            color="#f44336"
+            color="#f3f2f2"
             style={styles.ui_splash_contain_logo_sucess_button}
           />
         </TouchableOpacity>
@@ -132,9 +134,9 @@ const Getconnecting = ({navigation}) => {
           activeOpacity={0.6}
           onPress={gotoGetstarting}>
           <FontAwesomeIcon
-            icon={faCaretSquareLeft}
+            icon={faAngleLeft}
             size={16}
-            color="#948eddb5"
+            color="#f44336b8"
             style={styles.ui_splash_contain_logo_return_button}
           />
           <Text style={styles.ui_splash_contain_go_return_text}>
@@ -238,16 +240,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   ui_splash_contain_go_sucess_button: {
-    width: 135,
+    width: 120,
     height: 40,
     position: 'relative',
     left: 22,
     flexDirection: 'row',
-    backgroundColor: '#e91e6324',
+    backgroundColor: '#45dcef',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    borderRadius: 30,
+    borderRadius: 5,
   },
   ui_splash_contain_logo_sucess_button: {
     position: 'relative',
@@ -260,11 +262,12 @@ const styles = StyleSheet.create({
     position: 'relative',
     left: 22,
     flexDirection: 'row',
-    backgroundColor: '#948edd42',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    borderRadius: 30,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#f44336b8",
   },
   ui_splash_contain_logo_return_button: {
     position: 'relative',
@@ -280,7 +283,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_go_sucess_text: {
     position: 'relative',
     fontSize: 15,
-    color: '#101010c9',
+    color: 'white',
     fontFamily: 'Hind-Medium',
     left: -8,
     fontWeight: '100',
@@ -301,6 +304,9 @@ const styles = StyleSheet.create({
     fontFamily: 'PontanoSans-Regular',
     alignSelf: 'center',
     borderRadius: 4,
+  },
+  ui_splash_contain_go_return_text: {
+    color: '#f44336',
   },
 });
 
