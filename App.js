@@ -8,6 +8,7 @@ import {Start} from './src/store/Log/actions';
 import LoadingWelcome from './src/components/LoadingWelcome';
 import RootDirection from './src/routes/RootDirection';
 import RootStarting from './src/routes/RootStarting';
+import Statusbar from './src/components/Statusbar';
 
 const AppAuth = () => {
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,10 @@ const AppAuth = () => {
   return (
     <NavigationContainer>
       {token === null ? (
-        <RootStarting />
+        <>
+          <Statusbar />
+          <RootStarting />
+        </>
       ) : role === 'direction' ? (
         <RootDirection />
       ) : null}
