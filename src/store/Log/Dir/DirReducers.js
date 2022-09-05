@@ -1,5 +1,5 @@
 const initialstate = {
-  info_agency: {},
+  info_agency: [],
 };
 
 export default (state = initialstate, action) => {
