@@ -11,10 +11,8 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 
-const Launchnoaccount = ({navigation}) => {
+const Getlaunching = () => {
   const StartWelcomeBrave = useRef(new Animated.Value(0)).current;
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
   const FlickedLogo = useRef(new Animated.Value(0)).current;
@@ -259,4 +257,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Launchnoaccount;
+export default Getlaunching;
