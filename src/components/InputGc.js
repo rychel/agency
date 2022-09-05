@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, Text} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSquare} from '@fortawesome/free-solid-svg-icons';
 
 const InputGc = props => {
-  const {onFocus, syncInput, onBlur} = props;
+  const {onFocus, syncInput, onBlur, errors} = props;
 
   return (
     <View style={styles.ui_splash_contain_title_form_control}>
@@ -32,6 +32,7 @@ const InputGc = props => {
           size={15}
         />
       </View>
+      <Text style={styles.ui_splash_title_form_control_error}>{errors}</Text>
     </View>
   );
 };
@@ -100,6 +101,14 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_saisi_form_logo_right: {
     left: -5,
+  },
+  ui_splash_title_form_control_error: {
+    fontSize: 12,
+    color: '#f44336',
+    fontFamily: 'Hind-Light',
+    top: -2,
+    alignSelf: 'flex-start',
+    left: 23,
   },
 });
 
