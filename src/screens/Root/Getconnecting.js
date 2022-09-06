@@ -46,9 +46,6 @@ const Getconnecting = ({navigation}) => {
   const [pending, setPending] = useState(false);
 
   const dispatch = useDispatch();
-  const FakeLog = () => {
-    dispatch(Login());
-  };
 
   const gotoGetstarting = () => {
     navigation.goBack('Get starting');
@@ -74,8 +71,11 @@ const Getconnecting = ({navigation}) => {
         );
         const success = await request.json();
         if (success.response == true) {
-          setPending(false);
           setValid(true);
+          setTimeout(() => {
+            setPending(false);
+          }, 2000);
+          dispatch(Login(JSON.stringify(success.user), "direction"));
         } else {
           setPending(false);
           setValid(false);
