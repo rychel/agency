@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontFamily: 'Quicksand-VariableFont_wght',
     position: 'relative',
-    color: '#f443365c',
+    color: '#f4433600',
     backgroundColor: '#f443365c',
     borderRadius: 100,
     top: -11,
