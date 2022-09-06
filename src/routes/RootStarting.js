@@ -21,13 +21,13 @@ const RootStarting = () => {
         options={{header: () => null}}
       />
       <Stack.Screen
-        name="Connecting"
-        component={Getconnecting}
+        name="admin"
+        component={Grantstarting}
         options={{header: () => null}}
       />
       <Stack.Screen
-        name="admin"
-        component={Grantstarting}
+        name="Connecting"
+        component={Getconnecting}
         options={{header: () => null}}
       />
     </Stack.Navigator>
