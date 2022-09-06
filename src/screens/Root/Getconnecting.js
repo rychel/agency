@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  ScrollView,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -14,7 +13,9 @@ import {faTheaterMasks, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
-
+import * as yup from 'yup';
+import {useForm, Controller} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import InputGc from '../../components/InputGc';
 
 const Getconnecting = ({navigation}) => {
@@ -31,16 +32,16 @@ const Getconnecting = ({navigation}) => {
 
   const [syncput, setSyncput] = useState(false);
   const [syncput2, setSyncput2] = useState(false);
-
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Directeur', value: 'directeur'},
+    {label: 'Directeur/Chef agence', value: 'directeur'},
     {label: 'Sécrétaire', value: 'secretaire'},
     {label: 'Caissier', value: 'caissier'},
     {label: 'Composteur', value: 'composteur'},
     {label: 'Chauffeur', value: 'chauffeur'},
   ]);
+  const [valid, setValid] = useState(true);
 
   const dispatch = useDispatch();
   const FakeLog = () => {
@@ -51,8 +52,51 @@ const Getconnecting = ({navigation}) => {
     navigation.goBack('Get starting');
   };
 
+  const loginAccount = async () => {
+    if (value == 'directeur') {
+      try {
+        const log_once = await {
+          motdepasse: getValues().motdepasse,
+          numero: getValues().numero,
+        };
+        const request = await fetch(
+          'http://192.168.43.45:5000/api/reach_logged_account',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(log_once),
+          },
+        );
+        const success = await request.json();
+        if (success.response == true) {
+          setValid(true);
+        } else {
+          setValid(false);
+        }
+      } catch (err) {
+        console.log('it wrong: ' + err);
+      }
+    }
+  };
+
+  const schemeValidate = yup.object().shape({
+    numero: yup.string().required('ce champ est obligatoire.'),
+    motdepasse: yup.string().required('ce champ est obligatoire.'),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    getValues,
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schemeValidate),
+  });
+
   return (
-    <ScrollView style={styles.ui_splash_global_app_contain}>
+    <View style={styles.ui_splash_global_app_contain}>
       <View style={styles.ui_splash_global_app_header_contain}>
         <View style={styles.ui_splash_contain_header_logo_started}>
           <Text style={styles.ui_splash_logo_started}>connexion</Text>
@@ -70,30 +114,48 @@ const Getconnecting = ({navigation}) => {
           styles.ui_splash_started_title_contracts,
           {transform: [{translateY: EndWelcomeBrave}]},
         ]}>
-        <InputGc
-          keyboard="numeric"
-          Placeholder="Numéro de téléphone"
-          onFocus={() => {
-            setSyncput(true);
-          }}
-          onBlur={() => {
-            setSyncput(false);
-          }}
-          syncInput={syncput}
-          placeholder="Numéro de tél."
+        <Controller
+          control={control}
+          render={({field: {onChange, value}, fieldState: {error}}) => (
+            <InputGc
+              value={value}
+              keyboard="numeric"
+              Placeholder="Numéro de téléphone"
+              onFocus={() => {
+                setSyncput(true);
+              }}
+              onBlur={() => {
+                setSyncput(false);
+              }}
+              onChangeText={onChange}
+              errors={error?.message}
+              syncInput={syncput}
+              placeholder="Numéro de tél."
+            />
+          )}
+          name="numero"
         />
-        <InputGc
-          keyboard="default"
-          Placeholder="Mot de passe"
-          onFocus={() => {
-            setSyncput2(true);
-          }}
-          onBlur={() => {
-            setSyncput2(false);
-          }}
-          syncInput={syncput2}
-          placeholder="Mot de passe."
-          secureTextEntry
+        <Controller
+          control={control}
+          render={({field: {onChange, value}, fieldState: {error}}) => (
+            <InputGc
+              value={value}
+              keyboard="default"
+              Placeholder="Mot de passe"
+              onFocus={() => {
+                setSyncput2(true);
+              }}
+              onBlur={() => {
+                setSyncput2(false);
+              }}
+              onChangeText={onChange}
+              errors={error?.message}
+              syncInput={syncput2}
+              placeholder="Mot de passe."
+              secureTextEntry
+            />
+          )}
+          name="motdepasse"
         />
         <Text style={styles.ui_splash_contain_title_cle_connexion}>
           se connecter en tant que
@@ -113,15 +175,21 @@ const Getconnecting = ({navigation}) => {
           listMode="MODAL"
           style={styles.ui_splash_contain_dropdown_cadre}
         />
+        {value === null ? (
+          <Text style={styles.ui_splash_picker_control_error}>
+            Sélectionner votre poste avant de continuer
+          </Text>
+        ) : null}
+        {valid === true ? null : (
+          <Text style={styles.ui_splash_valid_control_error}>
+            Le numéro ou le mot de passe ne correspondent pas à votre compte.
+          </Text>
+        )}
         <TouchableOpacity
           style={styles.ui_splash_contain_go_sucess_button}
           activeOpacity={0.6}
-          onPress={() => {
-            console.log(value);
-          }}>
-          <Text style={styles.ui_splash_contain_go_sucess_text}>
-            connexion
-          </Text>
+          onPress={handleSubmit(loginAccount)}>
+          <Text style={styles.ui_splash_contain_go_sucess_text}>connexion</Text>
           <FontAwesomeIcon
             icon={faTheaterMasks}
             size={16}
@@ -139,12 +207,10 @@ const Getconnecting = ({navigation}) => {
             color="#f44336b8"
             style={styles.ui_splash_contain_logo_return_button}
           />
-          <Text style={styles.ui_splash_contain_go_return_text}>
-            retour
-          </Text>
+          <Text style={styles.ui_splash_contain_go_return_text}>retour</Text>
         </TouchableOpacity>
       </Animated.View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -267,7 +333,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#f44336b8",
+    borderColor: '#f44336b8',
   },
   ui_splash_contain_logo_return_button: {
     position: 'relative',
@@ -307,6 +373,21 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_go_return_text: {
     color: '#f44336',
+  },
+  ui_splash_picker_control_error: {
+    fontSize: 12,
+    color: '#ffc107',
+    fontFamily: 'Hind-Light',
+    alignSelf: 'flex-start',
+    left: 23,
+  },
+  ui_splash_valid_control_error: {
+    fontSize: 12,
+    color: '#f44336',
+    fontFamily: 'Hind-Light',
+    alignSelf: 'flex-start',
+    left: 23,
+    marginRight: 20,
   },
 });
 
