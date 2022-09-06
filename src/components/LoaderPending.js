@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
-const LoadingPending = () => {
+const LoaderPending = () => {
   return (
     <View style={styles.ui_splash_global_display_screen}>
       <ActivityIndicator animating={true} color="#57f1d8" size={40} />
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoadingPending;
+export default LoaderPending;
