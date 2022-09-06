@@ -17,7 +17,7 @@ import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import InputGc from '../../components/InputGc';
-import LoadingPending from '../../components/LoadingPending';
+import LoaderPending from '../../components/LoaderPending';
 
 const Getconnecting = ({navigation}) => {
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
@@ -211,7 +211,7 @@ const Getconnecting = ({navigation}) => {
           <Text style={styles.ui_splash_contain_go_return_text}>retour</Text>
         </TouchableOpacity>
       </Animated.View>
-      {pending == true ? <LoadingPending /> : null}
+      {pending == true ? <LoaderPending /> : null}
     </View>
   );
 };
