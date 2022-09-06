@@ -5,27 +5,16 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  StatusBar,
 } from 'react-native';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import NoItemStatus from '../../components/NoItemStatus';
-import { faPlus, faTintSlash } from '@fortawesome/free-solid-svg-icons';
+import {faPlus, faTintSlash} from '@fortawesome/free-solid-svg-icons';
 
-const Busconfiguration = (props) => {
-
+const Busconfiguration = props => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false} />
-      <NoItemStatus
-        Titleico={faTintSlash}
-        Titlestatus="aucun bus enregistré"
-      />
+      <NoItemStatus Titleico={faTintSlash} Titlestatus="aucun bus enregistré" />
       <ButtonAddingItems
         titleico={faPlus}
         titlebutton="ajouter"

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  StatusBar,
   ScrollView,
 } from 'react-native';
 
@@ -16,14 +15,7 @@ const Ticketconfiguration = (props) => {
 
   return (
     <ScrollView style={styles.ui_splash_contain_header_globe}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false} />
       <NotificationExplain Titlemessage='Vous pouvez configurer votre mode de gestion de ticket en toute simplicité. Acxios vous en propose 03.Soit par ticket simple, soit par code QR pour les clients ayant un compte lié à votre agence, soit par code QR et ticket simple' />
-     
       <ItemConfigSlug Titlechoice='Ticket' Titlemessage='Les clients de votre agence auront un ticket physique et qui sera utilisé par le composteur.
                 Les numéros de ticket seront fournis par le système.' />
       <ItemConfigSlug Titlechoice='Code QR' Titlemessage="Les clients de votre agence pourront uniquement faire couper leur ticket par Code QR.

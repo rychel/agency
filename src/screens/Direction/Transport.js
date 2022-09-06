@@ -3,22 +3,13 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
 } from 'react-native';
 import {faUsers, faBusAlt, faReceipt, faRoad } from '@fortawesome/free-solid-svg-icons';
-
 import ItemMenu from '../../components/ItemMenu';
 
 const Transport = (props) => {
   return (
     <View>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Chauffeur');

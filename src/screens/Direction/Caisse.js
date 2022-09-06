@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  StatusBar,
 } from 'react-native';
 
 import ButtonAddingItems from '../../components/ButtonAddingItems';
@@ -16,19 +15,10 @@ const Caisse = (props) => {
   
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-        <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <NoItemStatus
         Titleico="user-slash"
         Titlestatus="aucune caissière enregistrée"
       />
-
-      
       <ButtonAddingItems titleico='plus' titlebutton='ajouter' borderrounds={50} />
       <ChooseCaissier />
     </View>

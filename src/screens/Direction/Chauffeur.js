@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  StatusBar,
 } from 'react-native';
 import { faUserSlash, faUser,faEyeDropper } from '@fortawesome/free-solid-svg-icons';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
@@ -16,12 +15,6 @@ import ItemChauffeurTips from '../../components/ItemChauffeurTips';
 const Chauffeur = (props) => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false} />
       <NoItemStatus
         Titleico={faUserSlash}
         Titlestatus="aucun chauffeur enregistré"
