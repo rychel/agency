@@ -74,7 +74,7 @@ const Getconnecting = ({navigation}) => {
           setValid(true);
           setTimeout(() => {
             setPending(false);
-          }, 2000);
+          }, 1000);
           dispatch(Login(JSON.stringify(success.user), "direction"));
         } else {
           setPending(false);
@@ -90,7 +90,6 @@ const Getconnecting = ({navigation}) => {
     numero: yup.string().required('ce champ est obligatoire.'),
     motdepasse: yup.string().required('ce champ est obligatoire.'),
   });
-
   const {control, handleSubmit, getValues} = useForm({
     mode: 'onChange',
     resolver: yupResolver(schemeValidate),
@@ -211,7 +210,7 @@ const Getconnecting = ({navigation}) => {
           <Text style={styles.ui_splash_contain_go_return_text}>retour</Text>
         </TouchableOpacity>
       </Animated.View>
-      {pending == true ? <LoaderPending /> : null}
+      {pending == true ? <LoaderPending Message="connexion" /> : null}
     </View>
   );
 };
