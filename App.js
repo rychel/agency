@@ -38,7 +38,10 @@ const AppAuth = () => {
           <RootStarting />
         </>
       ) : role === 'direction' ? (
-        <RootDirection />
+        <>
+          <Statusbar />
+          <RootDirection />
+        </>
       ) : null}
     </NavigationContainer>
   );
@@ -46,9 +49,7 @@ const AppAuth = () => {
 
 const App = () => {
   useEffect(() => {
-    setTimeout(() => {
-      RNBootSplash.hide();
-    });
+    RNBootSplash.hide();
   }, []);
 
   return (
