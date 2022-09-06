@@ -1,20 +1,33 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBars, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
   const {Gtitle, Depart, Arrive, onPress, Netstatus} = props;
+  const StartWelcomeBrave = useRef(new Animated.Value(-20)).current;
+
+  useEffect(() => {
+    Animated.sequence([
+      Animated.timing(StartWelcomeBrave, {
+        toValue: 10,
+        duration: 2000,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [StartWelcomeBrave]);
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_destination_items_globe_text2}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={onPress}
-          style={styles.ui_splash_contain_globe_cadre_tags}>
-          <FontAwesomeIcon icon={faBars} size={27} color="white" />
-        </TouchableOpacity>
+        <Animated.View style={{transform: [{translateY: StartWelcomeBrave}]}}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={onPress}
+            style={styles.ui_splash_contain_globe_cadre_tags}>
+            <FontAwesomeIcon icon={faBars} size={27} color="white" />
+          </TouchableOpacity>
+        </Animated.View>
       </View>
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
         {Netstatus == false ? (
@@ -47,7 +60,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     backgroundColor: '#00CDAC',
     flexDirection: 'row',
-    height: 50,
+    height: 55,
     justifyContent: 'center',
   },
   ui_splash_contain_destination_globe: {
@@ -86,6 +99,8 @@ const styles = StyleSheet.create({
     width: 106,
     paddingLeft: 5,
     fontFamily: 'PontanoSans-Regular',
+    position: 'relative',
+    top: -1,
   },
   ui_splash_contain_destination_items_text3: {
     marginLeft: 1,
