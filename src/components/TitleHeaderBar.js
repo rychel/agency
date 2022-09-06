@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 70,
     alignItems: 'center',
-    backgroundColor: '#7cc3bc',
+    backgroundColor: '#00CDAC',
   },
   ui_splash_contain_header_globe_zone_back_left: {
     width: 40,
