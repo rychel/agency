@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PingFang SC Regular',
     borderRadius: 5,
     fontWeight: '100',
-    backgroundColor: '#03a9f4cc',
+    backgroundColor: '#03a9f4a6',
     color: 'white',
     position: 'relative',
     marginRight: 10,
