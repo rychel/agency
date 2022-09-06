@@ -45,7 +45,7 @@ const HeaderUser = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    backgroundColor: '#7cc3bc',
+    backgroundColor: '#00CDAC',
     flexDirection: 'row',
     height: 50,
     justifyContent: 'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: 60,
     height: 65,
-    backgroundColor: '#7cc3bc',
+    backgroundColor: '#00CDAC',
     justifyContent: 'center',
     alignItems: 'center',
   },
