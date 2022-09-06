@@ -1,27 +1,22 @@
 import React from 'react';
 import {
   View,
-  Text,
-  StyleSheet,
   TouchableOpacity,
-  StatusBar,
 } from 'react-native';
-import { faBusAlt, faChartPie, faUser, faUserCheck, faUserCircle, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-
+import {
+  faBusAlt,
+  faChartPie,
+  faUser,
+  faUserCircle,
+  faUserFriends,
+} from '@fortawesome/free-solid-svg-icons';
 import ItemMenu from '../../components/ItemMenu';
 
 const Setting = props => {
   return (
     <View>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <ItemMenu Titleico={faChartPie} Titlename="Soucrire à un forfait" />
-      
+
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Transport');
@@ -47,7 +42,5 @@ const Setting = props => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Setting;
