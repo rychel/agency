@@ -5,7 +5,6 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  StatusBar,
   ScrollView,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -20,7 +19,7 @@ import {
   faThumbTack,
   faEyeDropper,
 } from '@fortawesome/free-solid-svg-icons';
-
+import config from '../../utils/config';
 import ProfilUser from '../../components/ProfilUser';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import DashboardDirection from '../../components/DashboardDirection';
@@ -33,28 +32,8 @@ import CadreTravelDay from '../../components/CadreTravelDay';
 const Direction = ({navigation}) => {
   const [dashboard, setDashboard] = useState(false);
 
-  /** we store the Id of connexion contains  */
-  /*
-  useEffect(() => {
-    getIdthief();
-  });
+  //const [info_agency, setInfo_agency] = useState(config.AGENCY_DIRECTION());
 
-  const [idconnexion, setIdconnexion] = useState(0);
-
-  const getIdthief = () => {
-    try {
-      AsyncStorage.getItem('Idconnexion').then((value) => {
-        if(value != null) {
-          setIdconnexion(value);
-        }
-        else{
-          navigation.goBack('admin');
-        }
-      });
-    } catch(e) {
-      console.log(e);
-    }
-  }*/
   const openDashboard = () => {
     setDashboard(true);
   };
@@ -66,13 +45,6 @@ const Direction = ({navigation}) => {
 
   return (
     <View>
-      <StatusBar
-        animated={true}
-        backgroundColor="#7cc3bc"
-        barStyle="default"
-        showHideTransition="fade"
-        hidden={false}
-      />
       <ScrollView style={styles.ui_splash_global_contain_hunts}>
         <View style={styles.ui_splash_global_contain_registered_space}>
           <View
@@ -265,6 +237,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 190,
     marginBottom: 5,
+    marginTop: 10,
   },
   ui_splash_global_contain_registered_global_contain: {
     width: '100%',
