@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   ui_splash_global_display_screen: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#00000052',
+    backgroundColor: '#fbfbfb',
     position: 'absolute',
     zIndex: 1,
     justifyContent: 'center',
