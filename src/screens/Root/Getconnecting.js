@@ -17,6 +17,7 @@ import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import InputGc from '../../components/InputGc';
+import LoadingPending from '../../components/LoadingPending';
 
 const Getconnecting = ({navigation}) => {
   const EndWelcomeBrave = useRef(new Animated.Value(200)).current;
@@ -42,6 +43,7 @@ const Getconnecting = ({navigation}) => {
     {label: 'Chauffeur', value: 'chauffeur'},
   ]);
   const [valid, setValid] = useState(true);
+  const [pending, setPending] = useState(false);
 
   const dispatch = useDispatch();
   const FakeLog = () => {
@@ -53,6 +55,7 @@ const Getconnecting = ({navigation}) => {
   };
 
   const loginAccount = async () => {
+    setPending(true);
     if (value == 'directeur') {
       try {
         const log_once = await {
@@ -71,8 +74,10 @@ const Getconnecting = ({navigation}) => {
         );
         const success = await request.json();
         if (success.response == true) {
+          setPending(false);
           setValid(true);
         } else {
+          setPending(false);
           setValid(false);
         }
       } catch (err) {
@@ -86,11 +91,7 @@ const Getconnecting = ({navigation}) => {
     motdepasse: yup.string().required('ce champ est obligatoire.'),
   });
 
-  const {
-    control,
-    handleSubmit,
-    getValues,
-  } = useForm({
+  const {control, handleSubmit, getValues} = useForm({
     mode: 'onChange',
     resolver: yupResolver(schemeValidate),
   });
@@ -210,6 +211,7 @@ const Getconnecting = ({navigation}) => {
           <Text style={styles.ui_splash_contain_go_return_text}>retour</Text>
         </TouchableOpacity>
       </Animated.View>
+      {pending == true ? <LoadingPending /> : null}
     </View>
   );
 };
