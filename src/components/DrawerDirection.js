@@ -16,7 +16,6 @@ import {
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useDispatch} from 'react-redux';
 import {LogOut} from '../store/Log/actions';
-
 import PersonalProfil from './PersonalProfil';
 import ItemDrawerMenu from './ItemDrawerMenu';
 
@@ -24,7 +23,6 @@ const DrawerDirection = props => {
   const [sigout, setSigout] = useState(false);
 
   const dispatch = useDispatch();
-  
   const signOut = () => {
     dispatch(LogOut());
   }
@@ -55,7 +53,7 @@ const DrawerDirection = props => {
                 <FontAwesomeIcon
                   icon={faSignOutAlt}
                   size={17}
-                  color="#4c444796"
+                  color="white"
                   style={styles.ui_splash_contain_log_sign_configs1}
                 />
                 <Text style={styles.ui_splash_contain_text_configs1}>
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
     height: Dimensions.get('window').height,
-    backgroundColor: '#7cc3bc',
+    backgroundColor: '#00CDAC',
   },
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
@@ -119,10 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    shadowOffset: {width: -2, height: 12},
-    shadowOpacity: 2,
-    elevation: 4,
-    shadowRadius: 3,
+    backgroundColor: '#03a9f478',
   },
   ui_splash_contain_log_sign_configs1: {
     left: 5,
@@ -130,7 +125,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_text_configs1: {
     left: 10,
     fontFamily: 'Hind-Light',
-    color: '#4c444796',
+    color: 'white',
     fontSize: 16.2,
   },
 });
