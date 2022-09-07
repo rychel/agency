@@ -32,7 +32,7 @@ const HeaderUser = props => {
       <View style={styles.ui_splash_contain_destination_items_contains_globe2}>
         {Netstatus == false ? (
           <View style={styles.ui_splash_contain_destination_globe}>
-            <Text style={styles.ui_splash_contain_destination_items_text1}>
+            <Text style={styles.ui_splash_contain_destination_items_text4}>
               connexion...
             </Text>
           </View>
@@ -105,6 +105,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_items_text3: {
     marginLeft: 1,
     marginRight: 10,
+  },
+  ui_splash_contain_destination_items_text4: {
+    color: 'white',
+    fontSize: 23,
+    fontFamily: 'NotoSans-Regular',
+    padding: 2,
   },
 });
 
