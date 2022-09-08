@@ -25,7 +25,7 @@ const DrawerDirection = props => {
   const dispatch = useDispatch();
   const signOut = () => {
     dispatch(LogOut());
-  }
+  };
 
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
@@ -34,7 +34,7 @@ const DrawerDirection = props => {
         Titlename="Otello"
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
-        Titlenumber="673845359"
+        Titlenumber="+237 673845359"
         onOpen={() => setSigout(false)}
         onClose={() => setSigout(true)}
       />
@@ -46,9 +46,10 @@ const DrawerDirection = props => {
               style={
                 styles.ui_splash_contain_header_deconnexion_contains_block
               }>
-              <TouchableOpacity style={
-                styles.ui_splash_contain_header_deconnexion_contains_block
-              }
+              <TouchableOpacity
+                style={
+                  styles.ui_splash_contain_header_deconnexion_contains_block
+                }
                 onPress={signOut}>
                 <FontAwesomeIcon
                   icon={faSignOutAlt}
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#03a9f478',
+    backgroundColor: '#08dfd5b8',
   },
   ui_splash_contain_log_sign_configs1: {
     left: 5,
