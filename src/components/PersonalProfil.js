@@ -68,19 +68,19 @@ const PersonalProfil = props => {
 const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
-    height: 240,
+    height: 260,
     backgroundColor: '#00CDAC',
     flexDirection: 'column',
     justifyContent: 'space-between',
     overflow: 'hidden',
   },
   ui_splash_contain_header_cadre_cadre_logo_profil: {
-    width: 200,
-    height: 180,
+    width: '100%',
+    height: 155,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   ui_splash_contain_header_englobe_modify_profil: {
     width: 40,
@@ -91,21 +91,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f44336d6',
     left: 30,
-    top: -25,
+    top: -5,
     borderRadius: 100,
   },
   ui_splash_contain_header_globe_logo_profil: {
     width: 130,
     height: 130,
     borderRadius: 100,
+    top: 20,
   },
   ui_splash_contain_header_cadre_ifo_id_profil: {
-    width: 280,
+    width: '100%',
     height: 90,
     flexDirection: 'column',
     justifyContent: 'center',
-    top: -30,
-    left: 10,
   },
   ui_splash_contain_header_cadre_ifo_id_conf: {
     flexDirection: 'column',
@@ -118,13 +117,13 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts1: {
     fontSize: 17,
     color: 'white',
-    fontFamily: 'Hind-Light',
+    fontFamily: 'AntDesign',
   },
   ui_splash_contain_header_params_fonts2: {
-    fontSize: 17,
+    fontSize: 16.5,
     left: 2,
     color: 'white',
-    fontFamily: 'Hind-Light',
+    fontFamily: 'AntDesign',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -137,10 +136,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#03a9f4a6',
     color: 'white',
     position: 'relative',
-    marginRight: 10,
+    marginTop: 10,
     width: 115,
     height: 30,
     textAlignVertical: 'center',
+    left: 15,
   },
   ui_splash_contain_header_button_show_option: {
     width: 230,
@@ -151,16 +151,14 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_params_fonts4: {
     fontSize: 15,
-    left: 2,
+    left: 10,
     color: 'white',
     fontFamily: 'PingFang SC Regular',
     borderRadius: 5,
-    width: 115,
     height: 25,
     textAlignVertical: 'center',
     textAlign: 'center',
-    borderWidth: 0.5,
-    borderColor: '#f4433640',
+    backgroundColor: '#08dfd5b8',
   },
 });
 
