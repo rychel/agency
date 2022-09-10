@@ -1,8 +1,10 @@
+export const URL = 'http://192.168.8.100:5000';
+
 export const get_agency_direction = (id_direction) => {
   return async dispatch => {
     try {
       const request = await fetch(
-        'http://192.168.43.45:5000/api/get_agency_direction',
+        URL + '/api/get_agency_direction',
         {
           method: 'POST',
           headers: {
@@ -25,7 +27,7 @@ export const get_config_transport = (id_direction) => {
   return async dispatch => {
     try {
       const request = await fetch(
-        'http://192.168.43.45:5000/api/get_config_transport',
+        URL + '/api/get_config_transport',
         {
           method: 'POST',
           headers: {
