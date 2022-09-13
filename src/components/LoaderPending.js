@@ -3,13 +3,13 @@ import {View, StyleSheet, ActivityIndicator, Text} from 'react-native';
 
 const LoaderPending = props => {
   const {Message} = props;
-  
+
   return (
     <View style={styles.ui_splash_global_display_screen}>
       <ActivityIndicator
         animating={true}
         color="#57f1d8"
-        size={40}
+        size={35}
         style={{left: -10}}
       />
       <Text style={styles.ui_splash_global_display_unhandled_text1}>
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     textAlign: 'center',
     color: '#57f1d8',
+    left: 10,
   },
 });
 
