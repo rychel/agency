@@ -13,6 +13,7 @@ import {faTheaterMasks, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch} from 'react-redux';
 import {Login} from '../../store/Log/actions';
+import {URL} from '../../store/Log/Dir/DirActions';
 import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -60,7 +61,7 @@ const Getconnecting = ({navigation}) => {
           numero: getValues().numero,
         };
         const request = await fetch(
-          'http://192.168.43.45:5000/api/reach_logged_account',
+          URL + '/api/reach_logged_account',
           {
             method: 'POST',
             headers: {
