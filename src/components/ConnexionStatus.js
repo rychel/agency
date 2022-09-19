@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 
 const ConnexionStatus = props => {
@@ -9,7 +9,7 @@ const ConnexionStatus = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       {Isconnected ? null : (
         <View style={styles.ui_splash_contain_destination_globe}>
-          <AnimatedLottieView //../../assets/97651-loading.json
+          <AnimatedLottieView
             source={require('../../assets/99109-loading.json')}
             style={styles.ui_splash_global_activity_icon}
             autoPlay
@@ -31,18 +31,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ui_splash_contain_destination_globe: {
-    height: 28,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 100,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   ui_splash_contain_destination_label: {
     fontFamily: 'Quicksand-VariableFont_wght',
-    left: -4,
-    marginRight: 5,
-    marginLeft: 7,
+    margin: 5,
   },
   ui_splash_global_activity_icon: {
     width: 33,
