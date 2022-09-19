@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_logo_started: {
     alignSelf: 'center',
     height: 140,
-    backgroundColor: '#03a9f47a',
+    backgroundColor: '#ff980052',
     overflow: 'hidden',
     top: -60,
     left: 5,
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_logo_started: {
     alignSelf: 'center',
-    color: 'black',
+    color: '#5c5858',
     fontSize: 34,
     fontFamily: 'Montserrat-VariableFont_wght',
     transform: [{rotateZ: '6deg'}],
