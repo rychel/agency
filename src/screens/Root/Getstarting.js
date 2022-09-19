@@ -14,7 +14,7 @@ import {
   faLeftLong,
   faBezierCurve,
   faMinus,
-  faUserNurse,
+  faUserCog,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Getstarting = ({navigation}) => {
@@ -90,7 +90,7 @@ const Getstarting = ({navigation}) => {
           activeOpacity={0.6}
           style={styles.ui_splash_box_create_title_message}
           onPress={gotoGConnecting}>
-          <FontAwesomeIcon icon={faUserNurse} color="#0000009c" />
+          <FontAwesomeIcon icon={faUserCog} color="#0000009c" />
           <Text style={styles.ui_splash_contain_other_button_goto}>
             me connecter.
           </Text>
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     color: '#0000009c',
     fontFamily: 'Roboto-Regular',
     left: 5,
-    top: -1,
+    top: -0.5,
   },
   ui_splash_contain_go_back_button: {
     width: 40,
