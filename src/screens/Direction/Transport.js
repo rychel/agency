@@ -29,7 +29,7 @@ const Transport = (props) => {
           props.navigation.navigate('Ticketconfiguration');
         }}
         activeOpacity={0.7}>
-        <ItemMenu Titleico={faReceipt} Titlename="Choisir le type de ticket" />
+        <ItemMenu Titleico={faReceipt} Titlename="Ticket" />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
