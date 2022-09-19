@@ -3,22 +3,31 @@ import {View, Text, StyleSheet} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 
 const ErrorItemStatus = props => {
-  const {Titlestatus} = props;
+  const {Titlestatus, TruthFor} = props;
 
   return (
-    <View style={styles.ui_splash_contain_header_administration_item_config}>
-      <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-        <AnimatedLottieView
-          source={require('../../assets/98282-loading.json')}
-          style={styles.ui_splash_global_activity_icon}
-          autoPlay
-        />
-      </View>
-      <Text
-        style={styles.ui_splash_contain_header_administration_awesome_config}>
-        {Titlestatus}
-      </Text>
-    </View>
+    <>
+      {TruthFor === null ? (
+        <View
+          style={styles.ui_splash_contain_header_administration_item_config}>
+          <View
+            style={styles.ui_splash_contain_header_administration_awesome_baps}>
+            <AnimatedLottieView
+              source={require('../../assets/98282-loading.json')}
+              style={styles.ui_splash_global_activity_icon}
+              autoPlay
+            />
+          </View>
+
+          <Text
+            style={
+              styles.ui_splash_contain_header_administration_awesome_config
+            }>
+            {Titlestatus}
+          </Text>
+        </View>
+      ) : null}
+    </>
   );
 };
 
@@ -66,14 +75,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_icon: {
     width: 100,
     height: 80,
-  },
-  ui_splash_global_bus_soup_contain_registered_global_contain_title: {
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    margin: 1,
-    flexDirection: 'row',
-    paddingRight: 20,
   },
   ui_splash_global_activity_icon: {
     width: 33,
