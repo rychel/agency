@@ -47,7 +47,7 @@ const Getlaunching = ({navigation}) => {
         start={{x: 0.0, y: 0.25}}
         end={{x: 0.5, y: 1.0}}
         locations={[0.05, 0.6]}
-        colors={['#00CDAC', '#00CDAC']}>
+        colors={['#ff980052', '#ff98005c']}>
         <View style={styles.ui_splash_contain_header_logo_started}>
           <Animated.Image
             source={require('../../../assets/Logo1.png')}
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     width: '85%',
     alignSelf: 'center',
     height: 50,
-    backgroundColor: '#02e5be',
+    backgroundColor: '#ff98004a',
     marginTop: 10,
     marginBottom: 10,
     position: 'relative',
