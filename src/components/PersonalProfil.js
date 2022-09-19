@@ -1,35 +1,57 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlus, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faPlus,
+  faAngleUp,
+  faAngleDown,
+} from '@fortawesome/free-solid-svg-icons';
 
 const PersonalProfil = props => {
-  const {Titleimage, Titlename, Titlesubname, Titlepost, Titlenumber, onOpen, onClose} =
-    props;
+  const {
+    Titleimage,
+    Titlename,
+    Titlesubname,
+    Titlepost,
+    Titlenumber,
+    Titlelink,
+    onOpen,
+    onClose,
+  } = props;
 
   const [replaceicon, setReplaceicon] = useState(false);
 
   return (
     <View style={styles.ui_splash_contain_header_cadre_logo_profil}>
       <View style={styles.ui_splash_contain_header_cadre_cadre_logo_profil}>
-        <Image
-          source={Titleimage}
-          style={styles.ui_splash_contain_header_globe_logo_profil}
-        />
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.ui_splash_contain_header_englobe_modify_profil}>
-          <FontAwesomeIcon icon={faPlus} size={20} color="white" />
-        </TouchableOpacity>
+        <View
+          style={styles.ui_splash_contain_header_cadre_cadre_logo_profil_ext}>
+          <Image
+            source={Titleimage}
+            style={styles.ui_splash_contain_header_globe_logo_profil}
+            resizeMode="contain"
+          />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.ui_splash_contain_header_englobe_modify_profil}>
+            <FontAwesomeIcon icon={faPlus} size={20} color="white" />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={styles.ui_splash_contain_header_cadre_cadre_logo_profil_lxt}>
+          <Text style={styles.ui_splash_contain_header_params_fonts2}>
+            agence partenaire du service courrier:
+          </Text>
+          <Text style={styles.ui_splash_contain_header_params_fonts5}>
+            +{Titlelink}
+          </Text>
+        </View>
       </View>
       <View style={styles.ui_splash_contain_header_cadre_ifo_id_profil}>
         <View style={styles.ui_splash_contain_header_cadre_ifo_id_conf}>
           <View style={styles.ui_splash_contain_header_cadre_ifo_id_conf2}>
             <Text style={styles.ui_splash_contain_header_params_fonts1}>
-              {Titlename}
-            </Text>
-            <Text style={styles.ui_splash_contain_header_params_fonts2}>
-              {Titlesubname}
+              {Titlename} {Titlesubname}
             </Text>
           </View>
           <Text style={styles.ui_splash_contain_header_params_fonts3}>
@@ -69,36 +91,52 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
     height: 260,
-    backgroundColor: '#00CDAC',
+    backgroundColor: '#ff980052',
     flexDirection: 'column',
     justifyContent: 'space-between',
     overflow: 'hidden',
+    top: -4,
   },
   ui_splash_contain_header_cadre_cadre_logo_profil: {
     width: '100%',
     height: 155,
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
   },
+  ui_splash_contain_header_cadre_cadre_logo_profil_ext: {
+    width: '50%',
+    height: 155,
+    overflow: 'hidden',
+  },
+  ui_splash_contain_header_cadre_cadre_logo_profil_lxt: {
+    width: '50%',
+    height: 155,
+    overflow: 'hidden',
+    backgroundColor: '#ff980017',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 6,
+  },
   ui_splash_contain_header_englobe_modify_profil: {
-    width: 40,
-    height: 30,
+    width: 45,
+    height: 45,
     borderWidth: 2,
     borderColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f44336d6',
-    left: 30,
-    top: -5,
+    backgroundColor: '#ffc107',
+    left: 70,
+    top: -16,
     borderRadius: 100,
   },
   ui_splash_contain_header_globe_logo_profil: {
-    width: 130,
-    height: 130,
+    width: 120,
+    height: 120,
     borderRadius: 100,
     top: 20,
+    left: 5,
   },
   ui_splash_contain_header_cadre_ifo_id_profil: {
     width: '100%',
@@ -116,14 +154,21 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_params_fonts1: {
     fontSize: 17,
-    color: 'white',
-    fontFamily: 'AntDesign',
+    color: '#94549f',
+    fontFamily: 'Roboto-Thin',
   },
   ui_splash_contain_header_params_fonts2: {
-    fontSize: 16.5,
-    left: 2,
-    color: 'white',
-    fontFamily: 'AntDesign',
+    fontSize: 13,
+    color: 'black',
+    fontFamily: 'Montserrat-VariableFont_wght',
+    left: 4,
+  },
+  ui_splash_contain_header_params_fonts5: {
+    fontSize: 50,
+    color: '#ff5722',
+    fontFamily: 'NovaMono-Regular',
+    left: 4,
+    alignSelf: 'center',
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -136,7 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#03a9f4a6',
     color: 'white',
     position: 'relative',
-    marginTop: 10,
+    marginTop: 5,
     width: 115,
     height: 30,
     textAlignVertical: 'center',
