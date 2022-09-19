@@ -3,19 +3,17 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Image,
 } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
-const NoItemStatus = (props) => {
+const NoItemStatus = props => {
   const {Titleico, Titlestatus} = props;
 
   return (
     <View>
       <View style={styles.ui_splash_contain_header_administration_item_config}>
-        <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
+        <View
+          style={styles.ui_splash_contain_header_administration_awesome_baps}>
           <FontAwesomeIcon icon={Titleico} size={20} color="#d1d1d1" />
         </View>
         <Text
@@ -39,14 +37,14 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   ui_splash_contain_header_administration_awesome_config: {
-    margin: 15,
+    margin: 0,
     fontSize: 18,
     height: 40,
-    color: '#101010ad',
-    top: 2,
-    fontFamily: 'Dosis-VariableFont_wght',
+    color: '#706e6e',
+    fontFamily: 'Rajdhani-Light',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 22,
   },
   ui_splash_contain_header_administration_awesome_caps: {
     width: 25,
@@ -56,14 +54,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 18,
-    marginLeft: 50
+    marginLeft: 50,
   },
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '13.33%',
     marginTop: 14,
-    marginLeft: 18,
+    marginLeft: 5,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '100%',

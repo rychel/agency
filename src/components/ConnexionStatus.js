@@ -27,7 +27,7 @@ const ConnexionStatus = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    backgroundColor: '#ff980052',
+    backgroundColor: '#00bcd4',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,15 +42,16 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_globe: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ff980052',
+    backgroundColor: '#00bcd4',
     borderRadius: 100,
     justifyContent: 'center',
     height: 25,
   },
   ui_splash_contain_destination_label: {
     fontFamily: 'Quicksand-VariableFont_wght',
-    fontSize: 12,
+    fontSize: 13,
     marginRight: 5,
+    color: '#fff1dc',
   },
   ui_splash_global_activity_icon: {
     width: 33,

@@ -20,7 +20,7 @@ const HeaderUser = props => {
         {Netstatus == false ? (
           <View style={styles.ui_splash_contain_destination_globe}>
             <Text style={styles.ui_splash_contain_destination_items_text4}>
-              Acxios
+              Hell'o Travel
             </Text>
           </View>
         ) : (
@@ -45,7 +45,7 @@ const HeaderUser = props => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    backgroundColor: '#ff980052',
+    backgroundColor: '#00bcd4',
     flexDirection: 'row',
     height: 55,
     justifyContent: 'center',
@@ -95,8 +95,11 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_items_text4: {
     color: 'white',
     fontSize: 23,
-    fontFamily: 'NotoSans-Regular',
+    fontFamily: 'PingFang SC Regular',
     padding: 2,
+    textShadowColor: '#a9a5a3',
+    textShadowRadius: 10,
+    elevation: 1,
   },
 });
 

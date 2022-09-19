@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
   const {Title, onPress} = props;
@@ -14,7 +14,9 @@ const HeaderUser = props => {
         </View>
       </TouchableOpacity>
       <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>
-        <Text style={styles.ui_splash_contain_header_globe_zone_title_text2}>{Title}</Text>
+        <Text style={styles.ui_splash_contain_header_globe_zone_title_text2}>
+          {Title}
+        </Text>
       </View>
     </View>
   );
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 70,
     alignItems: 'center',
-    backgroundColor: '#ff980052',
+    backgroundColor: '#00bcd4',
   },
   ui_splash_contain_header_globe_zone_back_left: {
     width: 40,
@@ -57,8 +59,11 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_globe_zone_title_text2: {
     fontSize: 17,
-    fontFamily: 'Nunito-Light',
     color: 'white',
+    fontFamily: 'PingFang SC Regular',
+    textShadowColor: '#a9a5a3',
+    textShadowRadius: 10,
+    elevation: 1,
   },
 });
 
