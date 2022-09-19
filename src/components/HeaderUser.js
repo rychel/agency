@@ -10,7 +10,7 @@ const HeaderUser = props => {
   useEffect(() => {
     Animated.sequence([
       Animated.timing(StartWelcomeBrave, {
-        toValue: 10,
+        toValue: 8,
         duration: 2000,
         useNativeDriver: true,
       }),
@@ -33,7 +33,7 @@ const HeaderUser = props => {
         {Netstatus == false ? (
           <View style={styles.ui_splash_contain_destination_globe}>
             <Text style={styles.ui_splash_contain_destination_items_text4}>
-              connexion...
+              Acxios
             </Text>
           </View>
         ) : (
@@ -66,11 +66,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_globe: {
     flexDirection: 'column',
     justifyContent: 'space-around',
+    top: 5,
   },
   ui_splash_contain_globe_cadre_tags: {
     borderRadius: 100,
     width: 60,
-    height: 65,
+    height: 60,
     backgroundColor: '#00CDAC',
     justifyContent: 'center',
     alignItems: 'center',
