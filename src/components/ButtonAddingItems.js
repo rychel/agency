@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ButtonAddingItems = props => {
-  const {titleico, titlebutton, borderrounds, onOpen, inActive} = props;
+  const {titleico, titlebutton, borderrounds, onOpen} = props;
 
   const [initTitle, setInitTitle] = useState('');
 
@@ -19,7 +19,7 @@ const ButtonAddingItems = props => {
         <View
           style={[
             styles.ui_splash_contain_poly_button_globe,
-            {borderRadius: borderrounds, backgroundColor: inActive}
+            {borderRadius: borderrounds}
           ]}>
           <FontAwesomeIcon icon={titleico} color="white" size={16} />
           <Text style={styles.ui_splash_contain_text_button_globe}>
