@@ -35,7 +35,7 @@ const DrawerDirection = props => {
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
         Titlenumber="+237 673845359"
-        Titlelink='02'
+        Titlelink="02"
         onOpen={() => setSigout(false)}
         onClose={() => setSigout(true)}
       />
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#08dfd5b8',
+    top: -4,
   },
   ui_splash_contain_log_sign_configs1: {
     left: 5,
