@@ -16,16 +16,18 @@ import Trajet from '../screens/Direction/Trajet';
 import HeaderUser from '../components/HeaderUser';
 import DrawerDirection from '../components/DrawerDirection';
 import TitleHeaderBar from '../components/TitleHeaderBar';
+import ConnexionStatus from '../components/ConnexionStatus';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
 const RootDirection = () => {
   const [isOnline, setOnlineStatus] = useState(
-    NetInfo.useNetInfo().isConnected
+    NetInfo.useNetInfo().isConnected,
   );
   NetInfo.refresh().then(state => {
     setOnlineStatus(state.isConnected);
+    getInfo_agency();
   });
 
   const getInfo_agency = () => {
@@ -37,11 +39,9 @@ const RootDirection = () => {
       console.log(e);
     }
   };
-  
+
   const info_agency = useSelector(state => state.DirReducers.info_agency);
   const dispatch = useDispatch();
-
-  getInfo_agency();
 
   return (
     <Drawer.Navigator
@@ -59,15 +59,18 @@ const RootDirection = () => {
         component={Direction}
         options={{
           header: props => (
-            <HeaderUser
-              Gtitle={info_agency[0]?.NomAgence}
-              Depart="Douala"
-              Arrive="Yaoundé"
-              onPress={() => {
-                props.navigation.toggleDrawer();
-              }}
-              Netstatus={isOnline}
-            />
+            <>
+              <ConnexionStatus />
+              <HeaderUser
+                Gtitle={info_agency[0]?.NomAgence}
+                Depart="Douala"
+                Arrive="Yaoundé"
+                onPress={() => {
+                  props.navigation.toggleDrawer();
+                }}
+                Netstatus={isOnline}
+              />
+            </>
           ),
           headerStyle: {
             height: 70,
