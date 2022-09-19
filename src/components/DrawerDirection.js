@@ -9,7 +9,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faBookmark,
-  faSignOutAlt,
+  faClose,
   faSun,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
@@ -35,6 +35,7 @@ const DrawerDirection = props => {
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
         Titlenumber="+237 673845359"
+        Titlelink='02'
         onOpen={() => setSigout(false)}
         onClose={() => setSigout(true)}
       />
@@ -52,7 +53,7 @@ const DrawerDirection = props => {
                 }
                 onPress={signOut}>
                 <FontAwesomeIcon
-                  icon={faSignOutAlt}
+                  icon={faClose}
                   size={17}
                   color="white"
                   style={styles.ui_splash_contain_log_sign_configs1}
@@ -91,7 +92,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
     height: Dimensions.get('window').height,
-    backgroundColor: '#00CDAC',
   },
   ui_splash_contain_header_params_fonts4: {
     fontWeight: '800',
