@@ -1,12 +1,5 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 
 const NotificationExplain = props => {
   const {Titlemessage} = props;
@@ -17,7 +10,6 @@ const NotificationExplain = props => {
         <Text
           style={styles.ui_splash_contain_header_globe_message_configs_font}>
           {Titlemessage}
-          <FontAwesomeIcon name={faLock} color="white" size={18} />
         </Text>
       </View>
     </View>
@@ -32,19 +24,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   ui_splash_contain_header_globe_message_delevry: {
-    width: '92%',
+    width: '80%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f44336bf',
+    backgroundColor: '#ed8b6c',
     borderRadius: 5,
-    padding: 2,
   },
   ui_splash_contain_header_globe_message_configs_font: {
-    width: '95%',
-    fontSize: 17,
-    fontFamily: 'Dosis-VariableFont_wght',
-    textAlign: 'justify',
+    fontSize: 15,
+    fontFamily: 'Roboto-Light',
+    textAlign: 'left',
     padding: 2,
     color: 'white',
   },
