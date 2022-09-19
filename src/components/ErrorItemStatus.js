@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faExclamation} from '@fortawesome/free-solid-svg-icons';
+import AnimatedLottieView from 'lottie-react-native';
 
 const ErrorItemStatus = props => {
   const {Titlestatus} = props;
@@ -9,7 +8,11 @@ const ErrorItemStatus = props => {
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
       <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-        <FontAwesomeIcon icon={faExclamation} size={20} color="red" />
+        <AnimatedLottieView
+          source={require('../../assets/98282-loading.json')}
+          style={styles.ui_splash_global_activity_icon}
+          autoPlay
+        />
       </View>
       <Text
         style={styles.ui_splash_contain_header_administration_awesome_config}>
@@ -22,24 +25,25 @@ const ErrorItemStatus = props => {
 const styles = StyleSheet.create({
   ui_splash_contain_header_administration_item_config: {
     width: '100%',
-    height: 48,
     margin: 10,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: 1,
     flexDirection: 'row',
     paddingRight: 20,
     position: 'absolute',
-    top: 150,
+    top: 50,
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 15,
     fontSize: 15,
-    height: 70,
     color: '#101010ad',
-    fontFamily: 'NotoSans-Regular',
+    fontFamily: 'Rajdhani-Light',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '80%',
+    backgroundColor: 'white',
   },
   ui_splash_contain_header_administration_awesome_caps: {
     width: 25,
@@ -57,7 +61,11 @@ const styles = StyleSheet.create({
     width: '13.33%',
     marginTop: 14,
     marginLeft: 18,
-    backgroundColor: '#e3e3e3',
+    backgroundColor: '#ffeb3b3b',
+  },
+  ui_splash_contain_header_administration_icon: {
+    width: 100,
+    height: 80,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '100%',
@@ -66,6 +74,11 @@ const styles = StyleSheet.create({
     margin: 1,
     flexDirection: 'row',
     paddingRight: 20,
+  },
+  ui_splash_global_activity_icon: {
+    width: 33,
+    height: 300,
+    top: 25,
   },
 });
 
