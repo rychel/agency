@@ -25,10 +25,6 @@ const RootDirection = () => {
   const [isOnline, setOnlineStatus] = useState(
     NetInfo.useNetInfo().isConnected,
   );
-  NetInfo.refresh().then(state => {
-    setOnlineStatus(state.isConnected);
-    getInfo_agency();
-  });
 
   const getInfo_agency = () => {
     try {
@@ -39,6 +35,13 @@ const RootDirection = () => {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    NetInfo.refresh().then(state => {
+      setOnlineStatus(state.isConnected);
+      getInfo_agency();
+    });
+  });
 
   const info_agency = useSelector(state => state.DirReducers.info_agency);
   const dispatch = useDispatch();
@@ -60,7 +63,7 @@ const RootDirection = () => {
         options={{
           header: props => (
             <>
-              <ConnexionStatus />
+              <ConnexionStatus Isconnected={isOnline} />
               <HeaderUser
                 Gtitle={info_agency[0]?.NomAgence}
                 Depart="Douala"
