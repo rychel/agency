@@ -5,7 +5,7 @@ const Statusbar = () => {
   return (
     <StatusBar
       animated={true}
-      backgroundColor="#00CDAC"
+      backgroundColor="#ff980052"
       barStyle="default"
       showHideTransition="fade"
       hidden={false}
