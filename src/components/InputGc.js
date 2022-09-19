@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     top: 3,
     borderColor: '#101010a6',
-    color: '#f44336',
+    color: '#2196f3',
     fontFamily: 'Hind-Light',
   },
   ui_splash_input_form_control_focus: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     top: 3,
     borderColor: '#2196f3',
-    color: '#f44336',
+    color: '#2196f3',
     fontFamily: 'Hind-Light',
   },
   ui_splash_contain_title_form_control: {
