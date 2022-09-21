@@ -14,9 +14,7 @@ export const get_agency_direction = (id_direction) => {
         },
       );
       const success = await request.json();
-      if(success){
-        dispatch({type: 'GET_AGENCY_DIRECTION', info_agency: success});
-      }
+      dispatch({type: 'GET_AGENCY_DIRECTION', info_agency: success});
     } catch (e) {
       console.log(e);
     }
@@ -37,9 +35,7 @@ export const get_config_transport = (id_direction) => {
         },
       );
       const success = await request.json();
-      if(success){
-        dispatch({type: 'GET_CONFIG_TRANSPORT', config_transport: success});
-      }
+      dispatch({type: 'GET_CONFIG_TRANSPORT', config_transport: success});
     } catch (e) {
       console.log(e);
     }
@@ -60,9 +56,7 @@ export const update_config_transport = (id_direction, data_updated) => {
         },
       );
       const success = await request.json();
-      if(success){
-        dispatch({type: 'GET_CONFIG_TRANSPORT', config_transport: success});
-      }
+      dispatch({type: 'GET_CONFIG_TRANSPORT', config_transport: success});
     } catch (e) {
       console.log(e);
     }
