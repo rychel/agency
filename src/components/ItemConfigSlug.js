@@ -1,25 +1,48 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {update_config_transport} from '../store/Log/Dir/DirActions';
 import ToggleSelection from './ToggleSelection';
 
 const ItemConfigSlug = props => {
   const {Titlechoice, Titlemessage, isActived} = props;
   const [swipe, setSwipe] = useState(false);
+  const [stack, setStack] = useState(0);
 
-  const ToggleSwitch = (value) => {
+  const ActiveItemSwitch = value => {
+    try {
+      AsyncStorage.getItem('token').then(id => {
+        if (Titlechoice == 'Ticket physique') {
+          dispatch(update_config_transport(id, value == true ? 0 : null));
+        } else if (Titlechoice == 'Code QR') {
+          dispatch(update_config_transport(id, value == true ? 1 : null));
+        } else {
+          dispatch(update_config_transport(id, value == true ? 2 : null));
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    // Fake swipe
     setSwipe(value);
-  }
+    setStack(1);
+    setTimeout(() => {
+      setStack(0);
+    }, 3000);
+  };
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.ui_splash_contain_header_globe_slug_config}>
       <View style={styles.ui_splash_contain_header_globe_config}>
         <Text style={styles.ui_splash_contain_header_globe_config_fonts}>
           {Titlechoice}
         </Text>
-        <ToggleSelection SwitchCursor={ToggleSwitch} SwitchValue={swipe} />
+        <ToggleSelection
+          SwitchCursor={ActiveItemSwitch}
+          SwitchValue={stack === 0 ? isActived : swipe}
+        />
       </View>
       <View style={styles.ui_splash_contain_header_globe_config_zone_message}>
         <Text style={styles.ui_splash_contain_header_globe_config_fonts2}>
@@ -39,19 +62,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 5,
     borderWidth: 1,
-    borderColor: '#54545461',
+    borderColor: '#e1e1e1',
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderTopWidth: 0,
-  },
-  ui_splash_contain_header_globe: {
-    width: '100%',
-    height: 570,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
-    flexDirection: 'column',
   },
   ui_splash_contain_header_globe_config: {
     width: '98%',
@@ -71,14 +85,14 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe_config_zone_message: {
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#5454540f',
     paddingTop: 2,
     paddingBottom: 2,
+    alignItems: 'flex-start',
   },
   ui_splash_contain_header_globe_config_fonts2: {
-    fontSize: 14,
-    fontFamily: 'NotoSans-Regular',
+    fontSize: 15,
+    fontFamily: 'Roboto-Light',
+    textAlign: 'justify',
   },
 });
 
