@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_config_fonts2: {
     fontSize: 15,
-    fontFamily: 'WorkSans-VariableFont_wght',
+    fontFamily: 'PingFang SC Regular',
     top: -15,
     color: '#000000a3',
   },
