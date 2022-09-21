@@ -32,15 +32,11 @@ import CadreTravelDay from '../../components/CadreTravelDay';
 const Direction = ({navigation}) => {
   const [dashboard, setDashboard] = useState(false);
 
-  //const [info_agency, setInfo_agency] = useState(config.AGENCY_DIRECTION());
-
   const openDashboard = () => {
     setDashboard(true);
   };
   const closeDashboard = () => {
-    setTimeout(() => {
-      setDashboard(false);
-    }, 100);
+    setDashboard(false);
   };
 
   return (
@@ -237,7 +233,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 190,
     marginBottom: 5,
-    marginTop: 10,
   },
   ui_splash_global_contain_registered_global_contain: {
     width: '100%',
