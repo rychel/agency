@@ -3,27 +3,28 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Dimensions,
 } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
+import ToggleSelection from './ToggleSelection';
 
-const ItemConfigSlug = (props) => {
-  const {Titlechoice, Titlemessage} = props;
+const ItemConfigSlug = props => {
+  const {Titlechoice, Titlemessage, isActived} = props;
+  const [swipe, setSwipe] = useState(false);
 
+  const ToggleSwitch = (value) => {
+    setSwipe(value);
+  }
   return (
     <View style={styles.ui_splash_contain_header_globe_slug_config}>
       <View style={styles.ui_splash_contain_header_globe_config}>
         <Text style={styles.ui_splash_contain_header_globe_config_fonts}>
           {Titlechoice}
         </Text>
-        <View>
-          <FontAwesomeIcon icon={faToggleOff} color="#54545480" size={25} />
-        </View>
+        <ToggleSelection SwitchCursor={ToggleSwitch} SwitchValue={swipe} />
       </View>
       <View style={styles.ui_splash_contain_header_globe_config_zone_message}>
-        <Text style={styles.ui_splash_contain_header_globe_config_fonts2}>{Titlemessage}</Text>
+        <Text style={styles.ui_splash_contain_header_globe_config_fonts2}>
+          {Titlemessage}
+        </Text>
       </View>
     </View>
   );
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 4,
     marginRight: 4,
+    overflow: 'hidden',
   },
   ui_splash_contain_header_globe_config_fonts: {
     fontSize: 18,
