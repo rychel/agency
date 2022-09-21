@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     padding: 2,
     color: 'white',
+    paddingTop: 5,
+    paddingBottom: 5,
   },
 });
 
