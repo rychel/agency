@@ -7,7 +7,6 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
-  ToastAndroid,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,11 +14,17 @@ import {
   get_agency_direction,
   update_site_localisation,
   add_target_point,
+  get_target_point,
 } from '../../store/Log/Dir/DirActions';
 import NotificationExplain from '../../components/NotificationExplain';
-import ItemConfigSlug from '../../components/ItemConfigSlug';
+import ValidateItemStatus from '../../components/ValidateItemStatus';
+import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheckCircle,
+  faPlus,
+  faRoute,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = props => {
   const [site, setSite] = useState('');
@@ -59,7 +64,18 @@ const Trajet = props => {
         if (target != '') {
           dispatch(add_target_point(id, point));
           setTarget('');
+          setInterfaceTarget(false);
         }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getTarget_point = () => {
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        dispatch(get_target_point(value));
       });
     } catch (e) {
       console.log(e);
@@ -68,15 +84,42 @@ const Trajet = props => {
 
   useEffect(() => {
     getInfo_agency();
+    getTarget_point();
   });
 
   const info_agency = useSelector(state => state.DirReducers.info_agency);
+  const target_point = useSelector(state => state.DirReducers.target_point);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
-      {interfaceTarget === false ? null : (
+      {target_point[0]?.TagTarget == 0 ? (
+        <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
+      ) : null}
+
+      {interfaceTarget === false ? (
+        <View style={styles.ui_splash_contain_header_maid_interface}>
+          {target_point[0]?.TagTarget == 0 ? null : (
+            <>
+              <ValidateItemStatus
+                Titleico={faCheckCircle}
+                Titlestatus="Trajets enregistrés"
+              />
+              <View style={styles.ui_splash_contain_header_already_registered}>
+                {target_point.map(item => {
+                  return (
+                    <ItemTrajetSaved
+                      Titleico={faRoute}
+                      Titlestatus={item?.Depart}
+                      key={item.id}
+                    />
+                  );
+                })}
+              </View>
+            </>
+          )}
+        </View>
+      ) : (
         <ScrollView style={styles.ui_splash_contain_registration_maid_globe}>
           <ScrollView
             style={
@@ -89,6 +132,8 @@ const Trajet = props => {
                 activeOpacity={0.7}
                 onPress={() => {
                   setInterfaceTarget(false);
+                  setTarget('');
+                  setSite('');
                 }}>
                 <Text style={styles.ui_splash_closed_registration_icon_btn}>
                   annuler.
@@ -200,6 +245,17 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     width: '100%',
     height: Dimensions.get('window').height,
+    backgroundColor: 'white',
+  },
+  ui_splash_contain_header_maid_interface: {
+    width: '100%',
+    height: Dimensions.get('window').height,
+  },
+  ui_splash_contain_header_already_registered: {
+    width: '100%',
+    height: Dimensions.get('window').height,
+    backgroundColor: 'white',
+    top: 50,
   },
   ui_splash_contain_registration_maid_globe: {
     width: '100%',
