@@ -24,6 +24,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 const Trajet = props => {
   const [site, setSite] = useState('');
   const [target, setTarget] = useState('');
+  const [interfaceTarget, setInterfaceTarget] = useState(false);
 
   const getInfo_agency = () => {
     try {
@@ -53,7 +54,7 @@ const Trajet = props => {
       AsyncStorage.getItem('token').then(async id => {
         const point = await {
           depart: info_agency[0]?.Site,
-          destination: target
+          destination: target,
         };
         if (target != '') {
           dispatch(add_target_point(id, point));
@@ -75,104 +76,121 @@ const Trajet = props => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
-      <ScrollView style={styles.ui_splash_contain_registration_maid_globe}>
-        <ScrollView
-          style={
-            info_agency[0]?.Site === null
-              ? styles.ui_splash_contain_registration_maid_globe_shadow
-              : styles.ui_splash_contain_registration_un_maid_globe_shadow
-          }>
-          <View style={styles.ui_splash_contain_first_item_white_globe}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <Text style={styles.ui_splash_closed_registration_icon_btn}>
-                annuler.
-              </Text>
-            </TouchableOpacity>
-            {info_agency[0]?.Site === null ? (
-              <View style={styles.ui_splash_contain_update_place_agency_globe}>
-                <Text style={styles.ui_splash_contain_label_configuration_name}>
-                  Localisation.
+      {interfaceTarget === false ? null : (
+        <ScrollView style={styles.ui_splash_contain_registration_maid_globe}>
+          <ScrollView
+            style={
+              info_agency[0]?.Site === null
+                ? styles.ui_splash_contain_registration_maid_globe_shadow
+                : styles.ui_splash_contain_registration_un_maid_globe_shadow
+            }>
+            <View style={styles.ui_splash_contain_first_item_white_globe}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  setInterfaceTarget(false);
+                }}>
+                <Text style={styles.ui_splash_closed_registration_icon_btn}>
+                  annuler.
                 </Text>
-                <View style={styles.ui_splash_contain_subupdate_place_agency}>
+              </TouchableOpacity>
+              {info_agency[0]?.Site === null ? (
+                <View
+                  style={styles.ui_splash_contain_update_place_agency_globe}>
+                  <Text
+                    style={styles.ui_splash_contain_label_configuration_name}>
+                    Localisation.
+                  </Text>
+                  <View style={styles.ui_splash_contain_subupdate_place_agency}>
+                    <Text
+                      style={
+                        styles.ui_splash_contain_sublabel_configuration_name
+                      }>
+                      Entrer la localisation de votre agence avant de continuer
+                    </Text>
+                    <TextInput
+                      style={styles.ui_splash_contain_input_update_localisation}
+                      placeholder="EX: Douala"
+                      onChangeText={value => {
+                        setSite(value);
+                      }}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      site === ''
+                        ? styles.ui_splash_contain_btn_disabled_target
+                        : styles.ui_splash_contain_btn_update_localisation
+                    }
+                    onPress={updateSite_localisation}>
+                    <Text
+                      style={
+                        styles.ui_splash_contain_text_btn_upd_localisation
+                      }>
+                      Enregistrer
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ) : null}
+            </View>
+            <View style={styles.ui_splash_contain_second_item_white_globe}>
+              <View style={styles.ui_splash_contain_update_add_agency_globe}>
+                <Text style={styles.ui_splash_contain_label_configuration_name}>
+                  Trajet.
+                </Text>
+                <View style={styles.ui_splash_contain_subupdate_add_agency}>
                   <Text
                     style={
-                      styles.ui_splash_contain_sublabel_configuration_name
+                      styles.ui_splash_contain_sublabel_add_configuration_name
                     }>
-                    Entrer la localisation de votre agence avant de continuer
+                    Localisation prédéfinie comme Départ.
                   </Text>
-                  <TextInput
-                    style={styles.ui_splash_contain_input_update_localisation}
-                    placeholder="EX: Douala"
-                    onChangeText={value => {
-                      setSite(value);
-                    }}
-                  />
+                  <View
+                    style={
+                      styles.ui_splash_contain_subupdate_add_phantom_agency
+                    }>
+                    <TextInput
+                      style={styles.ui_splash_contain_input_add_target}
+                      value={info_agency[0]?.Site}
+                      editable={false}
+                    />
+                    <TextInput
+                      style={styles.ui_splash_contain_dropdown_town_place}
+                      placeholder="Destination"
+                      onChangeText={value => {
+                        setTarget(value);
+                      }}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      target === ''
+                        ? styles.ui_splash_contain_btn_disabled_target
+                        : styles.ui_splash_contain_btn_add_place_target
+                    }
+                    onPress={addTarget_point}>
+                    <Text
+                      style={
+                        styles.ui_splash_contain_text_btn_add_place_target
+                      }>
+                      Ajouter
+                    </Text>
+                  </TouchableOpacity>
                 </View>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    site === ''
-                      ? styles.ui_splash_contain_btn_disabled_target
-                      : styles.ui_splash_contain_btn_update_localisation
-                  }
-                  onPress={updateSite_localisation}>
-                  <Text
-                    style={styles.ui_splash_contain_text_btn_upd_localisation}>
-                    Enregistrer
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ) : null}
-          </View>
-          <View style={styles.ui_splash_contain_second_item_white_globe}>
-            <View style={styles.ui_splash_contain_update_add_agency_globe}>
-              <Text style={styles.ui_splash_contain_label_configuration_name}>
-                Trajet.
-              </Text>
-              <View style={styles.ui_splash_contain_subupdate_add_agency}>
-                <Text
-                  style={
-                    styles.ui_splash_contain_sublabel_add_configuration_name
-                  }>
-                  Localisation prédéfinie comme Départ.
-                </Text>
-                <View
-                  style={styles.ui_splash_contain_subupdate_add_phantom_agency}>
-                  <TextInput
-                    style={styles.ui_splash_contain_input_add_target}
-                    value={info_agency[0]?.Site}
-                    editable={false}
-                  />
-                  <TextInput
-                    style={styles.ui_splash_contain_dropdown_town_place}
-                    placeholder="Destination"
-                    onChangeText={value => {
-                      setTarget(value);
-                    }}
-                  />
-                </View>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    target === ''
-                      ? styles.ui_splash_contain_btn_disabled_target
-                      : styles.ui_splash_contain_btn_add_place_target
-                  }
-                  onPress={addTarget_point}>
-                  <Text
-                    style={styles.ui_splash_contain_text_btn_add_place_target}>
-                    Ajouter
-                  </Text>
-                </TouchableOpacity>
               </View>
             </View>
-          </View>
+          </ScrollView>
         </ScrollView>
-      </ScrollView>
+      )}
       <ButtonAddingItems
         titleico={faPlus}
         titlebutton="ajouter"
         borderrounds={50}
+        onOpen={() => {
+          setInterfaceTarget(true);
+        }}
       />
     </View>
   );
