@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBars, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
-  const {Gtitle, Depart, Arrive, onPress, Netstatus} = props;
+  const {Gtitle, Site, onPress, Netstatus} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
@@ -29,7 +29,7 @@ const HeaderUser = props => {
               {Gtitle}
             </Text>
             <Text style={styles.ui_splash_contain_destination_items_text2}>
-              {Depart}-{Arrive}
+              {Site}
             </Text>
           </View>
         )}
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_destination_items_text1: {
     color: 'white',
-    fontSize: 18,
-    fontFamily: 'NotoSans-Regular',
+    fontSize: 22,
+    fontFamily: 'PontanoSans-Regular',
     padding: 2,
   },
   ui_splash_contain_destination_items_globe_text2: {
@@ -77,16 +77,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ui_splash_contain_destination_items_text2: {
-    marginLeft: 1,
-    marginRight: 10,
     color: 'white',
-    borderRadius: 100,
-    backgroundColor: '#ffc107',
     width: 106,
     paddingLeft: 5,
-    fontFamily: 'PontanoSans-Regular',
+    fontFamily: 'PingFang SC Regular',
     position: 'relative',
-    top: -1,
   },
   ui_splash_contain_destination_items_text3: {
     marginLeft: 1,
