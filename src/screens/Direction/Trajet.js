@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,48 +7,110 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  get_agency_direction,
+  update_site_localisation,
+} from '../../store/Log/Dir/DirActions';
+import NetInfo from '@react-native-community/netinfo';
 import NotificationExplain from '../../components/NotificationExplain';
 import ItemConfigSlug from '../../components/ItemConfigSlug';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = props => {
+  const [site, setSite] = useState('');
+  const [target, setTarget] = useState('');
+
+  const getInfo_agency = () => {
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        dispatch(get_agency_direction(value));
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateSite_localisation = () => {
+    try {
+      AsyncStorage.getItem('token').then(id => {
+        if (site != '') {
+          dispatch(update_site_localisation(id, site));
+          setSite('');
+        } else {
+          ToastAndroid.show(
+            'Entrer la ville de résidence avant de valider',
+            1000,
+          );
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getInfo_agency();
+  });
+
+  const info_agency = useSelector(state => state.DirReducers.info_agency);
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
       <ScrollView style={styles.ui_splash_contain_registration_maid_globe}>
         <ScrollView
-          style={styles.ui_splash_contain_registration_maid_globe_shadow}>
+          style={
+            info_agency[0]?.Site === null
+              ? styles.ui_splash_contain_registration_maid_globe_shadow
+              : styles.ui_splash_contain_registration_un_maid_globe_shadow
+          }>
           <View style={styles.ui_splash_contain_first_item_white_globe}>
             <TouchableOpacity activeOpacity={0.7}>
               <Text style={styles.ui_splash_closed_registration_icon_btn}>
                 annuler.
               </Text>
             </TouchableOpacity>
-            <View style={styles.ui_splash_contain_update_place_agency_globe}>
-              <Text style={styles.ui_splash_contain_label_configuration_name}>
-                Localisation.
-              </Text>
-              <View style={styles.ui_splash_contain_subupdate_place_agency}>
-                <Text
-                  style={styles.ui_splash_contain_sublabel_configuration_name}>
-                  Entrer la localisation de votre agence avant de continuer
+            {info_agency[0]?.Site === null ? (
+              <View style={styles.ui_splash_contain_update_place_agency_globe}>
+                <Text style={styles.ui_splash_contain_label_configuration_name}>
+                  Localisation.
                 </Text>
-                <TextInput
-                  style={styles.ui_splash_contain_input_update_localisation}
-                  placeholder="ex: Douala"
-                />
+                <View style={styles.ui_splash_contain_subupdate_place_agency}>
+                  <Text
+                    style={
+                      styles.ui_splash_contain_sublabel_configuration_name
+                    }>
+                    Entrer la localisation de votre agence avant de continuer
+                  </Text>
+                  <TextInput
+                    style={styles.ui_splash_contain_input_update_localisation}
+                    placeholder="EX: Douala"
+                    onChangeText={value => {
+                      setSite(value);
+                    }}
+                  />
+                </View>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={
+                    site === ''
+                      ? styles.ui_splash_contain_btn_disabled_target
+                      : styles.ui_splash_contain_btn_update_localisation
+                  }
+                  onPress={updateSite_localisation}>
+                  <Text
+                    style={styles.ui_splash_contain_text_btn_upd_localisation}>
+                    Enregistrer
+                  </Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={styles.ui_splash_contain_btn_update_localisation}>
-                <Text
-                  style={styles.ui_splash_contain_text_btn_upd_localisation}>
-                  Enregistrer
-                </Text>
-              </TouchableOpacity>
-            </View>
+            ) : null}
           </View>
           <View style={styles.ui_splash_contain_second_item_white_globe}>
             <View style={styles.ui_splash_contain_update_add_agency_globe}>
@@ -67,6 +129,10 @@ const Trajet = props => {
                   <TextInput
                     style={styles.ui_splash_contain_input_add_target}
                     value="Kribi"
+                    editable={false}
+                    onChangeText={value => {
+                      setTarget(value);
+                    }}
                   />
                   <TextInput
                     style={styles.ui_splash_contain_dropdown_town_place}
@@ -75,7 +141,11 @@ const Trajet = props => {
                 </View>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  style={styles.ui_splash_contain_btn_add_place_target}>
+                  style={
+                    target === ''
+                      ? styles.ui_splash_contain_btn_disabled_target
+                      : styles.ui_splash_contain_btn_add_place_target
+                  }>
                   <Text
                     style={styles.ui_splash_contain_text_btn_add_place_target}>
                     Ajouter
@@ -111,6 +181,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height,
     backgroundColor: '#adadad45',
+  },
+  ui_splash_contain_registration_un_maid_globe_shadow: {
+    width: '100%',
+    height: Dimensions.get('window').height,
+    backgroundColor: 'white',
   },
   ui_splash_contain_first_item_white_globe: {
     backgroundColor: 'white',
@@ -160,10 +235,10 @@ const styles = StyleSheet.create({
     width: 110,
     height: 45,
     backgroundColor: '#2196f3',
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    left: 10,
+    left: 2,
   },
   ui_splash_contain_text_btn_upd_localisation: {
     color: 'white',
@@ -198,10 +273,12 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 50,
     borderWidth: 0.6,
-    borderColor: '#0000007d',
+    borderColor: '#f1f0f0cf',
     borderRadius: 3,
-    fontFamily: 'PontanoSans-Regular',
+    fontFamily: 'Roboto-Light',
     color: '#101010a6',
+    fontSize: 16,
+    backgroundColor: '#f1f0f0cf',
   },
   ui_splash_contain_second_item_white_globe: {
     backgroundColor: 'white',
@@ -209,26 +286,36 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_dropdown_town_place: {
     borderWidth: 0.8,
-    borderColor: '#ff9800',
+    borderColor: '#0070c6b5',
     width: '95%',
     fontFamily: 'PontanoSans-Regular',
     alignSelf: 'center',
     borderRadius: 4,
-    color: '#ff9800',
+    color: '#0070c6b5',
+    fontSize: 16,
   },
   ui_splash_contain_btn_add_place_target: {
     width: 90,
     height: 45,
     backgroundColor: '#ff9800',
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    left: 10,
+    left: 2,
   },
   ui_splash_contain_text_btn_add_place_target: {
     color: 'white',
     fontFamily: 'Hind-Light',
     fontSize: 16,
+  },
+  ui_splash_contain_btn_disabled_target: {
+    width: 90,
+    height: 45,
+    backgroundColor: '#f1f0f0cf',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 2,
   },
 });
 
