@@ -2,25 +2,21 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 
-const ConnexionStatus = props => {
-  const {Isreached, Isconnected} = props;
-
+const ConnexionStatus = () => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      {Isconnected ? null : (
-        <View style={styles.ui_splash_contain_contain_destination_globe}>
-          <View style={styles.ui_splash_contain_destination_globe}>
-            <AnimatedLottieView
-              source={require('../../assets/99109-loading.json')}
-              style={styles.ui_splash_global_activity_icon}
-              autoPlay
-            />
-            <Text style={styles.ui_splash_contain_destination_label}>
-              Tentative de connexion
-            </Text>
-          </View>
+      <View style={styles.ui_splash_contain_contain_destination_globe}>
+        <View style={styles.ui_splash_contain_destination_globe}>
+          <AnimatedLottieView
+            source={require('../../assets/99109-loading.json')}
+            style={styles.ui_splash_global_activity_icon}
+            autoPlay
+          />
+          <Text style={styles.ui_splash_contain_destination_label}>
+            Tentative de connexion
+          </Text>
         </View>
-      )}
+      </View>
     </View>
   );
 };

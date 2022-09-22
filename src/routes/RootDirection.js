@@ -65,7 +65,7 @@ const RootDirection = () => {
         options={{
           header: props => (
             <>
-              <ConnexionStatus Isconnected={isOnline} />
+              {isOnline ? null : <ConnexionStatus />}
               <HeaderUser
                 Agence={info_agency[0]?.NomAgence}
                 Site={info_agency[0]?.Site}
