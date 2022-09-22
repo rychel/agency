@@ -8,7 +8,7 @@ const ValidateItemStatus = props => {
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
       <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-        <FontAwesomeIcon icon={Titleico} size={25} color="white" />
+        <FontAwesomeIcon icon={Titleico} size={20} color="white" />
       </View>
       <Text
         style={styles.ui_splash_contain_header_administration_awesome_config}>

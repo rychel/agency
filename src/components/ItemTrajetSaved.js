@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const ItemTrajetSaved = props => {
@@ -8,9 +8,10 @@ const ItemTrajetSaved = props => {
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
       <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-        <FontAwesomeIcon icon={Titleico} size={25} color="white" />
+        <FontAwesomeIcon icon={Titleico} size={20} color="white" />
       </View>
-      <View
+      <TouchableOpacity
+        activeOpacity={0.5}
         style={
           styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
         }>
@@ -27,7 +28,7 @@ const ItemTrajetSaved = props => {
           }>
           {Destination}
         </Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     margin: 0,
     fontSize: 20,
     height: 40,
-    color: '#706e6e',
+    color: '#706e6eba',
     fontFamily: 'Quicksand-VariableFont_wght',
     marginTop: 11,
     left: 35,
@@ -87,12 +88,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '13.33%',
-    marginTop: 2,
+    width: '11.43%',
+    marginTop: 10,
     marginLeft: 5,
     borderRadius: 100,
     backgroundColor: '#673ab7d6',
-    height: 40,
+    height: 35,
     marginRight: 10,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
