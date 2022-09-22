@@ -128,7 +128,7 @@ const Trajet = props => {
                   style={styles.ui_splash_contain_subupdate_add_phantom_agency}>
                   <TextInput
                     style={styles.ui_splash_contain_input_add_target}
-                    value="Kribi"
+                    value={info_agency[0]?.Site}
                     editable={false}
                     onChangeText={value => {
                       setTarget(value);
