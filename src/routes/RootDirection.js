@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Dimensions, FlatList, Text} from 'react-native';
+import {Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {get_agency_direction} from '../store/Log/Dir/DirActions';
@@ -66,8 +66,8 @@ const RootDirection = () => {
               <ConnexionStatus Isconnected={isOnline} />
               <HeaderUser
                 Gtitle={info_agency[0]?.NomAgence}
-                Depart="Douala"
-                Arrive="Yaoundé"
+                Site={info_agency[0]?.Site}
+                Quartier={info_agency[0]?.Quartier}
                 onPress={() => {
                   props.navigation.toggleDrawer();
                 }}
@@ -86,7 +86,7 @@ const RootDirection = () => {
         options={{
           header: props => (
             <TitleHeaderBar
-              Title="Paramètres"
+              Title="Parametres"
               onPress={() => {
                 props.navigation.goBack();
               }}
@@ -151,20 +151,6 @@ const RootDirection = () => {
         }}
       />
       <Drawer.Screen
-        name="Caisse"
-        component={Caisse}
-        options={{
-          header: props => (
-            <TitleHeaderBar
-              Title="Service caisse de l'agence"
-              onPress={() => {
-                props.navigation.goBack();
-              }}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
         name="Transport"
         component={Transport}
         options={{
@@ -185,6 +171,20 @@ const RootDirection = () => {
           header: props => (
             <TitleHeaderBar
               Title="Etablir les trajets de l'agence"
+              onPress={() => {
+                props.navigation.goBack();
+              }}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Caisse"
+        component={Caisse}
+        options={{
+          header: props => (
+            <TitleHeaderBar
+              Title="Service caisse de l'agence"
               onPress={() => {
                 props.navigation.goBack();
               }}
