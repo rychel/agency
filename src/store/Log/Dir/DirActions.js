@@ -60,3 +60,22 @@ export const update_config_transport = (id_direction, data_updated) => {
     }
   };
 };
+
+export const update_site_localisation = (id_direction, data_updated) => {
+  return async dispatch => {
+    try {
+      fetch(
+        URL + '/api/update_site_localisation',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({title: parseInt(id_direction), value: data_updated}),
+        },
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
