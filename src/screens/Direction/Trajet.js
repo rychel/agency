@@ -21,7 +21,7 @@ import ValidateItemStatus from '../../components/ValidateItemStatus';
 import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import {
-  faCheckCircle,
+  faMapMarkedAlt,
   faPlus,
   faRoute,
 } from '@fortawesome/free-solid-svg-icons';
@@ -102,7 +102,7 @@ const Trajet = props => {
           {target_point[0]?.TagTarget == 0 ? null : (
             <>
               <ValidateItemStatus
-                Titleico={faCheckCircle}
+                Titleico={faMapMarkedAlt}
                 Titlestatus="Trajets enregistrés"
               />
               <View style={styles.ui_splash_contain_header_already_registered}>
@@ -110,7 +110,8 @@ const Trajet = props => {
                   return (
                     <ItemTrajetSaved
                       Titleico={faRoute}
-                      Titlestatus={item?.Depart}
+                      Depart={item?.Depart}
+                      Destination={item?.Destination}
                       key={item.id}
                     />
                   );

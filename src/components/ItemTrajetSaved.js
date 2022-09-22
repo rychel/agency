@@ -3,33 +3,45 @@ import {View, Text, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const ItemTrajetSaved = props => {
-  const {Titleico, Titlestatus} = props;
+  const {Titleico, Depart, Destination} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
       <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
         <FontAwesomeIcon icon={Titleico} size={25} color="white" />
       </View>
-      <Text
-        style={styles.ui_splash_contain_header_administration_awesome_config}>
-        {Titlestatus}
-      </Text>
+      <View
+        style={
+          styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
+        }>
+        <Text
+          style={styles.ui_splash_contain_header_administration_awesome_config}>
+          {Depart}
+        </Text>
+        <Text style={styles.ui_splash_contain_header_separate_awesome_config}>
+          -
+        </Text>
+        <Text
+          style={
+            styles.ui_splash_contain_header_administration_awesome_config2
+          }>
+          {Destination}
+        </Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_administration_item_config: {
-    width: '100%',
+    width: '99%',
     height: 48,
-    margin: 10,
     flexDirection: 'row',
-    margin: 1,
+    margin: 2,
     flexDirection: 'row',
-    justifyContent: 'center',
     backgroundColor: 'white',
     alignItems: 'center',
-    top: 100,
+    marginTop: 30,
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 0,
@@ -40,6 +52,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+    left: 2,
+  },
+  ui_splash_contain_header_separate_awesome_config: {
+    margin: 0,
+    fontSize: 20,
+    height: 40,
+    color: '#706e6e',
+    fontFamily: 'Roboto-Thin',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+    left: 20,
+  },
+  ui_splash_contain_header_administration_awesome_config2: {
+    margin: 0,
+    fontSize: 20,
+    height: 40,
+    color: '#706e6e',
+    fontFamily: 'Quicksand-VariableFont_wght',
+    marginTop: 11,
+    left: 35,
   },
   ui_splash_contain_header_administration_awesome_caps: {
     width: 25,
@@ -58,17 +91,21 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 5,
     borderRadius: 100,
-    backgroundColor: '#8bc34a',
+    backgroundColor: '#673ab7d6',
     height: 40,
     marginRight: 10,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    width: '90%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     margin: 1,
     flexDirection: 'row',
-    paddingRight: 20,
+    borderWidth: 0.4,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderColor: '#e3e3e3',
   },
 });
 
