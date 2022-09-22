@@ -41,11 +41,6 @@ const Trajet = props => {
         if (site != '') {
           dispatch(update_site_localisation(id, site));
           setSite('');
-        } else {
-          ToastAndroid.show(
-            'Entrer la ville de résidence avant de valider',
-            1000,
-          );
         }
       });
     } catch (e) {
@@ -63,11 +58,6 @@ const Trajet = props => {
         if (target != '') {
           dispatch(add_target_point(id, point));
           setTarget('');
-        } else {
-          ToastAndroid.show(
-            'Entrer la ville de résidence avant de valider',
-            1000,
-          );
         }
       });
     } catch (e) {
