@@ -25,11 +25,13 @@ const RootDirection = () => {
   const [isOnline, setOnlineStatus] = useState(
     NetInfo.useNetInfo().isConnected,
   );
+  const [onLoad, setOnLoad] = useState(true);
 
   const getInfo_agency = () => {
     try {
-      AsyncStorage.getItem('token').then(value => {
-        dispatch(get_agency_direction(value));
+      AsyncStorage.getItem('token').then(async value => {
+        await dispatch(get_agency_direction(value));
+        setOnLoad(false);
       });
     } catch (e) {
       console.log(e);
@@ -72,6 +74,7 @@ const RootDirection = () => {
                   props.navigation.toggleDrawer();
                 }}
                 Netstatus={isOnline}
+                onLoad={onLoad}
               />
             </>
           ),
