@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     alignItems: 'center',
+    zIndex: 1,
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 0,
