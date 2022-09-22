@@ -28,9 +28,15 @@ const HeaderUser = props => {
             <Text style={styles.ui_splash_contain_destination_items_text1}>
               {Gtitle}
             </Text>
-            <Text style={styles.ui_splash_contain_destination_items_text2}>
-              {Site}
-            </Text>
+            {Site === null ? null : (
+              <View>
+                <Text
+                  style={styles.ui_splash_contain_destination_items_text2}
+                  numberOfLines={1}>
+                  agence de {Site}
+                </Text>
+              </View>
+            )}
           </View>
         )}
       </View>
@@ -78,10 +84,11 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_destination_items_text2: {
     color: 'white',
-    width: 106,
     paddingLeft: 5,
     fontFamily: 'PingFang SC Regular',
-    position: 'relative',
+    textShadowColor: '#ffeb3b8f',
+    textShadowRadius: 10,
+    elevation: 0.1,
   },
   ui_splash_contain_destination_items_text3: {
     marginLeft: 1,
