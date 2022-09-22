@@ -76,12 +76,13 @@ const Trajet = props => {
     } catch (e) {
       console.log(e);
     }
+    console.log('changed');
   };
 
   useEffect(() => {
     getInfo_agency();
     getTarget_point();
-  });
+  }, []);
 
   const {info_agency, target_point} = useSelector(state => state.DirReducers);
   const dispatch = useDispatch();
@@ -90,7 +91,7 @@ const Trajet = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       {interfaceTarget === false ? (
         <View style={styles.ui_splash_contain_header_maid_interface}>
-          {target_point[0]?.TagTarget == 0 ? (
+          {target_point === [] ? (
             <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
           ) : (
             <>
@@ -209,7 +210,9 @@ const Trajet = props => {
                         ? styles.ui_splash_contain_btn_disabled_target
                         : styles.ui_splash_contain_btn_add_place_target
                     }
-                    onPress={addTarget_point}>
+                    onPress={() => {
+                      addTarget_point(), getTarget_point();
+                    }}>
                     <Text
                       style={
                         styles.ui_splash_contain_text_btn_add_place_target
