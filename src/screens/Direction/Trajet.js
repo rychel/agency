@@ -14,8 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   get_agency_direction,
   update_site_localisation,
+  add_target_point,
 } from '../../store/Log/Dir/DirActions';
-import NetInfo from '@react-native-community/netinfo';
 import NotificationExplain from '../../components/NotificationExplain';
 import ItemConfigSlug from '../../components/ItemConfigSlug';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
@@ -41,6 +41,28 @@ const Trajet = props => {
         if (site != '') {
           dispatch(update_site_localisation(id, site));
           setSite('');
+        } else {
+          ToastAndroid.show(
+            'Entrer la ville de résidence avant de valider',
+            1000,
+          );
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const addTarget_point = () => {
+    try {
+      AsyncStorage.getItem('token').then(async id => {
+        const point = await {
+          depart: info_agency[0]?.Site,
+          destination: target
+        };
+        if (target != '') {
+          dispatch(add_target_point(id, point));
+          setTarget('');
         } else {
           ToastAndroid.show(
             'Entrer la ville de résidence avant de valider',
@@ -130,13 +152,13 @@ const Trajet = props => {
                     style={styles.ui_splash_contain_input_add_target}
                     value={info_agency[0]?.Site}
                     editable={false}
-                    onChangeText={value => {
-                      setTarget(value);
-                    }}
                   />
                   <TextInput
                     style={styles.ui_splash_contain_dropdown_town_place}
                     placeholder="Destination"
+                    onChangeText={value => {
+                      setTarget(value);
+                    }}
                   />
                 </View>
                 <TouchableOpacity
@@ -145,7 +167,8 @@ const Trajet = props => {
                     target === ''
                       ? styles.ui_splash_contain_btn_disabled_target
                       : styles.ui_splash_contain_btn_add_place_target
-                  }>
+                  }
+                  onPress={addTarget_point}>
                   <Text
                     style={styles.ui_splash_contain_text_btn_add_place_target}>
                     Ajouter
