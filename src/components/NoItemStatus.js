@@ -1,26 +1,19 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const NoItemStatus = props => {
   const {Titleico, Titlestatus} = props;
 
   return (
-    <View>
-      <View style={styles.ui_splash_contain_header_administration_item_config}>
-        <View
-          style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesomeIcon icon={Titleico} size={20} color="#d1d1d1" />
-        </View>
-        <Text
-          style={styles.ui_splash_contain_header_administration_awesome_config}>
-          {Titlestatus}
-        </Text>
+    <View style={styles.ui_splash_contain_header_administration_item_config}>
+      <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
+        <FontAwesomeIcon icon={Titleico} size={20} color="#d1d1d1" />
       </View>
+      <Text
+        style={styles.ui_splash_contain_header_administration_awesome_config}>
+        {Titlestatus}
+      </Text>
     </View>
   );
 };
@@ -31,10 +24,10 @@ const styles = StyleSheet.create({
     height: 48,
     margin: 10,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     margin: 1,
     flexDirection: 'row',
     paddingRight: 20,
+    justifyContent: 'center'
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 0,
