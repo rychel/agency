@@ -44,10 +44,8 @@ const Trajet = props => {
   const updateSite_localisation = () => {
     try {
       AsyncStorage.getItem('token').then(id => {
-        if (site != '') {
-          dispatch(update_site_localisation(id, site));
-          setSite('');
-        }
+        dispatch(update_site_localisation(id, site));
+        setSite('');
       });
     } catch (e) {
       console.log(e);
@@ -61,11 +59,9 @@ const Trajet = props => {
           depart: info_agency[0]?.Site,
           destination: target,
         };
-        if (target != '') {
-          dispatch(add_target_point(id, point));
-          setTarget('');
-          setInterfaceTarget(false);
-        }
+        dispatch(add_target_point(id, point));
+        setTarget('');
+        setInterfaceTarget(false);
       });
     } catch (e) {
       console.log(e);
@@ -87,19 +83,16 @@ const Trajet = props => {
     getTarget_point();
   });
 
-  const info_agency = useSelector(state => state.DirReducers.info_agency);
-  const target_point = useSelector(state => state.DirReducers.target_point);
+  const {info_agency, target_point} = useSelector(state => state.DirReducers);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      {target_point[0]?.TagTarget == 0 ? (
-        <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
-      ) : null}
-
       {interfaceTarget === false ? (
         <View style={styles.ui_splash_contain_header_maid_interface}>
-          {target_point[0]?.TagTarget == 0 ? null : (
+          {target_point[0]?.TagTarget == 0 ? (
+            <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
+          ) : (
             <>
               <ValidateItemStatus
                 Titleico={faMapMarkedAlt}
