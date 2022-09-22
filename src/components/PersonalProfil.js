@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
     width: '50%',
     height: 155,
     overflow: 'hidden',
-    backgroundColor: '#ff980017',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 6,
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_params_fonts5: {
     fontSize: 50,
-    color: '#eb7752',
+    color: '#ffecb5',
     fontFamily: 'NovaMono-Regular',
     left: 4,
     alignSelf: 'center',
