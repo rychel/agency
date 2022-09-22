@@ -76,12 +76,12 @@ const Trajet = props => {
     } catch (e) {
       console.log(e);
     }
-    console.log('changed');
   };
 
   useEffect(() => {
     getInfo_agency();
     getTarget_point();
+    console.log(target_point[0]?.id);
   }, []);
 
   const {info_agency, target_point} = useSelector(state => state.DirReducers);
@@ -91,7 +91,7 @@ const Trajet = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       {interfaceTarget === false ? (
         <View style={styles.ui_splash_contain_header_maid_interface}>
-          {target_point === [] ? (
+          {target_point[0]?.id === undefined ? (
             <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
           ) : (
             <>
@@ -163,7 +163,9 @@ const Trajet = props => {
                         ? styles.ui_splash_contain_btn_disabled_target
                         : styles.ui_splash_contain_btn_update_localisation
                     }
-                    onPress={updateSite_localisation}>
+                    onPress={() => {
+                      updateSite_localisation();
+                    }}>
                     <Text
                       style={
                         styles.ui_splash_contain_text_btn_upd_localisation
@@ -192,7 +194,11 @@ const Trajet = props => {
                     }>
                     <TextInput
                       style={styles.ui_splash_contain_input_add_target}
-                      value={info_agency[0]?.Site}
+                      value={
+                        info_agency[0]?.Site === null
+                          ? null
+                          : info_agency[0]?.Site
+                      }
                       editable={false}
                     />
                     <TextInput
@@ -201,6 +207,7 @@ const Trajet = props => {
                       onChangeText={value => {
                         setTarget(value);
                       }}
+                      editable={info_agency[0]?.Site === null ? false : true}
                     />
                   </View>
                   <TouchableOpacity
