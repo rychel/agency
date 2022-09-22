@@ -67,7 +67,7 @@ const RootDirection = () => {
             <>
               <ConnexionStatus Isconnected={isOnline} />
               <HeaderUser
-                Gtitle={info_agency[0]?.NomAgence}
+                Agence={info_agency[0]?.NomAgence}
                 Site={info_agency[0]?.Site}
                 Quartier={info_agency[0]?.Quartier}
                 onPress={() => {
