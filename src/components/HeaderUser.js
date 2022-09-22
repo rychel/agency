@@ -39,7 +39,7 @@ const HeaderUser = props => {
                     <Text
                       style={styles.ui_splash_contain_destination_items_text2}
                       numberOfLines={1}>
-                      agence de {Site} {Quartier}
+                      agence de {Site} de {Quartier}
                     </Text>
                   </View>
                 )}
