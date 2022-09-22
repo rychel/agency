@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBars, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
-  const {Gtitle, Site, onPress, Netstatus} = props;
+  const {Gtitle, Site, Quartier, onPress, Netstatus} = props;
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
@@ -33,7 +33,7 @@ const HeaderUser = props => {
                 <Text
                   style={styles.ui_splash_contain_destination_items_text2}
                   numberOfLines={1}>
-                  agence de {Site}
+                  agence de {Site} {Quartier}
                 </Text>
               </View>
             )}
