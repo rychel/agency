@@ -79,3 +79,22 @@ export const update_site_localisation = (id_direction, data_updated) => {
     }
   };
 };
+
+export const add_target_point = (id_direction, data) => {
+  return async dispatch => {
+    try {
+      fetch(
+        URL + '/api/add_target_point',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({title: parseInt(id_direction), value: data}),
+        },
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
