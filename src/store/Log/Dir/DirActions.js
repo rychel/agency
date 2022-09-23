@@ -1,4 +1,4 @@
-export const URL = 'http://192.168.8.100:5000';
+export const URL = 'http://192.168.8.101:5000';
 
 export const get_agency_direction = id_direction => {
   return async dispatch => {
@@ -102,6 +102,22 @@ export const get_target_point = id_direction => {
       });
       const success = await request.json();
       dispatch({type: 'GET_TARGET_POINT', target_point: success});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const update_self_target = (id_direction, id, data) => {
+  return async dispatch => {
+    try {
+      fetch(URL + '/api/update_self_target', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({title: parseInt(id_direction), id: id, value: data}),
+      });
     } catch (e) {
       console.log(e);
     }
