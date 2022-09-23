@@ -15,6 +15,7 @@ import {
   update_site_localisation,
   add_target_point,
   get_target_point,
+  update_self_target,
 } from '../../store/Log/Dir/DirActions';
 import NotificationExplain from '../../components/NotificationExplain';
 import ValidateItemStatus from '../../components/ValidateItemStatus';
@@ -30,6 +31,9 @@ const Trajet = props => {
   const [site, setSite] = useState('');
   const [target, setTarget] = useState('');
   const [interfaceTarget, setInterfaceTarget] = useState(false);
+  const [updateTarget, setUpdateTarget] = useState(false);
+  const [oldTarget, setOldTarget] = useState('');
+  const [idUpdate, setIdUpdate] = useState(0);
 
   const getInfo_agency = () => {
     try {
@@ -44,8 +48,10 @@ const Trajet = props => {
   const updateSite_localisation = () => {
     try {
       AsyncStorage.getItem('token').then(id => {
-        dispatch(update_site_localisation(id, site));
-        setSite('');
+        if (site != '') {
+          dispatch(update_site_localisation(id, site));
+          setSite('');
+        }
       });
     } catch (e) {
       console.log(e);
@@ -59,9 +65,11 @@ const Trajet = props => {
           depart: info_agency[0]?.Site,
           destination: target,
         };
-        dispatch(add_target_point(id, point));
-        setTarget('');
-        setInterfaceTarget(false);
+        if (target != '') {
+          dispatch(add_target_point(id, point));
+          setTarget('');
+          setInterfaceTarget(false);
+        }
       });
     } catch (e) {
       console.log(e);
@@ -78,10 +86,24 @@ const Trajet = props => {
     }
   };
 
+  const updateSelf_target = () => {
+    try {
+      AsyncStorage.getItem('token').then(id => {
+        if (target != '') {
+          dispatch(update_self_target(id, idUpdate, target));
+          setInterfaceTarget(false);
+          setUpdateTarget(false);
+          setTarget('');
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     getInfo_agency();
     getTarget_point();
-    console.log(target_point[0]?.id);
   }, []);
 
   const {info_agency, target_point} = useSelector(state => state.DirReducers);
@@ -107,6 +129,12 @@ const Trajet = props => {
                       Depart={item?.Depart}
                       Destination={item?.Destination}
                       key={item.id}
+                      onUpdate={() => {
+                        setInterfaceTarget(true);
+                        setUpdateTarget(true);
+                        setOldTarget(item?.Destination);
+                        setIdUpdate(item.id);
+                      }}
                     />
                   );
                 })}
@@ -129,7 +157,9 @@ const Trajet = props => {
                   setInterfaceTarget(false);
                   setTarget('');
                   setSite('');
-                }}>
+                  setUpdateTarget(false);
+                }}
+                style={styles.ui_splash_contain_btn_closed_registration}>
                 <Text style={styles.ui_splash_closed_registration_icon_btn}>
                   annuler.
                 </Text>
@@ -201,6 +231,14 @@ const Trajet = props => {
                       }
                       editable={false}
                     />
+                    {updateTarget ? (
+                      <Text
+                        style={
+                          styles.ui_splash_contain_subupdate_add_configuration_name
+                        }>
+                        Ancienne destination : {oldTarget}
+                      </Text>
+                    ) : null}
                     <TextInput
                       style={styles.ui_splash_contain_dropdown_town_place}
                       placeholder="Destination"
@@ -210,23 +248,52 @@ const Trajet = props => {
                       editable={info_agency[0]?.Site === null ? false : true}
                     />
                   </View>
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    style={
-                      target === ''
-                        ? styles.ui_splash_contain_btn_disabled_target
-                        : styles.ui_splash_contain_btn_add_place_target
-                    }
-                    onPress={() => {
-                      addTarget_point(), getTarget_point();
-                    }}>
-                    <Text
+                  {updateTarget ? (
+                    <>
+                      <Text
+                        style={
+                          styles.ui_splash_contain_subupdate_add_configuration_name
+                        }>
+                        Nouvelle destination : {target == '' ? '?' : target}
+                      </Text>
+                      <TouchableOpacity
+                        activeOpacity={0.7}
+                        style={
+                          target === ''
+                            ? styles.ui_splash_contain_btn_disabled_target
+                            : styles.ui_splash_contain_btn_add_place_target
+                        }
+                        onPress={() => {
+                          updateSelf_target();
+                          getTarget_point();
+                        }}>
+                        <Text
+                          style={
+                            styles.ui_splash_contain_text_btn_add_place_target
+                          }>
+                          Modifier
+                        </Text>
+                      </TouchableOpacity>
+                    </>
+                  ) : (
+                    <TouchableOpacity
+                      activeOpacity={0.7}
                       style={
-                        styles.ui_splash_contain_text_btn_add_place_target
-                      }>
-                      Ajouter
-                    </Text>
-                  </TouchableOpacity>
+                        target === ''
+                          ? styles.ui_splash_contain_btn_disabled_target
+                          : styles.ui_splash_contain_btn_add_place_target
+                      }
+                      onPress={() => {
+                        addTarget_point(), getTarget_point();
+                      }}>
+                      <Text
+                        style={
+                          styles.ui_splash_contain_text_btn_add_place_target
+                        }>
+                        Ajouter
+                      </Text>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             </View>
@@ -280,6 +347,9 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_first_item_white_globe: {
     backgroundColor: 'white',
+  },
+  ui_splash_contain_btn_closed_registration: {
+    marginTop: 55,
   },
   ui_splash_closed_registration_icon_btn: {
     marginLeft: 10,
@@ -338,7 +408,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_update_add_agency_globe: {
     width: '93%',
-    height: 245,
+    height: 275,
     marginLeft: 10,
     marginTop: 10,
   },
@@ -353,6 +423,12 @@ const styles = StyleSheet.create({
     margin: 3,
     fontSize: 13,
     textAlign: 'center',
+  },
+  ui_splash_contain_subupdate_add_configuration_name: {
+    color: '#938f8f',
+    fontFamily: 'Nunito-Light',
+    margin: 5,
+    fontSize: 13,
   },
   ui_splash_contain_subupdate_add_phantom_agency: {
     width: '100%',
