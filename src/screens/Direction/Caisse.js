@@ -83,6 +83,7 @@ const Caisse = props => {
       {interfaceMaid ? (
         <ScrollView
           style={styles.ui_splash_contain_globe_registration_maid_guichet}>
+          <NotificationExplain Titlemessage="Le numéro du guichet est assigné automatiquement lors de sa création." />
           <Space Hwidth={15} />
           <TouchableOpacity
             activeOpacity={0.7}
