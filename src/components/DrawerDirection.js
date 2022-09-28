@@ -30,12 +30,10 @@ const DrawerDirection = props => {
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
       <PersonalProfil
-        Titleimage={require('../../assets/Logo4.jpg')}
         Titlename="Otello"
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
         Titlenumber="+237 673845359"
-        Titlelink="02"
         onOpen={() => setSigout(false)}
         onClose={() => setSigout(true)}
       />
