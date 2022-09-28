@@ -303,7 +303,6 @@ const Trajet = props => {
       <ButtonAddingItems
         titleico={faPlus}
         titlebutton="ajouter"
-        borderrounds={50}
         onOpen={() => {
           setInterfaceTarget(true);
         }}
