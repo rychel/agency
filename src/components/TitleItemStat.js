@@ -26,13 +26,12 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_contain_registered_global_config_font1: {
     fontFamily: 'PingFang SC Regular',
-    fontSize: 14,
-    color: '#ff5722',
+    fontSize: 16,
+    color: '#ff9800',
     left: 2,
     padding: 3,
-    backgroundColor: '#ff57220f',
+    backgroundColor: '#0000000d',
     borderRadius: 100,
-    textTransform: 'uppercase'
   },
 });
 

@@ -74,7 +74,7 @@ const Direction = ({navigation}) => {
             style={
               styles.ui_splash_global_contain_registered_global_showInformation
             }>
-            <TitleItemStat Titlesub="Forfaits favoris (Services souscris)" />
+            <TitleItemStat Titlesub="Forfaits souscris" />
             <View
               style={
                 styles.ui_splash_global_contain_registered_global_contain_information
