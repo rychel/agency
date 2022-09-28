@@ -1,33 +1,76 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faLevelUp} from '@fortawesome/free-solid-svg-icons';
 
 const ItemTrajetSaved = props => {
-  const {Titleico, Depart, Destination} = props;
+  const {Titleico, Depart, Destination, onUpdate} = props;
+
+  const TurnRight = useRef(new Animated.Value(-90)).current;
+  const Opacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(TurnRight, {
+      toValue: 10,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start(),
+      Animated.timing(Opacity, {
+        toValue: 1,
+        duration: 2000,
+        useNativeDriver: true,
+      }).start();
+  }, []);
+
+  const TurnTicks = TurnRight.interpolate({
+    inputRange: [0, 100],
+    outputRange: ['0deg', '-40deg'],
+  });
 
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
-      <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
-        <FontAwesomeIcon icon={Titleico} size={20} color="white" />
-      </View>
+      <Animated.View
+        style={[
+          styles.ui_splash_contain_header_animate_administration_awesome_baps,
+          {transform: [{rotate: TurnTicks}]},
+        ]}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={onUpdate}
+          style={styles.ui_splash_contain_header_administration_awesome_baps}>
+          <FontAwesomeIcon icon={faLevelUp} size={20} color="#00968875" />
+        </TouchableOpacity>
+      </Animated.View>
       <TouchableOpacity
         activeOpacity={0.5}
+        onPress={onUpdate}
         style={
-          styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
+          styles.ui_splash_global_animated_soup_contain_registered_global_contain_title
         }>
-        <Text
-          style={styles.ui_splash_contain_header_administration_awesome_config}>
-          {Depart}
-        </Text>
-        <Text style={styles.ui_splash_contain_header_separate_awesome_config}>
-          -
-        </Text>
-        <Text
-          style={
-            styles.ui_splash_contain_header_administration_awesome_config2
-          }>
-          {Destination}
-        </Text>
+        <Animated.View
+          style={[
+            styles.ui_splash_global_bus_soup_contain_registered_global_contain_title,
+            {opacity: Opacity},
+          ]}>
+          <Text
+            style={
+              styles.ui_splash_contain_header_administration_awesome_config
+            }>
+            {Depart}
+          </Text>
+          <FontAwesomeIcon
+            icon={Titleico}
+            size={20}
+            color="#673ab7ad"
+            style={styles.ui_splash_contain_header_separate_awesome_config}
+          />
+          <Text
+            style={
+              styles.ui_splash_contain_header_administration_awesome_config2
+            }>
+            {Destination}
+          </Text>
+        </Animated.View>
       </TouchableOpacity>
     </View>
   );
@@ -47,13 +90,24 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_awesome_config: {
     margin: 0,
     fontSize: 20,
-    height: 40,
+    height: 30,
     color: '#706e6e',
     fontFamily: 'Roboto-Thin',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
     left: 2,
+  },
+  ui_splash_contain_globe_header_separate_awesome_config: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '11.43%',
+    marginTop: 10,
+    marginLeft: 5,
+    borderRadius: 100,
+    backgroundColor: '#673ab7d6',
+    height: 35,
+    marginRight: 10,
   },
   ui_splash_contain_header_separate_awesome_config: {
     margin: 0,
@@ -68,33 +122,37 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_awesome_config2: {
     margin: 0,
-    fontSize: 20,
-    height: 40,
-    color: '#706e6eba',
-    fontFamily: 'Quicksand-VariableFont_wght',
-    marginTop: 11,
+    fontSize: 18,
+    height: 28,
+    color: '#706e6e',
+    fontFamily: 'Roboto-Thin',
+    marginTop: 16,
     left: 35,
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    textShadowColor: '#00bcd44d',
+    textShadowRadius: 10,
+    elevation: 0.4,
   },
-  ui_splash_contain_header_administration_awesome_caps: {
-    width: 25,
-    height: 25,
-    borderRadius: 100,
-    backgroundColor: '#03a9f4ad',
+  ui_splash_contain_header_animate_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 18,
-    marginLeft: 50,
+    marginLeft: 4,
+    marginRight: 5,
+    height: 35,
+    width: '11.43%',
   },
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '11.43%',
-    marginTop: 10,
+    marginTop: 15,
     marginLeft: 5,
     borderRadius: 100,
-    backgroundColor: '#673ab7d6',
     height: 35,
-    marginRight: 10,
+    marginRight: 1,
+    transform: [{rotate: '90deg'}],
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '90%',
@@ -107,6 +165,9 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderLeftWidth: 0,
     borderColor: '#e3e3e3',
+  },
+  ui_splash_global_animated_soup_contain_registered_global_contain_title: {
+    width: '90%',
   },
 });
 
