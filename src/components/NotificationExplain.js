@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faExternalLink} from '@fortawesome/free-solid-svg-icons';
 
 const NotificationExplain = props => {
   const {Titlemessage} = props;
@@ -7,6 +9,12 @@ const NotificationExplain = props => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_header_globe_message_delevry}>
+        <FontAwesomeIcon
+          icon={faExternalLink}
+          size={19}
+          color="#00000087"
+          style={styles.ui_splash_contain_header_globe_ico}
+        />
         <Text
           style={styles.ui_splash_contain_header_globe_message_configs_font}>
           {Titlemessage}
@@ -24,21 +32,26 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   ui_splash_contain_header_globe_message_delevry: {
-    width: '80%',
+    width: '95%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ed8b6c',
+    backgroundColor: '#ffeb3b7a',
     borderRadius: 5,
   },
   ui_splash_contain_header_globe_message_configs_font: {
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'Roboto-Light',
     textAlign: 'left',
-    padding: 2,
-    color: 'white',
+    color: '#00000087',
     paddingTop: 5,
     paddingBottom: 5,
+  },
+  ui_splash_contain_header_globe_ico: {
+    padding: 2,
+    color: '#00000087',
+    paddingTop: 5,
+    paddingRight: 25,
   },
 });
 
