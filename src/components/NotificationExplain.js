@@ -1,24 +1,47 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faExternalLink} from '@fortawesome/free-solid-svg-icons';
 
 const NotificationExplain = props => {
   const {Titlemessage} = props;
 
+  const FlipLeft = useRef(new Animated.Value(35)).current;
+  const FlipRight = useRef(new Animated.Value(-15)).current;
+
+  useEffect(() => {
+    Animated.timing(FlipLeft, {
+      toValue: -1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(),
+      Animated.timing(FlipRight, {
+        toValue: -1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+  }, []);
+
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_header_globe_message_delevry}>
-        <FontAwesomeIcon
-          icon={faExternalLink}
-          size={19}
-          color="#00000087"
-          style={styles.ui_splash_contain_header_globe_ico}
-        />
-        <Text
-          style={styles.ui_splash_contain_header_globe_message_configs_font}>
+        <Animated.View style={{transform: [{translateX: FlipRight}]}}>
+          <FontAwesomeIcon
+            icon={faExternalLink}
+            size={19}
+            color="#00000087"
+            style={styles.ui_splash_contain_header_globe_ico}
+          />
+        </Animated.View>
+        <Animated.Text
+          style={[
+            styles.ui_splash_contain_header_globe_message_configs_font,
+            {
+              transform: [{translateX: FlipLeft}],
+            },
+          ]}>
           {Titlemessage}
-        </Text>
+        </Animated.Text>
       </View>
     </View>
   );
@@ -38,6 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffeb3b7a',
     borderRadius: 5,
+    overflow: 'hidden',
   },
   ui_splash_contain_header_globe_message_configs_font: {
     fontSize: 14,
@@ -50,7 +74,6 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe_ico: {
     padding: 2,
     color: '#00000087',
-    paddingTop: 5,
     paddingRight: 25,
   },
 });
