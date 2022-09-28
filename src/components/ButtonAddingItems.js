@@ -1,31 +1,47 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import React, {useEffect, useRef} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faMinus} from '@fortawesome/free-solid-svg-icons';
 
 const ButtonAddingItems = props => {
-  const {titleico, titlebutton, borderrounds, onOpen} = props;
+  const {titleico, titlebutton, onOpen} = props;
 
-  const [initTitle, setInitTitle] = useState('');
+  const FlyLeft = useRef(new Animated.Value(50)).current;
+  const FlyRight = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    setTimeout(() => {
-      setInitTitle(titlebutton);
-    }, 1000);
-  });
+    Animated.timing(FlyLeft, {
+      toValue: -10,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(FlyRight, {
+      toValue: 0,
+      duration: 8000,
+      useNativeDriver: true,
+    }).start();
+  }, [FlyLeft, FlyRight]);
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
-      <TouchableOpacity activeOpacity={0.8} onPress={onOpen}>
-        <View
-          style={[
-            styles.ui_splash_contain_poly_button_globe,
-            {borderRadius: borderrounds}
-          ]}>
-          <FontAwesomeIcon icon={titleico} color="white" size={16} />
+      <Animated.View
+        style={{
+          transform: [{translateX: FlyLeft}],
+          opacity: FlyRight,
+        }}>
+        <View style={styles.ui_splash_contain_poly_message_display}>
           <Text style={styles.ui_splash_contain_text_button_globe}>
-            {initTitle}
+            {titlebutton}
           </Text>
         </View>
+        <FontAwesomeIcon icon={faMinus} color="#ffeb3b7a" size={20} />
+      </Animated.View>
+
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={onOpen}
+        style={styles.ui_splash_contain_poly_button_globe}>
+        <FontAwesomeIcon icon={titleico} color="white" size={25} />
       </TouchableOpacity>
     </View>
   );
@@ -36,6 +52,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 120,
     right: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  ui_splash_contain_poly_message_display: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffeb3b7a',
+    flexDirection: 'row',
+    width: 60,
+    borderTopEndRadius: 45,
+    borderBottomEndRadius: 40,
+    left: 2,
   },
   ui_splash_contain_poly_button_globe: {
     justifyContent: 'center',
@@ -43,14 +72,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     flexDirection: 'row',
     padding: 17,
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
   },
   ui_splash_contain_text_button_globe: {
-    fontFamily: 'Nunito-Regular',
-    fontSize: 11.3,
-    left: 5,
-    color: 'white',
+    fontFamily: 'Dosis-VariableFont_wght',
+    fontSize: 16,
+    color: '#00000087',
   },
 });
 
