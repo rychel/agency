@@ -299,13 +299,15 @@ const Trajet = props => {
           </ScrollView>
         </ScrollView>
       )}
-      <ButtonAddingItems
-        titleico={faPlus}
-        titlebutton="ajouter"
-        onOpen={() => {
-          setInterfaceTarget(true);
-        }}
-      />
+      {interfaceTarget ? null : (
+        <ButtonAddingItems
+          titleico={faPlus}
+          titlebutton="ajouter"
+          onOpen={() => {
+            setInterfaceTarget(true);
+          }}
+        />
+      )}
     </View>
   );
 };
