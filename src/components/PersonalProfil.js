@@ -1,23 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
-  faPlus,
   faAngleUp,
   faAngleDown,
+  faEdit,
 } from '@fortawesome/free-solid-svg-icons';
 
 const PersonalProfil = props => {
-  const {
-    Titleimage,
-    Titlename,
-    Titlesubname,
-    Titlepost,
-    Titlenumber,
-    Titlelink,
-    onOpen,
-    onClose,
-  } = props;
+  const {Titlename, Titlesubname, Titlepost, Titlenumber, onOpen, onClose} =
+    props;
 
   const [replaceicon, setReplaceicon] = useState(false);
 
@@ -26,25 +18,19 @@ const PersonalProfil = props => {
       <View style={styles.ui_splash_contain_header_cadre_cadre_logo_profil}>
         <View
           style={styles.ui_splash_contain_header_cadre_cadre_logo_profil_ext}>
-          <Image
-            source={Titleimage}
-            style={styles.ui_splash_contain_header_globe_logo_profil}
-            resizeMode="contain"
-          />
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.ui_splash_contain_header_englobe_modify_profil}>
-            <FontAwesomeIcon icon={faPlus} size={20} color="white" />
-          </TouchableOpacity>
+          <View style={styles.ui_splash_contain_header_globe_logo_profil}>
+            <Text style={styles.ui_splash_contain_header_params_fonts6}>
+              OP
+            </Text>
+          </View>
         </View>
         <View
           style={styles.ui_splash_contain_header_cadre_cadre_logo_profil_lxt}>
-          <Text style={styles.ui_splash_contain_header_params_fonts2}>
-            agence partenaire du service courrier:
-          </Text>
-          <Text style={styles.ui_splash_contain_header_params_fonts5}>
-            +{Titlelink}
-          </Text>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={styles.ui_splash_contain_header_params_modif_profil}>
+            <FontAwesomeIcon icon={faEdit} size={20} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.ui_splash_contain_header_cadre_ifo_id_profil}>
@@ -109,6 +95,9 @@ const styles = StyleSheet.create({
     width: '50%',
     height: 155,
     overflow: 'hidden',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ui_splash_contain_header_cadre_cadre_logo_profil_lxt: {
     width: '50%',
@@ -116,26 +105,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 6,
-  },
-  ui_splash_contain_header_englobe_modify_profil: {
-    width: 45,
-    height: 45,
-    borderWidth: 2,
-    borderColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2bd9c9',
-    left: 70,
-    top: -16,
-    borderRadius: 100,
   },
   ui_splash_contain_header_globe_logo_profil: {
-    width: 120,
-    height: 120,
-    borderRadius: 100,
+    width: 70,
+    height: 70,
     top: 20,
     left: 5,
+    backgroundColor: '#0000003d',
+    borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#0000003d',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ui_splash_contain_header_cadre_ifo_id_profil: {
     width: '100%',
@@ -162,12 +143,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Snippet-Regular',
     left: 4,
   },
-  ui_splash_contain_header_params_fonts5: {
-    fontSize: 50,
-    color: '#ffecb5',
-    fontFamily: 'NovaMono-Regular',
-    left: 4,
+  ui_splash_contain_header_params_modif_profil: {
     alignSelf: 'center',
+    width: 50,
+    height: 50,
+    backgroundColor: '#00000024',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
   },
   ui_splash_contain_header_params_fonts3: {
     alignItems: 'center',
@@ -194,13 +177,20 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_params_fonts4: {
     fontSize: 15,
     left: 10,
-    color: 'white',
+    color: '#efefefe0',
     fontFamily: 'PingFang SC Regular',
     borderRadius: 5,
     height: 25,
     textAlignVertical: 'center',
     textAlign: 'center',
-    backgroundColor: '#08dfd5b8',
+  },
+  ui_splash_contain_header_params_fonts6: {
+    fontSize: 25,
+    color: 'white',
+    fontFamily: 'PingFang SC Regular',
+    height: 25,
+    textAlignVertical: 'center',
+    textAlign: 'center',
   },
 });
 
