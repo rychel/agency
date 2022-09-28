@@ -21,11 +21,8 @@ import NotificationExplain from '../../components/NotificationExplain';
 import ValidateItemStatus from '../../components/ValidateItemStatus';
 import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import {
-  faMapMarkedAlt,
-  faPlus,
-  faRoute,
-} from '@fortawesome/free-solid-svg-icons';
+import LoadingItems from '../../components/LoadingItems';
+import {faCheck, faPlus, faRoute} from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = props => {
   const [site, setSite] = useState('');
@@ -34,6 +31,7 @@ const Trajet = props => {
   const [updateTarget, setUpdateTarget] = useState(false);
   const [oldTarget, setOldTarget] = useState('');
   const [idUpdate, setIdUpdate] = useState(0);
+  const [isFetch, setIsFetch] = useState(false);
 
   const getInfo_agency = () => {
     try {
@@ -78,8 +76,10 @@ const Trajet = props => {
 
   const getTarget_point = () => {
     try {
-      AsyncStorage.getItem('token').then(value => {
-        dispatch(get_target_point(value));
+      AsyncStorage.getItem('token').then(async value => {
+        setIsFetch(true);
+        await dispatch(get_target_point(value));
+        setIsFetch(false);
       });
     } catch (e) {
       console.log(e);
@@ -88,12 +88,14 @@ const Trajet = props => {
 
   const updateSelf_target = () => {
     try {
-      AsyncStorage.getItem('token').then(id => {
+      AsyncStorage.getItem('token').then(async id => {
         if (target != '') {
-          dispatch(update_self_target(id, idUpdate, target));
+          setIsFetch(true);
+          await dispatch(update_self_target(id, idUpdate, target));
           setInterfaceTarget(false);
           setUpdateTarget(false);
           setTarget('');
+          setIsFetch(false);
         }
       });
     } catch (e) {
@@ -118,7 +120,7 @@ const Trajet = props => {
           ) : (
             <>
               <ValidateItemStatus
-                Titleico={faMapMarkedAlt}
+                Titleico={faCheck}
                 Titlestatus="Trajets enregistrés"
               />
               <View style={styles.ui_splash_contain_header_already_registered}>
@@ -138,6 +140,7 @@ const Trajet = props => {
                     />
                   );
                 })}
+                {isFetch == true ? <LoadingItems /> : null}
               </View>
             </>
           )}
@@ -407,7 +410,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_update_add_agency_globe: {
     width: '93%',
-    height: 275,
+    height: Dimensions.get('window').height,
     marginLeft: 10,
     marginTop: 10,
   },
@@ -449,9 +452,10 @@ const styles = StyleSheet.create({
   ui_splash_contain_second_item_white_globe: {
     backgroundColor: 'white',
     marginTop: 6,
+    height: Dimensions.get('window').height,
   },
   ui_splash_contain_dropdown_town_place: {
-    borderWidth: 0.8,
+    borderWidth: 1,
     borderColor: '#0070c6b5',
     width: '95%',
     fontFamily: 'PontanoSans-Regular',
