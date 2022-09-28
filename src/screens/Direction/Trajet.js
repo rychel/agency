@@ -22,6 +22,7 @@ import ValidateItemStatus from '../../components/ValidateItemStatus';
 import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import LoadingItems from '../../components/LoadingItems';
+import HeaderConfig from '../../components/HeaderConfig';
 import {faCheck, faPlus, faRoute} from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = props => {
@@ -170,10 +171,7 @@ const Trajet = props => {
               {info_agency[0]?.Site === null ? (
                 <View
                   style={styles.ui_splash_contain_update_place_agency_globe}>
-                  <Text
-                    style={styles.ui_splash_contain_label_configuration_name}>
-                    Localisation.
-                  </Text>
+                  <HeaderConfig Head="Localisation" />
                   <View style={styles.ui_splash_contain_subupdate_place_agency}>
                     <Text
                       style={
@@ -211,9 +209,7 @@ const Trajet = props => {
             </View>
             <View style={styles.ui_splash_contain_second_item_white_globe}>
               <View style={styles.ui_splash_contain_update_add_agency_globe}>
-                <Text style={styles.ui_splash_contain_label_configuration_name}>
-                  Trajet.
-                </Text>
+                <HeaderConfig Head="Trajet" />
                 <View style={styles.ui_splash_contain_subupdate_add_agency}>
                   <Text
                     style={
@@ -373,12 +369,6 @@ const styles = StyleSheet.create({
     height: 110,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  ui_splash_contain_label_configuration_name: {
-    color: '#2196f3',
-    fontFamily: 'Roboto-Light',
-    margin: 3,
-    fontSize: 17,
   },
   ui_splash_contain_sublabel_configuration_name: {
     color: '#383737',
