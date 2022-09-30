@@ -1,19 +1,44 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const ValidateItemStatus = props => {
   const {Titleico, Titlestatus} = props;
 
+  const FlipLeft = useRef(new Animated.Value(35)).current;
+  const FlipRight = useRef(new Animated.Value(-15)).current;
+
+  useEffect(() => {
+    Animated.timing(FlipLeft, {
+      toValue: -1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(),
+      Animated.timing(FlipRight, {
+        toValue: -1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+  }, []);
+
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
-      <View style={styles.ui_splash_contain_header_administration_awesome_baps}>
+      <Animated.View
+        style={[
+          styles.ui_splash_contain_header_administration_awesome_baps,
+          {transform: [{translateX: FlipRight}]},
+        ]}>
         <FontAwesomeIcon icon={Titleico} size={20} color="white" />
-      </View>
-      <Text
-        style={styles.ui_splash_contain_header_administration_awesome_config}>
+      </Animated.View>
+      <Animated.Text
+        style={[
+          styles.ui_splash_contain_header_administration_awesome_config,
+          {
+            transform: [{translateX: FlipLeft}],
+          },
+        ]}>
         {Titlestatus}
-      </Text>
+      </Animated.Text>
     </View>
   );
 };
@@ -56,12 +81,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '13.33%',
+    width: '11%',
     marginTop: 2,
     marginLeft: 5,
     borderRadius: 100,
     backgroundColor: '#8bc34a',
-    height: 40,
+    height: 35,
     marginRight: 10,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
