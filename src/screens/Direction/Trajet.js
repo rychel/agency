@@ -16,6 +16,7 @@ import {
   add_target_point,
   get_target_point,
   update_self_target,
+  delete_self_target,
 } from '../../store/Log/Dir/DirActions';
 import NotificationExplain from '../../components/NotificationExplain';
 import ValidateItemStatus from '../../components/ValidateItemStatus';
@@ -25,7 +26,6 @@ import LoadingItems from '../../components/LoadingItems';
 import HeaderConfig from '../../components/HeaderConfig';
 import ActionOnTips from '../../components/ActionOnTips';
 import {faCheck, faPlus, faRoute} from '@fortawesome/free-solid-svg-icons';
-import {useNavigation} from '@react-navigation/native';
 
 const Trajet = props => {
   const [site, setSite] = useState('');
@@ -33,7 +33,6 @@ const Trajet = props => {
   const [interfaceTarget, setInterfaceTarget] = useState(false);
   const [updateTarget, setUpdateTarget] = useState(false);
   const [oldTarget, setOldTarget] = useState('');
-  const [idUpdate, setIdUpdate] = useState(0);
   const [isFetch, setIsFetch] = useState(false);
   const [inAction, setInAction] = useState(false);
   const [actionTarget, setActionTarget] = useState({
@@ -99,12 +98,23 @@ const Trajet = props => {
       AsyncStorage.getItem('token').then(async id => {
         if (target != '') {
           setIsFetch(true);
-          await dispatch(update_self_target(id, idUpdate, target));
+          await dispatch(update_self_target(id, actionTarget.id, target));
           setInterfaceTarget(false);
           setUpdateTarget(false);
           setTarget('');
           setIsFetch(false);
         }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const deleteSelf_target = () => {
+    try {
+      AsyncStorage.getItem('token').then(async id => {
+        await dispatch(delete_self_target(id, actionTarget.id));
+        setInAction(false);
       });
     } catch (e) {
       console.log(e);
@@ -140,15 +150,12 @@ const Trajet = props => {
                       Depart={item?.Depart}
                       Destination={item?.Destination}
                       key={item.id}
-                      onUpdate={() => {
+                      onAction={() => {
                         setInAction(true);
                         setActionTarget({
                           id: item.id,
                           Destination: item?.Destination,
                         });
-                      }}
-                      onDelete={() => {
-                        console.log('deleted');
                       }}
                     />
                   );
@@ -161,10 +168,13 @@ const Trajet = props => {
                     setInterfaceTarget(true);
                     setUpdateTarget(true);
                     setOldTarget(actionTarget.Destination);
-                    setIdUpdate(actionTarget.id);
                   }}
                   onClose={() => {
                     setInAction(false);
+                  }}
+                  onDelete={() => {
+                    deleteSelf_target();
+                    getTarget_point();
                   }}
                 />
               ) : null}
@@ -187,6 +197,7 @@ const Trajet = props => {
                   setTarget('');
                   setSite('');
                   setUpdateTarget(false);
+                  setInAction(false);
                 }}
                 style={styles.ui_splash_contain_btn_closed_registration}>
                 <Text style={styles.ui_splash_closed_registration_icon_btn}>
@@ -290,6 +301,7 @@ const Trajet = props => {
                         onPress={() => {
                           updateSelf_target();
                           getTarget_point();
+                          setInAction(false);
                         }}>
                         <Text
                           style={
