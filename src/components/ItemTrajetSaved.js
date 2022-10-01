@@ -125,14 +125,15 @@ const styles = StyleSheet.create({
     height: 28,
     color: '#706e6e',
     fontFamily: 'Roboto-Thin',
-    marginTop: 16,
+    marginTop: 8,
     left: 35,
-    borderRadius: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    textShadowColor: '#00bcd44d',
-    textShadowRadius: 10,
-    elevation: 0.4,
+    paddingTop: 2,
+    backgroundColor: '#ffc10726',
+    borderTopEndRadius: 5,
+    borderTopStartRadius: 5,
+  
   },
   ui_splash_contain_header_animate_administration_awesome_baps: {
     alignItems: 'center',
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     height: 35,
     width: '11.43%',
+    backgroundColor: '#ffc10754',
   },
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
