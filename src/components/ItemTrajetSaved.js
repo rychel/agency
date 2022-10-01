@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faLevelUp} from '@fortawesome/free-solid-svg-icons';
 
 const ItemTrajetSaved = props => {
-  const {Titleico, Depart, Destination, onUpdate} = props;
+  const {Titleico, Depart, Destination, onAction} = props;
 
   const TurnRight = useRef(new Animated.Value(-90)).current;
   const Opacity = useRef(new Animated.Value(0)).current;
@@ -30,7 +30,7 @@ const ItemTrajetSaved = props => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={onUpdate}
+      onPress={onAction}
       style={styles.ui_splash_contain_header_administration_item_config}>
       <Animated.View
         style={[
