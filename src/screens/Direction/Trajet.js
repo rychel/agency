@@ -23,7 +23,9 @@ import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import LoadingItems from '../../components/LoadingItems';
 import HeaderConfig from '../../components/HeaderConfig';
+import ActionOnTips from '../../components/ActionOnTips';
 import {faCheck, faPlus, faRoute} from '@fortawesome/free-solid-svg-icons';
+import {useNavigation} from '@react-navigation/native';
 
 const Trajet = props => {
   const [site, setSite] = useState('');
@@ -33,6 +35,11 @@ const Trajet = props => {
   const [oldTarget, setOldTarget] = useState('');
   const [idUpdate, setIdUpdate] = useState(0);
   const [isFetch, setIsFetch] = useState(false);
+  const [inAction, setInAction] = useState(false);
+  const [actionTarget, setActionTarget] = useState({
+    id: '',
+    Destination: '',
+  });
 
   const getInfo_agency = () => {
     try {
@@ -65,7 +72,7 @@ const Trajet = props => {
           destination: target,
         };
         if (target != '') {
-          dispatch(add_target_point(id, point));
+          await dispatch(add_target_point(id, point));
           setTarget('');
           setInterfaceTarget(false);
         }
@@ -124,7 +131,8 @@ const Trajet = props => {
                 Titleico={faCheck}
                 Titlestatus="Trajets enregistrés"
               />
-              <View style={styles.ui_splash_contain_header_already_registered}>
+              <ScrollView
+                style={styles.ui_splash_contain_header_already_registered}>
                 {target_point.map(item => {
                   return (
                     <ItemTrajetSaved
@@ -133,16 +141,33 @@ const Trajet = props => {
                       Destination={item?.Destination}
                       key={item.id}
                       onUpdate={() => {
-                        setInterfaceTarget(true);
-                        setUpdateTarget(true);
-                        setOldTarget(item?.Destination);
-                        setIdUpdate(item.id);
+                        setInAction(true);
+                        setActionTarget({
+                          id: item.id,
+                          Destination: item?.Destination,
+                        });
+                      }}
+                      onDelete={() => {
+                        console.log('deleted');
                       }}
                     />
                   );
                 })}
                 {isFetch == true ? <LoadingItems /> : null}
-              </View>
+              </ScrollView>
+              {inAction ? (
+                <ActionOnTips
+                  onUpdate={() => {
+                    setInterfaceTarget(true);
+                    setUpdateTarget(true);
+                    setOldTarget(actionTarget.Destination);
+                    setIdUpdate(actionTarget.id);
+                  }}
+                  onClose={() => {
+                    setInAction(false);
+                  }}
+                />
+              ) : null}
             </>
           )}
         </View>
