@@ -28,22 +28,21 @@ const ItemTrajetSaved = props => {
   });
 
   return (
-    <View style={styles.ui_splash_contain_header_administration_item_config}>
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={onUpdate}
+      style={styles.ui_splash_contain_header_administration_item_config}>
       <Animated.View
         style={[
           styles.ui_splash_contain_header_animate_administration_awesome_baps,
           {transform: [{rotate: TurnTicks}]},
         ]}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={onUpdate}
+        <View
           style={styles.ui_splash_contain_header_administration_awesome_baps}>
           <FontAwesomeIcon icon={faLevelUp} size={20} color="#00968875" />
-        </TouchableOpacity>
+        </View>
       </Animated.View>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={onUpdate}
+      <View
         style={
           styles.ui_splash_global_animated_soup_contain_registered_global_contain_title
         }>
@@ -71,8 +70,8 @@ const ItemTrajetSaved = props => {
             {Destination}
           </Text>
         </Animated.View>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
