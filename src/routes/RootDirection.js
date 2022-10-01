@@ -59,7 +59,7 @@ const RootDirection = () => {
       drawerType="permanent"
       drawerContent={props => <DrawerDirection {...props} />}
       backBehavior="history">
-      <Drawer.Screen
+      {/*<Drawer.Screen
         name="Direction"
         component={Direction}
         options={{
@@ -166,7 +166,7 @@ const RootDirection = () => {
             />
           ),
         }}
-      />
+      />*/}
       <Drawer.Screen
         name="Trajet"
         component={Trajet}
@@ -177,6 +177,7 @@ const RootDirection = () => {
               onPress={() => {
                 props.navigation.goBack();
               }}
+              Action={props.route.params?.action}
             />
           ),
         }}
