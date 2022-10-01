@@ -4,21 +4,26 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 const HeaderUser = props => {
-  const {Title, onPress} = props;
+  const {Title, onPress, Action} = props;
 
   return (
-    <View style={styles.ui_splash_contain_header_globe}>
-      <TouchableOpacity onPress={onPress} activeOpacity={0.4}>
-        <View style={styles.ui_splash_contain_header_globe_zone_back_left}>
-          <FontAwesomeIcon icon={faArrowLeft} size={22} color="white" />
+    <>
+      <View style={styles.ui_splash_contain_header_globe}>
+        <TouchableOpacity onPress={onPress} activeOpacity={0.4}>
+          <View style={styles.ui_splash_contain_header_globe_zone_back_left}>
+            <FontAwesomeIcon icon={faArrowLeft} size={22} color="white" />
+          </View>
+        </TouchableOpacity>
+        <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>
+          <Text style={styles.ui_splash_contain_header_globe_zone_title_text2}>
+            {Title}
+          </Text>
         </View>
-      </TouchableOpacity>
-      <View style={styles.ui_splash_contain_header_globe_contain_title_text2}>
-        <Text style={styles.ui_splash_contain_header_globe_zone_title_text2}>
-          {Title}
-        </Text>
       </View>
-    </View>
+      {Action ? (
+        <View style={styles.ui_splash_contain_header_dark_theme}></View>
+      ) : null}
+    </>
   );
 };
 
@@ -28,6 +33,14 @@ const styles = StyleSheet.create({
     height: 70,
     alignItems: 'center',
     backgroundColor: '#00bcd4',
+  },
+  ui_splash_contain_header_dark_theme: {
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    zIndex: 2,
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: 70,
   },
   ui_splash_contain_header_globe_zone_back_left: {
     width: 40,
