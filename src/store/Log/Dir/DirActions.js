@@ -123,3 +123,19 @@ export const update_self_target = (id_direction, id, data) => {
     }
   };
 };
+
+export const delete_self_target = (id_direction, id) => {
+  return async dispatch => {
+    try {
+      fetch(URL + '/api/delete_self_target', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({title: parseInt(id_direction), id: id}),
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
