@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
@@ -21,7 +27,16 @@ const HeaderUser = props => {
         </View>
       </View>
       {Action ? (
-        <View style={styles.ui_splash_contain_header_dark_theme}></View>
+        <>
+          <StatusBar
+            animated={true}
+            backgroundColor="#455A64"
+            barStyle="default"
+            showHideTransition="fade"
+            hidden={false}
+          />
+          <View style={styles.ui_splash_contain_header_dark_theme}></View>
+        </>
       ) : null}
     </>
   );
