@@ -75,10 +75,8 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
-    position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'flex-end',
-    zIndex: 3,
     alignItems: 'center',
   },
   ui_splash_contain_table_param: {
@@ -87,8 +85,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     bottom: 0,
-    marginBottom: 80,
-    borderRadius: 5,
     backgroundColor: 'white',
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
