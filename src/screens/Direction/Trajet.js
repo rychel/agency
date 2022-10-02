@@ -156,6 +156,9 @@ const Trajet = props => {
                           id: item.id,
                           Destination: item?.Destination,
                         });
+                        props.navigation.setParams({
+                          action: true,
+                        });
                       }}
                     />
                   );
@@ -168,13 +171,22 @@ const Trajet = props => {
                     setInterfaceTarget(true);
                     setUpdateTarget(true);
                     setOldTarget(actionTarget.Destination);
+                    props.navigation.setParams({
+                      action: false,
+                    });
                   }}
                   onClose={() => {
                     setInAction(false);
+                    props.navigation.setParams({
+                      action: false,
+                    });
                   }}
                   onDelete={() => {
                     deleteSelf_target();
                     getTarget_point();
+                    props.navigation.setParams({
+                      action: false,
+                    });
                   }}
                 />
               ) : null}
@@ -336,7 +348,7 @@ const Trajet = props => {
           </ScrollView>
         </ScrollView>
       )}
-      {interfaceTarget ? null : (
+      {interfaceTarget ? null : props.route.params?.action ? null : (
         <ButtonAddingItems
           titleico={faPlus}
           titlebutton="ajouter"
@@ -363,7 +375,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height,
     backgroundColor: 'white',
-    top: 50,
+    top: 35,
   },
   ui_splash_contain_registration_maid_globe: {
     width: '100%',
