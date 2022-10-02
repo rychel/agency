@@ -2,6 +2,7 @@ const initialstate = {
   info_agency: [],
   config_transport: [],
   target_point: [],
+  personal_employed: [],
 };
 
 export default (state = initialstate, action) => {
@@ -20,6 +21,11 @@ export default (state = initialstate, action) => {
       return {
         ...state,
         target_point: action.target_point,
+      };
+    case 'GET_PERSONAL_EMPLOYED':
+      return {
+        ...state,
+        personal_employed: action.personal_employed,
       };
     default:
       return state;
