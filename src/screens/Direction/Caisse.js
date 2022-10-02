@@ -4,14 +4,17 @@ import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  TextInput,
   Text,
   TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Picker} from '@react-native-picker/picker';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {get_config_transport} from '../../store/Log/Dir/DirActions';
+import {
+  get_config_transport,
+  get_personal_employed,
+} from '../../store/Log/Dir/DirActions';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import NotificationExplain from '../../components/NotificationExplain';
 import NoItemStatus from '../../components/NoItemStatus';
@@ -19,6 +22,7 @@ import HeaderConfig from '../../components/HeaderConfig';
 import Space from '../../components/Space';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
+  faChalkboard,
   faEyeDropperEmpty,
   faPlus,
   faUserSlash,
@@ -27,28 +31,13 @@ import {
 const Caisse = props => {
   const [omaid, setOmaid] = useState(false);
   const [vmaid, setVmaid] = useState(null);
-  const [maid, setMaid] = useState([
-    {label: 'Ngo mang', value: 'Ngo mang'},
-    {label: 'Ngo tibang', value: 'Ngo tibang'},
-  ]);
+  const [maid, setMaid] = useState([]);
   const [otarget, setOtarget] = useState(false);
   const [vtarget, setVtarget] = useState(null);
-  const [target, setTarget] = useState([
-    {label: 'Kribi-Douala', value: 'Kribi-Douala'},
-    {label: 'Kribi-Campo', value: 'Kribi-Campo'},
-  ]);
-  const [otypebus, setOtypeBus] = useState(false);
-  const [vtypebus, setVtypebus] = useState(null);
-  const [typeBus, setTypeBus] = useState([
-    {label: 'vip', value: 'vip'},
-    {label: 'classique', value: 'classique'},
-  ]);
-  const [oticket, setOticket] = useState(false);
-  const [vticket, setVticket] = useState(null);
-  const [ticket, setTicket] = useState([
-    {label: 'Code QR', value: 'Code QR'},
-    {label: 'Ticket', value: 'Ticket'},
-  ]);
+  const [target, setTarget] = useState([]);
+  const [oguichet, setOguichet] = useState(false);
+  const [vguichet, setVguichet] = useState(null);
+  const [guichet, setGuichet] = useState([]);
 
   const [interfaceMaid, setInterfaceMaid] = useState(false);
 
@@ -61,14 +50,27 @@ const Caisse = props => {
       console.log(e);
     }
   };
-  const config_transport = useSelector(
-    state => state.DirReducers.config_transport,
+
+  const getPersonal_employed = () => {
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        dispatch(get_personal_employed(value));
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const {config_transport, personal_employed} = useSelector(
+    state => state.DirReducers,
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
     getConfig_transport();
+    getPersonal_employed();
     console.log(config_transport);
+    console.log(personal_employed);
   }, []);
 
   const addMaid = () => {};
@@ -76,10 +78,10 @@ const Caisse = props => {
   return (
     <View style={styles.ui_splash_contain_header_globe}>
       <NotificationExplain Titlemessage="Créer les guichets de l'agence et mettre les personnes de la caisse." />
-      <NoItemStatus
-        Titleico={faUserSlash}
-        Titlestatus="aucun(e) caissi(er)(ère) enregistré(e)"
-      />
+      {/*<NoItemStatus
+        Titleico={faChalkboard}
+        Titlestatus="Aucun guichet enregistré"
+      />*/}
       {interfaceMaid ? (
         <ScrollView
           style={styles.ui_splash_contain_globe_registration_maid_guichet}>
@@ -109,29 +111,43 @@ const Caisse = props => {
           <View style={styles.ui_splash_contain_globe_first_block_guichet2}>
             <DropDownPicker
               open={omaid}
-              placeholder="Assigner une personne"
+              placeholder="Qui voulez-vous à ce poste ?"
               value={vmaid}
-              items={maid}
+              items={personal_employed.map(item => {
+                return {
+                  label: item?.NomTit + ' ' + item?.PrenomTit,
+                  value: item?.id,
+                };
+              })}
               setOpen={setOmaid}
               setValue={setVmaid}
               setItems={setMaid}
               textStyle={{
                 fontSize: 15,
                 fontFamily: 'Hind-Light',
-                color: '#03a9f4d6',
+                color: '#009688ba',
               }}
-              listMode="SCROLLVIEW"
+              listMode="MODAL"
               style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
-          <View style={styles.ui_splash_contain_globe_first_block_guichet3}>
-            <Text style={styles.ui_splash_contain_config_fonts_regis3}>
-              ID personnel:
-            </Text>
-            <Text style={styles.ui_splash_contain_config_fonts_regis4}>
-              00001
-            </Text>
-          </View>
+          {vmaid ? (
+            <View style={styles.ui_splash_contain_globe_first_block_guichet3}>
+              <Text style={styles.ui_splash_contain_config_fonts_regis3}>
+                ID:
+              </Text>
+              <Text style={styles.ui_splash_contain_config_fonts_regis4}>
+                {vmaid > 100
+                  ? vmaid
+                  : vmaid > 10
+                  ? '0' + vmaid
+                  : vmaid > 0
+                  ? '00' + vmaid
+                  : null}
+              </Text>
+            </View>
+          ) : null}
+
           <View style={styles.ui_splash_contain_globe_first_block_guichet1}>
             <Text style={styles.ui_splash_contain_config_fonts_regis1}>
               Sélectionner le Trajet
@@ -140,19 +156,25 @@ const Caisse = props => {
           <View style={styles.ui_splash_contain_globe_first_block_guichet4}>
             <DropDownPicker
               open={otarget}
-              placeholder="Pour quelle destination ?"
+              placeholder="Pour quel trajet ?"
               value={vtarget}
-              items={target}
+              items={personal_employed.map(item => {
+                return {
+                  label: item?.NomTit,
+                  value: item?.id,
+                };
+              })}
               setOpen={setOtarget}
               setValue={setVtarget}
               setItems={setTarget}
               textStyle={{
                 fontSize: 15,
                 fontFamily: 'Hind-Light',
-                color: '#009688b3',
+                color: '#009688ba',
               }}
-              listMode="SCROLLVIEW"
-              style={styles.ui_splash_contain_dropDown_Choose_Target}
+              listMode="DEFAULT"
+              mode="SIMPLE"
+              style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet1}>
@@ -162,20 +184,26 @@ const Caisse = props => {
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet4}>
             <DropDownPicker
-              open={otypebus}
-              placeholder="Classique / Vip ?"
-              value={vtypebus}
-              items={typeBus}
-              setOpen={setOtypeBus}
-              setValue={setVtypebus}
-              setItems={setTypeBus}
+              open={oguichet}
+              placeholder="Classique/Vip ?"
+              value={vguichet}
+              items={personal_employed.map(item => {
+                return {
+                  label: item?.NomTit,
+                  value: item?.id,
+                };
+              })}
+              setOpen={setOguichet}
+              setValue={setVguichet}
+              setItems={setGuichet}
               textStyle={{
                 fontSize: 15,
                 fontFamily: 'Hind-Light',
-                color: '#009688b3',
+                color: '#009688ba',
               }}
-              listMode="SCROLLVIEW"
-              style={styles.ui_splash_contain_dropDown_Choose_Target}
+              listMode="DEFAULT"
+              mode="SIMPLE"
+              style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet1}>
@@ -185,22 +213,7 @@ const Caisse = props => {
             </Text>
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet4}>
-            <DropDownPicker
-              open={oticket}
-              placeholder="Lequel choisir ?"
-              value={vticket}
-              items={ticket}
-              setOpen={setOticket}
-              setValue={setVticket}
-              setItems={setTicket}
-              textStyle={{
-                fontSize: 15,
-                fontFamily: 'Hind-Light',
-                color: '#009688b3',
-              }}
-              listMode="SCROLLVIEW"
-              style={styles.ui_splash_contain_dropDown_Choose_Target}
-            />
+            {/* Lequel choisir ? */}
           </View>
           <TouchableOpacity
             activeOpacity={0.7}
@@ -261,13 +274,30 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_Input_Name_place: {
     fontFamily: 'Nunito-Light',
-    borderWidth: 1,
+    borderWidth: 0.3,
     width: '95%',
     height: 50,
     borderRadius: 4,
-    borderColor: '#03a9f4d6',
+    borderColor: '#ffeb3b8a',
     alignItems: 'center',
     alignSelf: 'center',
+    backgroundColor: '#ffeb3b21',
+  },
+  ui_splash_closed_error_signal: {
+    fontSize: 13,
+    fontFamily: 'Hind-Light',
+    color: '#f44336c7',
+    left: 12,
+  },
+  ui_splash_contain_Input_Placeholder_place: {
+    fontFamily: 'Nunito-Light',
+    width: '95%',
+    height: 50,
+    borderRadius: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#0202020f',
+    color: '#02020230',
   },
   ui_splash_contain_btn_closed_registration: {
     marginLeft: 7,
@@ -289,7 +319,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_config_fonts_regis3: {
     fontFamily: 'WorkSans-VariableFont_wght',
     fontSize: 14,
-    color: '#673ab7',
+    color: '#0a0a0a8f',
     left: -25,
   },
   ui_splash_contain_config_fonts_regis4: {
@@ -304,9 +334,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 30,
   },
   ui_splash_contain_dropDown_Choose_Target: {
-    borderWidth: 1,
+    borderWidth: 0.3,
     width: '95%',
     height: 50,
     borderRadius: 4,
