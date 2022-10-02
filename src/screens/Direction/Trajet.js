@@ -179,7 +179,6 @@ const Trajet = props => {
                       setInterfaceTarget(true);
                       setUpdateTarget(true);
                       setOldTarget(actionTarget.Destination);
-
                     }}
                     onClose={() => {
                       setInAction(false);
@@ -350,7 +349,7 @@ const Trajet = props => {
           </ScrollView>
         </ScrollView>
       )}
-      {interfaceTarget ? null : props.route.params?.action ? null : (
+      {interfaceTarget ? null : (
         <ButtonAddingItems
           titleico={faPlus}
           titlebutton="ajouter"
