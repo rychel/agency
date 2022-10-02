@@ -30,7 +30,7 @@ const HeaderUser = props => {
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
     flexDirection: 'row',
-    height: 70,
+    height: 60,
     alignItems: 'center',
     backgroundColor: '#00bcd4',
   },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: '100%',
-    height: 70,
+    height: 60,
   },
   ui_splash_contain_header_globe_zone_back_left: {
     width: 40,
