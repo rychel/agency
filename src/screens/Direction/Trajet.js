@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -26,6 +26,7 @@ import ButtonAddingItems from '../../components/ButtonAddingItems';
 import LoadingItems from '../../components/LoadingItems';
 import HeaderConfig from '../../components/HeaderConfig';
 import ActionOnTips from '../../components/ActionOnTips';
+import Space from '../../components/Space';
 import {faCheck, faPlus, faRoute} from '@fortawesome/free-solid-svg-icons';
 
 const Trajet = props => {
@@ -40,6 +41,7 @@ const Trajet = props => {
     id: '',
     Destination: '',
   });
+  const bottomTarget = useRef();
 
   const getInfo_agency = () => {
     try {
@@ -137,13 +139,17 @@ const Trajet = props => {
           {target_point[0]?.id === undefined ? (
             <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
           ) : (
-            <>
+            <ScrollView style={styles.ui_splash_contain_sub_tips_already_registered}>
               <ValidateItemStatus
                 Titleico={faCheck}
                 Titlestatus="Trajets enregistrés"
               />
               <ScrollView
-                style={styles.ui_splash_contain_header_already_registered}>
+                style={styles.ui_splash_contain_header_already_registered}
+                ref={bottomTarget}
+                onContentSizeChange={() => {
+                  bottomTarget.current.scrollToEnd({animated: true})
+                }}>
                 {target_point.map(item => {
                   return (
                     <ItemTrajetSaved
@@ -152,21 +158,19 @@ const Trajet = props => {
                       Destination={item?.Destination}
                       key={item.id}
                       onAction={() => {
-                        setInAction(true);
                         setActionTarget({
                           id: item.id,
                           Destination: item?.Destination,
                         });
-                        props.navigation.setParams({
-                          action: true,
-                        });
+                        setInAction(true);
                       }}
                     />
                   );
                 })}
                 {isFetch == true ? <LoadingItems /> : null}
+                <Space Hwidth={150} />
                 <Modal
-                  animationType="slide"
+                  animationType="fade"
                   transparent={true}
                   visible={inAction}
                   presentationStyle="overFullScreen"
@@ -191,7 +195,7 @@ const Trajet = props => {
                   />
                 </Modal>
               </ScrollView>
-            </>
+            </ScrollView>
           )}
         </View>
       ) : (
@@ -371,6 +375,11 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_maid_interface: {
     width: '100%',
     height: Dimensions.get('window').height,
+  },
+  ui_splash_contain_sub_tips_already_registered: {
+    width: '100%',
+    height: Dimensions.get('window').height,
+    backgroundColor: 'red',
   },
   ui_splash_contain_header_already_registered: {
     width: '100%',
