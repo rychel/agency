@@ -139,3 +139,21 @@ export const delete_self_target = (id_direction, id) => {
     }
   };
 };
+
+export const get_personal_employed = (id_direction) => {
+  return async dispatch => {
+    try {
+      const request = await fetch(URL + '/api/get_personal_employed', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({title: parseInt(id_direction)}),
+      });
+      const success = await request.json();
+      dispatch({type: 'GET_PERSONAL_EMPLOYED', personal_employed: success});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
