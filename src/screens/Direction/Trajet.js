@@ -7,6 +7,7 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
+  Modal,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -164,32 +165,33 @@ const Trajet = props => {
                   );
                 })}
                 {isFetch == true ? <LoadingItems /> : null}
-              </ScrollView>
-              {inAction ? (
-                <ActionOnTips
-                  onUpdate={() => {
-                    setInterfaceTarget(true);
-                    setUpdateTarget(true);
-                    setOldTarget(actionTarget.Destination);
-                    props.navigation.setParams({
-                      action: false,
-                    });
-                  }}
-                  onClose={() => {
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={inAction}
+                  presentationStyle="overFullScreen"
+                  statusBarTranslucent={true}
+                  onRequestClose={() => {
                     setInAction(false);
-                    props.navigation.setParams({
-                      action: false,
-                    });
-                  }}
-                  onDelete={() => {
-                    deleteSelf_target();
-                    getTarget_point();
-                    props.navigation.setParams({
-                      action: false,
-                    });
-                  }}
-                />
-              ) : null}
+                  }}>
+                  <ActionOnTips
+                    onUpdate={() => {
+                      setInterfaceTarget(true);
+                      setUpdateTarget(true);
+                      setOldTarget(actionTarget.Destination);
+
+                    }}
+                    onClose={() => {
+                      setInAction(false);
+                    }}
+                    onDelete={() => {
+                      deleteSelf_target();
+                      getTarget_point();
+                      setInAction(false);
+                    }}
+                  />
+                </Modal>
+              </ScrollView>
             </>
           )}
         </View>
