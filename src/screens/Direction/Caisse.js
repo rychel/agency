@@ -14,6 +14,7 @@ import {
   get_config_transport,
   get_personal_employed,
   get_target_point,
+  add_self_guichet,
 } from '../../store/Log/Dir/DirActions';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import NotificationExplain from '../../components/NotificationExplain';
@@ -86,13 +87,23 @@ const Caisse = props => {
     getConfig_transport();
     getPersonal_employed();
     getTarget_point();
-    //console.log(config_transport);
-    //console.log(personal_employed);
-    //console.log(target_point);
   }, []);
 
   const createGuichet = () => {
     console.log(vmaid, vticket, vguichet, vtarget);
+    try {
+      AsyncStorage.getItem('token').then(async id => {
+        const data = await {
+          Trajet: vtarget,
+          Titulaire: vmaid,
+          TicketChoice: vticket,
+          TypeGuichet: vguichet,
+        };
+        dispatch(add_self_guichet(id, data));
+      });
+    } catch (err) {
+      console.log('it wrong: ' + err);
+    }
   };
 
   return (
@@ -255,7 +266,11 @@ const Caisse = props => {
             style={styles.ui_splash_contain_btn_add_place_target}
             onPress={() => {
               createGuichet();
-              console.log('clicked');
+              setInterfaceMaid(false);
+              setVmaid(null);
+              setVtarget(null);
+              setVguichet(null);
+              setVticket(null);
             }}>
             <Text style={styles.ui_splash_contain_text_btn_add_place_target}>
               Ajouter
