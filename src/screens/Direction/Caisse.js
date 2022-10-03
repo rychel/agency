@@ -9,21 +9,21 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Picker} from '@react-native-picker/picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {
   get_config_transport,
   get_personal_employed,
+  get_target_point,
 } from '../../store/Log/Dir/DirActions';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
 import NotificationExplain from '../../components/NotificationExplain';
-import NoItemStatus from '../../components/NoItemStatus';
 import HeaderConfig from '../../components/HeaderConfig';
 import Space from '../../components/Space';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
+  faAngleRight,
   faChalkboard,
-  faEyeDropperEmpty,
+  faExclamationCircle,
   faPlus,
   faUserSlash,
 } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +37,13 @@ const Caisse = props => {
   const [target, setTarget] = useState([]);
   const [oguichet, setOguichet] = useState(false);
   const [vguichet, setVguichet] = useState(null);
-  const [guichet, setGuichet] = useState([]);
+  const [guichet, setGuichet] = useState([
+    {label: 'Guichet classique', value: 'Clasique'},
+    {label: 'Guichet vip', value: 'Vip'},
+  ]);
+  const [oticket, setOticket] = useState(false);
+  const [vticket, setVticket] = useState(null);
+  const [ticket, setTicket] = useState([]);
 
   const [interfaceMaid, setInterfaceMaid] = useState(false);
 
@@ -61,7 +67,17 @@ const Caisse = props => {
     }
   };
 
-  const {config_transport, personal_employed} = useSelector(
+  const getTarget_point = () => {
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        dispatch(get_target_point(value));
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const {config_transport, personal_employed, target_point} = useSelector(
     state => state.DirReducers,
   );
   const dispatch = useDispatch();
@@ -69,11 +85,15 @@ const Caisse = props => {
   useEffect(() => {
     getConfig_transport();
     getPersonal_employed();
-    console.log(config_transport);
-    console.log(personal_employed);
+    getTarget_point();
+    //console.log(config_transport);
+    //console.log(personal_employed);
+    //console.log(target_point);
   }, []);
 
-  const addMaid = () => {};
+  const createGuichet = () => {
+    console.log(vmaid, vticket, vguichet, vtarget);
+  };
 
   return (
     <View style={styles.ui_splash_contain_header_globe}>
@@ -93,7 +113,7 @@ const Caisse = props => {
               setInterfaceMaid(false);
               setVmaid(null);
               setVtarget(null);
-              setVtypebus(null);
+              setVguichet(null);
               setVticket(null);
             }}>
             <Text style={styles.ui_splash_closed_registration_icon_btn}>
@@ -131,23 +151,14 @@ const Caisse = props => {
               style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
-          {vmaid ? (
-            <View style={styles.ui_splash_contain_globe_first_block_guichet3}>
-              <Text style={styles.ui_splash_contain_config_fonts_regis3}>
-                ID:
-              </Text>
-              <Text style={styles.ui_splash_contain_config_fonts_regis4}>
-                {vmaid > 100
-                  ? vmaid
-                  : vmaid > 10
-                  ? '0' + vmaid
-                  : vmaid > 0
-                  ? '00' + vmaid
-                  : null}
-              </Text>
-            </View>
-          ) : null}
-
+          <View style={styles.ui_splash_contain_globe_first_block_guichet3}>
+            <Text style={styles.ui_splash_contain_config_fonts_regis3}>
+              ID:
+            </Text>
+            <Text style={styles.ui_splash_contain_config_fonts_regis4}>
+              {vmaid}
+            </Text>
+          </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet1}>
             <Text style={styles.ui_splash_contain_config_fonts_regis1}>
               Sélectionner le Trajet
@@ -158,9 +169,9 @@ const Caisse = props => {
               open={otarget}
               placeholder="Pour quel trajet ?"
               value={vtarget}
-              items={personal_employed.map(item => {
+              items={target_point.map(item => {
                 return {
-                  label: item?.NomTit,
+                  label: item?.Depart + '-' + item?.Destination,
                   value: item?.id,
                 };
               })}
@@ -172,8 +183,7 @@ const Caisse = props => {
                 fontFamily: 'Hind-Light',
                 color: '#009688ba',
               }}
-              listMode="DEFAULT"
-              mode="SIMPLE"
+              listMode="MODAL"
               style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
@@ -187,12 +197,7 @@ const Caisse = props => {
               open={oguichet}
               placeholder="Classique/Vip ?"
               value={vguichet}
-              items={personal_employed.map(item => {
-                return {
-                  label: item?.NomTit,
-                  value: item?.id,
-                };
-              })}
+              items={guichet}
               setOpen={setOguichet}
               setValue={setVguichet}
               setItems={setGuichet}
@@ -201,30 +206,63 @@ const Caisse = props => {
                 fontFamily: 'Hind-Light',
                 color: '#009688ba',
               }}
-              listMode="DEFAULT"
-              mode="SIMPLE"
+              listMode="MODAL"
               style={styles.ui_splash_contain_Input_Name_place}
             />
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet1}>
             <Text style={styles.ui_splash_contain_config_fonts_regis5}>
-              Quel est le type de ticket dont disposera le client lorsqu'il
-              payera à la caisse
+              Configurer le ticket que la caisse fournira au client lorsqu'il
+              payera son billet à la caisse
+            </Text>
+          </View>
+          <View style={styles.ui_splash_contain_globe_first_block_guichet5}>
+            <FontAwesomeIcon icon={faExclamationCircle} size={10} color="red" />
+            <Text style={styles.ui_splash_contain_config_fonts_regis6}>
+              Ticket prédéfinie modifiable dans le menu Ticket.
             </Text>
           </View>
           <View style={styles.ui_splash_contain_globe_first_block_guichet4}>
-            {/* Lequel choisir ? */}
+            <DropDownPicker
+              open={oticket}
+              placeholder="Lequel choisir ?"
+              value={vticket}
+              items={config_transport.map(item => {
+                return {
+                  label:
+                    item?.TypeTicket == 0
+                      ? 'Ticket physique'
+                      : item?.TypeTicket == 1
+                      ? 'Code QR'
+                      : 'Code QR et Ticket physique',
+                  value: item?.id,
+                };
+              })}
+              setOpen={setOticket}
+              setValue={setVticket}
+              setItems={setTicket}
+              textStyle={{
+                fontSize: 15,
+                fontFamily: 'Hind-Light',
+                color: '#009688ba',
+              }}
+              listMode="MODAL"
+              style={styles.ui_splash_contain_Input_Name_place}
+            />
           </View>
           <TouchableOpacity
             activeOpacity={0.7}
             style={styles.ui_splash_contain_btn_add_place_target}
-            onPress={() => {}}>
-            <FontAwesomeIcon icon={faEyeDropperEmpty} size={15} color="white" />
+            onPress={() => {
+              createGuichet();
+              console.log('clicked');
+            }}>
             <Text style={styles.ui_splash_contain_text_btn_add_place_target}>
               Ajouter
             </Text>
+            <FontAwesomeIcon icon={faAngleRight} size={15} color="white" />
           </TouchableOpacity>
-          <Space Hwidth={125} />
+          <Space Hwidth={100} />
         </ScrollView>
       ) : null}
       {interfaceMaid ? null : (
@@ -268,6 +306,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  ui_splash_contain_globe_first_block_guichet5: {
+    width: '100%',
+    height: 35,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   ui_splash_contain_config_fonts_regis2: {
     fontFamily: 'Nunito-Light',
     fontSize: 16,
@@ -278,10 +323,10 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 50,
     borderRadius: 4,
-    borderColor: '#ffeb3b8a',
+    borderColor: '#ffeb3b30',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#ffeb3b21',
+    backgroundColor: '#ffeb3b61',
   },
   ui_splash_closed_error_signal: {
     fontSize: 13,
@@ -302,6 +347,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_btn_closed_registration: {
     marginLeft: 7,
     marginTop: 10,
+    marginBottom: 20,
   },
   ui_splash_closed_registration_icon_btn: {
     marginLeft: 10,
@@ -336,21 +382,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 30,
   },
-  ui_splash_contain_dropDown_Choose_Target: {
-    borderWidth: 0.3,
-    width: '95%',
-    height: 50,
-    borderRadius: 4,
-    borderColor: '#ffeb3b8a',
-    alignItems: 'center',
-    alignSelf: 'center',
-    backgroundColor: '#ffeb3b21',
-  },
   ui_splash_contain_btn_add_place_target: {
-    width: 100,
+    width: 90,
     height: 45,
     backgroundColor: '#e73c76',
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     left: 5,
@@ -360,14 +396,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'Hind-Light',
     fontSize: 16,
-    left: 5,
-    top: 1,
+    left: -1,
+    top: 0.4,
   },
   ui_splash_contain_config_fonts_regis5: {
-    fontFamily: 'SairaCondensed-Thin',
-    fontSize: 17,
+    fontFamily: 'Hind-Light',
+    fontSize: 16,
     left: 10,
-    color: '#000000a8',
+    color: '#00000091',
+  },
+  ui_splash_contain_config_fonts_regis6: {
+    fontFamily: 'Montserrat-VariableFont_wght',
+    fontSize: 12,
+    left: -5,
+    color: '#ff5722',
   },
 });
 
