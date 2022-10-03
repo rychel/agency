@@ -116,7 +116,11 @@ export const update_self_target = (id_direction, id, data) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({title: parseInt(id_direction), id: id, value: data}),
+        body: JSON.stringify({
+          title: parseInt(id_direction),
+          id: id,
+          value: data,
+        }),
       });
     } catch (e) {
       console.log(e);
@@ -140,7 +144,7 @@ export const delete_self_target = (id_direction, id) => {
   };
 };
 
-export const get_personal_employed = (id_direction) => {
+export const get_personal_employed = id_direction => {
   return async dispatch => {
     try {
       const request = await fetch(URL + '/api/get_personal_employed', {
@@ -152,6 +156,22 @@ export const get_personal_employed = (id_direction) => {
       });
       const success = await request.json();
       dispatch({type: 'GET_PERSONAL_EMPLOYED', personal_employed: success});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const add_self_guichet = (id_direction, data) => {
+  return async dispatch => {
+    try {
+      fetch(URL + '/api/add_self_guichet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({title: parseInt(id_direction), value: data}),
+      });
     } catch (e) {
       console.log(e);
     }
