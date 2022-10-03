@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Animated,
+  Text,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faClose, faEyeDropperEmpty} from '@fortawesome/free-solid-svg-icons';
@@ -27,11 +28,20 @@ const ActionOnTips = props => {
       useNativeDriver: true,
     }).start();
   }, [StartWelcomeBrave, FlickedLogo]);
+
   return (
     <TouchableOpacity
       onPress={onClose}
       style={styles.ui_splash_contain_header_globe}>
       <View style={styles.ui_splash_contain_table_param}>
+        <View style={styles.ui_splash_contain_hearder_message_configs}>
+          <Text style={styles.ui_splash_contain_hearder_fonts1}>
+            Hell'o Travel
+          </Text>
+          <Text style={styles.ui_splash_contain_hearder_fonts2}>
+            Que voulez-vous faire ?
+          </Text>
+        </View>
         <TouchableOpacity
           style={styles.ui_splash_contain_item_config_param}
           activeOpacity={0.8}
@@ -80,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ui_splash_contain_table_param: {
-    height: 105,
+    height: 225,
     width: '100%',
     position: 'absolute',
     alignItems: 'center',
@@ -88,6 +98,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
+  },
+  ui_splash_contain_hearder_message_configs: {
+    width: '80%',
+    justifyContent: 'space-around',
+    margin: 10,
+    overflow: 'hidden',
+    top: 5,
+    height: 105,
+  },
+  ui_splash_contain_hearder_fonts1: {
+    fontSize: 26,
+    color: 'black',
+    left: 10,
+    fontFamily: 'Quicksand-VariableFont_wght',
+    fontWeight: '700',
+  },
+  ui_splash_contain_hearder_fonts2: {
+    fontSize: 15,
+    color: 'black',
+    left: 10,
+    fontFamily: 'Dosis-VariableFont_wght',
   },
   ui_splash_contain_item_config_param: {
     width: '80%',
