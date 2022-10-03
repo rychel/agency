@@ -3,6 +3,7 @@ const initialstate = {
   config_transport: [],
   target_point: [],
   personal_employed: [],
+  guichet_tips: [],
 };
 
 export default (state = initialstate, action) => {
@@ -26,6 +27,11 @@ export default (state = initialstate, action) => {
       return {
         ...state,
         personal_employed: action.personal_employed,
+      };
+    case 'GET_GUICHET_TIPS':
+      return {
+        ...state,
+        guichet_tips: action.guichet_tips,
       };
     default:
       return state;
