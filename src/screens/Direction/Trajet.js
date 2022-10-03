@@ -116,8 +116,10 @@ const Trajet = props => {
   const deleteSelf_target = () => {
     try {
       AsyncStorage.getItem('token').then(async id => {
+        setIsFetch(true);
         await dispatch(delete_self_target(id, actionTarget.id));
         setInAction(false);
+        setIsFetch(false);
       });
     } catch (e) {
       console.log(e);
@@ -139,7 +141,8 @@ const Trajet = props => {
           {target_point[0]?.id === undefined ? (
             <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
           ) : (
-            <ScrollView style={styles.ui_splash_contain_sub_tips_already_registered}>
+            <ScrollView
+              style={styles.ui_splash_contain_sub_tips_already_registered}>
               <ValidateItemStatus
                 Titleico={faCheck}
                 Titlestatus="Trajets enregistrés"
@@ -148,26 +151,31 @@ const Trajet = props => {
                 style={styles.ui_splash_contain_header_already_registered}
                 ref={bottomTarget}
                 onContentSizeChange={() => {
-                  bottomTarget.current.scrollToEnd({animated: true})
+                  bottomTarget.current.scrollToEnd({animated: true});
                 }}>
                 {target_point.map(item => {
                   return (
-                    <ItemTrajetSaved
-                      Titleico={faRoute}
-                      Depart={item?.Depart}
-                      Destination={item?.Destination}
-                      key={item.id}
-                      onAction={() => {
-                        setActionTarget({
-                          id: item.id,
-                          Destination: item?.Destination,
-                        });
-                        setInAction(true);
-                      }}
-                    />
+                    <>
+                      {isFetch == true ? (
+                        <LoadingItems />
+                      ) : (
+                        <ItemTrajetSaved
+                          Titleico={faRoute}
+                          Depart={item?.Depart}
+                          Destination={item?.Destination}
+                          key={item.id}
+                          onAction={() => {
+                            setActionTarget({
+                              id: item.id,
+                              Destination: item?.Destination,
+                            });
+                            setInAction(true);
+                          }}
+                        />
+                      )}
+                    </>
                   );
                 })}
-                {isFetch == true ? <LoadingItems /> : null}
                 <Space Hwidth={150} />
                 <Modal
                   animationType="fade"
