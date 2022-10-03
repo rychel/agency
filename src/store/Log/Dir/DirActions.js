@@ -177,3 +177,20 @@ export const add_self_guichet = (id_direction, data) => {
     }
   };
 };
+
+export const get_guichet_tips = (id_direction) => {
+  return async dispatch => {
+    try {
+      const request = await fetch(URL + '/api/get_guichet_tips/' + id_direction, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const success = await request.json();
+      dispatch({type: 'GET_GUICHET_TIPS', guichet_tips: success});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
