@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     height: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    left: 10,
     backgroundColor: '#b7b7b71c',
   },
   ui_splash_contain_header_transition_numero: {
@@ -80,12 +79,12 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_trajet: {
     flexDirection: 'row',
-    width: '50%',
+    width: '58%',
     backgroundColor: '#b7b7b71c',
     height: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    top: -2,
+    left: -1,
   },
   ui_splash_contain_header_animate_administration_vip_baps: {
     alignItems: 'center',
@@ -98,8 +97,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_animate_administration_classique_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 4,
-    marginRight: 5,
+    marginRight: 2,
     width: 60,
     height: 50,
   },
@@ -108,7 +106,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 45,
     width: 45,
-    margin: 8,
     backgroundColor: '#b7b7b71c',
     borderRadius: 100,
   },
