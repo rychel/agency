@@ -23,7 +23,7 @@ import NotificationExplain from '../../components/NotificationExplain';
 import ValidateItemStatus from '../../components/ValidateItemStatus';
 import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import LoadingItems from '../../components/LoadingItems';
+import LoadingItemsTarget from '../../components/LoadingItemsTarget';
 import HeaderConfig from '../../components/HeaderConfig';
 import ActionOnTips from '../../components/ActionOnTips';
 import Space from '../../components/Space';
@@ -157,7 +157,7 @@ const Trajet = props => {
                   return (
                     <>
                       {isFetch == true ? (
-                        <LoadingItems />
+                        <LoadingItemsTarget />
                       ) : (
                         <ItemTrajetSaved
                           Titleico={faRoute}
