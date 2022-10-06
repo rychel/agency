@@ -2,28 +2,22 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const ItemGuichetSaved = props => {
-  const {Numero, TypeGuichet, Depart, Destination} = props;
-
   return (
     <TouchableOpacity
       activeOpacity={0.5}
       style={styles.ui_splash_contain_header_administration_item_config}>
       <View
         style={
-          TypeGuichet == 'Classique'
-            ? styles.ui_splash_contain_header_animate_administration_classique_baps
-            : styles.ui_splash_contain_header_animate_administration_vip_baps
+          styles.ui_splash_contain_header_animate_administration_classique_baps
         }>
         <View
           style={
             styles.ui_splash_contain_header_administration_spin_awesome_baps
           }>
           <View
-            style={styles.ui_splash_contain_header_administration_awesome_baps}>
-            <Text style={styles.ui_splash_contain_header_ticket_fonts1}>
-              {TypeGuichet[0]}
-            </Text>
-          </View>
+            style={
+              styles.ui_splash_contain_header_administration_awesome_baps
+            }></View>
         </View>
       </View>
       <View style={styles.ui_splash_global_animated_ico_guichet_board}>
@@ -31,23 +25,14 @@ const ItemGuichetSaved = props => {
           style={
             styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
           }>
-          <View style={styles.ui_splash_contain_header_administration_numero}>
-            <Text
-              style={
-                styles.ui_splash_contain_header_administration_awesome_config
-              }>
-              Guichet {Numero}
-            </Text>
-          </View>
-          <View style={styles.ui_splash_contain_header_administration_trajet}>
-            <Text
-              style={
-                styles.ui_splash_contain_header_administration_awesome_config2
-              }
-              numberOfLines={1}>
-              {Depart}-{Destination}
-            </Text>
-          </View>
+          <View
+            style={
+              styles.ui_splash_contain_header_administration_numero
+            }></View>
+          <View
+            style={
+              styles.ui_splash_contain_header_administration_trajet
+            }></View>
         </View>
       </View>
     </TouchableOpacity>
@@ -64,11 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     marginBottom: 30,
-  },
-  ui_splash_contain_header_administration_awesome_config: {
-    fontSize: 18,
-    color: '#706e6e',
-    fontFamily: 'PingFang SC Regular',
   },
   ui_splash_contain_header_separate_awesome_config: {
     margin: 0,
@@ -87,22 +67,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     left: 10,
+    backgroundColor: '#b7b7b71c',
   },
   ui_splash_contain_header_administration_trajet: {
     flexDirection: 'row',
     width: '50%',
-    backgroundColor: '#ffc10726',
+    backgroundColor: '#b7b7b71c',
     height: 28,
     justifyContent: 'center',
     alignItems: 'center',
     top: -2,
-  },
-  ui_splash_contain_header_administration_awesome_config2: {
-    fontSize: 18,
-    color: '#545252',
-    fontFamily: 'Roboto-Thin',
-    borderTopEndRadius: 5,
-    borderTopStartRadius: 5,
   },
   ui_splash_contain_header_animate_administration_vip_baps: {
     alignItems: 'center',
@@ -126,7 +100,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     margin: 8,
-    backgroundColor: '#03a9f4',
+    backgroundColor: '#b7b7b71c',
     borderRadius: 100,
   },
   ui_splash_contain_header_administration_awesome_baps: {
@@ -135,12 +109,6 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     margin: 8,
-  },
-  ui_splash_contain_header_ticket_fonts1: {
-    fontSize: 23,
-    color: 'white',
-    fontFamily: 'Quicksand-VariableFont_wght',
-    fontWeight: '700',
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '100%',
