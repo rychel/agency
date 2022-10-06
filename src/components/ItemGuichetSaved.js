@@ -1,15 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const ItemGuichetSaved = props => {
   const {Numero, TypeGuichet, Depart, Destination} = props;
-  const [icoGuichet, setIcoGuichet] = useState('');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIcoGuichet(TypeGuichet[0]);
-    }, 4000);
-  }, []);
 
   return (
     <TouchableOpacity
@@ -22,27 +15,13 @@ const ItemGuichetSaved = props => {
             : styles.ui_splash_contain_header_animate_administration_vip_baps
         }>
         <View
-          style={
-            icoGuichet == ''
-              ? styles.ui_splash_contain_header_administration_awesome_baps
-              : styles.ui_splash_contain_header_animated_ico_board
-          }>
-          <Text
-            style={
-              icoGuichet == ''
-                ? styles.ui_splash_contain_header_ticket_fonts1
-                : styles.ui_splash_contain_animated_ico_board
-            }>
-            {icoGuichet == '' ? TypeGuichet : icoGuichet}
+          style={styles.ui_splash_contain_header_administration_awesome_baps}>
+          <Text style={styles.ui_splash_contain_header_ticket_fonts1}>
+            {TypeGuichet[0]}
           </Text>
         </View>
       </View>
-      <View
-        style={
-          icoGuichet == ''
-            ? styles.ui_splash_global_animated_soup_contain_registered_global_contain_title
-            : styles.ui_splash_global_animated_ico_guichet_board
-        }>
+      <View style={styles.ui_splash_global_animated_ico_guichet_board}>
         <View
           style={
             styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
@@ -82,7 +61,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   ui_splash_contain_header_administration_awesome_config: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#706e6e',
     fontFamily: 'PingFang SC Regular',
   },
@@ -99,18 +78,19 @@ const styles = StyleSheet.create({
   },
   ui_splash_contain_header_administration_numero: {
     flexDirection: 'row',
-    width: 110,
     height: 28,
     justifyContent: 'center',
     alignItems: 'center',
+    left: 10,
   },
   ui_splash_contain_header_administration_trajet: {
     flexDirection: 'row',
-    width: 110,
+    width: '50%',
     backgroundColor: '#ffc10726',
     height: 28,
     justifyContent: 'center',
     alignItems: 'center',
+    top: -2,
   },
   ui_splash_contain_header_administration_awesome_config2: {
     fontSize: 18,
@@ -138,23 +118,11 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 25,
-    margin: 8,
-  },
-  ui_splash_contain_header_animated_ico_board: {
-    alignItems: 'center',
-    justifyContent: 'center',
     height: 30,
     width: 30,
     margin: 8,
   },
   ui_splash_contain_header_ticket_fonts1: {
-    fontSize: 15,
-    color: 'white',
-    fontFamily: 'Quicksand-VariableFont_wght',
-    fontWeight: '700',
-  },
-  ui_splash_contain_animated_ico_board: {
     fontSize: 23,
     color: 'white',
     fontFamily: 'Quicksand-VariableFont_wght',
@@ -162,17 +130,12 @@ const styles = StyleSheet.create({
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
     width: '100%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     margin: 1,
     flexDirection: 'row',
   },
-  ui_splash_global_animated_soup_contain_registered_global_contain_title: {
-    overflow: 'hidden',
-    width: '70%',
-  },
   ui_splash_global_animated_ico_guichet_board: {
-    overflow: 'hidden',
     width: '80%',
   },
 });
