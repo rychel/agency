@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const ItemGuichetSaved = props => {
+  const {Numero} = props;
+
   return (
     <TouchableOpacity
       activeOpacity={0.5}
@@ -25,10 +27,11 @@ const ItemGuichetSaved = props => {
           style={
             styles.ui_splash_global_bus_soup_contain_registered_global_contain_title
           }>
-          <View
-            style={
-              styles.ui_splash_contain_header_administration_numero
-            }></View>
+          <View style={styles.ui_splash_contain_header_administration_numero}>
+            <Text style={styles.ui_splash_contain_header_transition_numero}>
+              Guichet {Numero}
+            </Text>
+          </View>
           <View
             style={
               styles.ui_splash_contain_header_administration_trajet
@@ -68,6 +71,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     left: 10,
     backgroundColor: '#b7b7b71c',
+  },
+  ui_splash_contain_header_transition_numero: {
+    fontSize: 18,
+    color: '#706e6e',
+    fontFamily: 'PingFang SC Regular',
+    opacity: 0,
   },
   ui_splash_contain_header_administration_trajet: {
     flexDirection: 'row',
