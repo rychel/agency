@@ -5,7 +5,7 @@ const LoadingItemsConfig = props => {
   return (
     <View style={styles.ui_splash_contain_header_administration_item_config}>
       <View style={styles.ui_splash_contain_header_administration_awesome_config}>
-        <ActivityIndicator color="#ffb03b" size={35}  />
+        <ActivityIndicator color="#ababab" size={35}  />
       </View>
     </View>
   );
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: 'row',
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
