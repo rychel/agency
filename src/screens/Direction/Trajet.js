@@ -23,7 +23,7 @@ import NotificationExplain from '../../components/NotificationExplain';
 import ValidateItemStatus from '../../components/ValidateItemStatus';
 import ItemTrajetSaved from '../../components/ItemTrajetSaved';
 import ButtonAddingItems from '../../components/ButtonAddingItems';
-import LoadingItemsTarget from '../../components/LoadingItemsTarget';
+import LoadingItemsConfig from '../../components/LoadingItemsConfig';
 import HeaderConfig from '../../components/HeaderConfig';
 import ActionOnTips from '../../components/ActionOnTips';
 import Space from '../../components/Space';
@@ -138,7 +138,7 @@ const Trajet = props => {
     <View style={styles.ui_splash_contain_header_globe}>
       {interfaceTarget === false ? (
         <View style={styles.ui_splash_contain_header_maid_interface}>
-          {target_point[0]?.id === undefined ? (
+          {target_point === [] ? (
             <NotificationExplain Titlemessage="Définir les trajets qui seront utilisés par votre agence." />
           ) : (
             <ScrollView
@@ -153,27 +153,22 @@ const Trajet = props => {
                 onContentSizeChange={() => {
                   bottomTarget.current.scrollToEnd({animated: true});
                 }}>
+                {isFetch == true ? <LoadingItemsConfig /> : null}
                 {target_point.map(item => {
                   return (
-                    <>
-                      {isFetch == true ? (
-                        <LoadingItemsTarget />
-                      ) : (
-                        <ItemTrajetSaved
-                          Titleico={faRoute}
-                          Depart={item?.Depart}
-                          Destination={item?.Destination}
-                          key={item.id}
-                          onAction={() => {
-                            setActionTarget({
-                              id: item.id,
-                              Destination: item?.Destination,
-                            });
-                            setInAction(true);
-                          }}
-                        />
-                      )}
-                    </>
+                    <ItemTrajetSaved
+                      key={item.id}
+                      Titleico={faRoute}
+                      Depart={item?.Depart}
+                      Destination={item?.Destination}
+                      onAction={() => {
+                        setActionTarget({
+                          id: item.id,
+                          Destination: item?.Destination,
+                        });
+                        setInAction(true);
+                      }}
+                    />
                   );
                 })}
                 <Space Hwidth={150} />
