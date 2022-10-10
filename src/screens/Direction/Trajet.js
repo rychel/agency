@@ -382,13 +382,13 @@ const styles = StyleSheet.create({
   ui_splash_contain_sub_tips_already_registered: {
     width: '100%',
     height: Dimensions.get('window').height,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
   },
   ui_splash_contain_header_already_registered: {
     width: '100%',
     height: Dimensions.get('window').height,
     backgroundColor: 'white',
-    top: 35,
+    top: 58,
   },
   ui_splash_contain_registration_maid_globe: {
     width: '100%',
