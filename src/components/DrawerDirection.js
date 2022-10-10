@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
   Text,
+  Animated,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faBookmark,
-  faClose,
+  faKiwiBird,
   faSun,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +28,35 @@ const DrawerDirection = props => {
     dispatch(LogOut());
   };
 
+  const overflow = useRef(new Animated.Value(0)).current;
+  const gotoRight = useRef(new Animated.Value(-180)).current;
+
+  const openSession = () => {
+    Animated.timing(overflow, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(gotoRight, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const closeSession = () => {
+    Animated.timing(overflow, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(gotoRight, {
+      toValue: -50,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <DrawerContentScrollView style={styles.ui_splash_contain_header_globe}>
       <PersonalProfil
@@ -34,53 +64,62 @@ const DrawerDirection = props => {
         Titlesubname="Parfait Simb Coig"
         Titlepost="Chef d'agence"
         Titlenumber="+237 673845359"
-        onOpen={() => setSigout(false)}
-        onClose={() => setSigout(true)}
+        onOpen={() => {
+          setSigout(false), closeSession();
+        }}
+        onClose={() => {
+          setSigout(true), openSession();
+        }}
       />
       <View
         style={styles.ui_splash_contain_header_administration_contains_block}>
-        {sigout ? (
-          <View style={styles.ui_splash_contain_header_deconnexion_contains}>
-            <View
-              style={
-                styles.ui_splash_contain_header_deconnexion_contains_block
-              }>
-              <TouchableOpacity
-                style={
-                  styles.ui_splash_contain_header_deconnexion_contains_block
-                }
-                onPress={signOut}>
-                <FontAwesomeIcon
-                  icon={faClose}
-                  size={17}
-                  color="white"
-                  style={styles.ui_splash_contain_log_sign_configs1}
-                />
-                <Text style={styles.ui_splash_contain_text_configs1}>
-                  Fermer la session
-                </Text>
-              </TouchableOpacity>
-            </View>
+        <Animated.View
+          style={[
+            styles.ui_splash_contain_header_deconnexion_contains,
+            {opacity: overflow, transform: [{translateX: gotoRight}]},
+          ]}>
+          <View
+            style={styles.ui_splash_contain_header_deconnexion_contains_block}>
+            <TouchableOpacity
+              style={styles.ui_splash_contain_header_deconnexion_contains_block}
+              onPress={signOut}>
+              <FontAwesomeIcon
+                icon={faKiwiBird}
+                size={17}
+                color="white"
+                style={styles.ui_splash_contain_log_sign_configs1}
+              />
+              <Text style={styles.ui_splash_contain_text_configs1}>
+                Fermer la session
+              </Text>
+            </TouchableOpacity>
           </View>
-        ) : null}
-        <ItemDrawerMenu
-          Titleico={faUserFriends}
-          Titlename="Créer un poste"
-          Titlenotif="1"
-        />
-        <ItemDrawerMenu
-          Titleico={faBookmark}
-          Titlename="Voir les archives"
-          Titlenotif="0"
-        />
-        <ItemDrawerMenu
-          Titleico={faSun}
-          Titlename="Paramètres"
-          Titlenotif="0"
-          onPress={() => {
-            props.navigation.navigate('Setting');
-          }}
-        />
+        </Animated.View>
+        <View
+          style={
+            sigout
+              ? styles.ui_splash_before_deconnexion_action
+              : styles.ui_splash_after_deconnexion_action
+          }>
+          <ItemDrawerMenu
+            Titleico={faUserFriends}
+            Titlename="Créer un poste"
+            Titlenotif="1"
+          />
+          <ItemDrawerMenu
+            Titleico={faBookmark}
+            Titlename="Voir les archives"
+            Titlenotif="0"
+          />
+          <ItemDrawerMenu
+            Titleico={faSun}
+            Titlename="Paramètres"
+            Titlenotif="0"
+            onPress={() => {
+              props.navigation.navigate('Setting');
+            }}
+          />
+        </View>
       </View>
     </DrawerContentScrollView>
   );
@@ -116,17 +155,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#08dfd5b8',
+    backgroundColor: '#ff9800',
     top: -4,
+    borderWidth: 3,
+    borderBottomWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderColor: '#f9a01f',
   },
   ui_splash_contain_log_sign_configs1: {
     left: 5,
   },
   ui_splash_contain_text_configs1: {
-    left: 10,
-    fontFamily: 'Hind-Light',
+    left: 18,
+    fontFamily: 'Nunito-Light',
     color: 'white',
     fontSize: 16.2,
+    top: -2,
+  },
+  ui_splash_before_deconnexion_action: {
+    width: '100%',
+    overflow: 'hidden',
+  },
+  ui_splash_after_deconnexion_action: {
+    width: '100%',
+    overflow: 'hidden',
+    top: -40,
   },
 });
 
