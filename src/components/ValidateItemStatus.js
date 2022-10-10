@@ -28,7 +28,7 @@ const ValidateItemStatus = props => {
           styles.ui_splash_contain_header_administration_awesome_baps,
           {transform: [{translateX: FlipRight}]},
         ]}>
-        <FontAwesomeIcon icon={Titleico} size={20} color="white" />
+        <FontAwesomeIcon icon={Titleico} size={22} color="white" />
       </Animated.View>
       <Animated.Text
         style={[
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     zIndex: 1,
+    top: 10,
   },
   ui_splash_contain_header_administration_awesome_config: {
     margin: 0,
@@ -78,12 +79,12 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '10%',
+    width: 38,
     marginTop: 2,
     marginLeft: 5,
     borderRadius: 100,
     backgroundColor: '#8bc34a',
-    height: 32,
+    height: 38,
     marginRight: 10,
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
