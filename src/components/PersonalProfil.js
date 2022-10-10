@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faAngleUp,
   faAngleDown,
-  faEdit,
+  faPen,
 } from '@fortawesome/free-solid-svg-icons';
 
 const PersonalProfil = props => {
@@ -29,7 +29,7 @@ const PersonalProfil = props => {
           <TouchableOpacity
             activeOpacity={0.5}
             style={styles.ui_splash_contain_header_params_modif_profil}>
-            <FontAwesomeIcon icon={faEdit} size={20} color="white" />
+            <FontAwesomeIcon icon={faPen} size={20} color="white" />
           </TouchableOpacity>
         </View>
       </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_header_cadre_logo_profil: {
     width: '100%',
     height: 260,
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#ff9800',
     flexDirection: 'column',
     justifyContent: 'space-between',
     overflow: 'hidden',
@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
     height: 70,
     top: 20,
     left: 5,
-    backgroundColor: '#0000003d',
+    backgroundColor: '#00bcd4',
     borderRadius: 100,
     borderWidth: 4,
-    borderColor: '#0000003d',
+    borderColor: '#0000000f',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 50,
     height: 50,
-    backgroundColor: '#00000024',
+    backgroundColor: '#efcb9638',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
