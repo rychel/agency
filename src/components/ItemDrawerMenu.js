@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faExclamation} from '@fortawesome/free-solid-svg-icons';
 
@@ -49,9 +44,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 30,
     color: '#281f1fb0',
-    top: 5,
-    fontFamily: 'Rajdhani-Regular',
-    fontWeight: '100',
+    top: 2,
+    fontFamily: 'Hind-Light',
     justifyContent: 'center',
     alignItems: 'center',
   },
