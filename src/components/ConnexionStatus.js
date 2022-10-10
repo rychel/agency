@@ -13,7 +13,7 @@ const ConnexionStatus = () => {
             autoPlay
           />
           <Text style={styles.ui_splash_contain_destination_label}>
-            Tentative de connexion
+            essaie de se connecter ...
           </Text>
         </View>
       </View>
@@ -23,7 +23,7 @@ const ConnexionStatus = () => {
 
 const styles = StyleSheet.create({
   ui_splash_contain_header_globe: {
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#ff9800',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   ui_splash_contain_destination_globe: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#00bcd4',
+    backgroundColor: '#ff9800',
     borderRadius: 100,
     justifyContent: 'center',
     height: 25,
