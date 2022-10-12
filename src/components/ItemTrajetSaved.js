@@ -1,31 +1,22 @@
 import React, {useEffect, useRef} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faLevelUp} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowsSplitUpAndLeft,
+  faRegistered,
+} from '@fortawesome/free-solid-svg-icons';
 
 const ItemTrajetSaved = props => {
-  const {Titleico, Depart, Destination, onAction} = props;
+  const {Depart, Destination, onAction} = props;
 
-  const TurnRight = useRef(new Animated.Value(-90)).current;
   const Opacity = useRef(new Animated.Value(0)).current;
-
   useEffect(() => {
-    Animated.timing(TurnRight, {
-      toValue: 10,
+    Animated.timing(Opacity, {
+      toValue: 1,
       duration: 1000,
       useNativeDriver: true,
-    }).start(),
-      Animated.timing(Opacity, {
-        toValue: 1,
-        duration: 2000,
-        useNativeDriver: true,
-      }).start();
+    }).start();
   }, []);
-
-  const TurnTicks = TurnRight.interpolate({
-    inputRange: [0, 100],
-    outputRange: ['0deg', '-40deg'],
-  });
 
   return (
     <TouchableOpacity
@@ -35,42 +26,31 @@ const ItemTrajetSaved = props => {
       <Animated.View
         style={[
           styles.ui_splash_contain_header_animate_administration_awesome_baps,
-          {transform: [{rotate: TurnTicks}]},
+          {opacity: Opacity},
         ]}>
-        <View
-          style={styles.ui_splash_contain_header_administration_awesome_baps}>
-          <FontAwesomeIcon icon={faLevelUp} size={20} color="#00968875" />
-        </View>
+        <FontAwesomeIcon icon={faRegistered} size={20} color="#e91e63" />
+        <Text
+          style={styles.ui_splash_contain_header_administration_awesome_config}>
+          {Depart}
+        </Text>
       </Animated.View>
-      <View
-        style={
-          styles.ui_splash_global_animated_soup_contain_registered_global_contain_title
-        }>
-        <Animated.View
-          style={[
-            styles.ui_splash_global_bus_soup_contain_registered_global_contain_title,
-            {opacity: Opacity},
-          ]}>
-          <Text
-            style={
-              styles.ui_splash_contain_header_administration_awesome_config
-            }>
-            {Depart}
-          </Text>
-          <FontAwesomeIcon
-            icon={Titleico}
-            size={20}
-            color="#673ab7ad"
-            style={styles.ui_splash_contain_header_separate_awesome_config}
-          />
-          <Text
-            style={
-              styles.ui_splash_contain_header_administration_awesome_config2
-            }>
-            {Destination}
-          </Text>
-        </Animated.View>
-      </View>
+      <FontAwesomeIcon
+        icon={faArrowsSplitUpAndLeft}
+        size={20}
+        color="#673ab7ad"
+        style={styles.ui_splash_contain_header_separate_awesome_config}
+      />
+      <Animated.View
+        style={[
+          styles.ui_splash_contain_header_flow_config2,
+          {opacity: Opacity},
+        ]}>
+        <Text
+          style={styles.ui_splash_contain_header_administration_awesome_config2}
+          numberOfLines={1}>
+          {Destination}
+        </Text>
+      </Animated.View>
     </TouchableOpacity>
   );
 };
@@ -81,94 +61,60 @@ const styles = StyleSheet.create({
     height: 48,
     flexDirection: 'row',
     margin: 2,
-    flexDirection: 'row',
-    backgroundColor: 'white',
+    marginTop: 10,
     alignItems: 'center',
-    marginTop: 30,
+    justifyContent: 'space-around',
   },
   ui_splash_contain_header_administration_awesome_config: {
-    margin: 0,
-    fontSize: 20,
-    height: 30,
-    color: '#706e6e',
+    fontSize: 18,
+    color: '#000000c9',
     fontFamily: 'Roboto-Thin',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
-    left: 2,
-  },
-  ui_splash_contain_globe_header_separate_awesome_config: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '11.43%',
-    marginTop: 10,
-    marginLeft: 5,
     borderRadius: 100,
-    backgroundColor: '#673ab7d6',
-    height: 35,
-    marginRight: 10,
+    padding: 4,
+    backgroundColor: '#74747417',
   },
   ui_splash_contain_header_separate_awesome_config: {
-    margin: 0,
-    fontSize: 20,
-    height: 40,
-    color: '#706e6e',
-    fontFamily: 'Roboto-Thin',
+    left: 12,
+  },
+  ui_splash_contain_header_flow_config2: {
+    flexDirection: 'row',
+    width: '48%',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 15,
-    left: 20,
   },
   ui_splash_contain_header_administration_awesome_config2: {
-    margin: 0,
-    fontSize: 18,
+    fontSize: 16,
     height: 28,
-    color: '#706e6e',
-    fontFamily: 'Roboto-Thin',
-    marginTop: 8,
-    left: 35,
+    color: 'white',
+    fontFamily: 'Roboto-Light',
     paddingLeft: 5,
     paddingRight: 5,
     paddingTop: 2,
-    backgroundColor: '#ffc10726',
-    borderTopEndRadius: 5,
-    borderTopStartRadius: 5,
-  
+    backgroundColor: '#00bcd4',
+    borderRadius: 5,
   },
   ui_splash_contain_header_animate_administration_awesome_baps: {
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 4,
     marginRight: 5,
-    height: 35,
-    width: '11.43%',
-    backgroundColor: '#ffc10754',
-  },
-  ui_splash_contain_header_administration_awesome_baps: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '11.43%',
-    marginTop: 15,
-    marginLeft: 5,
+    height: 40,
     borderRadius: 100,
-    height: 35,
-    marginRight: 1,
-    transform: [{rotate: '90deg'}],
+    flexDirection: 'row',
   },
   ui_splash_global_bus_soup_contain_registered_global_contain_title: {
-    width: '90%',
+    width: '83%',
     justifyContent: 'flex-start',
     alignItems: 'center',
     margin: 1,
     flexDirection: 'row',
-    borderWidth: 0.4,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-    borderColor: '#e3e3e3',
+    marginLeft: 15,
   },
   ui_splash_global_animated_soup_contain_registered_global_contain_title: {
-    width: '90%',
+    width: '65%',
+    height: 40,
+    justifyContent: 'center',
   },
 });
 
