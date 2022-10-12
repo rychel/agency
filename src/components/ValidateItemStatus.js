@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 const ValidateItemStatus = props => {
   const {Titleico, Titlestatus} = props;
@@ -28,7 +29,15 @@ const ValidateItemStatus = props => {
           styles.ui_splash_contain_header_administration_awesome_baps,
           {transform: [{translateX: FlipRight}]},
         ]}>
-        <FontAwesomeIcon icon={Titleico} size={22} color="white" />
+        <FontAwesomeIcon
+          icon={Titleico}
+          size={20}
+          color="white"
+          style={styles.ui_splash_global_ico_display_inc1}
+        />
+        <View style={styles.ui_splash_global_ico_display_inc2}>
+          <FontAwesomeIcon icon={faCheck} size={12} color="white" />
+        </View>
       </Animated.View>
       <Animated.Text
         style={[
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 5,
     borderRadius: 100,
-    backgroundColor: '#8bc34a',
+    backgroundColor: '#e91e63',
     height: 38,
     marginRight: 10,
   },
@@ -94,6 +103,22 @@ const styles = StyleSheet.create({
     margin: 1,
     flexDirection: 'row',
     paddingRight: 20,
+  },
+  ui_splash_global_ico_display_inc1: {
+    top: 8,
+  },
+  ui_splash_global_ico_display_inc2: {
+    top: 5,
+    backgroundColor: '#8bc34a',
+    borderRadius: 100,
+    left: 15,
+    zIndex: 2,
+    borderWidth: 2,
+    borderColor: 'white',
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
