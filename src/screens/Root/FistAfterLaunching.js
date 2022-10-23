@@ -246,7 +246,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     borderRadius: 50,
-    backgroundColor: '#ffc1077d', //#ffeb3b21
+    backgroundColor: '#ffc1077d',
+    marginBottom: 20,
   },
   ui_splash_button_goto_text_starting: {
     fontSize: 15,

@@ -33,7 +33,7 @@ const FistLaunching = ({navigation}) => {
     }).start();
     Animated.timing(PinkDetails, {
       toValue: 1,
-      duration: 1000,
+      duration: 600,
       useNativeDriver: true,
       easing: ease,
     }).start();
@@ -45,7 +45,7 @@ const FistLaunching = ({navigation}) => {
     }).start();
     setTimeout(() => {
       setTimerWithSvg(1);
-    }, 700);
+    }, 600);
   }, [MoveDetails, PinkDetails]);
 
   /**
