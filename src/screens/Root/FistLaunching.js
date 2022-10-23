@@ -56,7 +56,7 @@ const Getlaunching = ({navigation}) => {
   });
 
   const goWelcomeBrave = () => {
-    navigation.push('Get starting');
+    navigation.push('After Launching');
   };
 
   return (
