@@ -18,7 +18,7 @@ import {ease} from 'react-native/Libraries/Animated/Easing';
 import AnimatedLottieView from 'lottie-react-native';
 import TypeScreen from '../../utils/TypeScreen';
 
-const Getlaunching = ({navigation}) => {
+const FistLaunching = ({navigation}) => {
   const MoveDetails = useRef(new Animated.Value(-200)).current;
   const PinkDetails = useRef(new Animated.Value(0)).current;
   const LottieIco = useRef(new Animated.Value(-100)).current;
@@ -321,4 +321,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Getlaunching;
+export default FistLaunching;
