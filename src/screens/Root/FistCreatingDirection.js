@@ -25,7 +25,7 @@ import Space from '../../components/Space';
 import LoaderGs from '../../components/LoaderGs';
 import LoaderSuccessGs from '../../components/LoaderSuccessGs';
 
-const Grantstarting = ({navigation}) => {
+const FistCreatingDirection = ({navigation}) => {
   const dispatch = useDispatch();
 
   const [countstep, setCountstep] = useState(0);
@@ -248,7 +248,7 @@ const Grantstarting = ({navigation}) => {
             </View>
             <View style={styles.ui_splash_contain_globe_icon_animated_cfs1}>
               <AnimatedLottieView
-                source={require('../../../assets/93248-send-message.json')}
+                source={require('../../../assets/animation/93248-send-message.json')}
                 autoPlay
                 style={styles.ui_splash_icon_animated_cfs1}
               />
@@ -514,7 +514,7 @@ const Grantstarting = ({navigation}) => {
       </ScrollView>
       {countstep == 5 ? (
         <LoaderSuccessGs
-          Lottietitle={require('../../../assets/116406-carousel-swipe-animation.json')}
+          Lottietitle={require('../../../assets/animation/116406-carousel-swipe-animation.json')}
           Titlesuccess="acxios crée votre agence, merci de patienter quelques minutes. Après vous serez redirigé dans votre espace administration."
         />
       ) : null}
@@ -662,4 +662,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Grantstarting;
+export default FistCreatingDirection;
