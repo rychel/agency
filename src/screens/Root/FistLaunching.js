@@ -147,7 +147,7 @@ const FistLaunching = ({navigation}) => {
         </Animated.View>
         <Animated.View style={{transform: [{translateY: LottieIco}]}}>
           <AnimatedLottieView
-            source={require('../../../assets/122491-new-rocket-ideia.json')}
+            source={require('../../../assets/animation/122491-new-rocket-ideia.json')}
             style={styles.ui_splash_global_activity_icon}
             autoPlay
           />

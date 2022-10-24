@@ -8,7 +8,7 @@ const ConnexionStatus = () => {
       <View style={styles.ui_splash_contain_contain_destination_globe}>
         <View style={styles.ui_splash_contain_destination_globe}>
           <AnimatedLottieView
-            source={require('../../assets/99109-loading.json')}
+            source={require('../../assets/animation/99109-loading.json')}
             style={styles.ui_splash_global_activity_icon}
             autoPlay
           />

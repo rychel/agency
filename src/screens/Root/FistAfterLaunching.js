@@ -117,7 +117,7 @@ const FistAfterLaunching = ({navigation}) => {
           votre agence numérique.
         </Text>
         <AnimatedLottieView
-          source={require('../../../assets/113794-ghost-emoji-animation.json')}
+          source={require('../../../assets/animation/113794-ghost-emoji-animation.json')}
           style={styles.ui_splash_global_fantome_activity_icon}
           autoPlay
         />

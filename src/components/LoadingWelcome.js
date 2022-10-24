@@ -8,7 +8,7 @@ const LoadingWelcome = props => {
   return (
     <View style={styles.ui_splash_global_display_screen}>
       <AnimatedLottieView
-        source={require('../../assets/98556-loader.json')}
+        source={require('../../assets/animation/98556-loader.json')}
         style={styles.ui_splash_global_activity_icon}
         autoPlay
       />
