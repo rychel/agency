@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import Svg, {Path} from 'react-native-svg';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {ease} from 'react-native/Libraries/Animated/Easing';
@@ -22,7 +21,6 @@ const FistLaunching = ({navigation}) => {
   const MoveDetails = useRef(new Animated.Value(-200)).current;
   const PinkDetails = useRef(new Animated.Value(0)).current;
   const LottieIco = useRef(new Animated.Value(-100)).current;
-  const [TimerWithSvg, setTimerWithSvg] = useState(0);
   const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
@@ -43,9 +41,6 @@ const FistLaunching = ({navigation}) => {
       useNativeDriver: true,
       easing: ease,
     }).start();
-    setTimeout(() => {
-      setTimerWithSvg(1);
-    }, 600);
   }, [MoveDetails, PinkDetails]);
 
   /**
@@ -69,35 +64,34 @@ const FistLaunching = ({navigation}) => {
         translucent={true}
         hidden={false}
       />
-      <LinearGradient
-        start={{x: 0.0, y: 0.25}}
-        end={{x: 0.5, y: 1.0}}
-        locations={[0.05, 0.6]}
-        colors={['#03a9f4', '#03a9f4']}
-        style={styles.ui_splash_global_app_header_contain}>
-        <View style={styles.ui_splash_ico_distributed}></View>
-        {TypeScreen.isTablet() ? null : TypeScreen.isPhone() &&
-          TypeScreen.isLandscape() ? null : (
-          <Animated.View
-            style={[
-              TimerWithSvg == 0
-                ? styles.ui_splash_contain_viewer_svg_display
-                : styles.ui_splash_contain_viewer_svg_animated_display,
-              {opacity: PinkDetails},
-            ]}>
-            <Svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1440 320"
-              style={styles.ui_splash_svg_display_started}>
-              <Path
-                fill="white"
-                strokeWidth="0"
-                d="M762.2,189.9c-17.4-27.1-38.1-52.2-61.3-74.5c-23.9-22.9-50.8-43.1-79.8-59.8C528.3,2,419.9-13.5,315.9,11.9 c-50.6,12.4-97.8,33.8-140.2,63.6C131.9,106.3,95,144.9,65.9,190.1c-0.1,0.2-0.2,0.3-0.3,0.5c-3.4,5.8-1.4,13,4.4,16.4l308.3,178 c8.4-10.4,21.3-17.1,35.8-17.1c14.4,0,27.2,6.6,35.6,16.9l308.4-178c1.9-1.1,3.4-2.6,4.5-4.4C764.8,198.5,764.7,193.7,762.2,189.9z"
-              />
-            </Svg>
-          </Animated.View>
-        )}
-      </LinearGradient>
+      {TypeScreen.isTablet() ? (
+        <LinearGradient
+          start={{x: 1.0, y: 0.25}}
+          end={{x: 0.5, y: 1.4}}
+          locations={[0.45, 0.7]}
+          colors={['#03a9f4', '#03a9f4']}
+          style={styles.ui_splash_global_app_header_contain}>
+          <View style={styles.ui_splash_ico_distributed}></View>
+        </LinearGradient>
+      ) : TypeScreen.isPhone() && TypeScreen.isLandscape() ? (
+        <LinearGradient
+          start={{x: 1.0, y: 0.25}}
+          end={{x: 0.5, y: 1.4}}
+          locations={[0.45, 0.7]}
+          colors={['#03a9f4', '#03a9f4']}
+          style={styles.ui_splash_global_app_header_contain}>
+          <View style={styles.ui_splash_ico_distributed}></View>
+        </LinearGradient>
+      ) : (
+        <LinearGradient
+          start={{x: 1.0, y: 0.25}}
+          end={{x: 0.5, y: 1.4}}
+          locations={[0.45, 0.8]}
+          colors={['#03a9f4', '#03a9f480']}
+          style={styles.ui_splash_global_fake_app_header_contain}>
+          <View style={styles.ui_splash_fake_ico_distributed}></View>
+        </LinearGradient>
+      )}
       <View style={styles.ui_splash_global_app_footer_contain}>
         <Animated.View
           style={[
@@ -127,7 +121,7 @@ const FistLaunching = ({navigation}) => {
             </Text>
           </View>
           <TouchableOpacity
-            activeOpacity={0.7}
+            activeOpacity={0.5}
             onPress={goWelcomeBrave}
             style={styles.ui_splash_started_contain_button_welcome}>
             <LinearGradient
@@ -163,20 +157,35 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     backgroundColor: 'white',
   },
+  ui_splash_global_fake_app_header_contain: {
+    height: 216,
+    width: Dimensions.get('window').width - 120,
+    left: 50,
+    borderRadius: 150,
+    transform: [{scaleX: 3}],
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   ui_splash_global_app_header_contain: {
-    height: 220,
+    height: 216,
     width: '100%',
     alignItems: 'center',
-    flexDirection: 'column',
     justifyContent: 'center',
     overflow: 'hidden',
   },
   ui_splash_ico_distributed: {
-    width: 85,
-    height: 80,
+    width: 90,
+    height: 90,
     borderRadius: 40,
     backgroundColor: 'white',
-    top: 35,
+  },
+  ui_splash_fake_ico_distributed: {
+    width: 90,
+    height: 85,
+    borderRadius: 40,
+    backgroundColor: 'white',
+    transform: [{scaleX: 0.32}],
+    left: 2,
   },
   ui_splash_global_app_footer_contain: {
     height: 350,
@@ -203,23 +212,6 @@ const styles = StyleSheet.create({
     top: 130,
     backgroundColor: 'red',
     overflow: 'hidden',
-  },
-  ui_splash_contain_viewer_svg_animated_display: {
-    width: '100%',
-    height: 90,
-    alignItems: 'center',
-    justifyContent: 'center',
-    top: 130,
-    backgroundColor: 'red',
-    overflow: 'visible',
-  },
-  ui_splash_svg_display_started: {
-    width: Dimensions.get('screen').width * 3,
-    height: 620,
-    transform: [{rotate: '20deg'}],
-    left: 247,
-    top: 63,
-    zIndex: 2,
   },
   ui_splash_started_font_config1: {
     fontSize: 14,
