@@ -15,17 +15,15 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {ease} from 'react-native/Libraries/Animated/Easing';
 import AnimatedLottieView from 'lottie-react-native';
-import TypeScreen from '../../utils/TypeScreen';
 
 const FistLaunching = ({navigation}) => {
   const MoveDetails = useRef(new Animated.Value(-200)).current;
   const PinkDetails = useRef(new Animated.Value(0)).current;
   const LottieIco = useRef(new Animated.Value(-100)).current;
-  const [orientation, setOrientation] = useState('');
 
   useEffect(() => {
     Animated.timing(MoveDetails, {
-      toValue: 0,
+      toValue: -2,
       duration: 800,
       useNativeDriver: true,
     }).start();
@@ -36,19 +34,12 @@ const FistLaunching = ({navigation}) => {
       easing: ease,
     }).start();
     Animated.timing(LottieIco, {
-      toValue: 1,
+      toValue: -55,
       duration: 700,
       useNativeDriver: true,
       easing: ease,
     }).start();
-  }, [MoveDetails, PinkDetails]);
-
-  /**
-   * When the phone rotate
-   */
-  Dimensions.addEventListener('change', () => {
-    setOrientation(TypeScreen.isPortrait() ? 'portrait' : 'landscape');
-  });
+  }, [MoveDetails, PinkDetails, LottieIco]);
 
   const goWelcomeBrave = () => {
     navigation.push('After Launching');
@@ -58,40 +49,15 @@ const FistLaunching = ({navigation}) => {
     <ScrollView style={styles.ui_splash_global_app_contain}>
       <StatusBar
         animated={true}
-        backgroundColor="#03a9f4"
+        backgroundColor="#0070c6"
         barStyle="default"
         showHideTransition="fade"
         translucent={true}
         hidden={false}
       />
-      {TypeScreen.isTablet() ? (
-        <LinearGradient
-          start={{x: 1.0, y: 0.25}}
-          end={{x: 0.5, y: 1.4}}
-          locations={[0.45, 0.7]}
-          colors={['#03a9f4', '#03a9f4']}
-          style={styles.ui_splash_global_app_header_contain}>
-          <View style={styles.ui_splash_ico_distributed}></View>
-        </LinearGradient>
-      ) : TypeScreen.isPhone() && TypeScreen.isLandscape() ? (
-        <LinearGradient
-          start={{x: 1.0, y: 0.25}}
-          end={{x: 0.5, y: 1.4}}
-          locations={[0.45, 0.7]}
-          colors={['#03a9f4', '#03a9f4']}
-          style={styles.ui_splash_global_app_header_contain}>
-          <View style={styles.ui_splash_ico_distributed}></View>
-        </LinearGradient>
-      ) : (
-        <LinearGradient
-          start={{x: 1.0, y: 0.25}}
-          end={{x: 0.5, y: 1.4}}
-          locations={[0.45, 0.8]}
-          colors={['#03a9f4', '#03a9f480']}
-          style={styles.ui_splash_global_fake_app_header_contain}>
-          <View style={styles.ui_splash_fake_ico_distributed}></View>
-        </LinearGradient>
-      )}
+      <View style={styles.ui_splash_global_fake_app_header_contain}>
+        <View style={styles.ui_splash_fake_ico_distributed}></View>
+      </View>
       <View style={styles.ui_splash_global_app_footer_contain}>
         <Animated.View
           style={[
@@ -158,37 +124,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   ui_splash_global_fake_app_header_contain: {
-    height: 216,
-    width: Dimensions.get('window').width - 120,
-    left: 50,
-    borderRadius: 150,
-    transform: [{scaleX: 3}],
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  ui_splash_global_app_header_contain: {
-    height: 216,
+    height: 160,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  ui_splash_ico_distributed: {
-    width: 90,
-    height: 90,
-    borderRadius: 40,
-    backgroundColor: 'white',
   },
   ui_splash_fake_ico_distributed: {
-    width: 90,
-    height: 85,
-    borderRadius: 40,
-    backgroundColor: 'white',
-    transform: [{scaleX: 0.32}],
-    left: 2,
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    backgroundColor: 'blue',
+    top: 10,
   },
   ui_splash_global_app_footer_contain: {
-    height: 350,
+    height: 405,
     width: '100%',
     backgroundColor: 'transparent',
     zIndex: 2,
@@ -219,8 +168,7 @@ const styles = StyleSheet.create({
   },
   ui_splash_started_title_contracts: {
     width: '100%',
-    height: 280,
-    marginTop: 8,
+    height: 300,
     position: 'relative',
     overflow: 'hidden',
     justifyContent: 'space-around',
@@ -229,32 +177,27 @@ const styles = StyleSheet.create({
   ui_splash_started_name_app_viewer: {
     flexDirection: 'row',
     height: 50,
-    left: 5,
   },
   ui_splash_started_name_app_part1: {
     fontSize: 32,
-    color: '#00000085',
     left: 10,
-    fontFamily: 'Roboto-Medium',
-    top: 8,
-    textShadowColor: '#00000014',
-    textShadowRadius: 10,
-    elevation: 1,
-    textShadowOffset: {width: -1, height: 3},
+    fontFamily: 'Nunito-Bold',
+    top: 6,
+    color: '#000000cc',
   },
   ui_splash_started_name_app_part2: {
-    fontSize: 45,
+    fontSize: 55,
     color: '#f44336',
     left: 10,
     fontFamily: 'Quicksand-VariableFont_wght',
     fontWeight: '700',
     transform: [{rotate: '10deg'}],
+    top: -10,
   },
   ui_splash_started_name_app_descrip_viewer: {
     flexDirection: 'row',
     width: '95%',
     alignItems: 'center',
-    left: 5,
   },
   ui_splash_started_text_contracts1: {
     color: '#000000c4',
@@ -269,8 +212,8 @@ const styles = StyleSheet.create({
     color: '#5e6be3',
   },
   ui_splash_started_contain_button_welcome: {
-    left: 10,
-    top: -10,
+    left: 4,
+    top: 10,
     width: 149,
     height: 67,
     alignItems: 'center',
@@ -307,7 +250,6 @@ const styles = StyleSheet.create({
   ui_splash_global_activity_icon: {
     width: 200,
     height: 220,
-    top: -50,
     alignSelf: 'flex-end',
     left: 20,
   },

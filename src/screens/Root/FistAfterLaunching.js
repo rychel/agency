@@ -10,16 +10,11 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faPlus,
-  faArrowRight,
-  faClose,
-} from '@fortawesome/free-solid-svg-icons';
+import {faPlus, faArrowRight, faClose} from '@fortawesome/free-solid-svg-icons';
 import AnimatedLottieView from 'lottie-react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const FistAfterLaunching = ({navigation}) => {
-  const NouveauMoveMaker = useRef(new Animated.Value(-100)).current;
   const ContsMoveMaker = useRef(new Animated.Value(30)).current;
   const CCMoveMaker = useRef(new Animated.Value(0)).current;
   const CCPersMaker = useRef(new Animated.Value(100)).current;
@@ -33,11 +28,6 @@ const FistAfterLaunching = ({navigation}) => {
   };
 
   useEffect(() => {
-    Animated.timing(NouveauMoveMaker, {
-      toValue: 2,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
     Animated.timing(ContsMoveMaker, {
       toValue: 2,
       duration: 300,
@@ -58,7 +48,7 @@ const FistAfterLaunching = ({navigation}) => {
       duration: 800,
       useNativeDriver: true,
     }).start();
-  }, [NouveauMoveMaker, ContsMoveMaker, CCMoveMaker, CCPersMaker]);
+  }, [ContsMoveMaker, CCMoveMaker, CCPersMaker]);
 
   return (
     <ScrollView style={styles.ui_splash_todo_contain}>
@@ -71,13 +61,6 @@ const FistAfterLaunching = ({navigation}) => {
         hidden={false}
       />
       <View style={styles.ui_splash_contain_welcome_header_message}>
-        <Animated.View
-          style={[
-            styles.ui_splash_contain_globe_logo_welcome_message,
-            {transform: [{translateX: NouveauMoveMaker}]},
-          ]}>
-          <Text style={styles.ui_splash_contain_widget_acxios}>NOUVEAU</Text>
-        </Animated.View>
         <Animated.View
           style={[
             styles.ui_splash_contain_fuck_logo_welcome_message,
@@ -149,16 +132,17 @@ const FistAfterLaunching = ({navigation}) => {
         Créer votre compte ici.
       </Animated.Text>
       <Animated.View
-        style={{opacity: CCMoveMaker, transform: [{translateY: CCPersMaker}]}}>
+        style={{
+          opacity: CCMoveMaker,
+          alignSelf: 'center',
+          transform: [{translateY: CCPersMaker}],
+        }}>
         <TouchableOpacity
           style={styles.ui_splash_button_goto_starting}
-          activeOpacity={0.8}>
+          activeOpacity={0.6}>
           <Text style={styles.ui_splash_button_goto_text_starting}>
             creer un compte particulier
           </Text>
-          <View style={styles.ui_splash_started_floating_goto_text_starting}>
-            <FontAwesomeIcon icon={faArrowRight} color="white" size={17} />
-          </View>
         </TouchableOpacity>
       </Animated.View>
     </ScrollView>
@@ -177,24 +161,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 0.5,
     borderColor: '#00000017',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   ui_splash_contain_widget_acxios: {
     fontSize: 30,
     fontFamily: 'Roboto-Thin',
   },
-  ui_splash_contain_globe_logo_welcome_message: {
-    width: 160,
-    height: 90,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffeb3b42',
-    top: 10,
-  },
   ui_splash_contain_fuck_logo_welcome_message: {
-    width: '45%',
-    height: 160,
-    alignItems: 'flex-start',
+    width: '60%',
+    height: 130,
+    alignItems: 'center',
     overflow: 'hidden',
     justifyContent: 'center',
   },
@@ -245,27 +221,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
-    borderRadius: 50,
-    backgroundColor: '#ffc1077d',
-    marginBottom: 20,
+    backgroundColor: '#ffc107',
+    width: 220,
+    borderRadius: 6,
   },
   ui_splash_button_goto_text_starting: {
     fontSize: 15,
     fontFamily: 'Roboto-Regular',
     marginRight: 5,
-    color: '#12121170',
-    paddingLeft: 25,
-  },
-  ui_splash_started_floating_goto_text_starting: {
-    width: 50,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 100,
-    backgroundColor: '#ffc107',
-    borderWidth: 3,
-    borderColor: 'white',
-    left: 2,
+    color: 'white',
   },
   ui_splash_started_floating_exit_page: {
     width: 33,
@@ -276,14 +240,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#f44336',
   },
   ui_splash_contain_header_exit_page: {
-    width: 257,
+    width: '80%',
     height: 50,
     position: 'relative',
     flexDirection: 'row',
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    top: 10,
+    justifyContent: 'space-around',
   },
   ui_splash_contain_text_exit_page: {
     position: 'relative',
